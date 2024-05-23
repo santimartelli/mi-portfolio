@@ -1,13 +1,26 @@
 ---
 import Badge from "../components/Badge.astro";
+import LinkedIn from "../icons/LinkedIn.astro";
+import GitHub from "../icons/GitHub.astro";
 ---
 
-<div class="flex justify-end border-t border-zinc-700">
-  <div class="p-2 border-l border-zinc-700">
-    <a
-      href="https://www.linkedin.com/in/santiagomartelli/"
-      target="_blank"
-      class="flex text-center items-end">
+<div class="flex justify-between border-t border-zinc-700">
+  <div class="flex">
+    <div class="p-2 border-r border-zinc-700 hover:bg-zinc-900">
+      <a href="https://www.linkedin.com/in/santiagomartelli/" class="flex gap-x-2 text-xs items-center">
+        <LinkedIn class="size-5" />
+        <p>LinkedIn</p>
+      </a>
+    </div>
+    <div class="p-2 border-r border-zinc-700 hover:bg-zinc-900">
+      <a href="https://github.com/santimartelli" class="flex gap-x-2 text-xs items-center">
+        <GitHub class="size-5" />
+        <p>GitHub</p>
+      </a>
+    </div>
+  </div>
+  <div class="p-2 border-l border-zinc-700 flex justify-center">
+    <a href="https://www.linkedin.com/in/santiagomartelli/" target="_blank" class="flex justify-center">
       <Badge>Open to Work!</Badge>
     </a>
   </div>
