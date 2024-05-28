@@ -7,6 +7,7 @@ export default {
       animation: {
         fadeIn: "fadeIn .5s ease-in forwards",
         imageHover: "imageHover .8s ease-in-out forwards",
+        blink: 'blink 2s infinite',
       },
       keyframes: {
         fadeIn: {
@@ -17,10 +18,13 @@ export default {
           "0%": { transform: "scale(1)", filter: "blur(4px)", opacity: "0.5" },
           "100%": { transform: "scale(1.1)", filter: "blur(0)", opacity: "1" },
         },
+        blink: {
+          '0%': { opacity: '0.4', transform: 'rotate(0deg)' },
+          '50%': { opacity: '1', transform: 'rotate(20deg)' },
+          '100%': { opacity: '0.4', transform: 'rotate(0deg)' },
+        },
       },
       boxShadow: {
-        //black shadow soft and clean for dark mode
-        // 'white': '0px 15px 50px -40px rgba(0, 0, 0, 0.1)',
         'white': '0px 15px 50px -40px rgba(0, 0, 0, 0.5)',
       },
     },

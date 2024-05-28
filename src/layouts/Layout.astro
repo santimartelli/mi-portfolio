@@ -21,8 +21,8 @@ const { description, title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-black h-screen flex flex-col">
-    <div class="mx-8 my-8 border flex flex-col border-zinc-700 bg-zinc-950 flex-grow overflow-hidden">
+  <body class="bg-black h-screen flex flex-col text-zinc-400">
+    <div class="mx-8 my-8 border-[.5px] flex flex-col border-zinc-700 bg-zinc-950 flex-grow overflow-hidden">
       <Header />
       <main class="flex-grow animate-fadeIn overflow-auto">
         <slot />
@@ -31,6 +31,7 @@ const { description, title } = Astro.props;
     </div>
   </body>
 </html>
+
 <style is:global>
   :root {
     color-scheme: light dark;
@@ -44,7 +45,6 @@ const { description, title } = Astro.props;
     padding: 0;
     height: 100%;
     width: 100%;
-    color: 
   }
 
   body {
