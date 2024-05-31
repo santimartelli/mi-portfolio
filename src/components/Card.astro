@@ -10,7 +10,7 @@ interface Props {
 const { href, title, title2, body, image } = Astro.props;
 ---
 
-<div class="border-[.5px] border-zinc-700 rounded-sm h-64 overflow-hidden transition-shadow duration-500 hover:shadow-white text-zinc-300">
+<div class="border-[.5px] border-zinc-700 rounded-md h-64 overflow-hidden transition-shadow duration-500 hover:shadow-white text-zinc-300">
   <a href={href} class="flex flex-col h-full group">
     <div class="h-40 relative overflow-hidden">
       <img src={image} alt={title} class="w-full h-full object-cover rounded-t-sm transform scale-100 blur-sm opacity-50 transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:blur-0 group-hover:opacity-100" />

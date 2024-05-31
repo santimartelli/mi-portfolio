@@ -1,44 +1,32 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
+import Badge from "../components/Badge.astro";
 ---
 
-<Layout
-  title="Santiago Martelli | Contacto"
-  description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, Php, Laravel, MySQL y más. Disponible para trabajar!">
-  <div class="max-h-screen">
-    <form
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      action="/gracias"
-      class="flex flex-col items-center justify-center w-full h-full p-4 space-y-4"
-    >
-      <input type="hidden" name="form-name" value="contact" />
-      <h1 class="text-2xl font-bold">Contacto</h1>
-      <input
-        type="text"
-        name="name"
-        placeholder="Nombre"
-        class="w-full p-2 border border-gray-300 rounded-md"
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        class="w-full p-2 border border-gray-300 rounded-md"
-      />
-      <textarea
-        name="message"
-        placeholder="Mensaje"
-        class="w-full p-2 border border-gray-300 rounded-md"
-      ></textarea>
-      <button
-        type="submit"
-        class="w-full p-2 text-white bg-blue-500 rounded-md"
-      >
-        Enviar
-      </button>
-    </form>
-  </div></Layout
->
+<Layout title="Santiago Martelli | Programador y Desarrollador Web"
+description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, Php, Laravel, MySQL y más. Disponible para trabajar!">
+    <section class="mx-auto flex flex-col justify-center">
+      <h2 class="text-white pb-6"><span class="text-white">&gt;</span> Extracto</h2>
+      <p class="text-md pb-10">
+        Desarrollador de Aplicaciones Web motivado, entusiasta y con una sólida formación teórica. Aunuqe a
+        simple vista mi experiencia parezca limitada, cuento con proyectos personales que muestran mis capacidades para
+        construir páginas web tanto estáticas como dinámicas, brindando soluciones limpias e innovadoras a problemas
+        reales. Me apasiona aprender y mejorar constantemente, por lo que estoy dispuesto a enfrentar nuevos desafíos y
+				aportar valor a cualquier equipo de trabajo.
+      </p>
+      <h2 class="text-white pb-6"><span class="text-white">&gt;</span> Habilidades</h2>
+      <div class="flex flex-row gap-3 flex-wrap pb-10">
+        <Badge>HTML</Badge>
+        <Badge>CSS</Badge>
+        <Badge>JavaScript</Badge>
+        <Badge>Vue.js</Badge>
+        <Badge>Node.js</Badge>
+        <Badge>Express.js</Badge>
+        <Badge>PHP</Badge>
+        <Badge>Laravel</Badge>
+        <Badge>MySQL</Badge>
+        <Badge>Git</Badge>
+        <Badge>Tailwind CSS</Badge>
+      </div>
+    </section>
+</Layout>

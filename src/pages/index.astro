@@ -2,18 +2,17 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Santiago Martelli | Programador y Desarrollador Web"
-description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, Php, Laravel, MySQL y más. Disponible para trabajar!">
-    <section class="mx-auto lg:w-[740px] md:w-[600] w-[calc(100%-10px)] h-[calc(100%-10px)] max-h-[calc(100%-10px)] overflow-auto flex flex-col justify-center">
-      <h1 class="text-4xl flex flex-row gap-x-4 pb-6 text-white">
-        Hola, soy Santiago
-      </h1>
-      <h2 class=" text-lg opacity-80 text-zinc-300">
-        Desarrollador de Aplicaciones Web motivado, entusiasta y con una sólida formación teórica. Aunuqe a
-        simple vista mi experiencia parezca limitada, cuento con proyectos personales que muestran mis capacidades para
-        construir páginas web tanto estáticas como dinámicas, brindando soluciones limpias e innovadoras a problemas
-        reales. Me apasiona aprender y mejorar constantemente, por lo que estoy dispuesto a enfrentar nuevos desafíos y
-				aportar valor a cualquier equipo de trabajo.
-      </h2>
-    </section>
+<Layout
+  title="Santiago Martelli | Programador y Desarrollador Web"
+  description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, Php, Laravel, MySQL y más. Disponible para trabajar!">
+  <section class="flex flex-col justify-center items-center gap-y-3">
+    <div class="flex flex-col items-center p-10 rounded-md">
+      <h1 class="text-white text-3xl sn:text-2xl md:text-4xl lg:text-6xl pb-6">SANTIAGO MARTELLI</h1>
+      <h1 class="text-white text-2xl sn:text-xl md:text-3xl lg:text-5xl"><span>&gt; </span>Desarrollador Web</h1>
+    </div>
+    <p class="mt-8 text-center text-md">
+      Gracias por visitar mi página, te invito a que conozcas más <span><a href="/about" class="text-white hover:underline">sobre mí</a></span> para conocer mis habilidades y a que explores mis
+      últimos <a href="/projects" class="text-white hover:underline">proyectos</a>.
+    </p>
+  </section>
 </Layout>

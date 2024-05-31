@@ -5,39 +5,45 @@ import Layout from "../layouts/Layout.astro";
 <Layout
   title="Santiago Martelli | Contacto"
   description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, Php, Laravel, MySQL y más. Disponible para trabajar!">
-  <div class="max-h-screen">
-    <form
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      action="/gracias"
-      class="flex flex-col items-center justify-center w-full h-full p-4 space-y-4"
-    >
-      <input type="hidden" name="form-name" value="contact" />
-      <h1 class="text-2xl font-bold">Contacto</h1>
-      <input
-        type="text"
-        name="name"
-        placeholder="Nombre"
-        class="w-full p-2 border border-gray-300 rounded-md"
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        class="w-full p-2 border border-gray-300 rounded-md"
-      />
-      <textarea
-        name="message"
-        placeholder="Mensaje"
-        class="w-full p-2 border border-gray-300 rounded-md"
-      ></textarea>
-      <button
-        type="submit"
-        class="w-full p-2 text-white bg-blue-500 rounded-md"
-      >
-        Enviar
-      </button>
-    </form>
-  </div></Layout
->
+  <section class="flex flex-col items-center justify-center w-full">
+    <div class="w-full">
+      <p class="pb-10 text-justify">
+        <span class="text-white">&gt;</span> Si tienes alguna pregunta o simplemente quieres saludar, no dudes en escribirme. Estoy disponible para trabajar
+        en proyectos interesantes.
+      </p>
+    </div>
+    <div class="mx-auto w-full flex flex-col justify-center">
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        action="/gracias"
+        class="flex flex-col items-center justify-center w-full h-full space-y-4">
+        <input
+          type="text"
+          name="name"
+          placeholder="Nombre"
+          class="w-full p-2 border-[.5px] border-zinc-700 rounded-sm"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          class="w-full p-2 border-[.5px] border-zinc-700 rounded-sm"
+        />
+        <textarea
+          name="message"
+          placeholder="Mensaje"
+          rows="5"
+          class="w-full p-2 border-[.5px] border-zinc-700 rounded-sm"></textarea>
+        <div class="w-full flex justify-end">
+          <button
+            type="submit"
+            class="bg-transparent border-[.5px] text-zinc-400 hover:text-green-600 py-2 px-4 border-zinc-700 hover:border-white rounded-sm focus:text-green-600">
+            Enviar
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</Layout>

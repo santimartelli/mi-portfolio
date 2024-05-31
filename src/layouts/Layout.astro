@@ -1,5 +1,7 @@
 ---
 import "@fontsource-variable/onest";
+import "@fontsource-variable/fira-code"
+import "@fontsource/geist-mono";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
@@ -21,14 +23,12 @@ const { description, title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-black h-screen flex flex-col text-zinc-400">
-    <div class="mx-8 my-8 border-[.5px] flex flex-col border-zinc-700 bg-zinc-950 flex-grow overflow-hidden">
-      <Header />
-      <main class="flex-grow animate-fadeIn overflow-auto">
+  <body class="bg-black h-full p-8 flex flex-col text-zinc-400 flex-grow">
+      <Header class="flex-shrink-0"/>
+      <main class="flex flex-grow h-full w-full md:w-2/3 animate-fadeIn overflow-auto mx-auto my-5 px-5 items-center justify-center">
         <slot />
       </main>
-      <Footer />
-    </div>
+      <Footer class="flex-shrink-0"/>
   </body>
 </html>
 
@@ -37,24 +37,32 @@ const { description, title } = Astro.props;
     color-scheme: light dark;
   }
 
+  //Reset css
   *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  body, html {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+  }
+
+  :focus {
+    outline: .5px solid white;
+  }
+
+  html, body {
     height: 100%;
-    width: 100%;
+    font-family: "Geist Mono", "Fira Code Variable", "Onest Variable", system-ui, sans-serif;
   }
 
   body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    text-align: justify;
   }
 
-  html {
-    font-family: "Onest Variable", system-ui, sans-serif;
-    text-align: justify;
+  main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: auto;
   }
 </style>
