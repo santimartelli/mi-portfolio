@@ -1,6 +1,6 @@
 ---
 import "@fontsource-variable/onest";
-import "@fontsource-variable/fira-code"
+import "@fontsource-variable/fira-code";
 import "@fontsource/geist-mono";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -23,46 +23,47 @@ const { description, title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-black h-full p-8 flex flex-col text-zinc-400 flex-grow">
-      <Header class="flex-shrink-0"/>
-      <main class="flex flex-grow h-full w-full md:w-2/3 animate-fadeIn overflow-auto mx-auto my-5 px-5 items-center justify-center">
-        <slot />
-      </main>
-      <Footer class="flex-shrink-0"/>
+  <body class="bg-black h-screen p-8 flex flex-col text-zinc-400 flex-grow">
+    <Header class="flex-shrink-0" />
+    <main
+      class="flex flex-grow h-full w-full md:w-[84%] animate-fadeIn overflow-auto mx-auto my-5 items-center justify-center">
+      <slot />
+    </main>
+    <Footer class="flex-shrink-0" />
   </body>
-</html>
 
-<style is:global>
-  :root {
-    color-scheme: light dark;
-  }
+  <style is:global>
+    :root {
+      color-scheme: light dark;
+    }
 
-  //Reset css
+    //Reset css
   *, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  :focus {
-    outline: .5px solid white;
-  }
+    :focus {
+      outline: 0.5px solid white;
+    }
 
-  html, body {
-    height: 100%;
-    font-family: "Geist Mono", "Fira Code Variable", "Onest Variable", system-ui, sans-serif;
-  }
+    html,
+    body {
+      height: 100%;
+      font-family: "Geist Mono", "Fira Code Variable", "Onest Variable", system-ui, sans-serif;
+    }
 
-  body {
-    display: flex;
-    flex-direction: column;
-    text-align: justify;
-  }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
 
-  main {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    overflow: auto;
-  }
-</style>
+    main {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      overflow: auto;
+    }
+  </style>
+</html>
