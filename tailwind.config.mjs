@@ -10,7 +10,7 @@ export default {
         fadeIn: "fadeIn .5s ease-in forwards",
         imageHover: "imageHover .8s ease-in-out forwards",
         blink: 'blink 2s infinite',
-        enterUp: 'enterUp 1.5s forwards',
+        enterUp: 'enterUp 2.2s forwards',
       },
       keyframes: {
         fadeIn: {
@@ -27,7 +27,8 @@ export default {
           '100%': { opacity: '0.4', transform: 'rotate(0deg)' },
         },
         enterUp: {
-          '0%': { transform: 'translateY(40%)', opacity: 0 },
+          '0%': { transform: 'translateY(80%)', opacity: 0 },
+          '50%': { transform: 'translateY(40%)', opacity: 0 },
           '100%': { transform: 'translateY(0)', opacity: 1 },
         },
       },
