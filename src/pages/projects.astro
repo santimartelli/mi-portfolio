@@ -1,25 +1,37 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+
+const PROJECTS = [
+  {
+    image: "https://tanyamartelli.com/img/logo.8ddecaf7.jpg",
+    title: "Tanya Martelli",
+    title2: "Photography",
+    body: "Sitio web de fotografía de Tanya Martelli",
+    href: "https://tanyamartelli.com",
+  },
+  {
+    image: "https://tanyamartelli.com/img/logo.8ddecaf7.jpg",
+    title: "Portfolio",
+    title2: "Santiago Martelli",
+    body: "Sitio web personal de Santiago Martelli",
+    href: "https://martelli.dev",
+  },
+];
 ---
 
 <Layout
   title="Santiago Martelli | Proyectos"
   description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, Php, Laravel, MySQL y más. Disponible para trabajar!">
     <section class="mx-auto flex flex-row justify-center gap-10 flex-wrap">
+    {PROJECTS.map(({ image, title, title2, body, href}) => (
       <Card
-        image="https://tanyamartelli.com/img/logo.8ddecaf7.jpg"
-        title="Tanya Martelli"
-        title2="Photography"
-        body="Sitio web de fotografía de Tanya Martelli"
-        href="https://tanyamartelli.com"
+        image={image}
+        title={title}
+        title2={title2}
+        body={body}
+        href={href}
       />
-      <Card
-        image="https://tanyamartelli.com/img/logo.8ddecaf7.jpg"
-        title="Portfolio"
-        title2="Santiago Martelli"
-        body="Sitio web personal de Santiago Martelli"
-        href="https://martelli.dev"
-      />
+    ))}
     </section>
 </Layout>
