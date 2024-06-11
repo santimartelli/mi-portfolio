@@ -2,8 +2,10 @@
 import "@fontsource-variable/onest";
 import "@fontsource-variable/fira-code";
 import "@fontsource/geist-mono";
-import Header from "../components/Header.astro";
+// import Header from "../components/Header.astro";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer.astro";
+import type { classicNameResolver } from "typescript";
 
 interface Props {
   title: string;
@@ -24,12 +26,12 @@ const { description, title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="bg-black h-screen p-8 flex flex-col text-zinc-400 flex-grow">
-    <Header class="flex-shrink-0" />
+    <Navbar client:load />
     <main
       class="flex flex-grow h-full w-full md:w-[84%] animate-fadeIn overflow-auto mx-auto my-5 items-center justify-center">
       <slot />
     </main>
-    <Footer class="flex-shrink-0" />
+    <!-- <Footer class="flex-shrink-0" /> -->
   </body>
 
   <style is:global>
