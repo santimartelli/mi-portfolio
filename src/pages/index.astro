@@ -1,185 +1,171 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Projects from "../components/Projects.tsx";
+import Badge from "../components/Badge.astro";
+import LinkedIn from "../icons/LinkedIn.astro";
+import GitHub from "../icons/GitHub.astro";
+import Curriculum from "../icons/Curriculum.astro";
 ---
 
 <Layout
   title="Santiago Martelli | Programador y Desarrollador Web"
   description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, Php, Laravel, MySQL y más. Disponible para trabajar!">
-  <section class="flex flex-col justify-center items-center">
-    <div class="flex flex-col items-center mb-10 lg:mb-20">
-      <div class="decode-text text-white">
-        <div class="text-animation text-2xl sm:text-xl md:text-4xl lg:text-5xl xl:text-7xl">S</div>
-        <div class="text-animation text-2xl sm:text-xl md:text-4xl lg:text-5xl xl:text-7xl">A</div>
-        <div class="text-animation text-2xl sm:text-xl md:text-4xl lg:text-5xl xl:text-7xl">N</div>
-        <div class="text-animation text-2xl sm:text-xl md:text-4xl lg:text-5xl xl:text-7xl">T</div>
-        <div class="text-animation text-2xl sm:text-xl md:text-4xl lg:text-5xl xl:text-7xl">I</div>
-        <div class="text-animation text-2xl sm:text-xl md:text-4xl lg:text-5xl xl:text-7xl">A</div>
-        <div class="text-animation text-2xl sm:text-xl md:text-4xl lg:text-5xl xl:text-7xl">G</div>
-        <div class="text-animation text-2xl sm:text-xl md:text-4xl lg:text-5xl xl:text-7xl">O</div>
-        <div class="space"></div>
-        <div class="text-animation text-2xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-7xl">M</div>
-        <div class="text-animation text-2xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-7xl">A</div>
-        <div class="text-animation text-2xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-7xl">R</div>
-        <div class="text-animation text-2xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-7xl">T</div>
-        <div class="text-animation text-2xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-7xl">E</div>
-        <div class="text-animation text-2xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-7xl">L</div>
-        <div class="text-animation text-2xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-7xl">L</div>
-        <div class="text-animation text-2xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-7xl">I</div>
-        <div class="line-jump"></div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl pr-2"><span>&gt; </span></div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">D</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">e</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">s</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">a</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">r</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">r</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">o</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">l</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">a</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">d</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">o</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">r</div>
-        <div class="space"></div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">W</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">e</div>
-        <div class="text-animation text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-4xl">b</div>
+  <main>
+    <!-- Hero section -->
+    <section id="home" class="w-screen min-h-screen mx-auto flex bg-slate-100">
+      <div class="flex flex-col max-md:mx-4 justify-center text-center">
+        <h1 class="text-5xl md:text-7xl pb-2 max-w-prose w-full font-bold mb-6">Santiago Martelli</h1>
+        <article class="text-lg md:text-3xl mb-20 lg:mx-32">
+          <h2>
+            Desarrollador Web Full Stack con conocimientos en HTML, CSS, JavaScript, React.js, Vue.js, Php, Laravel,
+            MySQL y más.
+          </h2>
+        </article>
+        <div class="px-4 flex justify-center text-md">
+          <a
+            href="https://www.linkedin.com/in/santiagomartelli/"
+            target="_blank"
+            class="flex justify-center items-center gap-1.5 px-4 py-2 transition duration-150 ease-in rounded-lg border border-black hover:border-green-600">
+            <div class="w-3 h-3 bg-green-600 rounded-full animate-blink"></div>
+            Disponible para trabajar!
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
-  <p class="text-justify text-md animate-enterUp text-pretty">
-    Gracias por visitar mi Web. te invito a que conozcas más <span
-      ><a href="/about" class="text-zinc-400 hover:underline">sobre mí</a></span
-    > y a explorar todos los detalles de mis mis últimos <a href="/projects" class="text-zinc-400 hover:underline"
-      >proyectos</a
-    >. También puedes visitar mi <a href="#" class="text-zinc-400 hover:underline">GitHub</a> para ver más de mi trabajo.
-  </p>
-</Layout>
+    </section>
 
-<script>
-  /* ------------------------------------------------------------------------ *
-4 states per letter: Transparent | Line | Block | Visible.
-These states are shuffled for a unique "decode" effect each time.
-* ------------------------------------------------------------------------ */
+    <div class="divider"></div>
 
-  function decodeText() {
-    var text = document.getElementsByClassName("decode-text")[0];
-    // debug with
-    // console.log(text, text.children.length);
+    <!-- About me section -->
+    <section id="about" class="w-screen pt-10 pb-44">
+      <div class="flex flex-col gap-y-10 max-md:mx-4 items-center">
+        <h2 class="text-3xl font-bold text-center uppercase">Sobre Mí</h2>
+        <div class="flex flex-col gap-y-8 items-center justify-center md:flex-row md:gap-x-5">
+          <img src="../../public/logo.jpg" alt="Santiago Martelli" class="rounded-full w-36" />
+          <p class="text-justify px-4 md:w-2/3">
+            Desarrollador de Aplicaciones Web motivado, entusiasta y con una sólida formación teórica. Aunuqe a simple
+            vista mi experiencia parezca limitada, cuento con proyectos personales que muestran mis capacidades para
+            construir páginas web tanto estáticas como dinámicas, brindando soluciones limpias e innovadoras a problemas
+            reales. Me apasiona aprender y mejorar constantemente, por lo que estoy dispuesto a enfrentar nuevos
+            desafíos y aportar valor a cualquier equipo de trabajo.
+          </p>
+        </div>
 
-    // assign the placeholder array its places
-    var state = [];
-    for (var i = 0, j = text.children.length; i < j; i++) {
-      text.children[i].classList.remove("state-1", "state-2", "state-3");
-      state[i] = i;
-    }
+        <div class="flex flex-row gap-3 flex-wrap items-center justify-center">
+          <Badge>HTML</Badge>
+          <Badge>CSS</Badge>
+          <Badge>JavaScript</Badge>
+          <Badge>Vue.js</Badge>
+          <Badge>Node.js</Badge>
+          <Badge>Express.js</Badge>
+          <Badge>PHP</Badge>
+          <Badge>Laravel</Badge>
+          <Badge>MySQL</Badge>
+          <Badge>Git</Badge>
+          <Badge>Tailwind CSS</Badge>
+        </div>
+      </div>
+    </section>
 
-    // shuffle the array to get new sequences each time
-    var shuffled = shuffle(state);
+    <div class="divider2"></div>
 
-    for (var i = 0, j: number = shuffled.length; i < j; i++) {
-      var child = text.children[shuffled[i]];
-      var classes = child.classList;
+    <!-- Projects section -->
+    <section id="projects" class="flex justify-center w-screen pt-10 pb-44 bg-slate-100">
+      <div class="flex flex-col max-md:mx-4 gap-y-10 items-center">
+        <h2 class="text-3xl font-bold uppercase">Proyectos</h2>
+        <Projects client:visible />
+      </div>
+    </section>
 
-      // fire the first one at random times
-      var state1Time = Math.round(Math.random() * 800);
-      if (classes.contains("text-animation")) {
-        setTimeout(firstStages.bind(null, child as HTMLElement), state1Time);
-      }
-    }
-  }
+    <div class="divider"></div>
 
-  // send the node for later .state changes
-  function firstStages(child: HTMLElement) {
-    if (child.classList.contains("state-2")) {
-      child.classList.add("state-3");
-    } else if (child.classList.contains("state-1")) {
-      child.classList.add("state-2");
-    } else if (!child.classList.contains("state-1")) {
-      child.classList.add("state-1");
-      setTimeout(secondStages.bind(null, child), 100);
-    }
-  }
-  function secondStages(child: HTMLElement) {
-    if (child.classList.contains("state-1")) {
-      child.classList.add("state-2");
-      setTimeout(thirdStages.bind(null, child), 100);
-    } else if (!child.classList.contains("state-1")) {
-      child.classList.add("state-1");
-    }
-  }
-  function thirdStages(child: HTMLElement) {
-    if (child.classList.contains("state-2")) {
-      child.classList.add("state-3");
-    }
-  }
+    <!-- Contact section -->
+    <section id="contact" class="mx-auto flex flex-col justify-center w-screen pt-10 pb-10">
+      <div class="flex flex-col max-md:mx-4 gap-y-10 items-center">
+        <h2 class="text-3xl font-bold uppercase">Contacto</h2>
+        <p class="text-center">
+          Si tienes alguna pregunta o simplemente quieres saludar, no dudes en escribirme. Estoy disponible para
+          trabajar en proyectos interesantes.
+        </p>
+        <form action="https://formspree.io/f/moqyqzqz" method="POST" class="flex flex-col gap-y-4 w-full max-md:mx-4 md:w-1/2">
+          <input
+            type="text"
+            name="name"
+            placeholder="Nombre"
+            class="p-2 border-b
+            border-gray-300 focus:outline-none focus:border-b focus:border-b-sky-700"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Correo Electrónico"
+            class="p-2 border-b
+            border-gray-300 focus:outline-none focus:border-b focus:border-b-sky-700"
+          />
+          <textarea
+            name="message"
+            placeholder="Mensaje"
+            class="p-2 border-b border-gray-300
+            focus:outline-none focus:border-b focus:border-b-sky-700"
+          ></textarea>
+          <div class="w-full flex items-center justify-center">
+            <button
+              type="submit"
+              class="px-6 py-2 w-fit transition duration-150 ease-in rounded-lg border border-black hover:border-green-600"
+              >Enviar</button
+            >
+          </div>
+        </form>
+        <p class="text-center">También puedes encontrarme en mis redes sociales o descargar mi CV</p>
 
-  function shuffle(array: any[]) {
-    var currentIndex = array.length,
-      temporaryValue,
-      randomIndex;
+        <div class="flex justify-between">
+          <div class="flex gap-x-2">
+            <div
+              class="px-4 py-2 transition duration-150 rounded-full ease-in border border-transparent hover:border-green-700">
+              <a href="https://www.linkedin.com/in/santiagomartelli/" class="flex gap-x-2 text-xs items-center">
+                <LinkedIn class="size-4" />
+                <p>LinkedIn</p>
+              </a>
+            </div>
+            <div
+              class="px-4 py-2 transition duration-150 rounded-full ease-in border border-transparent hover:border-green-700">
+              <a href="https://github.com/santimartelli" class="flex gap-x-2 text-xs items-center">
+                <GitHub class="size-4" />
+                <p>GitHub</p>
+              </a>
+            </div>
+            <div
+              class="px-4 py-2 transition duration-150 rounded-full ease-in border border-transparent hover:border-green-700">
+              <a href="#" class="flex gap-x-2 text-xs items-center">
+                <Curriculum class="size-4" />
+                <p>Descargar CV</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
+    <!-- Footer section -->
+    <footer class="flex justify-center items-center opacity-75 bg-black py-1">
+      <p class="text-center text-white text-xs">&copy; 2024 Santiago Martelli. Todos los derechos reservados.</p>
+    </footer>
+  </main>
 
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-    return array;
-  }
-
-  // Demo only stuff
-  decodeText();
-
-  // beware: refresh button can overlap this timer and cause state mixups
-  setInterval(function () {
-    decodeText();
-  }, 10000);
-</script>
-
-<style lang="scss">
-  .space {
-    display: inline-block;
-    width: 0.5em;
-  }
-  .text-animation {
-    display: inline-block;
-    position: relative;
-    color: transparent;
-    &:before {
-      content: "";
-      color: white;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      background: white;
-      // background: #a1a1aa; // zinc-400
+  <style>
+    .divider {
       width: 0;
-      height: 1.2em;
-      -webkit-transform: translate(-50%, -55%);
-      -ms-transform: translate(-50%, -55%);
-      transform: translate(-50%, -55%);
+      height: 0;
+      border-left: 100vw solid transparent;
+      border-bottom: calc(100vw * 0.059) solid #fff;
+      margin-top: calc(-100vw * 0.059);
     }
 
-    &.state-1 {
-      &:before {
-        width: 1px;
-      }
+    .divider2 {
+      width: 0;
+      height: 0;
+      border-right: 100vw solid transparent;
+      border-bottom: calc(100vw * 0.059) solid #f1f5f9;
+      margin-top: calc(-100vw * 0.059);
     }
-    &.state-2 {
-      &:before {
-        width: 0.9em;
-      }
-    }
-    &.state-3 {
-      color: white;
-      &:before {
-        width: 0;
-      }
-    }
-  }
-</style>
+  </style>
+</Layout>
