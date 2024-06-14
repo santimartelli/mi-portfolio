@@ -1,9 +1,7 @@
 ---
 // Supports weights 100-900
-import '@fontsource-variable/inter';
-// import Header from "../components/Header.astro";
+import "@fontsource-variable/inter";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
@@ -23,10 +21,9 @@ const { description, title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="flex flex-col flex-grow animate-fadeIn">
+  <body class="flex flex-col animate-fadeIn">
     <Navbar client:load />
-      <slot />
-    <!-- <Footer class="flex-shrink-0" /> -->
+    <slot />
   </body>
 
   <style is:global>
@@ -42,7 +39,7 @@ const { description, title } = Astro.props;
     }
 
     :focus {
-      outline: 0.5px solid #0369A1;
+      outline: 0.5px solid #0369a1;
     }
 
     html,
@@ -54,7 +51,6 @@ const { description, title } = Astro.props;
     main {
       display: flex;
       flex-direction: column;
-      overflow: auto;
       scroll-behavior: smooth;
       margin: 0;
       padding: 0;

@@ -1,34 +1,3 @@
----
-import LinkedIn from "../icons/LinkedIn.astro";
-import GitHub from "../icons/GitHub.astro";
-import Curriculum from "../icons/Curriculum.astro";
----
-
-<div class="flex justify-between border-t-[.0px] border-zinc-700">
-  <div class="flex">
-    <div class="px-4 transition duration-75 ease-in hover:text-white">
-      <a href="https://www.linkedin.com/in/santiagomartelli/" class="flex gap-x-2 text-xs items-center">
-        <LinkedIn class="size-4" />
-        <p>LinkedIn</p>
-      </a>
-    </div>
-    <div class="px-4 transition duration-75 ease-in hover:text-white">
-      <a href="https://github.com/santimartelli" class="flex gap-x-2 text-xs items-center">
-        <GitHub class="size-4" />
-        <p>GitHub</p>
-      </a>
-    </div>
-    <div class="px-4 transition duration-75 ease-in hover:text-white">
-      <a href="#" class="flex gap-x-2 text-xs items-center">
-        <Curriculum class="size-4" />
-        <p>Descargar CV</p>
-      </a>
-    </div>
-  </div>
-  <div class="px-4 flex justify-center text-xs transition duration-75 ease-in hover:text-white">
-    <a href="https://www.linkedin.com/in/santiagomartelli/" target="_blank" class="flex justify-center items-center gap-1.5">
-      <div class="w-2 h-2 bg-green-600 rounded-full animate-blink"></div>
-      Disponible para trabajar!
-    </a>
-  </div>
-</div>
+<footer class="flex justify-center items-center opacity-75 bg-black py-1">
+  <slot />
+</footer>

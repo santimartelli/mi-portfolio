@@ -30,20 +30,18 @@ export default function Navbar() {
   const [toggled, setToggled] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
   return (
-    // <nav className="relative flex flex-row px-8 mb-24 italic uppercase items-center justify-between">
     <nav className="py-2 bg-white sticky top-0 right-0 left-0 px-6 z-50 flex justify-between shadow items-center">
       <div className="flex items-center h-full">
         <a href="/" className="flex items-center gap-x-2 text-md">
           <div className="space-y-[-6px] font-medium">
             <p className="text-md">SANTIAGO MARTELLI</p>
-            <p className="text-xs text-sky-700">Desarrollador Web</p>	
+            <p className="text-xs text-sky-700">Desarrollador Web</p>
           </div>
         </a>
       </div>
       {/* Comprueba si la pantalla no es móvil */}
       {!isMobile && (
-        <motion.div 
-        className="flex gap-x-6 text-sm">
+        <motion.div className="flex gap-x-6 text-sm">
           <a href="/#home">Inicio</a>
           <a href="/#about">Sobre Mí</a>
           <a href="#projects">Proyectos</a>
@@ -91,4 +89,3 @@ export default function Navbar() {
     </nav>
   );
 }
-

@@ -1,32 +1,43 @@
-import React, { useRef, useState } from 'react';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/effect-cards';
-import '../styles/projects-cards.css';
-// import required modules
-import { EffectCards } from 'swiper/modules';
+import React, { useState } from 'react';
+import Card from './Card';
+import Modal from './Modal';
 
-export default function App() {
+const projects = [
+  {
+    image: "/public/tmphoto.webp",
+    title: "Tanya Martelli",
+    title2: "Photography",
+    body: "Aplicación web de fotografía de Tanya Martelli, cuenta con galería, panel de administración, formulario de contacto y reservas, entre otras funcionalidades.",
+    href: "https://tanyamartelli.com",
+    github: 'https://github.com/project1',
+    technologies: ['Vue3', 'Vanilla CSS'],
+  },
+  {
+    image: "/public/smportfolio.webp",
+    title: "Portfolio",
+    title2: "Santiago Martelli",
+    body: "Sitio web personal de Santiago Martelli",
+    href: "https://martelli.dev",
+    github: 'https://github.com/project1',
+    technologies: ['Vue3', 'Vanilla CSS'],
+  },
+];
+
+const Projects = () => {
+  const [selectedProject, setSelectedProject] = useState<{ title: string; title2: string; body: string; technologies: string[]; href: string; github: string; image: string } | null>(null);
+
   return (
-    <>
-      <Swiper
-        effect={'cards'}
-        grabCursor={true}
-        modules={[EffectCards]}
-        className="mySwiper"
-      >
-        <SwiperSlide className='flex flex-col'><img src="https://tanyamartelli.com/img/logo.8ddecaf7.jpg" alt="TanyaMartelli project picture" className='h-full'/></SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-      </Swiper>
-    </>
+    <div className="flex gap-8 flex-wrap items-center justify-center">
+      {projects.map((project, index) => (
+        <div key={index} onClick={() => setSelectedProject(project)} className='flex items-center justify-center'>
+          <Card {...project} />
+        </div>
+      ))}
+      {selectedProject && (
+        <Modal {...selectedProject} onClose={() => setSelectedProject(null)} />
+      )}
+    </div>
   );
-}
+};
+
+export default Projects;
