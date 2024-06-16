@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import Card from './Card';
 import Modal from './Modal';
+import { AnimatePresence } from 'framer-motion';
 
 const projects = [
   {
-    image: "/public/tmphoto.webp",
+    image: "/tmphoto.webp",
     title: "Tanya Martelli",
     title2: "Photography",
-    body: "Aplicación web de fotografía de Tanya Martelli, cuenta con galería, panel de administración, formulario de contacto y reservas, entre otras funcionalidades.",
+    body: "Aplicación web de la fotógrafa Tanya Martelli. Cuenta con galería, panel de administración, formulario de contacto y reserva de sesiones, entre otras funcionalidades. El código fuente se encuentra disponible en GitHub. Para ver la aplicación en funcionamiento, haga clic en el botón de abajo.",
     href: "https://tanyamartelli.com",
     github: 'https://github.com/project1',
-    technologies: ['Vue3', 'Vanilla CSS'],
+    technologies: ['Vue3', 'CSS', 'Node.js', 'Express.js', 'MySQL'],
   },
   {
-    image: "/public/smportfolio.webp",
-    title: "Portfolio",
+    image: "/smportfolio.webp",
+    title: "Web / portfolio",
     title2: "Santiago Martelli",
     body: "Sitio web personal de Santiago Martelli",
     href: "https://martelli.dev",
     github: 'https://github.com/project1',
-    technologies: ['Vue3', 'Vanilla CSS'],
+    technologies: ['Astro', 'React.js', 'Tailwind CSS'],
   },
 ];
 
@@ -33,9 +34,11 @@ const Projects = () => {
           <Card {...project} />
         </div>
       ))}
+      <AnimatePresence>
       {selectedProject && (
         <Modal {...selectedProject} onClose={() => setSelectedProject(null)} />
       )}
+      </AnimatePresence>
     </div>
   );
 };
