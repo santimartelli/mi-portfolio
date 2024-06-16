@@ -21,7 +21,7 @@ export default function Modal({ title, title2, body, technologies, href, github,
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}>
       <motion.div
-        className="bg-white rounded-sm w-3/4 h-3/4 flex flex-col overflow-auto"
+        className="bg-white rounded-sm w-5/6 h-5/6 md:w-4/6 md:h-5/6 2xl:w-3/6 2xl:h-5/6 flex flex-col overflow-auto"
         onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
