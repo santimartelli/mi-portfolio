@@ -1,7 +1,6 @@
 ---
 // Supports weights 100-900
 import "@fontsource-variable/inter";
-import Navbar from "../components/Navbar";
 
 interface Props {
   title: string;
@@ -22,7 +21,6 @@ const { description, title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="flex flex-col animate-fadeIn">
-    <Navbar client:load />
     <slot />
   </body>
 
@@ -54,7 +52,6 @@ const { description, title } = Astro.props;
       scroll-behavior: smooth;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
     }
   </style>
 </html>

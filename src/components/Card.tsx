@@ -15,7 +15,7 @@ const Card: React.FC<Props> = ({ title, title2, image }) => (
           alt={title}
           className="w-full h-full object-cover rounded-md transform scale-100 blur-sm transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:blur-0 group-hover:opacity-100"
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center pb-6 bg-black bg-opacity-40 transition-opacity duration-700 ease-in-out">
+        <div className="absolute inset-0 flex flex-col items-center justify-center pb-6 bg-black/30  transition-opacity duration-700 ease-in-out">
           <h2 className="text-white text-center italic font-extrabold uppercase transition-opacity duration-700 ease-in-out">
             {title}
           </h2>
