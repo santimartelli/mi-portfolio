@@ -6,17 +6,21 @@ import Badge from "../components/Badge.astro";
 import LinkedIn from "../icons/LinkedIn.astro";
 import GitHub from "../icons/GitHub.astro";
 import Curriculum from "../icons/Curriculum.astro";
+import AboutMe from "../components/AboutMe.tsx";
 ---
 
 <Layout
   title="Santiago Martelli | Programador y Desarrollador Web"
   description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, Php, Laravel, MySQL y más. Disponible para trabajar!">
   <main>
+
+    <!-- Navbar -->
     <Navbar client:load />
+
     <!-- Hero section -->
-    <section id="home" class="w-full min-h-screen mx-auto flex bg-slate-100">
+    <section id="home" class="w-full min-h-screen mx-auto flex bg-slate-100 relative overflow-x-hidden">
       <div class="flex flex-col max-md:mx-4 justify-center text-center">
-          <h1 class="text-5xl md:text-7xl pb-2 max-w-prose w-full font-bold mb-6">Santiago Martelli</h1>
+        <h1 class="text-5xl md:text-7xl pb-2 max-w-prose w-full font-bold mb-6">Santiago Martelli</h1>
         <article class="text-lg md:text-3xl mb-20 lg:mx-32">
           <h2>
             Desarrollador Web Full Stack con conocimientos en HTML, CSS, JavaScript, React.js, Vue.js, Php, Laravel,
@@ -34,34 +38,42 @@ import Curriculum from "../icons/Curriculum.astro";
         </div>
       </div>
     </section>
-    <div class="divider"></div>
+
+    <!-- Divider  -->
+    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
+      <div class="absolute inset-0 bg-white">
+        <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <polygon points="0,100 0,0 100,0" class="fill-slate-100"></polygon>
+        </svg>
+      </div>
+    </div>
+
     <!-- About me section -->
-    <section id="about" class="w-full pt-20 pb-20">
-      <div class="flex flex-col gap-y-10 max-md:mx-4 items-center">
-        <h2 class="text-3xl font-bold text-center uppercase">Sobre Mí</h2>
-        <div class="flex flex-col gap-y-8 items-center justify-center md:flex-row md:gap-x-5">
-          <img src="/logo.jpg" alt="Santiago Martelli" class="rounded-full w-36" />
-          <p class="text-justify px-4 md:w-2/3">
-            Desarrollador de Aplicaciones Web motivado, entusiasta y con una sólida formación teórica. Aunuqe a simple
-            vista mi experiencia parezca limitada, cuento con proyectos personales que muestran mis capacidades para
-            construir páginas web tanto estáticas como dinámicas, brindando soluciones limpias e innovadoras a problemas
-            reales. Me apasiona aprender y mejorar constantemente, por lo que estoy dispuesto a enfrentar nuevos
-            desafíos y aportar valor a cualquier equipo de trabajo.
-          </p>
-        </div>
+    <AboutMe client:visible />
+
+    <!-- Divider  -->
+    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
+      <div class="absolute inset-0 bg-white">
+        <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <polygon points="0,0 100,100 0,100" class="fill-slate-100"></polygon>
+        </svg>
       </div>
-    </section>
-    <div class="divider2"></div>
+    </div>
+
     <!-- Projects section -->
-    <section id="projects" class="flex justify-center w-full pt-20 pb-20 bg-slate-100">
-      <div class="flex flex-col max-md:mx-4 gap-y-10 items-center">
-        <h2 class="text-3xl font-bold uppercase">Proyectos</h2>
         <Projects client:visible />
+
+    <!-- Divider  -->
+    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
+      <div class="absolute inset-0 bg-slate-100">
+        <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <polygon points="0,100 100,0 100,100" class="fill-black"></polygon>
+        </svg>
       </div>
-    </section>
-    <div class="divider3"></div>
+    </div>
+
     <!-- Skills section -->
-    <section id="skills" class="flex flex-col justify-center items-center w-full pt-20 pb-20 bg-black">
+    <section id="skills" class="flex flex-col justify-center items-center w-full pt-20 pb-20 bg-black overflow-x-hidden">
       <h2 class="text-3xl font-bold uppercase text-white pb-6">Habilidades</h2>
       <div class="flex flex-row gap-3 flex-wrap items-center justify-center">
         <Badge>HTML</Badge>
@@ -77,9 +89,18 @@ import Curriculum from "../icons/Curriculum.astro";
         <Badge>Tailwind CSS</Badge>
       </div>
     </section>
-    <div class="divider4"></div>
+
+    <!-- Divider  -->
+    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
+      <div class="absolute inset-0 bg-white">
+        <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <polygon points="0,100 100,0 0,0" class="fill-black"></polygon>
+        </svg>
+      </div>
+    </div>
+
     <!-- Contact section -->
-    <section id="contact" class="mx-auto flex flex-col justify-center w-full pt-20 pb-20">
+    <section id="contact" class="mx-auto flex flex-col justify-center w-full pt-20 pb-20 overflow-x-hidden">
       <div class="flex flex-col max-md:mx-4 gap-y-10 items-center">
         <h2 class="text-3xl font-bold uppercase">Contacto</h2>
         <p class="text-center">
@@ -110,7 +131,7 @@ import Curriculum from "../icons/Curriculum.astro";
             class="p-2 border-b border-gray-300
               focus:outline-none focus:border-b focus:border-b-sky-700"
           ></textarea>
-          <div class="w-full flex items-center justify-center">
+          <div class="w-full flex items-center justify-center mt-4">
             <button
               type="submit"
               class="relative inline-flex items-center justify-center px-24 py-4 overflow-hidden text-white transition duration-300 ease-out border border-black rounded-sm group active:border-green-600">
@@ -133,70 +154,52 @@ import Curriculum from "../icons/Curriculum.astro";
             </button>
           </div>
         </form>
-        <p class="text-center">También puedes encontrarme en mis redes sociales o descargar mi CV</p>
-        <div class="flex justify-between">
-          <div class="flex gap-x-2">
-            <div
-              class="px-4 py-2 transition-all duration-200 rounded-sm hover:bg-white hover:border-b hover:border-l hover:border-gray-300 active:translate-y-1">
-              <a
-                href="https://www.linkedin.com/in/santiagomartelli/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex gap-x-2 text-xs items-center">
-                <LinkedIn class="size-4" />
-                <p>LinkedIn</p>
-              </a>
-            </div>
-            <div
-              class="px-4 py-2 transition-all duration-200 rounded-sm hover:bg-white hover:border-b hover:border-l hover:border-gray-300 active:translate-y-1">
-              <a
-                href="https://github.com/santimartelli"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex gap-x-2 text-xs items-center">
-                <GitHub class="size-4" />
-                <p>GitHub</p>
-              </a>
-            </div>
-            <div
-              class="px-4 py-2 transition-all duration-200 rounded-sm hover:bg-white hover:border-b hover:border-l hover:border-gray-300 active:translate-y-1">
-              <a href="#" target="_blank" rel="noopener noreferrer" class="flex gap-x-2 text-xs items-center">
-                <Curriculum class="size-4" />
-                <p>Descargar CV</p>
-              </a>
-            </div>
+      </div>
+    </section>
+
+    <!-- Social and CV section -->
+    <section id="social-cv" class="mx-auto flex flex-col justify-center w-full pt-10 pb-10 bg-slate-100 overflow-x-hidden">
+      <div class="flex flex-col max-md:mx-4 gap-y-10 items-center">
+      <p class="text-center text-sm md:text-base">También puedes encontrarme en mis redes sociales o descargar mi CV</p>
+      <div class="flex justify-between">
+        <div class="flex gap-x-2">
+          <div
+            class="px-4 py-2 transition-all duration-200 rounded-sm hover:border-b hover:border-l hover:border-gray-400 active:translate-y-1">
+            <a
+              href="https://www.linkedin.com/in/santiagomartelli/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex gap-x-2 text-xs items-center">
+              <LinkedIn class="size-4" />
+              <p>LinkedIn</p>
+            </a>
+          </div>
+          <div
+            class="px-4 py-2 transition-all duration-200 rounded-sm hover:border-b hover:border-l hover:border-gray-400 active:translate-y-1">
+            <a
+              href="https://github.com/santimartelli"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex gap-x-2 text-xs items-center">
+              <GitHub class="size-4" />
+              <p>GitHub</p>
+            </a>
+          </div>
+          <div
+            class="px-4 py-2 transition-all duration-200 rounded-sm hover:border-b hover:border-l hover:border-gray-400 active:translate-y-1">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="flex gap-x-2 text-xs items-center">
+              <Curriculum class="size-4" />
+              <p>Descargar CV</p>
+            </a>
           </div>
         </div>
       </div>
+    </div>
     </section>
+
     <!-- Footer section -->
-    <footer class="flex justify-center items-center opacity-75 bg-black py-1">
+    <footer class="flex justify-center items-center opacity-75 bg-black py-1 overflow-x-hidden">
       <p class="text-center text-white text-xs">&copy; 2024 Santiago Martelli. Todos los derechos reservados.</p>
     </footer>
   </main>
-
-  <style>
-    .divider {
-      width: 100%;
-      height: calc(100vw * 0.059);
-      background: linear-gradient(to bottom right, #f1f5f9 50%, #fff 50%);
-    }
-
-    .divider2 {
-      width: 100%;
-      height: calc(100vw * 0.059);
-      background: linear-gradient(to bottom left, #fff 50%, #f1f5f9 50%);
-    }
-    .divider3 {
-      width: 100%;
-      height: calc(100vw * 0.059);
-      background: linear-gradient(to bottom right, #f1f5f9 50%, #000 50%);
-    }
-
-    .divider4 {
-      width: 100%;
-      height: calc(100vw * 0.059);
-      background: linear-gradient(to bottom left, #000 50%, #fff 50%);
-    }
-  </style>
 </Layout>

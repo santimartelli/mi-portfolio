@@ -30,7 +30,7 @@ export default function Navbar() {
   const [toggled, setToggled] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
   return (
-    <nav className="py-2 bg-white sticky top-0 right-0 left-0 px-6 z-40 flex justify-between shadow items-center">
+    <nav className="py-2 bg-white sticky top-0 right-0 left-0 px-6 z-40 flex justify-between shadow items-center overflow-x-hidden">
       <div className="flex items-center h-full">
         <a href="/" className="flex items-center gap-x-2 text-md">
           <div className="space-y-[-6px] font-medium">
