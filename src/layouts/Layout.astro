@@ -1,6 +1,7 @@
 ---
 // Supports weights 100-900
 import "@fontsource-variable/inter";
+import "@fontsource/titillium-web";
 
 interface Props {
   title: string;
@@ -20,7 +21,7 @@ const { description, title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="flex flex-col animate-fadeIn">
+  <body class="flex flex-col">
     <slot />
   </body>
 
@@ -43,7 +44,7 @@ const { description, title } = Astro.props;
     html,
     body {
       height: 100%;
-      font-family: "Inter variable", system-ui, sans-serif;
+      font-family: "Titillium Web", "Inter variable", system-ui, sans-serif;
     }
 
     main {

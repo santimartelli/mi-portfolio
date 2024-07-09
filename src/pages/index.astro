@@ -1,43 +1,25 @@
 ---
+import '@fontsource/titillium-web';
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.tsx";
 import Projects from "../components/Projects.tsx";
-import Badge from "../components/Badge.astro";
 import LinkedIn from "../icons/LinkedIn.astro";
 import GitHub from "../icons/GitHub.astro";
-import Curriculum from "../icons/Curriculum.astro";
 import AboutMe from "../components/AboutMe.tsx";
+import Hero from "../components/Hero.tsx";
+import Skills from "../components/Skills.tsx";
+import Contact from "../components/Contact.tsx";
 ---
 
 <Layout
   title="Santiago Martelli | Programador y Desarrollador Web"
-  description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, Php, Laravel, MySQL y más. Disponible para trabajar!">
+  description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, PHP, Laravel, SQL y más. Disponible para trabajar!">
   <main>
-
     <!-- Navbar -->
     <Navbar client:load />
 
     <!-- Hero section -->
-    <section id="home" class="w-full min-h-screen mx-auto flex bg-slate-100 relative overflow-x-hidden">
-      <div class="flex flex-col max-md:mx-4 justify-center text-center">
-        <h1 class="text-5xl md:text-7xl pb-2 max-w-prose w-full font-bold mb-6">Santiago Martelli</h1>
-        <article class="text-lg md:text-3xl mb-20 lg:mx-32">
-          <h2>
-            Desarrollador Web Full Stack con conocimientos en HTML, CSS, JavaScript, React.js, Vue.js, Php, Laravel,
-            MySQL y más.
-          </h2>
-        </article>
-        <div class="px-4 flex justify-center text-md">
-          <a
-            href="https://www.linkedin.com/in/santiagomartelli/"
-            target="_blank"
-            class="flex justify-center items-center gap-1.5 px-4 py-2 transition duration-150 ease-in rounded-lg border border-black hover:border-green-600">
-            <div class="w-3 h-3 bg-green-600 rounded-full animate-blink"></div>
-            Disponible para trabajar!
-          </a>
-        </div>
-      </div>
-    </section>
+    <Hero client:visible />
 
     <!-- Divider  -->
     <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
@@ -61,7 +43,7 @@ import AboutMe from "../components/AboutMe.tsx";
     </div>
 
     <!-- Projects section -->
-        <Projects client:visible />
+    <Projects client:visible />
 
     <!-- Divider  -->
     <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
@@ -73,22 +55,7 @@ import AboutMe from "../components/AboutMe.tsx";
     </div>
 
     <!-- Skills section -->
-    <section id="skills" class="flex flex-col justify-center items-center w-full pt-20 pb-20 bg-black overflow-x-hidden">
-      <h2 class="text-3xl font-bold uppercase text-white pb-6">Habilidades</h2>
-      <div class="flex flex-row gap-3 flex-wrap items-center justify-center">
-        <Badge>HTML</Badge>
-        <Badge>CSS</Badge>
-        <Badge>JavaScript</Badge>
-        <Badge>Vue.js</Badge>
-        <Badge>Node.js</Badge>
-        <Badge>Express.js</Badge>
-        <Badge>PHP</Badge>
-        <Badge>Laravel</Badge>
-        <Badge>MySQL</Badge>
-        <Badge>Git</Badge>
-        <Badge>Tailwind CSS</Badge>
-      </div>
-    </section>
+    <Skills client:visible />
 
     <!-- Divider  -->
     <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
@@ -100,106 +67,65 @@ import AboutMe from "../components/AboutMe.tsx";
     </div>
 
     <!-- Contact section -->
-    <section id="contact" class="mx-auto flex flex-col justify-center w-full pt-20 pb-20 overflow-x-hidden">
-      <div class="flex flex-col max-md:mx-4 gap-y-10 items-center">
-        <h2 class="text-3xl font-bold uppercase">Contacto</h2>
-        <p class="text-center">
-          Si tienes alguna pregunta o simplemente quieres saludar, no dudes en escribirme. Estoy disponible para
-          trabajar en proyectos interesantes.
-        </p>
-        <form
-          action="https://formspree.io/f/moqyqzqz"
-          method="POST"
-          class="flex flex-col gap-y-4 w-full max-md:mx-4 md:w-1/2">
-          <input
-            type="text"
-            name="name"
-            placeholder="Nombre"
-            class="p-2 border-b
-              border-gray-300 focus:outline-none focus:border-b focus:border-b-sky-700"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Correo Electrónico"
-            class="p-2 border-b
-              border-gray-300 focus:outline-none focus:border-b focus:border-b-sky-700"
-          />
-          <textarea
-            name="message"
-            placeholder="Mensaje"
-            class="p-2 border-b border-gray-300
-              focus:outline-none focus:border-b focus:border-b-sky-700"
-          ></textarea>
-          <div class="w-full flex items-center justify-center mt-4">
-            <button
-              type="submit"
-              class="relative inline-flex items-center justify-center px-24 py-4 overflow-hidden text-white transition duration-300 ease-out border border-black rounded-sm group active:border-green-600">
-              <span
-                class="absolute inset-0 flex items-center justify-center w-full h-full text-black duration-500 -translate-x-full group-hover:translate-x-0 ease">
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  ></path></svg
-                >
-              </span>
-              <span
-                class="absolute flex items-center justify-center w-full h-full text-black transition-all duration-300 transform group-hover:translate-y-full ease"
-                >Enviar</span
-              >
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
+    <Contact client:visible />
 
     <!-- Social and CV section -->
-    <section id="social-cv" class="mx-auto flex flex-col justify-center w-full pt-10 pb-10 bg-slate-100 overflow-x-hidden">
+    <section
+      id="social-cv"
+      class="mx-auto flex flex-col justify-center items-center w-full pt-20 pb-16 bg-slate-100 overflow-x-hidden">
       <div class="flex flex-col max-md:mx-4 gap-y-10 items-center">
-      <p class="text-center text-sm md:text-base">También puedes encontrarme en mis redes sociales o descargar mi CV</p>
-      <div class="flex justify-between">
-        <div class="flex gap-x-2">
-          <div
-            class="px-4 py-2 transition-all duration-200 rounded-sm hover:border-b hover:border-l hover:border-gray-400 active:translate-y-1">
-            <a
-              href="https://www.linkedin.com/in/santiagomartelli/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex gap-x-2 text-xs items-center">
-              <LinkedIn class="size-4" />
-              <p>LinkedIn</p>
-            </a>
-          </div>
-          <div
-            class="px-4 py-2 transition-all duration-200 rounded-sm hover:border-b hover:border-l hover:border-gray-400 active:translate-y-1">
-            <a
-              href="https://github.com/santimartelli"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex gap-x-2 text-xs items-center">
-              <GitHub class="size-4" />
-              <p>GitHub</p>
-            </a>
-          </div>
-          <div
-            class="px-4 py-2 transition-all duration-200 rounded-sm hover:border-b hover:border-l hover:border-gray-400 active:translate-y-1">
-            <a href="#" target="_blank" rel="noopener noreferrer" class="flex gap-x-2 text-xs items-center">
-              <Curriculum class="size-4" />
-              <p>Descargar CV</p>
+        <p class="text-center text-sm md:text-base lg:text-lg 2xl:text-xl ">
+          También puedes encontrarme en mis redes sociales o descargar mi CV
+        </p>
+        <div class="relative h-48 w-80">
+          <img
+            src="../../public/imgcv.jpg"
+            alt="Download my Curriculum Vitae"
+            class="absolute inset-0 h-full w-full object-fit rounded-lg opacity-70"
+          />
+          <div class="absolute inset-0 flex items-center justify-center text-white">
+          <a
+              href="../../public/SantiagoMartelli_CV.pdf"
+              download="SantiagoMartelli_CV.pdf"
+              class="relative inline-flex items-center justify-center w-full h-full overflow-hidden transition duration-300 ease-out rounded-md group active:border-green-600">
+              <span class="absolute flex items-center justify-center text-center text-xl w-full h-full text-black/80 transition-all duration-200 transform group-hover:scale-110 group-hover:text-sky-700 ease">
+                Descargar <br> Curriculum Vitae
+              </span>
             </a>
           </div>
         </div>
+        <div class="flex justify-between">
+          <div class="flex gap-x-2">
+            <div
+              class="px-4 py-2 transition-all duration-200 rounded-sm hover:text-sky-700">
+              <a
+                href="https://www.linkedin.com/in/santiagomartelli/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex gap-x-2 text-xs md:text-sm lg:text-base items-center">
+                <LinkedIn class="size-4 md:size-5" />
+                <p>LinkedIn</p>
+              </a>
+            </div>
+            <div
+              class="px-4 py-2 transition-all duration-200 rounded-sm hover:text-sky-700">
+              <a
+                href="https://github.com/santimartelli"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex gap-x-2 text-xs md:text-sm lg:text-base items-center">
+                <GitHub class="size-4 md:size-5" />
+                <p>GitHub</p>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
     </section>
 
     <!-- Footer section -->
     <footer class="flex justify-center items-center opacity-75 bg-black py-1 overflow-x-hidden">
-      <p class="text-center text-white text-xs">&copy; 2024 Santiago Martelli. Todos los derechos reservados.</p>
+      <p class="text-center text-white text-xs md:text-sm">&copy; 2024 Santiago Martelli. Todos los derechos reservados.</p>
     </footer>
   </main>
 </Layout>

@@ -6,6 +6,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        'titillium-web': ['Titillium Web', 'sans-serif'],
+      },
       animation: {
         fadeIn: "fadeIn .5s ease-in forwards",
         imageHover: "imageHover .8s ease-in-out forwards",
@@ -34,6 +37,9 @@ export default {
       },
       boxShadow: {
         'white': '0px 15px 50px -40px rgba(0, 0, 0, 0.5)',
+      },
+      gridTemplateColumns: {
+        20: 'repeat(20, minmax(0, 1fr))',
       },
     },
   },

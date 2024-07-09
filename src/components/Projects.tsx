@@ -1,8 +1,7 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import Card from "./Card";
 import Modal from "./Modal";
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import { useMediaQuery } from "../util/useMediaQuery";
 
 const projects = [
   {
@@ -35,27 +34,22 @@ const Projects = () => {
     github: string;
     image: string;
   } | null>(null);
-  const cardRef1M = useRef(null);
-  const cardRef2M = useRef(null);
   const cardRef1 = useRef(null);
   const cardRef2 = useRef(null);
-  const isMobile = useMediaQuery("(max-width: 768px)");
 
-  const card1InViewM = useInView(cardRef1M, { once:true, margin: "-20%" });
-  const card2InViewM = useInView(cardRef2M, { once:true, margin: "-25%" });
+
   const card1InView = useInView(cardRef1, { once:true, margin: "-10%" });
   const card2InView = useInView(cardRef2, { once:true, margin: "-10%" });
 
   return (
-    <section id="projects" className="flex justify-center w-full pt-20 pb-20 bg-slate-100 overflow-x-hidden">
-      <div className="flex flex-col max-md:mx-4 gap-y-10 items-center">
-        <h2 className="text-3xl font-bold uppercase">
+    <section id="projects" className="flex flex-col md:flex-row justify-center items-center w-full bg-slate-100 overflow-x-hidden min-h-screen">
+      <div className="flex flex-col max-md:mx-4 gap-y-14 items-center pt-20 pb-20">
+        <h2 className="text-3xl md:text-5xl uppercase">
           Proyectos
         </h2>
-        <div className="flex gap-8 flex-wrap items-center justify-center">
+        <div className="flex flex-col md:flex-row gap-8 flex-wrap items-center justify-center">
           {projects.map((project, index) => (
             <div key={index} onClick={() => setSelectedProject(project)} className="flex items-center justify-center">
-              {!isMobile && (
                 <motion.div
                   ref={index === 0 ? cardRef1 : cardRef2}
                   initial={{ opacity: 0, y: 50 }}
@@ -67,19 +61,6 @@ const Projects = () => {
                   >
                   <Card {...project} />
                 </motion.div>
-              )}
-              {isMobile && (
-                <motion.div
-                  ref={index === 0 ? cardRef1M : cardRef2M}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={
-                    index === 0 ? (card1InViewM ? { opacity: 1, y: 0 } : {}) : card2InViewM ? { opacity: 1, y: 0 } : {}
-                  }
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="flex items-center justify-center overflow-x-hidden">
-                  <Card {...project} />
-                </motion.div>
-              )}
             </div>
           ))}
           <AnimatePresence>
