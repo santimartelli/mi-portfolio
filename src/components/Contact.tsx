@@ -56,7 +56,7 @@ const Contact = () => {
             focus:outline-none focus:border-b focus:border-b-sky-700"></textarea>
 
           <input type="hidden" name="_subject" value="Nuevo mensaje en martelli.dev" />
-          {/* <input type="hidden" name="_next" value="https://www.martelli.dev/" /> */}
+          <input type="hidden" name="_next" value="https://www.martelli.dev/success" />
           <input type="hidden" name="_blacklist" value="spammy pattern, banned term, phrase" />
           <div className="w-full flex items-center justify-center mt-6">
             <button
