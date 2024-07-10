@@ -10,7 +10,7 @@ const Contact = () => {
 
   return (
     <section className="mx-auto flex flex-col justify-center w-full overflow-x-hidden">
-      <div className="flex flex-col mx-8 gap-y-14 items-center pt-20 pb-20 md:pt-10">
+      <div className="flex flex-col mx-12 gap-y-14 items-center pt-20 pb-20 md:pt-10">
         <h2 className="text-3xl md:text-5xl uppercase">Contacto</h2>
         <motion.p
           ref={textRef}
@@ -28,7 +28,7 @@ const Contact = () => {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           action="https://formsubmit.co/90453a8b6d243aa64cc7b871c1bf436f"
           method="POST"
-          className="flex flex-col gap-y-4 w-full max-md:mx-4 md:w-4/6 lg:w-3/6 text-sm md:text-base lg:text-lg 2xl:text-xl">
+          className="flex flex-col gap-y-4 w-full max-md:mx-4 md:w-4/6 lg:w-3/6 text-base md:text-base lg:text-lg 2xl:text-xl">
           {/* Honeypot */}
           <input type="text" name="_honey" style={{ display: "none" }} />
           {/* desactivar el captcha de formsubmit.co */}
@@ -73,7 +73,7 @@ const Contact = () => {
                     d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
               </span>
-              <span className="absolute flex items-center justify-center w-full h-full text-black transition-all duration-300 transform group-hover:translate-y-full ease">
+              <span className="absolute flex items-center justify-center w-full h-full text-black text-lg transition-all duration-300 transform group-hover:translate-y-full ease">
                 Enviar
               </span>
             </button>

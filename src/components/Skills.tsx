@@ -39,7 +39,7 @@ const Skills = () => {
         variants={skillsMotion}
         animate= {skillsInView ? "visible" : "hidden"}
         initial="hidden"
-        className="flex flex-row gap-3 mx-8 flex-wrap items-center justify-center">
+        className="flex flex-row gap-3 mx-12 flex-wrap items-center justify-center">
         <motion.div variants={itemMotion}>
           <Badge>HTML</Badge>
         </motion.div>
