@@ -10,7 +10,7 @@ const Contact = () => {
 
   return (
     <section className="mx-auto flex flex-col justify-center w-full overflow-x-hidden">
-      <div className="flex flex-col mx-6 gap-y-14 items-center pt-20 pb-20 md:pt-10">
+      <div className="flex flex-col mx-8 gap-y-14 items-center pt-20 pb-20 md:pt-10">
         <h2 className="text-3xl md:text-5xl uppercase">Contacto</h2>
         <motion.p
           ref={textRef}
