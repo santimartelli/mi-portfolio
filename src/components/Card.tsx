@@ -7,7 +7,7 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({ title, title2, image }) => (
-  <div className="rounded-xl text-2xl md:text-xl w-11/12 md:h-80 md:w-60 overflow-hidden transition-shadow duration-500 hover:cursor-pointer">
+  <div className="rounded-xl text-2xl md:text-xl w-full md:h-80 md:w-60 overflow-hidden transition-shadow duration-500 hover:cursor-pointer">
     <div className="flex flex-col h-full group">
       <div className="h-full relative overflow-hidden">
         <img

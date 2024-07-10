@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section id="home" className="w-full min-h-screen justify-center flex bg-slate-100 relative overflow-x-hidden">
-      <div className="flex flex-col max-md:mx-4 gap-y-14 items-center text-center pt-32">
+    <section id="home" className="w-full justify-center flex bg-slate-100 relative overflow-x-hidden">
+      <div className="flex flex-col mx-6 gap-y-14 items-center text-center pt-32 pb-32">
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
