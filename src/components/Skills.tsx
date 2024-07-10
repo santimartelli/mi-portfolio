@@ -32,8 +32,7 @@ const Skills = () => {
 
   return (
     <section
-      id="skills"
-      className="flex flex-col justify-center items-center w-full gap-y-14 md:px-2 bg-black overflow-x-hidden min-h-screen pt-20 pb-20">
+      className="flex flex-col justify-center items-center w-full gap-y-14 md:px-2 bg-black overflow-x-hidden pt-20 pb-20 md:pt-10">
       <h2 className="text-3xl md:text-5xl uppercase text-white">Habilidades</h2>
       <motion.div
         ref={skillsRef}

@@ -9,15 +9,15 @@ const Contact = () => {
 
 
   return (
-    <section id="contact" className="mx-auto flex flex-col justify-center w-full overflow-x-hidden min-h-screen">
-      <div className="flex flex-col mx-4 md:mx-8 gap-y-14 items-center pt-20 pb-20">
+    <section className="mx-auto flex flex-col justify-center w-full overflow-x-hidden">
+      <div className="flex flex-col mx-4 md:mx-8 gap-y-14 items-center pt-20 pb-20 md:pt-10">
         <h2 className="text-3xl md:text-5xl uppercase">Contacto</h2>
         <motion.p
           ref={textRef}
           initial={{ opacity: 0, y: 50 }}
           animate={textInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="text-justify text-sm md:text-base lg:text-lg 2xl:text-xl md:w-4/6">
+          className="text-justify text-lg 2xl:text-xl md:w-4/6">
           Si tienes alguna pregunta o simplemente quieres saludar, no dudes en escribirme. Estoy disponible para
           trabajar en proyectos interesantes.
         </motion.p>

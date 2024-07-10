@@ -19,10 +19,11 @@ import Contact from "../components/Contact.tsx";
     <Navbar client:load />
 
     <!-- Hero section -->
+     <div id="home"></div>
     <Hero client:visible />
 
     <!-- Divider  -->
-    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
+    <div id="about" class="relative min-h-10 md:min-h-20 overflow-x-hidden">
       <div class="absolute inset-0 bg-white">
         <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <polygon points="0,100 0,0 100,0" class="fill-slate-100"></polygon>
@@ -34,7 +35,7 @@ import Contact from "../components/Contact.tsx";
     <AboutMe client:visible />
 
     <!-- Divider  -->
-    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
+    <div id="projects" class="relative min-h-10 md:min-h-20 overflow-x-hidden">
       <div class="absolute inset-0 bg-white">
         <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <polygon points="0,0 100,100 0,100" class="fill-slate-100"></polygon>
@@ -46,7 +47,7 @@ import Contact from "../components/Contact.tsx";
     <Projects client:visible />
 
     <!-- Divider  -->
-    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
+    <div id="skills" class="relative min-h-10 md:min-h-20 overflow-x-hidden">
       <div class="absolute inset-0 bg-slate-100">
         <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <polygon points="0,100 100,0 100,100" class="fill-black"></polygon>
@@ -58,7 +59,7 @@ import Contact from "../components/Contact.tsx";
     <Skills client:visible />
 
     <!-- Divider  -->
-    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
+    <div id="contact" class="relative min-h-10 md:min-h-20 overflow-x-hidden">
       <div class="absolute inset-0 bg-white">
         <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <polygon points="0,100 100,0 0,0" class="fill-black"></polygon>
@@ -74,7 +75,7 @@ import Contact from "../components/Contact.tsx";
       id="social-cv"
       class="mx-auto flex flex-col justify-center items-center w-full pt-20 pb-16 bg-slate-100 overflow-x-hidden">
       <div class="flex flex-col max-md:mx-4 gap-y-10 items-center">
-        <p class="text-center text-sm md:text-base lg:text-lg 2xl:text-xl ">
+        <p class="text-center text-lg 2xl:text-xl ">
           También puedes encontrarme en mis redes sociales o descargar mi CV
         </p>
         <div class="relative h-48 w-80">
@@ -102,7 +103,7 @@ import Contact from "../components/Contact.tsx";
                 href="https://www.linkedin.com/in/santiagomartelli/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex gap-x-2 text-xs md:text-sm lg:text-base items-center">
+                class="flex gap-x-2 text-lg items-center">
                 <LinkedIn class="size-4 md:size-5" />
                 <p>LinkedIn</p>
               </a>
@@ -113,7 +114,7 @@ import Contact from "../components/Contact.tsx";
                 href="https://github.com/santimartelli"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex gap-x-2 text-xs md:text-sm lg:text-base items-center">
+                class="flex gap-x-2 text-lg items-center">
                 <GitHub class="size-4 md:size-5" />
                 <p>GitHub</p>
               </a>

@@ -42,8 +42,8 @@ const Projects = () => {
   const card2InView = useInView(cardRef2, { once:true, margin: "-10%" });
 
   return (
-    <section id="projects" className="flex flex-col md:flex-row justify-center items-center w-full bg-slate-100 overflow-x-hidden min-h-screen">
-      <div className="flex flex-col max-md:mx-4 gap-y-14 items-center pt-20 pb-20">
+    <section className="flex flex-col md:flex-row justify-center items-center w-full bg-slate-100 overflow-x-hidden">
+      <div className="flex flex-col max-md:mx-4 gap-y-14 items-center pt-20 pb-20 md:pt-10">
         <h2 className="text-3xl md:text-5xl uppercase">
           Proyectos
         </h2>
