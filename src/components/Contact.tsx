@@ -26,7 +26,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={formInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          action="https://formsubmit.co/90453a8b6d243aa64cc7b871c1bf436f"
+          action="https://formsubmit.co/santimartelli@gmail.com"
           method="POST"
           className="flex flex-col gap-y-4 w-full max-md:mx-4 md:w-4/6 lg:w-3/6 text-base md:text-base lg:text-lg 2xl:text-xl">
           {/* Honeypot */}
