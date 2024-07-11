@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { delay, motion } from "framer-motion";
 import { useState } from "react";
 import { useMediaQuery } from "../util/useMediaQuery";
 
@@ -6,7 +6,8 @@ const navMotion = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: .12,
+      delayChildren: .2,
     },
   },
   hidden: {
@@ -21,7 +22,7 @@ const itemMotion = {
   },
   hidden: {
     opacity: 0,
-    y: 50,
+    y: -50,
   },
 };
 
@@ -67,8 +68,9 @@ export default function Navbar() {
       {/* Comprueba si la pantalla es móvil y si el menú está abierto */}
       {isMobile && toggled && (
         <motion.div
-          animate={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: 25 }}
+          animate={{ opacity: 1, y:0}}
+          initial={{ opacity: 0, y: -1000 }}
+          transition={{ duration: .5}}
           className="fixed top-0 left-0 flex w-full h-screen text-md uppercase justify-center bg-white z-40">
           <motion.div
             variants={navMotion}
