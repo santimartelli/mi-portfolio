@@ -7,7 +7,7 @@ const navMotion = {
     opacity: 1,
     transition: {
       staggerChildren: .15,
-      delayChildren: .3,
+      delayChildren: .2,
     },
   },
   hidden: {
@@ -71,12 +71,12 @@ export default function Navbar() {
           animate={{ opacity: 1, y:0}}
           initial={{ opacity: 1, y: -1000 }}
           transition={{ duration: .7}}
-          className="fixed top-0 left-0 flex w-full h-screen text-md uppercase justify-center bg-white z-40">
+          className="fixed top-0 left-0 flex w-full h-screen text-lg uppercase justify-center bg-white z-40">
           <motion.div
             variants={navMotion}
             animate="visible"
             initial="hidden"
-            className="flex flex-col gap-16 items-center justify-center w-full">
+            className="flex flex-col gap-16 items-center justify-between pt-20 pb-20 w-full">
             <motion.a variants={itemMotion} href="/#home" className="hover:text-orange-700" onClick={() => setToggled((prevToggle) => !prevToggle)}>
               Inicio
             </motion.a>
