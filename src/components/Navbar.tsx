@@ -76,7 +76,7 @@ export default function Navbar() {
             variants={navMotion}
             animate="visible"
             initial="hidden"
-            className="flex flex-col gap-16 items-center justify-between pt-20 pb-20 w-full">
+            className="flex flex-col gap-16 items-center justify-between pt-32 pb-32 w-full">
             <motion.a variants={itemMotion} href="/#home" className="hover:text-orange-700" onClick={() => setToggled((prevToggle) => !prevToggle)}>
               Inicio
             </motion.a>
