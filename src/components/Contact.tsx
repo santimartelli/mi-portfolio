@@ -26,7 +26,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={formInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          action="https://formsubmit.co/santimartelli@gmail.com"
+          action="https://formsubmit.co/90453a8b6d243aa64cc7b871c1bf436f"
           method="POST"
           className="flex flex-col gap-y-4 w-full max-md:mx-4 md:w-4/6 lg:w-3/6 text-base md:text-base lg:text-lg 2xl:text-xl">
           {/* Honeypot */}
@@ -55,8 +55,8 @@ const Contact = () => {
             className="p-2 border-b border-gray-300
             focus:outline-none focus:border-b focus:border-b-sky-700"></textarea>
 
-          <input type="hidden" name="_subject" value="Nuevo mensaje en martelli.dev" />
-          <input type="hidden" name="_next" value="https://www.martelli.dev/success" />
+          <input type="hidden" name="_subject" value="***Nuevo mensaje*** | www.martelli.dev" />
+          <input type="hidden" name="_next" value="https://www.martelli.dev/feedbackemail" />
           <input type="hidden" name="_blacklist" value="spammy pattern, banned term, phrase" />
           <div className="w-full flex items-center justify-center mt-6">
             <button
