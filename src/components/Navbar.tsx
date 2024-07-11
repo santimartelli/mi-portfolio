@@ -71,7 +71,7 @@ export default function Navbar() {
           animate={{ opacity: 1, y:0}}
           initial={{ opacity: 1, y: -1000 }}
           transition={{ duration: .7}}
-          className="fixed top-0 left-0 flex w-full h-screen text-lg uppercase justify-center bg-white z-40">
+          className="fixed top-0 left-0 flex flex-col w-full h-screen text-lg uppercase justify-center bg-white z-40">
           <motion.div
             variants={navMotion}
             animate="visible"
@@ -93,6 +93,7 @@ export default function Navbar() {
               Contacto
             </motion.a>
           </motion.div>
+          <div className="h-32"></div>
         </motion.div>
       )}
     </motion.nav>
