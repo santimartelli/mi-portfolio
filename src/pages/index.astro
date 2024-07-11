@@ -19,11 +19,11 @@ import Contact from "../components/Contact.tsx";
     <Navbar client:load />
 
     <!-- Hero section -->
-     <div id="home"></div>
+     <div id="home" class="absolute top-0"></div>
     <Hero client:visible />
 
     <!-- Divider  -->
-    <div id="about" class="relative min-h-10 md:min-h-20 overflow-x-hidden">
+    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
       <div class="absolute inset-0 bg-white">
         <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <polygon points="0,100 0,0 100,0" class="fill-slate-100"></polygon>
@@ -35,7 +35,7 @@ import Contact from "../components/Contact.tsx";
     <AboutMe client:visible />
 
     <!-- Divider  -->
-    <div id="projects" class="relative min-h-10 md:min-h-20 overflow-x-hidden">
+    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
       <div class="absolute inset-0 bg-white">
         <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <polygon points="0,0 100,100 0,100" class="fill-slate-100"></polygon>
@@ -47,7 +47,7 @@ import Contact from "../components/Contact.tsx";
     <Projects client:visible />
 
     <!-- Divider  -->
-    <div id="skills" class="relative min-h-10 md:min-h-20 overflow-x-hidden">
+    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
       <div class="absolute inset-0 bg-slate-100">
         <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <polygon points="0,100 100,0 100,100" class="fill-black"></polygon>
@@ -59,7 +59,7 @@ import Contact from "../components/Contact.tsx";
     <Skills client:visible />
 
     <!-- Divider  -->
-    <div id="contact" class="relative min-h-10 md:min-h-20 overflow-x-hidden">
+    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
       <div class="absolute inset-0 bg-white">
         <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <polygon points="0,100 100,0 0,0" class="fill-black"></polygon>

@@ -32,12 +32,13 @@ const Skills = () => {
 
   return (
     <section
-      className="flex flex-col justify-center items-center w-full gap-y-14 bg-black overflow-x-hidden pt-20 pb-20 md:pt-30 md:pb-40">
+      id="skills"
+      className="flex flex-col justify-center items-center w-full gap-y-14 bg-black overflow-x-hidden pt-20 pb-20 md:pt-32 md:pb-40">
       <h2 className="text-3xl md:text-4xl uppercase text-white">Habilidades</h2>
       <motion.div
         ref={skillsRef}
         variants={skillsMotion}
-        animate= {skillsInView ? "visible" : "hidden"}
+        animate={skillsInView ? "visible" : "hidden"}
         initial="hidden"
         className="flex flex-row gap-3 mx-12 flex-wrap items-center justify-center">
         <motion.div variants={itemMotion}>
