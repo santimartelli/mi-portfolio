@@ -43,8 +43,8 @@ const Projects = () => {
 
   return (
     <section className="flex flex-col md:flex-row justify-center items-center w-full bg-slate-100 overflow-x-hidden">
-      <div className="flex flex-col mx-12 gap-y-14 items-center pt-20 pb-20 md:pt-10">
-        <h2 className="text-3xl md:text-5xl uppercase">
+      <div className="flex flex-col mx-12 gap-y-14 items-center pt-20 pb-20 md:pt-30 md:pb-40">
+        <h2 className="text-3xl md:text-4xl uppercase">
           Proyectos
         </h2>
         <div className="flex flex-col md:flex-row gap-8 flex-wrap items-center justify-center">

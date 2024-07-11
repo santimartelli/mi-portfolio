@@ -12,8 +12,8 @@ const AboutMeSection = () => {
 
   return (
     <section className="flex flex-col items-center justify-center w-full overflow-x-hidden">
-      <div className="flex flex-col gap-y-14 mx-12 items-center pt-20 pb-20 md:pt-10">
-        <h2 className="text-3xl md:text-5xl text-center uppercase">Sobre Mí</h2>
+      <div className="flex flex-col gap-y-14 mx-12 items-center pt-20 pb-20 md:pt-30 md:pb-40">
+        <h2 className="text-3xl md:text-4xl text-center uppercase">Sobre Mí</h2>
 
         <div className="flex flex-col gap-y-8 items-center justify-center md:flex-row md:gap-x-5 overflow-hidden">
           <motion.img

@@ -32,8 +32,8 @@ const Skills = () => {
 
   return (
     <section
-      className="flex flex-col justify-center items-center w-full gap-y-14 bg-black overflow-x-hidden pt-20 pb-20 md:pt-10">
-      <h2 className="text-3xl md:text-5xl uppercase text-white">Habilidades</h2>
+      className="flex flex-col justify-center items-center w-full gap-y-14 bg-black overflow-x-hidden pt-20 pb-20 md:pt-30 md:pb-40">
+      <h2 className="text-3xl md:text-4xl uppercase text-white">Habilidades</h2>
       <motion.div
         ref={skillsRef}
         variants={skillsMotion}
