@@ -17,9 +17,9 @@ const projects = [
     image: "/smportfolio.webp",
     title: "Web / portfolio",
     title2: "Santiago Martelli",
-    body: "Sitio web personal de Santiago Martelli",
+    body: "Sitio web personal de Santiago Martelli. Es un espacio construido con Astro, React, TypeScript y Tailwind CSS, en él reflejo mis habilidades técnicas y mi compromiso con las mejores prácticas de desarrollo. También muestro una selección de mis proyectos más destacados. A través de los links de abajo se puede acceder a la web en funcionamiento y al código fuente en el repositorio de GitHub ",
     href: "https://martelli.dev",
-    github: "https://github.com/project1",
+    github: "git@github.com:santimartelli/mi-portfolio.git",
     technologies: ["Astro", "React.js", "Tailwind CSS"],
   },
 ];
