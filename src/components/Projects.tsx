@@ -10,7 +10,7 @@ const projects = [
     title2: "Photography",
     body: "Aplicación web de la fotógrafa Tanya Martelli. Cuenta con galería, panel de administración, formulario de contacto y reserva de sesiones, entre otras funcionalidades. El código fuente se encuentra disponible en GitHub. Para ver la aplicación en funcionamiento, haga clic en el botón de abajo.",
     href: "https://tanyamartelli.com",
-    github: "https://github.com/project1",
+    github: "https://github.com/santimartelli/tanyamartelliphoto-project.git",
     technologies: ["Vue3", "CSS", "Node.js", "Express.js", "MySQL"],
   },
   {
