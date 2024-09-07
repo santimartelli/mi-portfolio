@@ -4,7 +4,7 @@ Este repositorio contiene el código fuente de mi sitio web personal, un espacio
 
 ## Descripción
 
-Este sitio web personal es un portfolio que destaca mi experiencia y proyectos en el desarrollo web. Está construido con tecnologías modernas y siguiendo las mejores prácticas de desarrollo, demostrando mi compromiso con la calidad y la innovación en el campo del desarrollo web.
+Este sitio web personal es un portfolio que destaca mi experiencia y proyectos en el desarrollo web. Está construido con tecnologías modernas y siguiendo las mejores prácticas de desarrollo, demostrando así mi compromiso con la calidad y la innovación en el campo del desarrollo web.
 
 ## Tecnologías Utilizadas
 
