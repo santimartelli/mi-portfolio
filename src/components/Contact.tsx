@@ -7,7 +7,6 @@ const Contact = () => {
   const textInView = useInView(textRef, { once: true, margin: "-10%" });
   const formInView = useInView(formRef, { once: true, margin: "-20%" });
 
-
   return (
     <section id="contact" className="mx-auto flex flex-col justify-center w-full overflow-x-hidden">
       <div className="flex flex-col mx-12 gap-y-14 items-center pt-20 pb-20 md:pt-32 md:pb-40">
@@ -69,8 +68,7 @@ const Contact = () => {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
               </span>
               <span className="absolute flex items-center justify-center w-full h-full text-black text-lg transition-all duration-300 transform group-hover:translate-y-full ease">

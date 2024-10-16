@@ -1,14 +1,14 @@
 ---
-import '@fontsource/titillium-web';
+import "@fontsource/titillium-web";
 import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar.tsx";
-import Projects from "../components/Projects.tsx";
+import Navbar from "../components/Navbar";
+import Projects from "../components/Projects";
 import LinkedIn from "../icons/LinkedIn.astro";
 import GitHub from "../icons/GitHub.astro";
-import AboutMe from "../components/AboutMe.tsx";
-import Hero from "../components/Hero.tsx";
-import Skills from "../components/Skills.tsx";
-import Contact from "../components/Contact.tsx";
+import AboutMe from "../components/AboutMe";
+import Hero from "../components/Hero";
+import Skills from "../components/Skills";
+import Contact from "../components/Contact";
 ---
 
 <Layout
@@ -19,7 +19,7 @@ import Contact from "../components/Contact.tsx";
     <Navbar client:load />
 
     <!-- Hero section -->
-     <div id="home" class="absolute top-0"></div>
+    <div id="home" class="absolute top-0"></div>
     <Hero client:visible />
 
     <!-- Divider  -->
@@ -75,7 +75,7 @@ import Contact from "../components/Contact.tsx";
       id="social-cv"
       class="mx-auto flex flex-col justify-center items-center w-full pt-20 pb-16 bg-slate-100 overflow-x-hidden">
       <div class="flex flex-col mx-12 gap-y-10 items-center">
-        <p class="text-center text-lg 2xl:text-xl ">
+        <p class="text-center text-lg 2xl:text-xl">
           También puedes encontrarme en mis redes sociales o descargar mi CV
         </p>
         <div class="relative h-48 w-80">
@@ -85,20 +85,20 @@ import Contact from "../components/Contact.tsx";
             class="absolute inset-0 h-full w-full object-fit rounded-lg opacity-70"
           />
           <div class="absolute inset-0 flex items-center justify-center text-white">
-          <a
+            <a
               href="/CVSantiagoMartelli.pdf"
               download
               class="relative inline-flex items-center justify-center w-full h-full overflow-hidden transition duration-300 ease-out rounded-md group active:border-green-600">
-              <span class="absolute flex items-center justify-center text-center text-xl w-full h-full text-black/80 transition-all duration-200 transform group-hover:scale-110 group-hover:text-sky-700 ease">
-                Descargar <br> Curriculum Vitae
+              <span
+                class="absolute flex items-center justify-center text-center text-xl w-full h-full text-black/80 transition-all duration-200 transform group-hover:scale-110 group-hover:text-sky-700 ease">
+                Descargar <br /> Curriculum Vitae
               </span>
             </a>
           </div>
         </div>
         <div class="flex justify-between">
           <div class="flex gap-x-2">
-            <div
-              class="px-4 py-2 transition-all duration-200 rounded-sm hover:text-sky-700">
+            <div class="px-4 py-2 transition-all duration-200 rounded-sm hover:text-sky-700">
               <a
                 href="https://www.linkedin.com/in/santiagomartelli/"
                 target="_blank"
@@ -108,8 +108,7 @@ import Contact from "../components/Contact.tsx";
                 <p>LinkedIn</p>
               </a>
             </div>
-            <div
-              class="px-4 py-2 transition-all duration-200 rounded-sm hover:text-sky-700">
+            <div class="px-4 py-2 transition-all duration-200 rounded-sm hover:text-sky-700">
               <a
                 href="https://github.com/santimartelli"
                 target="_blank"
@@ -126,7 +125,9 @@ import Contact from "../components/Contact.tsx";
 
     <!-- Footer section -->
     <footer class="flex justify-center items-center opacity-75 bg-black py-1 overflow-x-hidden">
-      <p class="text-center text-white text-xs md:text-sm">&copy; 2024 Santiago Martelli. Todos los derechos reservados.</p>
+      <p class="text-center text-white text-xs md:text-sm">
+        &copy; 2024 Santiago Martelli. Todos los derechos reservados.
+      </p>
     </footer>
   </main>
 </Layout>
