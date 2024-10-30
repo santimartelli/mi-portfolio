@@ -32,6 +32,8 @@ const Contact = () => {
           <input type="text" name="_honey" style={{ display: "none" }} />
           {/* desactivar el captcha de formsubmit.co */}
           <input type="hidden" name="_captcha" value="false" />
+          {/* Blacklist */}
+          <input type="hidden" name="_blacklist" value="spammy pattern, banned term, phrase" />
           <input
             type="text"
             name="name"
@@ -56,7 +58,6 @@ const Contact = () => {
 
           <input type="hidden" name="_subject" value="***Nuevo mensaje*** | www.martelli.dev" />
           <input type="hidden" name="_next" value="https://www.martelli.dev/feedbackemail" />
-          <input type="hidden" name="_blacklist" value="spammy pattern, banned term, phrase" />
           <div className="w-full flex items-center justify-center mt-6">
             <button
               type="submit"
