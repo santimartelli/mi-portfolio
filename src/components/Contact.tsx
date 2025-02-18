@@ -30,13 +30,6 @@ const Contact = () => {
           className="flex flex-col gap-y-4 w-full max-md:mx-4 md:w-4/6 lg:w-3/6 text-base md:text-base lg:text-lg 2xl:text-xl">
           {/* Honeypot */}
           <input type="text" name="_honey" style={{ display: "none" }} />
-<<<<<<< HEAD
-=======
-          {/* desactivar el captcha de formsubmit.co */}
-          <input type="hidden" name="_captcha" value="false" />
-          {/* Blacklist */}
-          <input type="hidden" name="_blacklist" value="spammy pattern, banned term, phrase" />
->>>>>>> 0b730526fb807b0e140ea9295b7ccb702ab675c5
           <input
             type="text"
             name="name"
@@ -61,10 +54,7 @@ const Contact = () => {
 
           <input type="hidden" name="_subject" value="***Nuevo mensaje*** | www.martelli.dev" />
           <input type="hidden" name="_next" value="https://www.martelli.dev/feedbackemail" />
-<<<<<<< HEAD
-          <input type="hidden" name="_blacklist" value="spammy pattern here, banned term here, phrase banned here" />
-=======
->>>>>>> 0b730526fb807b0e140ea9295b7ccb702ab675c5
+          <input type="hidden" name="_blacklist" value="spammy pattern, banned term, phrase banned" />
           <div className="w-full flex items-center justify-center mt-6">
             <button
               type="submit"
