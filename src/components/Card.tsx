@@ -14,7 +14,7 @@ const Card: React.FC<Props> = ({ title, title2, image, technologies }) => (
       <img
         src={image}
         alt={`${title} ${title2}`}
-        className="h-full w-full object-cover object-center transform transition-all duration-700 ease-out group-hover:scale-105"
+        className="h-full w-full object-cover object-center transition-all duration-700 ease-out"
         loading="lazy"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10] via-[#0B0C10]/40 to-transparent opacity-60 transition-opacity group-hover:opacity-40" />
@@ -42,8 +42,8 @@ const Card: React.FC<Props> = ({ title, title2, image, technologies }) => (
     </div>
 
     {/* View project button */}
-    <div className="absolute bottom-6 right-6 opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-      <span className="flex items-center gap-1 text-sm text-[#66FCF1] font-medium">
+    <div className="absolute bottom-6 right-6 transition-all duration-300">
+      <span className="flex items-center gap-1 text-sm animate-pulse-slow group-hover:text-[#66FCF1] group-hover:animate-none transition-all duration-300 font-medium">
         Ver proyecto
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />

@@ -94,7 +94,7 @@ export default function Modal({ title, title2, body, technologies, href, github,
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-[#1F2833] hover:bg-[#45A29E]/90 text-white rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#45A29E]">
+                className="flex items-center gap-2 px-4 py-2 bg-transparent hover:bg-[#1F2833]/30 text-white border border-[#45A29E]/20 hover:border-[#66FCF1]/30 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#45A29E]">
                 <FaGlobe className="text-[#66FCF1]" />
                 Ver sitio web
               </a>

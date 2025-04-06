@@ -27,6 +27,7 @@ export default {
         imageHover: "imageHover .8s ease-in-out forwards",
         blink: "blink 2s infinite",
         enterUp: "enterUp 2.2s forwards",
+        "pulse-slow": "pulseSlow 4s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
@@ -46,6 +47,10 @@ export default {
           "0%": { transform: "translateY(80%)", opacity: 0 },
           "50%": { transform: "translateY(40%)", opacity: 0 },
           "100%": { transform: "translateY(0)", opacity: 1 },
+        },
+        pulseSlow: {
+          "0%, 100%": { opacity: 1, color: "#444950" },
+          "50%": { opacity: 0.9, color: "#45A29E" },
         },
       },
       boxShadow: {

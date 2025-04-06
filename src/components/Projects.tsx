@@ -270,12 +270,8 @@ const Projects = () => {
                       ease: "easeOut",
                       delay: index * 0.2,
                     }}
-                    whileHover={{
-                      scale: 1.01,
-                      transition: { duration: 0.2 },
-                    }}
                     onClick={() => setSelectedProject(project)}
-                    className="w-full sm:w-[420px] mb-2">
+                    className="w-full sm:w-[420px] mb-2 cursor-pointer">
                     <Card {...project} />
                   </motion.div>
                 ))}
