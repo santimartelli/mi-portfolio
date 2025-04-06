@@ -1,4 +1,4 @@
-import { transform } from 'typescript';
+import { transform } from "typescript";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -6,14 +6,27 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        darkbg: {
+          950: "#0B0C10", // Very dark (almost black)
+          900: "#1F2833", // Dark gray with slight blue tint
+        },
+        darktext: {
+          300: "#C5C6C7", // Light gray text
+        },
+        accent: {
+          400: "#66FCF1", // Bright teal/mint
+          500: "#45A29E", // Darker teal
+        },
+      },
       fontFamily: {
-        'titillium-web': ['Titillium Web', 'sans-serif'],
+        "titillium-web": ["Titillium Web", "sans-serif"],
       },
       animation: {
         fadeIn: "fadeIn .5s ease-in forwards",
         imageHover: "imageHover .8s ease-in-out forwards",
-        blink: 'blink 2s infinite',
-        enterUp: 'enterUp 2.2s forwards',
+        blink: "blink 2s infinite",
+        enterUp: "enterUp 2.2s forwards",
       },
       keyframes: {
         fadeIn: {
@@ -25,21 +38,21 @@ export default {
           "100%": { transform: "scale(1.1)", filter: "blur(0)", opacity: "1" },
         },
         blink: {
-          '0%': { opacity: '0.4', transform: 'rotate(0deg)' },
-          '50%': { opacity: '1', transform: 'rotate(20deg)' },
-          '100%': { opacity: '0.4', transform: 'rotate(0deg)' },
+          "0%": { opacity: "0.4", transform: "rotate(0deg)" },
+          "50%": { opacity: "1", transform: "rotate(20deg)" },
+          "100%": { opacity: "0.4", transform: "rotate(0deg)" },
         },
         enterUp: {
-          '0%': { transform: 'translateY(80%)', opacity: 0 },
-          '50%': { transform: 'translateY(40%)', opacity: 0 },
-          '100%': { transform: 'translateY(0)', opacity: 1 },
+          "0%": { transform: "translateY(80%)", opacity: 0 },
+          "50%": { transform: "translateY(40%)", opacity: 0 },
+          "100%": { transform: "translateY(0)", opacity: 1 },
         },
       },
       boxShadow: {
-        'white': '0px 15px 50px -40px rgba(0, 0, 0, 0.5)',
+        white: "0px 15px 50px -40px rgba(0, 0, 0, 0.5)",
       },
       gridTemplateColumns: {
-        20: 'repeat(20, minmax(0, 1fr))',
+        20: "repeat(20, minmax(0, 1fr))",
       },
     },
   },

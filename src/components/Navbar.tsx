@@ -1,14 +1,16 @@
-import { delay, easeIn, easeInOut, motion } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { useMediaQuery } from "../util/useMediaQuery";
 import { useActiveSection } from "../util/useActiveSection";
+import Logo from "./Logo";
+import NavControls from "./NavControls";
 
 const navMotion = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
+      duration: 0.4,
+      ease: "easeInOut",
     },
   },
   hidden: {
@@ -20,140 +22,241 @@ const itemMotion = {
   visible: {
     opacity: 1,
     y: 0,
+    transition: {
+      duration: 0.3,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
   },
   hidden: {
     opacity: 0,
-    y: -50,
+    y: -10,
+  },
+};
+
+const mobileMenuMotion = {
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 400,
+      damping: 40,
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+  closed: {
+    opacity: 0,
+    y: -20,
+    transition: {
+      type: "spring",
+      stiffness: 400,
+      damping: 40,
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+    },
+  },
+};
+
+const dropdownVariants = {
+  hidden: {
+    opacity: 0,
+    y: -10,
+    scale: 0.95,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -10,
+    scale: 0.95,
+    transition: {
+      duration: 0.15,
+      ease: "easeIn",
+    },
   },
 };
 
 export default function Navbar() {
   const [toggled, setToggled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
   const activeSection = useActiveSection();
 
-  // Helper function to determine if a link should be active
+  // Function to close all dropdowns
+  const closeAllDropdowns = () => {
+    setToggled(false);
+    // Access NavControls state through a ref
+    const navControlsElement = document.querySelector("[data-nav-controls]");
+    if (navControlsElement) {
+      // @ts-ignore - we know these properties exist
+      navControlsElement.setIsLangOpen?.(false);
+      // @ts-ignore - we know these properties exist
+      navControlsElement.setIsThemeOpen?.(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const isActive = (section: string) => activeSection === section;
+
+  // Close mobile menu when switching to desktop view or clicking outside
+  useEffect(() => {
+    if (!isMobile) {
+      setToggled(false);
+    }
+
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(".mobile-menu") && !target.closest(".menu-button")) {
+        setToggled(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isMobile]);
 
   return (
     <motion.nav
       initial="hidden"
       animate="visible"
       variants={navMotion}
-      className="py-2 bg-white sticky top-0 right-0 left-0 px-6 z-40 flex justify-between shadow items-center overflow-x-hidden">
-      <div className="flex items-center h-full">
-        <a href="/" className="flex items-center gap-x-2 text-md">
-          <div className="space-y-[-8px]">
-            <p className="text-md lg:text-lg font-medium">SANTIAGO MARTELLI</p>
-            <p className="text-[.9rem] lg:text-[1rem] text-sky-700 font-normal">
-              DESARROLLADOR <span className="text-orange-700">WEB</span>
-            </p>
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 backdrop-blur-md ${
+        isScrolled ? "bg-darkbg-950/90 shadow-lg" : "bg-darkbg-950/70"
+      } border-b border-accent-500/30`}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+        <motion.a href="/" variants={itemMotion} className="relative z-10 focus:outline-none">
+          <Logo />
+        </motion.a>
+
+        {!isMobile && (
+          <div className="flex items-center gap-8">
+            <motion.div variants={itemMotion} className="flex gap-x-8 text-sm lg:text-base text-darktext-300">
+              {["home", "about", "projects", "contact"].map((section) => (
+                <motion.a
+                  key={section}
+                  href={`/#${section}`}
+                  className={`relative py-1 transition-colors duration-300 hover:text-white focus:outline-none ${
+                    isActive(section) ? "text-white" : ""
+                  }`}
+                  whileHover={{ y: -1 }}
+                  whileTap={{ y: 0 }}>
+                  {isActive(section) && (
+                    <motion.span
+                      layoutId="activeSection"
+                      className="absolute -bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-accent-400 to-accent-500"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </motion.a>
+              ))}
+            </motion.div>
+            <motion.div variants={itemMotion}>
+              <NavControls />
+            </motion.div>
           </div>
-        </a>
+        )}
+
+        {isMobile && (
+          <div className="flex items-center gap-4">
+            <motion.div variants={itemMotion}>
+              <NavControls />
+            </motion.div>
+            <motion.button
+              onClick={() => {
+                if (!toggled) {
+                  closeAllDropdowns();
+                }
+                setToggled(!toggled);
+              }}
+              className="relative z-50 flex flex-col justify-center items-center p-2 text-darktext-300 hover:text-white rounded-lg hover:bg-darkbg-900/70 focus:outline-none menu-button"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}>
+              <motion.span
+                animate={{
+                  rotate: toggled ? 45 : 0,
+                  y: toggled ? 6 : 0,
+                }}
+                transition={{
+                  duration: 0.2,
+                  ease: [0.25, 0.1, 0.25, 1],
+                }}
+                className="block h-0.5 w-5 bg-current transition-transform"
+              />
+              <motion.span
+                animate={{
+                  opacity: toggled ? 0 : 1,
+                  x: toggled ? 20 : 0,
+                }}
+                transition={{
+                  duration: 0.2,
+                  ease: [0.25, 0.1, 0.25, 1],
+                }}
+                className="block h-0.5 w-5 bg-current my-1"
+              />
+              <motion.span
+                animate={{
+                  rotate: toggled ? -45 : 0,
+                  y: toggled ? -6 : 0,
+                }}
+                transition={{
+                  duration: 0.2,
+                  ease: [0.25, 0.1, 0.25, 1],
+                }}
+                className="block h-0.5 w-5 bg-current transition-transform"
+              />
+            </motion.button>
+          </div>
+        )}
+
+        <AnimatePresence>
+          {isMobile && toggled && (
+            <motion.div
+              variants={dropdownVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="absolute right-4 top-16 w-48 rounded-lg bg-darkbg-900 border border-accent-500/20 shadow-lg mobile-menu overflow-hidden">
+              <div className="bg-gradient-to-b from-darkbg-900 to-darkbg-950 divide-y divide-accent-500/10">
+                {["home", "about", "projects", "contact"].map((section, index) => (
+                  <motion.a
+                    key={section}
+                    href={`/#${section}`}
+                    onClick={() => setToggled(false)}
+                    className={`flex w-full items-center px-4 py-2 text-sm transition-colors duration-150 ${
+                      isActive(section)
+                        ? "text-white bg-darkbg-900/80"
+                        : "text-darktext-300 hover:bg-darkbg-900/50 hover:text-white"
+                    } focus:outline-none`}
+                    whileTap={{ scale: 0.95 }}>
+                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-      {/* Comprueba si la pantalla no es móvil */}
-      {!isMobile && (
-        <motion.div className="flex gap-x-6 text-sm lg:text-base">
-          <a
-            href="/#home"
-            className={`transition-all duration-200 hover:text-orange-700 ${
-              isActive("home") ? "text-orange-700" : ""
-            }`}>
-            Inicio
-          </a>
-          <a
-            href="/#about"
-            className={`transition-all duration-200 hover:text-orange-700 ${
-              isActive("about") ? "text-orange-700" : ""
-            }`}>
-            Sobre Mí
-          </a>
-          <a
-            href="#projects"
-            className={`transition-all duration-200 hover:text-orange-700 ${
-              isActive("projects") ? "text-orange-700" : ""
-            }`}>
-            Proyectos
-          </a>
-          <a
-            href="#skills"
-            className={`transition-all duration-200 hover:text-orange-700 ${
-              isActive("skills") ? "text-orange-700" : ""
-            }`}>
-            Habilidades
-          </a>
-          <a
-            href="/#contact"
-            className={`transition-all duration-200 hover:text-orange-700 ${
-              isActive("contact") ? "text-orange-700" : ""
-            }`}>
-            Contacto
-          </a>
-        </motion.div>
-      )}
-      {/* Comprueba si la pantalla es móvil */}
-      {isMobile && (
-        <div onClick={() => setToggled((prevToggle) => !prevToggle)} className="space-y-1.5 cursor-pointer z-50">
-          <motion.span
-            animate={{ rotateZ: toggled ? 45 : 0, y: toggled ? 8 : 0 }}
-            className="block h-0.5 w-8 bg-black"></motion.span>
-          <motion.span animate={{ opacity: toggled ? 0 : 1 }} className="block h-0.5 w-8 bg-black"></motion.span>
-          <motion.span
-            animate={{ rotateZ: toggled ? -45 : 0, y: toggled ? -8 : 0 }}
-            className="block h-0.5 w-8 bg-black"></motion.span>
-        </div>
-      )}
-      {/* Comprueba si la pantalla es móvil y si el menú está abierto */}
-      {isMobile && toggled && (
-        <motion.div
-          animate={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 1, y: -1000 }}
-          transition={{ duration: 0.7 }}
-          className="fixed top-0 left-0 flex flex-col w-full h-screen text-lg uppercase justify-center bg-white z-40">
-          <motion.div
-            variants={navMotion}
-            animate="visible"
-            initial="hidden"
-            className="flex flex-col gap-20 items-center h-full justify-center w-full overflow-hidden">
-            <motion.a
-              variants={itemMotion}
-              href="/#home"
-              className={`hover:text-orange-700 ${isActive("home") ? "text-orange-700" : ""}`}
-              onClick={() => setToggled((prevToggle) => !prevToggle)}>
-              Inicio
-            </motion.a>
-            <motion.a
-              variants={itemMotion}
-              href="/#about"
-              className={`hover:text-orange-700 ${isActive("about") ? "text-orange-700" : ""}`}
-              onClick={() => setToggled((prevToggle) => !prevToggle)}>
-              Sobre Mí
-            </motion.a>
-            <motion.a
-              variants={itemMotion}
-              href="#projects"
-              className={`hover:text-orange-700 ${isActive("projects") ? "text-orange-700" : ""}`}
-              onClick={() => setToggled((prevToggle) => !prevToggle)}>
-              Proyectos
-            </motion.a>
-            <motion.a
-              variants={itemMotion}
-              href="#skills"
-              className={`hover:text-orange-700 ${isActive("skills") ? "text-orange-700" : ""}`}
-              onClick={() => setToggled((prevToggle) => !prevToggle)}>
-              Habilidades
-            </motion.a>
-            <motion.a
-              variants={itemMotion}
-              href="/#contact"
-              className={`hover:text-orange-700 ${isActive("contact") ? "text-orange-700" : ""}`}
-              onClick={() => setToggled((prevToggle) => !prevToggle)}>
-              Contacto
-            </motion.a>
-          </motion.div>
-          <div className="h-32"></div>
-        </motion.div>
-      )}
     </motion.nav>
   );
 }

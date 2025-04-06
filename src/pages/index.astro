@@ -3,12 +3,12 @@ import "@fontsource/titillium-web";
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar";
 import Projects from "../components/Projects";
-import LinkedIn from "../icons/LinkedIn.astro";
-import GitHub from "../icons/GitHub.astro";
 import AboutMe from "../components/AboutMe";
 import Hero from "../components/Hero";
-import Skills from "../components/Skills";
 import Contact from "../components/Contact";
+import SocialCV from "../components/SocialCV";
+import Footer from "../components/Footer";
+import Divider from "../components/Divider.astro";
 ---
 
 <Layout
@@ -23,120 +23,33 @@ import Contact from "../components/Contact";
       <Hero client:visible />
     </section>
 
-    <!-- Divider  -->
-    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
-      <div class="absolute inset-0 bg-white">
-        <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <polygon points="0,100 0,0 100,0" class="fill-slate-100"></polygon>
-        </svg>
-      </div>
-    </div>
+    <Divider />
 
     <!-- About me section -->
     <section id="about" class="relative">
       <AboutMe client:visible />
     </section>
 
-    <!-- Divider  -->
-    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
-      <div class="absolute inset-0 bg-white">
-        <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <polygon points="0,0 100,100 0,100" class="fill-slate-100"></polygon>
-        </svg>
-      </div>
-    </div>
+    <Divider />
 
     <!-- Projects section -->
     <section id="projects" class="relative">
       <Projects client:visible />
     </section>
 
-    <!-- Divider  -->
-    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
-      <div class="absolute inset-0 bg-slate-100">
-        <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <polygon points="0,100 100,0 100,100" class="fill-black"></polygon>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Skills section -->
-    <section id="skills" class="relative">
-      <Skills client:visible />
-    </section>
-
-    <!-- Divider  -->
-    <div class="relative min-h-10 md:min-h-20 overflow-x-hidden">
-      <div class="absolute inset-0 bg-white">
-        <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <polygon points="0,100 100,0 0,0" class="fill-black"></polygon>
-        </svg>
-      </div>
-    </div>
+    <Divider />
 
     <!-- Contact section -->
     <section id="contact" class="relative">
       <Contact client:visible />
     </section>
 
-    <!-- Social and CV section -->
-    <section
-      id="social-cv"
-      class="mx-auto flex flex-col justify-center items-center w-full pt-20 pb-16 bg-slate-100 overflow-x-hidden">
-      <div class="flex flex-col mx-12 gap-y-10 items-center">
-        <p class="text-center text-lg 2xl:text-xl">
-          También puedes encontrarme en mis redes sociales o descargar mi CV
-        </p>
-        <div class="relative h-48 w-80">
-          <img
-            src="/imgcv.jpg"
-            alt="Download my Curriculum Vitae"
-            class="absolute inset-0 h-full w-full object-fit rounded-lg opacity-70"
-          />
-          <div class="absolute inset-0 flex items-center justify-center text-white">
-            <a
-              href="/CVSantiagoMartelli.pdf"
-              download
-              class="relative inline-flex items-center justify-center w-full h-full overflow-hidden transition duration-300 ease-out rounded-md group active:border-green-600">
-              <span
-                class="absolute flex items-center justify-center text-center text-xl w-full h-full text-black/80 transition-all duration-200 transform group-hover:scale-110 group-hover:text-sky-700 ease">
-                Descargar <br /> Curriculum Vitae
-              </span>
-            </a>
-          </div>
-        </div>
-        <div class="flex justify-between">
-          <div class="flex gap-x-2">
-            <div class="px-4 py-2 transition-all duration-200 rounded-sm hover:text-sky-700">
-              <a
-                href="https://www.linkedin.com/in/santiagomartelli/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex gap-x-2 text-lg md:text-sm items-center">
-                <LinkedIn class="size-4 md:size-5" />
-                <p>LinkedIn</p>
-              </a>
-            </div>
-            <div class="px-4 py-2 transition-all duration-200 rounded-sm hover:text-sky-700">
-              <a
-                href="https://github.com/santimartelli"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex gap-x-2 text-lg md:text-sm items-center">
-                <GitHub class="size-4 md:size-5" />
-                <p>GitHub</p>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <Divider />
 
-    <!-- Footer section -->
-    <footer class="flex justify-center items-center opacity-75 bg-black py-1 overflow-x-hidden">
-      <p class="text-center text-white text-xs md:text-sm">
-        &copy; 2024 Santiago Martelli. Todos los derechos reservados.
-      </p>
-    </footer>
+    <!-- Social and CV section -->
+    <SocialCV client:visible />
+
+    <!-- Footer -->
+    <Footer client:visible />
   </main>
 </Layout>

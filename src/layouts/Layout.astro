@@ -39,7 +39,7 @@ const { description, title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="flex flex-col">
+  <body class="flex flex-col bg-darkbg-950 text-darktext-300">
     <slot />
   </body>
 
@@ -56,7 +56,7 @@ const { description, title } = Astro.props;
     }
 
     :focus {
-      outline: 0.5px solid #0369a1;
+      outline: 0.5px solid #66fcf1;
     }
 
     html,
@@ -71,6 +71,11 @@ const { description, title } = Astro.props;
       scroll-behavior: smooth;
       margin: 0;
       padding: 0;
+    }
+
+    ::selection {
+      background-color: #66fcf1;
+      color: #0b0c10;
     }
   </style>
 </html>
