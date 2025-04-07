@@ -29,16 +29,35 @@ export default function Modal({ title, title2, body, technologies, href, github,
     };
   }, [onClose]);
 
+  // Prevent background scrolling when modal is open
+  useEffect(() => {
+    // Save current scroll position
+    const scrollY = window.scrollY;
+
+    // Add styles to prevent scrolling
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
+    // Cleanup function to restore scrolling when modal closes
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollY);
+    };
+  }, []);
+
   return (
     <motion.div
-      className="fixed inset-0 bg-[#0B0C10]/95 backdrop-blur-sm z-50 flex justify-center items-start sm:items-center p-4 overflow-y-auto"
+      className="fixed inset-0 bg-[#0B0C10]/95 backdrop-blur-sm z-50 flex justify-center items-center p-4"
       onClick={onClose}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}>
       <motion.div
-        className="bg-[#1A1A1A] rounded-xl max-w-4xl w-full my-4 flex flex-col overflow-hidden border border-[#45A29E]/20 shadow-2xl max-h-[90vh]"
+        className="bg-[#1A1A1A] rounded-xl max-w-4xl w-full flex flex-col overflow-hidden border border-[#45A29E]/20 shadow-2xl max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0, y: 20, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
