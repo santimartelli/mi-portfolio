@@ -31,14 +31,14 @@ export default function Modal({ title, title2, body, technologies, href, github,
 
   return (
     <motion.div
-      className="fixed inset-0 bg-[#0B0C10]/95 backdrop-blur-sm z-50 flex justify-center items-center p-4 overflow-y-auto"
+      className="fixed inset-0 bg-[#0B0C10]/95 backdrop-blur-sm z-50 flex justify-center items-start sm:items-center p-4 overflow-y-auto"
       onClick={onClose}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}>
       <motion.div
-        className="bg-[#1A1A1A] rounded-xl max-w-4xl w-full my-8 flex flex-col overflow-hidden border border-[#45A29E]/20 shadow-2xl"
+        className="bg-[#1A1A1A] rounded-xl max-w-4xl w-full my-4 flex flex-col overflow-hidden border border-[#45A29E]/20 shadow-2xl max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0, y: 20, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -46,7 +46,7 @@ export default function Modal({ title, title2, body, technologies, href, github,
         transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}>
         <div className="relative">
           {/* Image Header */}
-          <div className="h-[240px] sm:h-[300px] relative">
+          <div className="h-[200px] sm:h-[300px] relative">
             <img src={image} alt={`${title} ${title2}`} className="w-full h-full object-cover object-center" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C10] to-transparent" />
           </div>
@@ -68,12 +68,12 @@ export default function Modal({ title, title2, body, technologies, href, github,
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto">
-          <div className="p-6 sm:p-8">
+          <div className="p-4 sm:p-8">
             <h2 className="text-2xl font-bold text-white mb-6">
               {title} <span className="text-[#C5C6C7]">{title2}</span>
             </h2>
 
-            <p className="text-[#C5C6C7] mb-8">{body}</p>
+            <p className="text-[#C5C6C7] mb-8 text-sm sm:text-base">{body}</p>
 
             <div className="mb-8">
               <h3 className="text-lg font-semibold text-white mb-3">Tecnologías</h3>
