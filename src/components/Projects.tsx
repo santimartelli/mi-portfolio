@@ -1,8 +1,7 @@
-import { useState, useRef, useEffect } from "react";
-import Card from "./Card";
-import Modal from "./Modal";
-import { AnimatePresence, motion, useInView } from "framer-motion";
-import { VscCircleFilled } from "react-icons/vsc";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { FaGithub } from "react-icons/fa";
+import { HiExternalLink } from "react-icons/hi";
 
 const projects = [
   {
@@ -36,253 +35,117 @@ const Projects = () => {
     image: string;
   } | null>(null);
 
-  // Terminal state
-  const [showTerminal, setShowTerminal] = useState(false);
-  const [showCursor, setShowCursor] = useState(true);
-  const [currentCommandIndex, setCurrentCommandIndex] = useState(0);
-  const [activeCommand, setActiveCommand] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const [commandStatus, setCommandStatus] = useState<"" | "executing" | "success">("");
-  const [completedCommands, setCompletedCommands] = useState<number[]>([]);
-
   // Refs for section components
   const sectionRef = useRef(null);
-  const terminalContentRef = useRef<HTMLDivElement>(null);
   const projectRefs = projects.map(() => useRef(null));
 
   // InView hooks
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const projectsInView = projectRefs.map((ref) => useInView(ref, { once: true, amount: 0.2 }));
 
-  // UI visibility states
-  const [showTitle, setShowTitle] = useState(false);
-  const [showProjectCards, setShowProjectCards] = useState(false);
-
-  // Commands sequence
-  const commands = [
-    {
-      text: 'create-element --type="heading" --content="Proyectos"',
-      action: () => setShowTitle(true),
-    },
-    {
-      text: 'load-project-cards --section="portfolio-showcase"',
-      action: () => setShowProjectCards(true),
-    },
-  ];
-
-  // Show terminal when section comes into view
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => {
-        setShowTerminal(true);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [isInView]);
-
-  // Auto-scroll terminal content
-  useEffect(() => {
-    if (terminalContentRef.current) {
-      terminalContentRef.current.scrollTop = terminalContentRef.current.scrollHeight;
-    }
-  }, [completedCommands, activeCommand, commandStatus]);
-
-  // Process the sequence of commands
-  useEffect(() => {
-    if (!showTerminal || currentCommandIndex >= commands.length) return;
-
-    const startNextCommand = () => {
-      // Reset states for new command
-      setActiveCommand("");
-      setIsTyping(true);
-      setCommandStatus("");
-
-      // Type out the command character by character
-      const command = commands[currentCommandIndex].text;
-      let charIndex = 0;
-
-      const typingInterval = setInterval(() => {
-        if (charIndex < command.length) {
-          setActiveCommand((prev) => prev + command[charIndex]);
-          charIndex++;
-        } else {
-          clearInterval(typingInterval);
-          setIsTyping(false);
-
-          // After finishing typing, execute command
-          setTimeout(() => {
-            setCommandStatus("executing");
-
-            // Execute the command after a delay
-            setTimeout(() => {
-              commands[currentCommandIndex].action();
-              setCommandStatus("success");
-
-              // Add to completed commands list
-              setTimeout(() => {
-                setCompletedCommands((prev) => [...prev, currentCommandIndex]);
-
-                // After success, move to next command with a delay
-                setTimeout(() => {
-                  setCurrentCommandIndex((prev) => prev + 1);
-                }, 500);
-              }, 500);
-            }, 500);
-          }, 300);
-        }
-      }, 20);
-
-      return () => clearInterval(typingInterval);
-    };
-
-    // Start the command sequence with a delay
-    const timer = setTimeout(startNextCommand, currentCommandIndex === 0 ? 500 : 500);
-    return () => clearTimeout(timer);
-  }, [currentCommandIndex, showTerminal]);
-
-  // Blinking cursor effect
-  useEffect(() => {
-    if (!showTerminal) return;
-
-    const cursorInterval = setInterval(() => {
-      setShowCursor((prev) => !prev);
-    }, 530);
-
-    return () => clearInterval(cursorInterval);
-  }, [showTerminal]);
-
   return (
     <section
       id="projects"
       ref={sectionRef}
       className="relative w-full bg-[#0B0C10] text-white overflow-hidden py-24 md:py-32">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.07]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+      {/* Background Pattern with Gradient Overlay */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] via-transparent to-[#0B0C10] pointer-events-none" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-6">
-        {/* Terminal Window */}
-        <AnimatePresence>
-          {showTerminal && (
+      <div className="relative w-full max-w-6xl mx-auto px-6">
+        {/* Title with Tag */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#1F2833] border border-[#45A29E]/20 text-sm font-medium mb-8 mx-auto w-fit">
+          <span className="text-[#66FCF1]">Proyectos Destacados</span>
+        </motion.div>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-5xl md:text-6xl font-bold mb-16 text-center text-white">
+          Mis Proyectos
+        </motion.h2>
+
+        {/* Project Cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project, index) => (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="w-full max-w-2xl mx-auto bg-[#121212] rounded-md overflow-hidden shadow-2xl border border-[#333333] flex flex-col mb-16 mt-4"
-              style={{ height: "120px" }}>
-              {/* Terminal Header */}
-              <div className="flex items-center px-4 py-1 bg-[#1A1A1A] border-b border-[#333333]">
-                <div className="flex space-x-2">
-                  <VscCircleFilled className="text-red-500" />
-                  <VscCircleFilled className="text-yellow-500" />
-                  <VscCircleFilled className="text-green-500" />
+              key={project.title}
+              ref={projectRefs[index]}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+              }}
+              className="group relative rounded-xl bg-[#1F2833] border border-[#45A29E]/20 hover:border-[#66FCF1]/30 transition-all duration-300 overflow-hidden transform hover:scale-[1.02]">
+              {/* Project Image */}
+              <div className="relative aspect-video overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1F2833] via-transparent to-transparent opacity-80" />
+              </div>
+
+              {/* Project Content */}
+              <div className="p-8">
+                <h3 className="text-2xl font-semibold mb-4">
+                  <span className="text-white">{project.title}</span>
+                  {project.title2 && (
+                    <>
+                      <span className="text-[#66FCF1]"> / </span>
+                      <span className="text-[#66FCF1]">{project.title2}</span>
+                    </>
+                  )}
+                </h3>
+                <p className="text-[#C5C6C7] text-base mb-6 line-clamp-3">{project.body}</p>
+
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1.5 text-sm rounded-full bg-[#0B0C10]/50 text-[#C5C6C7] border border-[#45A29E]/20 group-hover:border-[#66FCF1]/30 group-hover:text-white transition-all duration-300">
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-                <div className="mx-auto text-xs font-mono text-gray-400">projects-builder</div>
-              </div>
 
-              {/* Terminal Content with Scrolling */}
-              <div
-                ref={terminalContentRef}
-                className="p-3 font-mono text-sm bg-[#121212] flex-grow overflow-y-auto"
-                style={{
-                  fontFamily: "'Ubuntu Mono', 'Courier New', monospace",
-                  scrollbarWidth: "thin",
-                  scrollbarColor: "#333333 #121212",
-                  msOverflowStyle: "auto",
-                }}>
-                {/* Completed Commands */}
-                {completedCommands.map((cmdIndex) => (
-                  <div key={`completed-${cmdIndex}`} className="mb-2">
-                    {/* Command Line */}
-                    <div className="flex">
-                      <span className="text-[#45A29E] mr-2">$</span>
-                      <span className="text-gray-300">{commands[cmdIndex].text}</span>
-                    </div>
-
-                    {/* Command Result */}
-                    <div className="text-green-400 ml-4 mt-0.5">✓ Command executed successfully</div>
-                  </div>
-                ))}
-
-                {/* Current Command */}
-                {currentCommandIndex < commands.length && (
-                  <div className="mb-1">
-                    {/* Command */}
-                    <div className="flex">
-                      <span className="text-[#45A29E] mr-2">$</span>
-                      <span className="text-gray-300">{activeCommand}</span>
-                      {isTyping && showCursor && <span className="text-gray-300 animate-pulse">▋</span>}
-                    </div>
-
-                    {/* Command Status */}
-                    {commandStatus === "executing" && <div className="text-yellow-400 ml-4 mt-0.5">Executing...</div>}
-
-                    {commandStatus === "success" && (
-                      <div className="text-green-400 ml-4 mt-0.5">✓ Command executed successfully</div>
-                    )}
-                  </div>
-                )}
-
-                {/* Final cursor after all commands */}
-                {currentCommandIndex >= commands.length && (
-                  <div className="flex">
-                    <span className="text-[#45A29E] mr-2">$</span>
-                    {showCursor && <span className="text-gray-300 animate-pulse">▋</span>}
-                  </div>
-                )}
+                {/* Links */}
+                <div className="flex gap-4">
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-2.5 bg-[#66FCF1] text-[#0B0C10] rounded-lg font-semibold hover:bg-[#45A29E] transition-all duration-300 transform hover:scale-105">
+                    <span>Ver proyecto</span>
+                    <HiExternalLink className="w-5 h-5" />
+                  </a>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-2.5 bg-transparent border-2 border-[#66FCF1] text-[#66FCF1] rounded-lg font-semibold hover:bg-[#66FCF1]/10 transition-all duration-300 transform hover:scale-105">
+                    <span>Código</span>
+                    <FaGithub className="w-5 h-5" />
+                  </a>
+                </div>
               </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Projects Content */}
-        <div className="flex flex-col items-center text-center space-y-8 w-full">
-          {/* Title */}
-          {showTitle && (
-            <motion.h2
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="text-4xl md:text-5xl font-bold mb-8">
-              <span className="text-white">Pro</span>
-              <span className="text-[#66FCF1]">yectos</span>
-            </motion.h2>
-          )}
-
-          {/* Project Cards */}
-          {showProjectCards && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="flex justify-center items-center w-full">
-              <div className="flex flex-wrap justify-center w-full max-w-[900px] gap-12">
-                {projects.map((project, index) => (
-                  <motion.div
-                    key={index}
-                    ref={projectRefs[index]}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.5,
-                      ease: "easeOut",
-                      delay: index * 0.2,
-                    }}
-                    onClick={() => setSelectedProject(project)}
-                    className="w-full sm:w-[420px] mb-2 cursor-pointer">
-                    <Card {...project} />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </div>
-
-        <AnimatePresence>
-          {selectedProject && <Modal {...selectedProject} onClose={() => setSelectedProject(null)} />}
-        </AnimatePresence>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
