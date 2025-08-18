@@ -71,14 +71,11 @@ const SocialCV = () => {
                 <FaFilePdf className="text-[#66FCF1] w-5 h-5" />
                 <span className="text-lg">Español (PDF)</span>
               </a>
-              <a
-                href="/cv-en.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 text-[#C5C6C7] hover:text-white group p-4 rounded-lg bg-[#0B0C10]/50 border border-[#45A29E]/20 hover:border-[#66FCF1]/30 transition-all duration-300">
-                <FaFileAlt className="text-[#66FCF1] w-5 h-5" />
-                <span className="text-lg">English (PDF)</span>
-              </a>
+              <div
+                className="flex items-center gap-4 text-[#C5C6C7]/50 p-4 rounded-lg bg-[#0B0C10]/30 border border-[#45A29E]/10 cursor-not-allowed opacity-50">
+                <FaFileAlt className="text-[#66FCF1]/50 w-5 h-5" />
+                <span className="text-lg">English (PDF) - Coming Soon</span>
+              </div>
             </div>
           </motion.div>
 
