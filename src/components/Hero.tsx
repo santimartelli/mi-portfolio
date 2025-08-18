@@ -2,9 +2,16 @@ import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaCode } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { HiChevronDown } from "react-icons/hi";
+import { useMemo, memo } from "react";
+
+interface SocialLink {
+  readonly icon: React.ComponentType<{ className?: string }>;
+  readonly href: string;
+  readonly label: string;
+}
 
 const Hero = () => {
-  const socialLinks = [
+  const socialLinks: readonly SocialLink[] = useMemo(() => [
     {
       icon: FaGithub,
       href: "https://github.com/yourusername",
@@ -20,7 +27,7 @@ const Hero = () => {
       href: "mailto:your@email.com",
       label: "Email",
     },
-  ];
+  ], []);
 
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center bg-[#0B0C10] text-white overflow-hidden">
@@ -71,12 +78,14 @@ const Hero = () => {
             className="flex flex-wrap gap-6 justify-center pt-8">
             <a
               href="#projects"
-              className="px-8 py-4 bg-[#66FCF1] text-[#0B0C10] rounded-lg font-semibold hover:bg-[#45A29E] transition-all duration-300 transform hover:scale-105">
+              className="px-8 py-4 bg-[#66FCF1] text-[#0B0C10] rounded-lg font-semibold hover:bg-[#45A29E] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#66FCF1] focus:ring-offset-2 focus:ring-offset-[#0B0C10]"
+              aria-label="Ver mis proyectos">
               Ver Proyectos
             </a>
             <a
               href="#contact"
-              className="px-8 py-4 bg-transparent border-2 border-[#66FCF1] text-[#66FCF1] rounded-lg font-semibold hover:bg-[#66FCF1]/10 transition-all duration-300 transform hover:scale-105">
+              className="px-8 py-4 bg-transparent border-2 border-[#66FCF1] text-[#66FCF1] rounded-lg font-semibold hover:bg-[#66FCF1]/10 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#66FCF1] focus:ring-offset-2 focus:ring-offset-[#0B0C10]"
+              aria-label="Ir a la sección de contacto">
               Contactar
             </a>
           </motion.div>
@@ -97,7 +106,7 @@ const Hero = () => {
                 rel="noopener noreferrer"
                 className="text-[#C5C6C7] hover:text-[#66FCF1] transition-all duration-300 p-3 bg-[#1F2833] rounded-lg border border-[#45A29E]/20 hover:border-[#66FCF1] transform hover:scale-110"
                 aria-label={link.label}>
-                <link.icon className="w-6 h-6" />
+                <link.icon className="w-6 h-6" aria-hidden="true" />
               </motion.a>
             ))}
           </motion.div>
@@ -113,7 +122,7 @@ const Hero = () => {
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               className="text-[#66FCF1] cursor-pointer">
-              <HiChevronDown className="w-8 h-8" />
+              <HiChevronDown className="w-8 h-8" aria-hidden="true" />
             </motion.div>
           </motion.div>
         </div>
@@ -122,4 +131,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default memo(Hero);

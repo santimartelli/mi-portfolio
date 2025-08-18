@@ -91,7 +91,7 @@ const SocialCV = () => {
             </h3>
             <div className="space-y-6">
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/santimartelli"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 text-[#C5C6C7] hover:text-white group p-4 rounded-lg bg-[#0B0C10]/50 border border-[#45A29E]/20 hover:border-[#66FCF1]/30 transition-all duration-300">
@@ -99,7 +99,7 @@ const SocialCV = () => {
                 <span className="text-lg">GitHub</span>
               </a>
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://www.linkedin.com/in/santiagomartelli/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 text-[#C5C6C7] hover:text-white group p-4 rounded-lg bg-[#0B0C10]/50 border border-[#45A29E]/20 hover:border-[#66FCF1]/30 transition-all duration-300">
