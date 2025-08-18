@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useThemeContext } from "../util/ThemeContext";
 
 interface NavControlsProps {
   className?: string;
@@ -10,9 +11,8 @@ const NavControls = ({ className = "" }: NavControlsProps) => {
   const [isThemeOpen, setIsThemeOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
   const themeRef = useRef<HTMLDivElement>(null);
-
-  // These will be implemented later with context/state management
-  const currentTheme = "dark";
+  
+  const { theme, changeTheme } = useThemeContext();
   const currentLang = "es";
 
   // Handle click outside
@@ -129,22 +129,18 @@ const NavControls = ({ className = "" }: NavControlsProps) => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}>
           <span className="sr-only">Change Theme</span>
-          {currentTheme === "dark" ? (
+          {theme === "light" ? (
+            <svg className="w-5 h-5 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="5"/>
+              <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+          ) : (
             <svg className="w-5 h-5 text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
                 d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              />
-            </svg>
-          ) : (
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"
               />
             </svg>
           )}
@@ -160,49 +156,31 @@ const NavControls = ({ className = "" }: NavControlsProps) => {
               className="absolute right-0 mt-2 w-32 rounded-lg bg-darkbg-900 border border-accent-500/20 shadow-lg overflow-hidden">
               <div className="bg-gradient-to-b from-darkbg-900 to-darkbg-950 divide-y divide-accent-500/10">
                 <button
-                  className="flex w-full items-center px-4 py-2 text-sm text-darktext-300 hover:bg-darkbg-900/70 hover:text-white focus:outline-none transition-colors duration-150"
-                  onClick={() => setIsThemeOpen(false)}>
-                  <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"
-                    />
+                  className={`flex w-full items-center px-4 py-2 text-sm hover:bg-darkbg-900/70 focus:outline-none transition-colors duration-150 ${
+                    theme === "light" ? "text-accent-400 hover:text-accent-400" : "text-darktext-300 hover:text-white"
+                  }`}
+                  onClick={() => {
+                    changeTheme("light");
+                    setIsThemeOpen(false);
+                  }}>
+                  <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
                   </svg>
                   Light
                 </button>
                 <button
-                  className="flex w-full items-center px-4 py-2 text-sm text-accent-400 hover:bg-darkbg-900/70 hover:text-accent-400 focus:outline-none transition-colors duration-150"
-                  onClick={() => setIsThemeOpen(false)}>
-                  <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                    />
+                  className={`flex w-full items-center px-4 py-2 text-sm hover:bg-darkbg-900/70 focus:outline-none transition-colors duration-150 ${
+                    theme === "dark" ? "text-accent-400 hover:text-accent-400" : "text-darktext-300 hover:text-white"
+                  }`}
+                  onClick={() => {
+                    changeTheme("dark");
+                    setIsThemeOpen(false);
+                  }}>
+                  <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
                   </svg>
                   Dark
-                </button>
-                <button
-                  className="flex w-full items-center px-4 py-2 text-sm text-darktext-300 hover:bg-darkbg-900/70 hover:text-white focus:outline-none transition-colors duration-150"
-                  onClick={() => setIsThemeOpen(false)}>
-                  <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6a2 2 0 012-2h12a2 2 0 012 2v1H4V6z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 13a2 2 0 012-2h12a2 2 0 012 2v1H4v-1z"
-                    />
-                  </svg>
-                  System
                 </button>
               </div>
             </motion.div>

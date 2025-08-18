@@ -1,150 +1,332 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
-import { HiExternalLink } from "react-icons/hi";
+import { FaGithub, FaEye, FaCode, FaRocket } from "react-icons/fa";
+import { HiExternalLink, HiSparkles, HiLightBulb } from "react-icons/hi";
+import { BiTargetLock } from "react-icons/bi";
 
 const projects = [
   {
+    id: 1,
     image: "/tmphoto.webp",
     title: "Tanya Martelli",
-    title2: "Photography",
-    body: "Portfolio profesional para la fotógrafa Tanya Martelli con diseño minimalista centrado en la experiencia visual. Incluye galería interactiva con categorías, sistema de reserva de sesiones, panel de administración para gestionar contenido y formulario de contacto personalizado. Implementado con Vue.js en el frontend y Node.js con Express en el backend, utilizando MySQL para almacenamiento de datos.",
+    subtitle: "Photography Portfolio",
+    category: "Web Development",
+    body: "Portfolio profesional para la fotógrafa Tanya Martelli con diseño minimalista centrado en la experiencia visual. Incluye galería interactiva con categorías, sistema de reserva de sesiones, panel de administración completo y formulario de contacto personalizado.",
+    features: [
+      "Galería interactiva con filtros",
+      "Sistema de reservas integrado",
+      "Panel de administración",
+      "SEO optimizado",
+      "Diseño responsive"
+    ],
     href: "https://tanyamartelli.com",
     github: "https://github.com/santimartelli/tanyamartelliphoto-project.git",
-    technologies: ["Vue3", "CSS", "Node.js", "Express.js", "MySQL"],
+    technologies: ["Vue.js", "Node.js", "Express", "MySQL", "CSS3"],
+    status: "production",
+    year: "2024",
+    gradient: "from-purple-500 to-pink-600",
   },
   {
+    id: 2,
     image: "/smportfolio.webp",
-    title: "Web / portfolio",
-    title2: "Santiago Martelli",
-    body: "Portfolio personal diseñado con enfoque en rendimiento y experiencia visual fluida. Desarrollado con una arquitectura moderna utilizando Astro para optimización de carga, React con TypeScript para componentes tipados e interactivos, y Tailwind CSS para un diseño responsivo y elegante. La implementación con TypeScript garantiza código mantenible y robusto, mientras que Framer Motion proporciona animaciones sutiles. El proyecto sigue principios SOLID, patrones de diseño modernos y prácticas de desarrollo web performante.",
+    title: "Portfolio Personal",
+    subtitle: "Santiago Martelli",
+    category: "Full-Stack",
+    body: "Portfolio personal diseñado con enfoque en rendimiento y experiencia visual fluida. Implementa arquitectura moderna con Astro, React y TypeScript, siguiendo principios SOLID y patrones de diseño modernos para máximo rendimiento.",
+    features: [
+      "Arquitectura Astro Islands",
+      "TypeScript completo",
+      "Animaciones Framer Motion",
+      "Tailwind CSS moderno",
+      "Optimización extrema"
+    ],
     href: "https://martelli.dev",
     github: "https://github.com/santimartelli/mi-portfolio.git",
-    technologies: ["Astro", "React.js", "TypeScript", "Tailwind CSS"],
+    technologies: ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    status: "production",
+    year: "2024",
+    gradient: "from-blue-500 to-cyan-500",
   },
 ];
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState<{
-    title: string;
-    title2: string;
-    body: string;
-    technologies: string[];
-    href: string;
-    github: string;
-    image: string;
-  } | null>(null);
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
-  // Refs for section components
   const sectionRef = useRef(null);
-  const projectRefs = projects.map(() => useRef(null));
-
-  // InView hooks
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
-  const projectsInView = projectRefs.map((ref) => useInView(ref, { once: true, amount: 0.2 }));
+  const headerRef = useRef(null);
+  const projectsRef = useRef(null);
+  
+  const isHeaderInView = useInView(headerRef, { once: true, amount: 0.3 });
+  const isProjectsInView = useInView(projectsRef, { once: true, amount: 0.1 });
 
   return (
     <section
       id="projects"
       ref={sectionRef}
-      className="relative w-full bg-[#0B0C10] text-white overflow-hidden py-24 md:py-32">
-      {/* Background Pattern with Gradient Overlay */}
+      className="relative w-full bg-darkbg-950 text-white overflow-hidden py-24 md:py-32">
+      
+      {/* Background Avanzado */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0B0C10] via-transparent to-[#0B0C10] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/5 via-accent-secondary/5 to-accent-tertiary/5" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.15),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       </div>
 
-      <div className="relative w-full max-w-6xl mx-auto px-6">
-        {/* Title with Tag */}
+      {/* Elementos flotantes decorativos */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-[#1F2833] border border-[#45A29E]/20 text-sm font-medium mb-8 mx-auto w-fit">
-          <span className="text-[#66FCF1]">Proyectos Destacados</span>
-        </motion.div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-6xl font-bold mb-16 text-center text-white">
-          Mis Proyectos
-        </motion.h2>
-
-        {/* Project Cards */}
+          animate={{ y: [-30, 30, -30], rotate: [0, 360] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/4 right-20 w-4 h-4 bg-accent rounded-full opacity-20"
+        />
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          animate={{ y: [20, -40, 20], x: [-10, 10, -10] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/3 left-16 w-2 h-2 bg-accent-secondary rounded-full opacity-30"
+        />
+      </div>
+
+      <div className="relative w-full max-w-7xl mx-auto px-6">
+        {/* Header Section */}
+        <div ref={headerRef} className="text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: -30, scale: 0.8 }}
+            animate={isHeaderInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="theme-card flex items-center justify-center gap-3 px-6 py-3 rounded-full text-sm font-semibold mb-8 mx-auto w-fit backdrop-blur-sm">
+            <motion.div
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            >
+              <BiTargetLock className="text-accent text-lg" />
+            </motion.div>
+            <span className="theme-text-gradient">Proyectos Destacados</span>
+            <HiSparkles className="text-accent-secondary" />
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+            <span className="theme-text-gradient">Mis Proyectos</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg md:text-xl text-text-tertiary leading-relaxed max-w-3xl mx-auto">
+            Cada proyecto es una <span className="text-accent font-semibold">historia única</span> de innovación, 
+            creatividad y soluciones técnicas que transforman ideas en realidades digitales excepcionales.
+          </motion.p>
+        </div>
+
+        {/* Projects Grid */}
+        <motion.div
+          ref={projectsRef}
+          initial={{ opacity: 0, y: 50 }}
+          animate={isProjectsInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {projects.map((project, index) => (
             <motion.div
-              key={project.title}
-              ref={projectRefs[index]}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.1,
-              }}
-              className="group relative rounded-xl bg-[#1F2833] border border-[#45A29E]/20 hover:border-[#66FCF1]/30 transition-all duration-300 overflow-hidden transform hover:scale-[1.02]">
-              {/* Project Image */}
-              <div className="relative aspect-video overflow-hidden">
-                <img
+              key={project.id}
+              initial={{ opacity: 0, y: 80 }}
+              animate={isProjectsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
+              onHoverStart={() => setHoveredProject(project.id)}
+              onHoverEnd={() => setHoveredProject(null)}
+              className="group relative theme-card rounded-3xl overflow-hidden p-0 hover:scale-[1.02] transition-all duration-500"
+              whileHover={{ y: -8 }}
+            >
+              {/* Project Image with Overlay */}
+              <div className="relative aspect-video overflow-hidden rounded-t-3xl">
+                <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.6 }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1F2833] via-transparent to-transparent opacity-80" />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-bg-tertiary via-bg-tertiary/20 to-transparent opacity-90" />
+                
+                {/* Status Badge */}
+                <div className="absolute top-4 right-4">
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={isProjectsInView ? { scale: 1, rotate: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 1 + index * 0.2 }}
+                    className="px-3 py-1.5 bg-accent/90 backdrop-blur-sm rounded-full text-xs font-bold text-white flex items-center gap-2"
+                  >
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                    {project.status === 'production' ? 'En Producción' : 'En Desarrollo'}
+                  </motion.div>
+                </div>
+
+                {/* Category Badge */}
+                <div className="absolute top-4 left-4">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={isProjectsInView ? { scale: 1 } : {}}
+                    transition={{ duration: 0.4, delay: 1.2 + index * 0.2 }}
+                    className="px-3 py-1.5 bg-bg-primary/80 backdrop-blur-sm rounded-full text-xs font-semibold text-text-muted border border-border-secondary"
+                  >
+                    {project.category}
+                  </motion.div>
+                </div>
+
+                {/* Hover Overlay with Actions */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: hoveredProject === project.id ? 1 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0 bg-bg-primary/80 backdrop-blur-sm flex items-center justify-center gap-4"
+                >
+                  <motion.a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="theme-button-primary p-4 rounded-full"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FaEye className="w-6 h-6" />
+                  </motion.a>
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="theme-button-secondary p-4 rounded-full"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FaGithub className="w-6 h-6" />
+                  </motion.a>
+                </motion.div>
               </div>
 
               {/* Project Content */}
               <div className="p-8">
-                <h3 className="text-2xl font-semibold mb-4">
-                  <span className="text-white">{project.title}</span>
-                  {project.title2 && (
-                    <>
-                      <span className="text-[#66FCF1]"> / </span>
-                      <span className="text-[#66FCF1]">{project.title2}</span>
-                    </>
-                  )}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2 text-sm text-text-muted">
+                    <HiLightBulb className="text-accent" />
+                    <span>{project.year}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ scale: 0 }}
+                        animate={isProjectsInView ? { scale: 1 } : {}}
+                        transition={{ duration: 0.2, delay: 1.4 + index * 0.2 + i * 0.05 }}
+                        className="w-2 h-2 bg-accent rounded-full"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                  <span className="text-text-primary">{project.title}</span>
                 </h3>
-                <p className="text-[#C5C6C7] text-base mb-6 line-clamp-3">{project.body}</p>
+                
+                <h4 className="text-lg text-accent font-semibold mb-4">
+                  {project.subtitle}
+                </h4>
+
+                <p className="text-text-tertiary leading-relaxed mb-6">
+                  {project.body}
+                </p>
+
+                {/* Features List */}
+                <div className="mb-6">
+                  <h5 className="text-sm font-semibold text-text-secondary mb-3 flex items-center gap-2">
+                    <FaRocket className="text-accent text-xs" />
+                    Características Principales
+                  </h5>
+                  <div className="space-y-2">
+                    {project.features.slice(0, 3).map((feature, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={isProjectsInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.3, delay: 1.6 + index * 0.2 + idx * 0.1 }}
+                        className="text-sm text-text-muted flex items-center gap-2"
+                      >
+                        <div className="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0" />
+                        {feature}
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech) => (
-                    <span
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {project.technologies.map((tech, techIndex) => (
+                    <motion.span
                       key={tech}
-                      className="px-3 py-1.5 text-sm rounded-full bg-[#0B0C10]/50 text-[#C5C6C7] border border-[#45A29E]/20 group-hover:border-[#66FCF1]/30 group-hover:text-white transition-all duration-300">
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={isProjectsInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ duration: 0.3, delay: 1.8 + index * 0.2 + techIndex * 0.05 }}
+                      className="px-3 py-1.5 text-xs font-medium rounded-full bg-bg-secondary/50 text-text-muted hover:text-accent hover:bg-accent/10 transition-all duration-300 border border-border-secondary hover:border-accent/30"
+                    >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
 
-                {/* Links */}
+                {/* Action Buttons */}
                 <div className="flex gap-4">
-                  <a
+                  <motion.a
                     href={project.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-2.5 bg-[#66FCF1] text-[#0B0C10] rounded-lg font-semibold hover:bg-[#45A29E] transition-all duration-300 transform hover:scale-105">
-                    <span>Ver proyecto</span>
+                    className="theme-button-primary flex items-center gap-3 px-6 py-3 rounded-xl font-semibold flex-1 justify-center"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <HiExternalLink className="w-5 h-5" />
-                  </a>
-                  <a
+                    Ver Proyecto
+                  </motion.a>
+                  <motion.a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-2.5 bg-transparent border-2 border-[#66FCF1] text-[#66FCF1] rounded-lg font-semibold hover:bg-[#66FCF1]/10 transition-all duration-300 transform hover:scale-105">
-                    <span>Código</span>
-                    <FaGithub className="w-5 h-5" />
-                  </a>
+                    className="theme-button-secondary flex items-center gap-3 px-6 py-3 rounded-xl font-semibold"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <FaCode className="w-5 h-5" />
+                    Código
+                  </motion.a>
                 </div>
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isProjectsInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 1.4 }}
+          className="text-center mt-20"
+        >
+          <p className="text-text-tertiary mb-8 text-lg">
+            ¿Te gusta lo que ves? Hagamos algo increíble juntos.
+          </p>
+          <motion.a
+            href="#contact"
+            className="theme-button-primary px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center gap-3"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <HiSparkles />
+            Iniciar Proyecto
+          </motion.a>
         </motion.div>
       </div>
     </section>

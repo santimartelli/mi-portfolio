@@ -1,7 +1,7 @@
 ---
 import "@fontsource/titillium-web";
 import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar";
+import NavbarWithTheme from "../components/NavbarWithTheme";
 import Projects from "../components/Projects";
 import AboutMe from "../components/AboutMe";
 import Hero from "../components/Hero";
@@ -16,7 +16,7 @@ import Divider from "../components/Divider.astro";
   description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, PHP, Laravel, SQL y más. Disponible para trabajar!">
   <main>
     <!-- Navbar -->
-    <Navbar client:load />
+    <NavbarWithTheme client:load />
 
     <!-- Hero section -->
     <section id="home" class="relative">
