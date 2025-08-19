@@ -1,0 +1,20 @@
+{
+  "badge": "Full Stack Developer",
+  "firstName": "Santiago",
+  "lastName": "Martelli",
+  "description": {
+    "intro": "Transformo ideas en",
+    "highlight": "experiencias digitales excepcionales",
+    "continuation": "utilizando las últimas tecnologías web. Especializado en",
+    "technologies": ["React", "TypeScript", "arquitecturas modernas"]
+  },
+  "buttons": {
+    "projects": "Ver Proyectos",
+    "contact": "Contactar"
+  },
+  "scrollIndicator": "Scroll para explorar",
+  "ariaLabels": {
+    "projectsButton": "Ver mis proyectos",
+    "contactButton": "Ir a la sección de contacto"
+  }
+}

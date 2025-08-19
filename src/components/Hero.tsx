@@ -4,6 +4,7 @@ import { MdEmail } from "react-icons/md";
 import { HiChevronDown } from "react-icons/hi";
 import { BiCode } from "react-icons/bi";
 import { useMemo, memo } from "react";
+import { useTranslations } from "../util/i18n";
 
 interface SocialLink {
   readonly icon: React.ComponentType<{ className?: string }>;
@@ -12,6 +13,8 @@ interface SocialLink {
 }
 
 const Hero = () => {
+  const { hero: t } = useTranslations();
+  
   const socialLinks: readonly SocialLink[] = useMemo(() => [
     {
       icon: FaGithub,
@@ -88,7 +91,7 @@ const Hero = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="theme-card flex items-center gap-3 px-6 py-3 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm">
             <BiCode className="text-accent text-lg" />
-            <span className="theme-text-gradient">Full Stack Developer</span>
+            <span className="theme-text-gradient">{t.badge}</span>
           </motion.div>
 
           {/* Nombre con Animación Avanzada */}
@@ -103,7 +106,7 @@ const Hero = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Santiago{" "}
+              {t.firstName}{" "}
             </motion.span>
             <motion.span 
               className="theme-text-gradient inline-block"
@@ -111,7 +114,7 @@ const Hero = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              Martelli
+              {t.lastName}
             </motion.span>
           </motion.h1>
 
@@ -121,18 +124,23 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-lg md:text-xl text-text-tertiary leading-relaxed max-w-4xl mx-auto font-light">
-            Transformo ideas en{" "}
+            {t.description.intro}{" "}
             <motion.span 
               className="text-accent font-medium"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              experiencias digitales excepcionales
+              {t.description.highlight}
             </motion.span>
-            {" "}utilizando las últimas tecnologías web. Especializado en{" "}
-            <span className="text-accent-secondary font-medium">React</span>,{" "}
-            <span className="text-accent-secondary font-medium">TypeScript</span> y{" "}
-            <span className="text-accent-secondary font-medium">arquitecturas modernas</span>.
+            {" "}{t.description.continuation}{" "}
+            {t.description.technologies.map((tech, index) => (
+              <span key={tech}>
+                <span className="text-accent-secondary font-medium">{tech}</span>
+                {index < t.description.technologies.length - 1 && (
+                  index === t.description.technologies.length - 2 ? " y " : ", "
+                )}
+              </span>
+            ))}.
           </motion.p>
 
           {/* Botones CTA Mejorados */}
@@ -146,17 +154,17 @@ const Hero = () => {
               className="theme-button-primary px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-3 group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              aria-label="Ver mis proyectos">
+              aria-label={t.ariaLabels.projectsButton}>
               <FaRocket className="group-hover:rotate-12 transition-transform duration-300" />
-              Ver Proyectos
+              {t.buttons.projects}
             </motion.a>
             <motion.a
               href="#contact"
               className="theme-button-secondary px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-3"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              aria-label="Ir a la sección de contacto">
-              Contactar
+              aria-label={t.ariaLabels.contactButton}>
+              {t.buttons.contact}
             </motion.a>
           </motion.div>
 
@@ -196,7 +204,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 1.6 }}
             className="absolute bottom-20 md:bottom-28 inset-x-0 mx-auto flex flex-col items-center gap-2">
             <span className="text-xs text-text-muted font-medium tracking-wider uppercase">
-              Scroll para explorar
+              {t.scrollIndicator}
             </span>
             <motion.button
               onClick={scrollToAbout}

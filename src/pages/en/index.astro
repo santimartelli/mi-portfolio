@@ -1,18 +1,18 @@
 ---
 import "@fontsource/titillium-web";
-import Layout from "../layouts/Layout.astro";
-import NavbarWithTranslations from "../components/NavbarWithTranslations";
-import Projects from "../components/Projects";
-import AboutMe from "../components/AboutMe";
-import HeroWithTranslations from "../components/HeroWithTranslations";
-import Contact from "../components/Contact";
-import SocialCV from "../components/SocialCV";
-import Footer from "../components/Footer";
-import Divider from "../components/Divider.astro";
+import Layout from "../../layouts/Layout.astro";
+import NavbarWithTranslations from "../../components/NavbarWithTranslations";
+import Projects from "../../components/Projects";
+import AboutMe from "../../components/AboutMe";
+import HeroWithTranslations from "../../components/HeroWithTranslations";
+import Contact from "../../components/Contact";
+import SocialCV from "../../components/SocialCV";
+import Footer from "../../components/Footer";
+import Divider from "../../components/Divider.astro";
 
-// Cargar traducciones en español
-const heroTranslations = await import("../content/es/hero.json");
-const navbarTranslations = await import("../content/es/navbar.json");
+// Cargar traducciones en inglés
+const heroTranslations = await import("../../content/en/hero.json");
+const navbarTranslations = await import("../../content/en/navbar.json");
 
 const translations = {
   hero: heroTranslations.default,
@@ -21,8 +21,8 @@ const translations = {
 ---
 
 <Layout
-  title="Santiago Martelli | Programador y Desarrollador Web"
-  description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, PHP, Laravel, SQL y más. Disponible para trabajar!">
+  title="Santiago Martelli | Programmer and Web Developer"
+  description="Hello! I'm Santiago Martelli, a programmer and web developer with knowledge of HTML, CSS, JavaScript, Vue.js, PHP, Laravel, SQL and more. Available for work!">
   <main>
     <!-- Navbar -->
     <NavbarWithTranslations translations={translations} client:load />

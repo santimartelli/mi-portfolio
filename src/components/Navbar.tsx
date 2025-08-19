@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "../util/useMediaQuery";
 import { useActiveSection } from "../util/useActiveSection";
+import { useTranslations } from "../util/i18n";
 import Logo from "./Logo";
 import NavControls from "./NavControls";
 
@@ -89,6 +90,23 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
   const activeSection = useActiveSection();
+  const { navbar: t } = useTranslations();
+  
+  // Get current language prefix
+  const getLanguagePrefix = () => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname.startsWith('/en') ? '/en' : '';
+    }
+    return '';
+  };
+
+  // Navigation sections with their translated labels
+  const navigationSections = [
+    { key: 'home', label: t.navigation.home },
+    { key: 'about', label: t.navigation.about },
+    { key: 'projects', label: t.navigation.projects },
+    { key: 'contact', label: t.navigation.contact }
+  ];
 
   // Function to close all dropdowns
   const closeAllDropdowns = () => {
@@ -140,23 +158,26 @@ export default function Navbar() {
         isScrolled ? "bg-darkbg-950/90 shadow-lg" : "bg-darkbg-950/70"
       } border-b border-accent-500/30`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-        <motion.a href="/" variants={itemMotion} className="relative z-10 focus:outline-none">
+        <motion.a 
+          href={typeof window !== 'undefined' && window.location.pathname.startsWith('/en') ? '/en/' : '/'} 
+          variants={itemMotion} 
+          className="relative z-10 focus:outline-none">
           <Logo />
         </motion.a>
 
         {!isMobile && (
           <div className="flex items-center gap-8">
             <motion.div variants={itemMotion} className="flex gap-x-8 text-sm lg:text-base text-darktext-300">
-              {["home", "about", "projects", "contact"].map((section) => (
+              {navigationSections.map((section) => (
                 <motion.a
-                  key={section}
-                  href={`/#${section}`}
+                  key={section.key}
+                  href={`${getLanguagePrefix()}/#${section.key}`}
                   className={`relative py-1 transition-colors duration-300 hover:text-white focus:outline-none ${
-                    isActive(section) ? "text-white" : ""
+                    isActive(section.key) ? "text-white" : ""
                   }`}
                   whileHover={{ y: -1 }}
                   whileTap={{ y: 0 }}>
-                  {isActive(section) && (
+                  {isActive(section.key) && (
                     <motion.span
                       layoutId="activeSection"
                       className="absolute -bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-accent-400 to-accent-500"
@@ -167,7 +188,7 @@ export default function Navbar() {
                       }}
                     />
                   )}
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                  {section.label}
                 </motion.a>
               ))}
             </motion.div>
@@ -238,18 +259,18 @@ export default function Navbar() {
               exit="exit"
               className="absolute right-4 top-16 w-48 rounded-lg bg-darkbg-900 border border-accent-500/20 shadow-lg mobile-menu overflow-hidden">
               <div className="bg-gradient-to-b from-darkbg-900 to-darkbg-950 divide-y divide-accent-500/10">
-                {["home", "about", "projects", "contact"].map((section, index) => (
+                {navigationSections.map((section, index) => (
                   <motion.a
-                    key={section}
-                    href={`/#${section}`}
+                    key={section.key}
+                    href={`${getLanguagePrefix()}/#${section.key}`}
                     onClick={() => setToggled(false)}
                     className={`flex w-full items-center px-4 py-2 text-sm transition-colors duration-150 ${
-                      isActive(section)
+                      isActive(section.key)
                         ? "text-white bg-darkbg-900/80"
                         : "text-darktext-300 hover:bg-darkbg-900/50 hover:text-white"
                     } focus:outline-none`}
                     whileTap={{ scale: 0.95 }}>
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                    {section.label}
                   </motion.a>
                 ))}
               </div>
