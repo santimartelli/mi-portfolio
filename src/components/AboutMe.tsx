@@ -1,226 +1,245 @@
-import { motion } from "framer-motion";
-import { useRef, useState } from "react";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef, memo } from "react";
 import { FaReact, FaNodeJs, FaDatabase, FaServer, FaCode, FaBrain, FaRocket, FaLightbulb } from "react-icons/fa";
-import { HiSparkles, HiTrendingUp } from "react-icons/hi";
-import { SiTypescript, SiGo, SiAstro, SiDocker } from "react-icons/si";
+import { HiOutlineCode, HiTrendingUp } from "react-icons/hi";
+import { useTranslations } from "../util/i18n";
 
-const technologies = [
+const getTechnologies = (t: any) => [
   {
     icon: FaReact,
-    name: "Frontend",
-    desc: "Interfaces modernas y experiencias inmersivas",
+    name: t.technologies.frontend.name,
+    desc: t.technologies.frontend.desc,
     skills: ["React", "TypeScript", "Vue.js", "Astro", "Tailwind CSS", "Next.js"],
-    gradient: "from-blue-500 to-cyan-500",
-    bgColor: "bg-blue-500/10",
-    borderColor: "border-blue-500/20",
+    color: "text-blue-400",
+    bgColor: "from-blue-500/10 to-blue-600/10",
+    hoverColor: "hover:bg-blue-500/10 hover:border-blue-500/30",
   },
   {
     icon: FaServer,
-    name: "Backend",
-    desc: "APIs robustas y arquitecturas escalables",
+    name: t.technologies.backend.name,
+    desc: t.technologies.backend.desc,
     skills: ["Node.js", "Express", "PHP", "Laravel", "Go", "REST APIs"],
-    gradient: "from-green-500 to-emerald-500",
-    bgColor: "bg-green-500/10",
-    borderColor: "border-green-500/20",
+    color: "text-green-400",
+    bgColor: "from-green-500/10 to-green-600/10",
+    hoverColor: "hover:bg-green-500/10 hover:border-green-500/30",
   },
   {
     icon: FaDatabase,
-    name: "Database & DevOps",
-    desc: "Gestión de datos y automatización",
+    name: t.technologies.database.name,
+    desc: t.technologies.database.desc,
     skills: ["MySQL", "PostgreSQL", "Docker", "Git", "CI/CD", "AWS"],
-    gradient: "from-purple-500 to-pink-500",
-    bgColor: "bg-purple-500/10",
-    borderColor: "border-purple-500/20",
+    color: "text-purple-400",
+    bgColor: "from-purple-500/10 to-purple-600/10",
+    hoverColor: "hover:bg-purple-500/10 hover:border-purple-500/30",
   },
   {
     icon: FaBrain,
-    name: "Metodologías",
-    desc: "Procesos ágiles y buenas prácticas",
+    name: t.technologies.methodologies.name,
+    desc: t.technologies.methodologies.desc,
     skills: ["SOLID", "Clean Code", "TDD", "Agile", "Scrum", "Design Patterns"],
-    gradient: "from-orange-500 to-red-500",
-    bgColor: "bg-orange-500/10",
-    borderColor: "border-orange-500/20",
+    color: "text-orange-400",
+    bgColor: "from-orange-500/10 to-orange-600/10",
+    hoverColor: "hover:bg-orange-500/10 hover:border-orange-500/30",
   },
 ];
 
-const stats = [
-  { icon: FaCode, value: "100+", label: "Proyectos Completados" },
-  { icon: FaRocket, value: "3+", label: "Años de Experiencia" },
-  { icon: HiTrendingUp, value: "50+", label: "Clientes Satisfechos" },
-  { icon: FaLightbulb, value: "24/7", label: "Aprendizaje Continuo" },
+const getStats = (t: any) => [
+  { icon: FaCode, value: "100+", label: t.stats.projects, color: "text-blue-400", bgColor: "from-blue-500/10 to-blue-600/10" },
+  { icon: FaRocket, value: "3+", label: t.stats.experience, color: "text-green-400", bgColor: "from-green-500/10 to-green-600/10" },
+  { icon: HiTrendingUp, value: "50+", label: t.stats.clients, color: "text-purple-400", bgColor: "from-purple-500/10 to-purple-600/10" },
+  { icon: FaLightbulb, value: "24/7", label: t.stats.learning, color: "text-orange-400", bgColor: "from-orange-500/10 to-orange-600/10" },
 ];
 
 const AboutMeSection = () => {
+  const { aboutme: t } = useTranslations();
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
-  const statsRef = useRef(null);
-  const cardsRef = useRef(null);
   
-  const isSectionInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const isContentInView = useInView(contentRef, { once: true, amount: 0.1 });
-  const isStatsInView = useInView(statsRef, { once: true, amount: 0.3 });
-  const isCardsInView = useInView(cardsRef, { once: true, amount: 0.1 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
 
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  // Helper function for current locale like in Contact
+  const getCurrentLocale = (): string => {
+    if (typeof window !== 'undefined') {
+      const pathname = window.location.pathname;
+      if (pathname.startsWith('/en')) return 'en';
+    }
+    return 'es';
+  };
+
+  const currentLocale = getCurrentLocale();
+  const technologies = getTechnologies(t);
+  const stats = getStats(t);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen w-full bg-darkbg-950 text-white">
-      {/* Background Moderno */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/5 via-transparent to-accent-secondary/5" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      </div>
+    <section
+      id="about"
+      ref={sectionRef}
+      className="relative w-full bg-darkbg-950 py-24 md:py-32">
+      
+      {/* Subtle Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-primary/2 to-transparent" />
 
-      {/* Efectos de profundidad */}
-      <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/80 via-transparent to-bg-primary/80 pointer-events-none" />
-
-      <div ref={contentRef} className="relative w-full max-w-7xl mx-auto px-4 py-24 md:py-32">
-        <div className="flex flex-col items-center">
-          {/* Badge Animado */}
+      <div ref={contentRef} className="relative w-full max-w-6xl mx-auto px-6">
+        
+        {/* Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={contentInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16">
+          
+          {/* Professional Badge */}
           <motion.div
-            initial={{ opacity: 0, y: -30, scale: 0.8 }}
-            animate={isContentInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="theme-card flex items-center gap-3 px-6 py-3 rounded-full text-sm font-semibold mb-8 backdrop-blur-sm">
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-            >
-              <HiSparkles className="text-accent text-lg" />
-            </motion.div>
-            <span className="theme-text-gradient">Experiencia & Habilidades</span>
+            initial={{ opacity: 0, y: 20 }}
+            animate={contentInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="inline-flex items-center gap-3 px-4 py-2 bg-accent-500/10 border border-accent-500/20 rounded-full text-sm font-medium text-accent-400 backdrop-blur-sm mb-8">
+            <HiOutlineCode className="w-4 h-4" />
+            <span>{t.badge}</span>
           </motion.div>
 
-          {/* Título Principal */}
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={isContentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-center">
-            <span className="theme-text-gradient">Sobre Mí</span>
-          </motion.h2>
-
-          {/* Descripción Mejorada */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isContentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl text-text-tertiary leading-relaxed max-w-4xl text-center mb-16 space-y-4">
-            <p>
-              Soy un <span className="text-accent font-semibold">desarrollador full-stack apasionado</span> por crear
-              soluciones digitales que marquen la diferencia. Mi enfoque combina{" "}
-              <span className="text-accent-secondary font-semibold">diseño centrado en el usuario</span> con{" "}
-              <span className="text-accent-tertiary font-semibold">arquitectura robusta y escalable</span>.
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary">
+            {t.title}
+          </h2>
+          
+          <div className="w-16 h-0.5 bg-accent mx-auto mb-6" />
+          
+          <div className="max-w-2xl mx-auto">
+            <p className="text-lg text-text-tertiary leading-relaxed mb-4">
+              {t.description.paragraph1.intro} <span className="text-accent font-semibold">{t.description.paragraph1.highlight1}</span> {t.description.paragraph1.middle}
             </p>
-            <p className="text-text-muted">
-              Con más de <span className="text-accent font-semibold">3 años de experiencia</span>, he trabajado en
-              proyectos diversos, desde startups hasta empresas consolidadas, siempre buscando la excelencia técnica
-              y la innovación continua.
+            
+            <p className="text-base text-text-muted leading-relaxed">
+              {t.description.paragraph2.intro} <span className="text-accent font-medium">
+                {t.description.paragraph2.highlight}
+              </span> {t.description.paragraph2.continuation}
             </p>
-          </motion.div>
+          </div>
+        </motion.div>
 
-          {/* Estadísticas Impresionantes */}
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 max-w-5xl mx-auto">
+          
+          {/* Technologies */}
           <motion.div
-            ref={statsRef}
-            initial={{ opacity: 0, y: 50 }}
-            animate={isStatsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-4xl mb-20">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isStatsInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                className="theme-card p-6 rounded-2xl text-center group">
-                <stat.icon className="w-8 h-8 text-accent mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
-                <div className="text-3xl font-bold text-text-primary mb-2">{stat.value}</div>
-                <div className="text-sm text-text-muted font-medium">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
+            initial={{ opacity: 0, y: 30 }}
+            animate={contentInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-6">
+            
+            <h3 className="text-xl font-semibold text-text-primary mb-6">
+              {currentLocale === 'es' ? 'Stack Tecnológico' : 'Technology Stack'}
+            </h3>
 
-          {/* Tech Cards Grid Mejorado */}
-          <motion.div
-            ref={cardsRef}
-            initial={{ opacity: 0, y: 50 }}
-            animate={isCardsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-            {technologies.map((tech, index) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isCardsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-                onHoverStart={() => setHoveredCard(index)}
-                onHoverEnd={() => setHoveredCard(null)}
-                className={`group relative p-6 rounded-2xl backdrop-blur-sm transition-all duration-500 transform hover:scale-[1.02] ${tech.bgColor} ${tech.borderColor} border hover:border-accent/30`}
-                whileHover={{ y: -5 }}
-              >
-                {/* Efecto de resplandor al hover */}
+            <div className="space-y-4">
+              {technologies.map((tech, index) => (
                 <motion.div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-                  style={{
-                    background: `linear-gradient(135deg, var(--accent), var(--accent-secondary))`,
-                  }}
-                />
-                
-                <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-4">
-                    <motion.div
-                      animate={hoveredCard === index ? { rotate: 360, scale: 1.1 } : { rotate: 0, scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      className="p-3 rounded-xl bg-bg-primary/50 backdrop-blur-sm"
-                    >
-                      <tech.icon className="w-8 h-8 text-accent" />
-                    </motion.div>
-                    <h3 className="text-xl font-bold text-text-primary">
-                      {tech.name}
-                    </h3>
-                  </div>
+                  key={tech.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={contentInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                  className={`p-4 rounded-lg border border-border-secondary transition-all duration-300 group bg-bg-secondary/20 ${tech.hoverColor}`}>
                   
-                  <p className="text-text-tertiary mb-6 leading-relaxed">
-                    {tech.desc}
-                  </p>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className={`p-2 rounded-lg bg-gradient-to-br ${tech.bgColor} transition-colors duration-300`}>
+                      <tech.icon className={`w-4 h-4 ${tech.color}`} />
+                    </div>
+                    <div className="text-sm font-medium text-text-primary">
+                      {tech.name}
+                    </div>
+                  </div>
                   
                   <div className="flex flex-wrap gap-2">
-                    {tech.skills.map((skill, skillIndex) => (
-                      <motion.span
-                        key={skill}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={isCardsInView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ duration: 0.3, delay: 1.2 + index * 0.1 + skillIndex * 0.05 }}
-                        className="px-3 py-1.5 text-xs font-medium rounded-full bg-bg-secondary/80 text-text-muted hover:text-accent hover:bg-accent/10 transition-all duration-300 border border-border-secondary"
-                      >
+                    {tech.skills.map((skill) => (
+                      <span key={skill} className="px-3 py-1 text-xs bg-bg-tertiary/50 text-text-muted rounded-full border border-border-secondary/50">
                         {skill}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
-          {/* Llamada a la acción */}
+          {/* Professional Summary */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isCardsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1.5 }}
-            className="mt-16 text-center">
-            <p className="text-text-tertiary mb-6">
-              ¿Listo para llevar tu proyecto al siguiente nivel?
-            </p>
-            <motion.a
-              href="#contact"
-              className="theme-button-primary px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center gap-3"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <HiSparkles />
-              Trabajemos Juntos
-            </motion.a>
+            animate={contentInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="space-y-6">
+            
+            <h3 className="text-xl font-semibold text-text-primary mb-6">
+              {currentLocale === 'es' ? 'Experiencia & Enfoque' : 'Experience & Focus'}
+            </h3>
+
+            <div className="space-y-4">
+              {/* Key Stats */}
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={contentInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  className="text-center p-4 rounded-lg bg-bg-secondary/20 border border-border-secondary">
+                  <div className="text-2xl font-bold text-accent-400 mb-1">3+</div>
+                  <div className="text-xs text-text-muted">
+                    {currentLocale === 'es' ? 'Años' : 'Years'}
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={contentInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  className="text-center p-4 rounded-lg bg-bg-secondary/20 border border-border-secondary">
+                  <div className="text-2xl font-bold text-accent-400 mb-1">50+</div>
+                  <div className="text-xs text-text-muted">
+                    {currentLocale === 'es' ? 'Proyectos' : 'Projects'}
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Professional Focus */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={contentInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                className="p-4 rounded-lg border border-border-secondary bg-bg-secondary/20">
+                
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-2 rounded-lg bg-blue-500/10">
+                    <FaCode className="w-4 h-4 text-blue-400" />
+                  </div>
+                  <div className="text-sm font-medium text-text-primary">
+                    {currentLocale === 'es' ? 'Desarrollo Full Stack' : 'Full Stack Development'}
+                  </div>
+                </div>
+                
+                <div className="text-xs text-text-muted leading-relaxed">
+                  {currentLocale === 'es' ? 
+                    'Especializado en crear aplicaciones web completas, desde el frontend hasta el backend, con enfoque en código limpio y arquitecturas escalables.' : 
+                    'Specialized in creating complete web applications, from frontend to backend, with focus on clean code and scalable architectures.'
+                  }
+                </div>
+              </motion.div>
+
+              {/* CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={contentInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="pt-4">
+                <motion.a
+                  href="#projects"
+                  className="flex items-center justify-center gap-3 p-4 rounded-lg border border-accent-500/30 bg-accent-500/10 hover:bg-accent-500/20 hover:border-accent-500/50 transition-all duration-300 group text-accent-400 hover:text-accent-300"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}>
+                  <FaRocket className="w-4 h-4" />
+                  <span className="text-sm font-medium">
+                    {currentLocale === 'es' ? 'Ver Portfolio' : 'View Portfolio'}
+                  </span>
+                </motion.a>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -228,4 +247,4 @@ const AboutMeSection = () => {
   );
 };
 
-export default AboutMeSection;
+export default memo(AboutMeSection);

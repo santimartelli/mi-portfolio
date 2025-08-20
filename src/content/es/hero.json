@@ -3,18 +3,18 @@
   "firstName": "Santiago",
   "lastName": "Martelli",
   "description": {
-    "intro": "Transformo ideas en",
-    "highlight": "experiencias digitales excepcionales",
-    "continuation": "utilizando las últimas tecnologías web. Especializado en",
-    "technologies": ["React", "TypeScript", "arquitecturas modernas"]
+    "intro": "Desarrollador Full Stack especializado en crear",
+    "highlight": "soluciones web escalables y de alto rendimiento",
+    "continuation": "con más de 3 años de experiencia en tecnologías modernas como",
+    "technologies": ["React", "TypeScript", "Node.js", "bases de datos SQL/NoSQL"]
   },
   "buttons": {
-    "projects": "Ver Proyectos",
-    "contact": "Contactar"
+    "projects": "Ver Portfolio",
+    "contact": "Colaboremos"
   },
-  "scrollIndicator": "Scroll para explorar",
+  "scrollIndicator": "Explorar más",
   "ariaLabels": {
-    "projectsButton": "Ver mis proyectos",
-    "contactButton": "Ir a la sección de contacto"
+    "projectsButton": "Ver portfolio de proyectos",
+    "contactButton": "Contactar para oportunidades"
   }
 }

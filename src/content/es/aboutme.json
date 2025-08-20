@@ -1,0 +1,48 @@
+{
+  "badge": "Experiencia & Habilidades",
+  "title": "Sobre Mí",
+  "description": {
+    "paragraph1": {
+      "intro": "Soy un",
+      "highlight1": "desarrollador full-stack apasionado",
+      "middle": "por crear soluciones digitales que marquen la diferencia. Mi enfoque combina",
+      "highlight2": "diseño centrado en el usuario",
+      "continuation": "con",
+      "highlight3": "arquitectura robusta y escalable",
+      "end": "."
+    },
+    "paragraph2": {
+      "intro": "Con más de",
+      "highlight": "3 años de experiencia",
+      "continuation": ", he trabajado en proyectos diversos, desde startups hasta empresas consolidadas, siempre buscando la excelencia técnica y la innovación continua."
+    }
+  },
+  "stats": {
+    "projects": "Proyectos Completados",
+    "experience": "Años de Experiencia",
+    "clients": "Clientes Satisfechos",
+    "learning": "Aprendizaje Continuo"
+  },
+  "technologies": {
+    "frontend": {
+      "name": "Frontend",
+      "desc": "Interfaces modernas y experiencias inmersivas"
+    },
+    "backend": {
+      "name": "Backend",
+      "desc": "APIs robustas y arquitecturas escalables"
+    },
+    "database": {
+      "name": "Database & DevOps",
+      "desc": "Gestión de datos y automatización"
+    },
+    "methodologies": {
+      "name": "Metodologías",
+      "desc": "Procesos ágiles y buenas prácticas"
+    }
+  },
+  "cta": {
+    "question": "¿Listo para llevar tu proyecto al siguiente nivel?",
+    "button": "Trabajemos Juntos"
+  }
+}

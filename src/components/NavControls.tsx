@@ -57,6 +57,17 @@ const NavControls = ({ className = "" }: NavControlsProps) => {
       }
     }
     
+    // Store current scroll position before navigation
+    const currentScrollY = window.scrollY;
+    const currentScrollX = window.scrollX;
+    
+    // Store scroll position in sessionStorage to survive page refresh
+    sessionStorage.setItem('scrollPosition', JSON.stringify({
+      x: currentScrollX,
+      y: currentScrollY
+    }));
+    
+    // Navigate to new path
     window.location.href = newPath;
     setIsLangOpen(false);
   };

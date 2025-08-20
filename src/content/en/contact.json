@@ -1,0 +1,61 @@
+{
+  "badge": "Networks & Resources",
+  "title": "Let's Connect",
+  "description": {
+    "line1": "Follow me on social media to stay updated with my latest projects,",
+    "line2": "or download my CV",
+    "line2_highlight": "to learn more about my experience."
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Send me a message",
+    "methods": {
+      "email": {
+        "label": "Email",
+        "action": "Send message"
+      },
+      "whatsapp": {
+        "label": "WhatsApp",
+        "action": "Open chat"
+      }
+    }
+  },
+  "socialNetworks": {
+    "title": "Professional Networks",
+    "subtitle": "Connect with me",
+    "whyFollow": {
+      "title": "Why follow me?",
+      "reasons": [
+        "Development tutorials and tips",
+        "Behind the scenes of projects",
+        "Modern technology updates"
+      ]
+    }
+  },
+  "cv": {
+    "title": "Curriculum Vitae",
+    "subtitle": "Download my updated CV",
+    "info": {
+      "title": "CV Information",
+      "highlights": [
+        "3+ years of experience",
+        "Full stack documented",
+        "Featured projects and achievements",
+        "References available"
+      ]
+    },
+    "spanish": {
+      "language": "Español",
+      "description": "Curriculum Vitae completo",
+      "size": "2.3 MB",
+      "lastUpdate": "Dic 2024"
+    },
+    "english": {
+      "language": "English",
+      "description": "Complete Resume",
+      "size": "2.1 MB",
+      "lastUpdate": "Dec 2024"
+    }
+  },
+  "availability": "Available for freelance projects and full-time opportunities"
+}

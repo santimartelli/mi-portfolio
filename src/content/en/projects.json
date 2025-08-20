@@ -1,0 +1,50 @@
+{
+  "badge": "Featured Projects",
+  "title": "My Projects",
+  "description": {
+    "intro": "Each project is a",
+    "highlight": "unique story",
+    "continuation": "of innovation, creativity and technical solutions that transform ideas into exceptional digital realities."
+  },
+  "status": {
+    "production": "In Production",
+    "development": "In Development"
+  },
+  "featuresLabel": "Key Features",
+  "buttons": {
+    "viewProject": "View Project",
+    "code": "Code"
+  },
+  "cta": {
+    "question": "Like what you see? Let's create something incredible together.",
+    "button": "Start Project"
+  },
+  "projects": {
+    "tanyaPortfolio": {
+      "title": "Tanya Martelli",
+      "subtitle": "Photography Portfolio",
+      "category": "Web Development",
+      "body": "Professional portfolio for photographer Tanya Martelli with minimalist design focused on visual experience. Includes interactive gallery with categories, session booking system, complete admin panel and custom contact form.",
+      "features": [
+        "Interactive gallery with filters",
+        "Integrated booking system",
+        "Administration panel",
+        "SEO optimized",
+        "Responsive design"
+      ]
+    },
+    "personalPortfolio": {
+      "title": "Personal Portfolio",
+      "subtitle": "Santiago Martelli",
+      "category": "Full-Stack",
+      "body": "Personal portfolio designed with focus on performance and smooth visual experience. Implements modern architecture with Astro, React and TypeScript, following SOLID principles and modern design patterns for maximum performance.",
+      "features": [
+        "Astro Islands architecture",
+        "Complete TypeScript",
+        "Framer Motion animations",
+        "Modern Tailwind CSS",
+        "Extreme optimization"
+      ]
+    }
+  }
+}

@@ -3,22 +3,17 @@ import { motion, useInView } from "framer-motion";
 import { FaGithub, FaEye, FaCode, FaRocket } from "react-icons/fa";
 import { HiExternalLink, HiSparkles, HiLightBulb } from "react-icons/hi";
 import { BiTargetLock } from "react-icons/bi";
+import { useTranslations } from "../util/i18n";
 
-const projects = [
+const getProjects = (t: any) => [
   {
     id: 1,
     image: "/tmphoto.webp",
-    title: "Tanya Martelli",
-    subtitle: "Photography Portfolio",
-    category: "Web Development",
-    body: "Portfolio profesional para la fotógrafa Tanya Martelli con diseño minimalista centrado en la experiencia visual. Incluye galería interactiva con categorías, sistema de reserva de sesiones, panel de administración completo y formulario de contacto personalizado.",
-    features: [
-      "Galería interactiva con filtros",
-      "Sistema de reservas integrado",
-      "Panel de administración",
-      "SEO optimizado",
-      "Diseño responsive"
-    ],
+    title: t.projects.tanyaPortfolio.title,
+    subtitle: t.projects.tanyaPortfolio.subtitle,
+    category: t.projects.tanyaPortfolio.category,
+    body: t.projects.tanyaPortfolio.body,
+    features: t.projects.tanyaPortfolio.features,
     href: "https://tanyamartelli.com",
     github: "https://github.com/santimartelli/tanyamartelliphoto-project.git",
     technologies: ["Vue.js", "Node.js", "Express", "MySQL", "CSS3"],
@@ -29,17 +24,11 @@ const projects = [
   {
     id: 2,
     image: "/smportfolio.webp",
-    title: "Portfolio Personal",
-    subtitle: "Santiago Martelli",
-    category: "Full-Stack",
-    body: "Portfolio personal diseñado con enfoque en rendimiento y experiencia visual fluida. Implementa arquitectura moderna con Astro, React y TypeScript, siguiendo principios SOLID y patrones de diseño modernos para máximo rendimiento.",
-    features: [
-      "Arquitectura Astro Islands",
-      "TypeScript completo",
-      "Animaciones Framer Motion",
-      "Tailwind CSS moderno",
-      "Optimización extrema"
-    ],
+    title: t.projects.personalPortfolio.title,
+    subtitle: t.projects.personalPortfolio.subtitle,
+    category: t.projects.personalPortfolio.category,
+    body: t.projects.personalPortfolio.body,
+    features: t.projects.personalPortfolio.features,
     href: "https://martelli.dev",
     github: "https://github.com/santimartelli/mi-portfolio.git",
     technologies: ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
@@ -50,6 +39,7 @@ const projects = [
 ];
 
 const Projects = () => {
+  const { projects: t } = useTranslations();
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
@@ -59,6 +49,8 @@ const Projects = () => {
   
   const isHeaderInView = useInView(headerRef, { once: true, amount: 0.3 });
   const isProjectsInView = useInView(projectsRef, { once: true, amount: 0.1 });
+  
+  const projects = getProjects(t);
 
   return (
     <section
@@ -101,7 +93,7 @@ const Projects = () => {
             >
               <BiTargetLock className="text-accent text-lg" />
             </motion.div>
-            <span className="theme-text-gradient">Proyectos Destacados</span>
+            <span className="theme-text-gradient">{t.badge}</span>
             <HiSparkles className="text-accent-secondary" />
           </motion.div>
 
@@ -110,7 +102,7 @@ const Projects = () => {
             animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="theme-text-gradient">Mis Proyectos</span>
+            <span className="theme-text-gradient">{t.title}</span>
           </motion.h2>
 
           <motion.p
@@ -118,8 +110,7 @@ const Projects = () => {
             animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-text-tertiary leading-relaxed max-w-3xl mx-auto">
-            Cada proyecto es una <span className="text-accent font-semibold">historia única</span> de innovación, 
-            creatividad y soluciones técnicas que transforman ideas en realidades digitales excepcionales.
+            {t.description.intro} <span className="text-accent font-semibold">{t.description.highlight}</span> {t.description.continuation}
           </motion.p>
         </div>
 
@@ -163,7 +154,7 @@ const Projects = () => {
                     className="px-3 py-1.5 bg-accent/90 backdrop-blur-sm rounded-full text-xs font-bold text-white flex items-center gap-2"
                   >
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                    {project.status === 'production' ? 'En Producción' : 'En Desarrollo'}
+                    {project.status === 'production' ? t.status.production : t.status.development}
                   </motion.div>
                 </div>
 
@@ -245,7 +236,7 @@ const Projects = () => {
                 <div className="mb-6">
                   <h5 className="text-sm font-semibold text-text-secondary mb-3 flex items-center gap-2">
                     <FaRocket className="text-accent text-xs" />
-                    Características Principales
+                    {t.featuresLabel}
                   </h5>
                   <div className="space-y-2">
                     {project.features.slice(0, 3).map((feature, idx) => (
@@ -289,7 +280,7 @@ const Projects = () => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <HiExternalLink className="w-5 h-5" />
-                    Ver Proyecto
+                    {t.buttons.viewProject}
                   </motion.a>
                   <motion.a
                     href={project.github}
@@ -300,7 +291,7 @@ const Projects = () => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <FaCode className="w-5 h-5" />
-                    Código
+                    {t.buttons.code}
                   </motion.a>
                 </div>
               </div>
@@ -316,7 +307,7 @@ const Projects = () => {
           className="text-center mt-20"
         >
           <p className="text-text-tertiary mb-8 text-lg">
-            ¿Te gusta lo que ves? Hagamos algo increíble juntos.
+            {t.cta.question}
           </p>
           <motion.a
             href="#contact"
@@ -325,7 +316,7 @@ const Projects = () => {
             whileTap={{ scale: 0.98 }}
           >
             <HiSparkles />
-            Iniciar Proyecto
+            {t.cta.button}
           </motion.a>
         </motion.div>
       </div>

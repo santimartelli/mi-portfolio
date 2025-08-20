@@ -1,0 +1,30 @@
+{
+  "brand": {
+    "name": "Santiago Martelli",
+    "description": "Desarrollo web moderno centrado en la experiencia de usuario, rendimiento excepcional y código limpio que marca la diferencia."
+  },
+  "navigation": {
+    "title": "Navegación",
+    "links": {
+      "home": "Inicio",
+      "about": "Sobre mí",
+      "projects": "Proyectos",
+      "contact": "Contacto"
+    }
+  },
+  "technologies": {
+    "title": "Tecnologías",
+    "moreText": "más tecnologías"
+  },
+  "copyright": "Todos los derechos reservados.",
+  "madeWith": {
+    "developedWith": "Desarrollado con",
+    "and": "y",
+    "from": "desde",
+    "location": "España"
+  },
+  "cta": {
+    "question": "¿Tienes un proyecto en mente?",
+    "button": "¡Hablemos!"
+  }
+}

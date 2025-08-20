@@ -1,0 +1,61 @@
+{
+  "badge": "Redes & Recursos",
+  "title": "Conectemos",
+  "description": {
+    "line1": "Sígueme en mis redes sociales para estar al día con mis últimos proyectos,",
+    "line2": "o descarga mi CV",
+    "line2_highlight": "para conocer más sobre mi experiencia."
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "Envíame un mensaje",
+    "methods": {
+      "email": {
+        "label": "Email",
+        "action": "Enviar mensaje"
+      },
+      "whatsapp": {
+        "label": "WhatsApp",
+        "action": "Abrir chat"
+      }
+    }
+  },
+  "socialNetworks": {
+    "title": "Redes Profesionales",
+    "subtitle": "Contéctame en mis redes",
+    "whyFollow": {
+      "title": "¿Por qué seguirme?",
+      "reasons": [
+        "Tutoriales y tips de desarrollo",
+        "Behind the scenes de proyectos",
+        "Updates de tecnologías modernas"
+      ]
+    }
+  },
+  "cv": {
+    "title": "Curriculum Vitae",
+    "subtitle": "Descarga mi CV actualizado",
+    "info": {
+      "title": "Información del CV",
+      "highlights": [
+        "3+ años de experiencia",
+        "Stack completo documentado",
+        "Proyectos y logros destacados",
+        "Referencias disponibles"
+      ]
+    },
+    "spanish": {
+      "language": "Español",
+      "description": "Curriculum Vitae completo",
+      "size": "2.3 MB",
+      "lastUpdate": "Dic 2024"
+    },
+    "english": {
+      "language": "English",
+      "description": "Complete Resume",
+      "size": "2.1 MB",
+      "lastUpdate": "Dec 2024"
+    }
+  },
+  "availability": "Disponible para proyectos freelance y oportunidades de tiempo completo"
+}

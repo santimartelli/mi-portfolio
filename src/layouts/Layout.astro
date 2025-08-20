@@ -38,6 +38,32 @@ const { description, title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    
+    <!-- Scroll Position Restoration Script -->
+    <script>
+      // Restore scroll position after language change
+      document.addEventListener('DOMContentLoaded', function() {
+        const storedPosition = sessionStorage.getItem('scrollPosition');
+        if (storedPosition) {
+          try {
+            const { x, y } = JSON.parse(storedPosition);
+            // Use requestAnimationFrame to ensure the page is fully rendered
+            requestAnimationFrame(() => {
+              window.scrollTo({
+                left: x,
+                top: y,
+                behavior: 'instant' // Use instant to avoid smooth scrolling animation
+              });
+            });
+            // Clear the stored position after restoring
+            sessionStorage.removeItem('scrollPosition');
+          } catch (error) {
+            console.error('Error restoring scroll position:', error);
+            sessionStorage.removeItem('scrollPosition');
+          }
+        }
+      });
+    </script>
   </head>
   <body class="flex flex-col bg-darkbg-950 text-darktext-300">
     <slot />

@@ -2,21 +2,28 @@
 import "@fontsource/titillium-web";
 import Layout from "../layouts/Layout.astro";
 import NavbarWithTranslations from "../components/NavbarWithTranslations";
-import Projects from "../components/Projects";
-import AboutMe from "../components/AboutMe";
+import ProjectsWithTranslations from "../components/ProjectsWithTranslations";
+import AboutMeWithTranslations from "../components/AboutMeWithTranslations";
 import HeroWithTranslations from "../components/HeroWithTranslations";
-import Contact from "../components/Contact";
-import SocialCV from "../components/SocialCV";
-import Footer from "../components/Footer";
+import ContactWithTranslations from "../components/ContactWithTranslations";
+import FooterWithTranslations from "../components/FooterWithTranslations";
 import Divider from "../components/Divider.astro";
 
 // Cargar traducciones en español
 const heroTranslations = await import("../content/es/hero.json");
 const navbarTranslations = await import("../content/es/navbar.json");
+const aboutmeTranslations = await import("../content/es/aboutme.json");
+const projectsTranslations = await import("../content/es/projects.json");
+const contactTranslations = await import("../content/es/contact.json");
+const footerTranslations = await import("../content/es/footer.json");
 
 const translations = {
   hero: heroTranslations.default,
-  navbar: navbarTranslations.default
+  navbar: navbarTranslations.default,
+  aboutme: aboutmeTranslations.default,
+  projects: projectsTranslations.default,
+  contact: contactTranslations.default,
+  footer: footerTranslations.default
 };
 ---
 
@@ -36,29 +43,26 @@ const translations = {
 
     <!-- About me section -->
     <section id="about" class="relative">
-      <AboutMe client:visible />
+      <AboutMeWithTranslations translations={translations} client:visible />
     </section>
 
     <Divider />
 
     <!-- Projects section -->
     <section id="projects" class="relative">
-      <Projects client:visible />
+      <ProjectsWithTranslations translations={translations} client:visible />
     </section>
 
     <Divider />
 
     <!-- Contact section -->
     <section id="contact" class="relative">
-      <Contact client:visible />
+      <ContactWithTranslations translations={translations} client:visible />
     </section>
 
     <Divider />
 
-    <!-- Social and CV section -->
-    <SocialCV client:visible />
-
     <!-- Footer -->
-    <Footer client:visible />
+    <FooterWithTranslations translations={translations} client:visible />
   </main>
 </Layout>
