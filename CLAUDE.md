@@ -85,3 +85,26 @@ src/
 - The build process includes automatic type checking via `astro check`
 - Theme switching persists across page reloads via localStorage
 - Routes automatically handle locale prefixing (Spanish default, /en/ for English)
+
+## Claude Code MCP Integration
+
+### Playwright MCP
+This project has access to Playwright MCP for browser automation and testing:
+- **Browser Control**: Navigate, click, type, and interact with web pages
+- **Visual Testing**: Take screenshots and capture page snapshots for verification
+- **Form Testing**: Fill forms and test interactive elements
+- **Responsive Testing**: Resize browser and test different viewport sizes
+- **Console Monitoring**: Monitor console messages and network requests
+
+Use Playwright MCP tools (prefixed with `mcp__playwright__`) for:
+- Testing the portfolio website functionality
+- Verifying responsive design across different screen sizes
+- Testing theme switching and language switching
+- Validating contact form behavior
+- Ensuring proper navigation and modal interactions
+
+### Context and Agent Management
+- **Task Agent**: Use for complex multi-step tasks that require autonomous operation
+- **General Purpose Agent**: Best for researching complex questions and executing multi-step tasks
+- **Context Management**: Batch tool calls when possible for optimal performance
+- **Task Breakdown**: Use TodoWrite tool to plan and track complex implementations
