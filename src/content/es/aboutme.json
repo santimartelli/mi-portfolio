@@ -3,24 +3,24 @@
   "title": "Sobre Mí",
   "description": {
     "paragraph1": {
-      "intro": "Soy un",
-      "highlight1": "desarrollador full-stack apasionado",
-      "middle": "por crear soluciones digitales que marquen la diferencia. Mi enfoque combina",
-      "highlight2": "diseño centrado en el usuario",
-      "continuation": "con",
-      "highlight3": "arquitectura robusta y escalable",
+      "intro": "Desarrollador full-stack especializado en crear",
+      "highlight1": "experiencias digitales excepcionales",
+      "middle": "que combinan diseño intuitivo con arquitecturas sólidas.",
+      "highlight2": "Mi pasión por el código limpio",
+      "continuation": "y las mejores prácticas me permite entregar",
+      "highlight3": "soluciones escalables y de alto rendimiento",
       "end": "."
     },
     "paragraph2": {
-      "intro": "Con más de",
-      "highlight": "3 años de experiencia",
-      "continuation": ", he trabajado en proyectos diversos, desde startups hasta empresas consolidadas, siempre buscando la excelencia técnica y la innovación continua."
+      "intro": "Con",
+      "highlight": "3+ años perfeccionando mi craft",
+      "continuation": "en tecnologías modernas, estoy listo para aportar valor desde el primer día en proyectos desafiantes que marquen la diferencia."
     }
   },
   "stats": {
-    "projects": "Proyectos Completados",
     "experience": "Años de Experiencia",
-    "clients": "Clientes Satisfechos",
+    "commitment": "Compromiso",
+    "projects": "Proyecto Desarrollado",
     "learning": "Aprendizaje Continuo"
   },
   "technologies": {

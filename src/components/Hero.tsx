@@ -90,8 +90,8 @@ const Hero = () => {
               
               <div className="w-16 h-0.5 bg-accent mb-6 mx-auto lg:mx-0" />
               
-              {/* Clean, well-aligned description */}
-              <div className="space-y-4 max-w-2xl mx-auto lg:mx-0">
+              {/* Clean, focused description */}
+              <div className="space-y-6 max-w-2xl mx-auto lg:mx-0">
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={contentInView ? { opacity: 1, y: 0 } : {}}
@@ -100,29 +100,37 @@ const Hero = () => {
                   {t.description.intro} <span className="text-accent font-semibold">{t.description.highlight}</span>
                 </motion.p>
                 
-                <motion.p
+                {/* Simplified tech stack display */}
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={contentInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="text-base md:text-lg text-text-muted leading-relaxed">
-                  {t.description.continuation} <span className="text-accent font-medium">
-                    {t.description.technologies.join(", ")}
+                  className="flex flex-wrap gap-2">
+                  {t.description.technologies.slice(0, 4).map((tech: string, index: number) => (
+                    <span 
+                      key={tech}
+                      className="px-3 py-1 bg-accent/10 text-accent text-sm rounded-full border border-accent/20">
+                      {tech}
+                    </span>
+                  ))}
+                  <span className="px-3 py-1 bg-bg-secondary/10 text-text-muted text-sm rounded-full border border-border-secondary/30">
+                    +{t.description.technologies.length - 4} más
                   </span>
-                </motion.p>
+                </motion.div>
               </div>
             </motion.div>
 
-            {/* CTA Actions */}
+            {/* CTA Actions - Refined */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={contentInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-8">
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12">
               
               <motion.a
                 href="#projects"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-accent-500 hover:bg-accent-600 text-white font-semibold rounded-lg transition-all duration-300 group shadow-lg hover:shadow-accent-500/25"
-                whileHover={{ y: -2 }}
+                className="theme-button-primary inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold group"
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 aria-label={t.ariaLabels.projectsButton}>
                 {t.buttons.projects}
@@ -131,8 +139,8 @@ const Hero = () => {
 
               <motion.a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-bg-secondary/20 hover:bg-bg-secondary/40 text-text-primary hover:text-accent font-semibold rounded-lg border border-border-secondary hover:border-accent/30 transition-all duration-300"
-                whileHover={{ y: -2 }}
+                className="theme-button-secondary inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold"
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 aria-label={t.ariaLabels.contactButton}>
                 {t.buttons.contact}
@@ -155,7 +163,7 @@ const Hero = () => {
                   animate={contentInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.3, delay: 0.7 + index * 0.1 }}
                   className="p-3 bg-bg-secondary/20 hover:bg-bg-secondary/40 border border-border-secondary hover:border-accent/30 rounded-lg transition-all duration-300 group text-text-muted hover:text-accent"
-                  whileHover={{ y: -2 }}>
+                  whileHover={{ scale: 1.05 }}>
                   <social.icon className="w-5 h-5" />
                   <span className="sr-only">{social.label}</span>
                 </motion.a>
@@ -163,90 +171,78 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Professional Info Cards - Right Side */}
-          <div className="lg:col-span-2 space-y-6">
+          {/* Clean Professional Sidebar - Right Side */}
+          <div className="lg:col-span-2 space-y-8">
             
-            {/* Skills Card */}
+            {/* Status & Availability - Single Clean Card */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={contentInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="p-6 bg-bg-secondary/20 border border-border-secondary rounded-lg">
-              <h3 className="text-sm font-semibold text-text-primary mb-4 flex items-center gap-2">
-                <HiOutlineCode className="w-4 h-4 text-accent" />
-                {currentLocale === 'es' ? 'Especialización' : 'Specialization'}
-              </h3>
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-accent" />
-                  <span className="text-sm text-text-secondary">{currentLocale === 'es' ? 'Desarrollo Full Stack' : 'Full Stack Development'}</span>
+              className="p-8 bg-bg-secondary/10 border border-border-secondary/50 rounded-xl backdrop-blur-sm">
+              
+              {/* Status Indicator */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse shadow-lg shadow-green-400/30" />
+                <span className="text-sm font-medium text-accent-400">
+                  {currentLocale === 'es' ? 'Disponible para proyectos' : 'Available for projects'}
+                </span>
+              </div>
+              
+              {/* Key Info */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-text-muted">
+                    {currentLocale === 'es' ? 'Especialización' : 'Specialization'}
+                  </span>
+                  <span className="text-sm font-medium text-text-secondary">
+                    Full Stack Developer
+                  </span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-accent" />
-                  <span className="text-sm text-text-secondary">{currentLocale === 'es' ? 'Aplicaciones Web Modernas' : 'Modern Web Applications'}</span>
+                
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-text-muted">
+                    {currentLocale === 'es' ? 'Ubicación' : 'Location'}
+                  </span>
+                  <span className="text-sm font-medium text-text-secondary">
+                    {currentLocale === 'es' ? 'España (Remoto)' : 'Spain (Remote)'}
+                  </span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-accent" />
-                  <span className="text-sm text-text-secondary">{currentLocale === 'es' ? 'Arquitectura Escalable' : 'Scalable Architecture'}</span>
+                
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-text-muted">
+                    {currentLocale === 'es' ? 'Estado' : 'Status'}
+                  </span>
+                  <span className="text-sm font-medium text-text-secondary">
+                    {currentLocale === 'es' ? 'Disponible' : 'Available'}
+                  </span>
                 </div>
               </div>
             </motion.div>
 
-            {/* Availability Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={contentInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="p-6 bg-bg-secondary/20 border border-border-secondary rounded-lg">
-              <h3 className="text-sm font-semibold text-text-primary mb-4 flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-green-400 animate-pulse" />
-                {currentLocale === 'es' ? 'Disponibilidad' : 'Availability'}
-              </h3>
-              <p className="text-sm text-text-secondary mb-2">
-                {currentLocale === 'es' ? 'Buscando nuevas oportunidades' : 'Seeking new opportunities'}
-              </p>
-              <p className="text-xs text-text-muted">
-                {currentLocale === 'es' ? 'Remoto • España • Internacional' : 'Remote • Spain • International'}
-              </p>
-            </motion.div>
 
-            {/* Experience Card */}
+            {/* Call to Action - Clean */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={contentInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.9 }}
-              className="p-6 bg-bg-secondary/20 border border-border-secondary rounded-lg">
-              <h3 className="text-sm font-semibold text-text-primary mb-4">
-                {currentLocale === 'es' ? 'Enfoque Profesional' : 'Professional Focus'}
-              </h3>
-              <p className="text-sm text-text-secondary leading-relaxed">
+              className="text-center lg:text-left">
+              <p className="text-sm text-text-muted mb-4">
                 {currentLocale === 'es' 
-                  ? 'Creando soluciones web innovadoras con un enfoque en la experiencia del usuario y la eficiencia técnica.'
-                  : 'Creating innovative web solutions with a focus on user experience and technical efficiency.'
+                  ? '¿Necesitas un desarrollador apasionado?' 
+                  : 'Need a passionate developer?'
                 }
               </p>
+              <motion.a
+                href="mailto:santimartelli@gmail.com"
+                className="inline-flex items-center gap-2 text-accent-400 hover:text-accent-300 font-medium text-sm transition-colors duration-300"
+                whileHover={{ scale: 1.02 }}>
+                {currentLocale === 'es' ? 'Contáctame →' : "Contact me →"}
+              </motion.a>
             </motion.div>
           </div>
         </div>
 
-        {/* Elegant Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={contentInView ? { opacity: 1 } : {}}
-          transition={{ duration: 1, delay: 1 }}
-          className="flex flex-col items-center gap-3 mt-16">
-          <span className="text-xs text-text-muted font-medium tracking-wider uppercase">
-            {t.scrollIndicator}
-          </span>
-          <motion.button
-            onClick={scrollToAbout}
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="p-2 text-accent-400/60 hover:text-accent-400 transition-colors duration-300 cursor-pointer"
-            whileHover={{ scale: 1.1 }}>
-            <HiChevronDown className="w-5 h-5" aria-hidden="true" />
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   );

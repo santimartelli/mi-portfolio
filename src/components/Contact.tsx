@@ -144,7 +144,9 @@ const Contact = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={contentInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  className={`flex items-center gap-4 p-4 rounded-lg border border-border-secondary transition-all duration-300 group bg-bg-secondary/20 ${method.hoverColor}`}>
+                  className={`flex items-center gap-4 p-4 rounded-xl border border-border-secondary/50 transition-all duration-300 group bg-bg-secondary/10 backdrop-blur-sm hover:bg-bg-secondary/20 hover:border-accent/20 hover:shadow-lg hover:shadow-accent/10`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}>
                   
                   <div className={`p-3 rounded-lg bg-gradient-to-br ${method.bgGradient} transition-colors duration-300`}>
                     <method.icon className={`w-5 h-5 ${method.color}`} />
@@ -167,7 +169,7 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={contentInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex items-center gap-4 p-4 rounded-lg border border-border-secondary bg-bg-secondary/20">
+              className="flex items-center gap-4 p-6 rounded-xl border border-border-secondary/50 bg-bg-secondary/10 backdrop-blur-sm">
               
               <div className="p-3 rounded-lg bg-purple-500/10">
                 <HiLocationMarker className="w-5 h-5 text-purple-400" />
@@ -205,7 +207,9 @@ const Contact = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={contentInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                  className={`flex items-center gap-4 p-4 rounded-lg border border-border-secondary transition-all duration-300 group bg-bg-secondary/20 ${social.hoverColor}`}>
+                  className={`flex items-center gap-4 p-4 rounded-xl border border-border-secondary/50 transition-all duration-300 group bg-bg-secondary/10 backdrop-blur-sm hover:bg-bg-secondary/20 hover:border-accent/20 hover:shadow-lg hover:shadow-accent/10`}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}>
                   
                   <div className="p-3 rounded-lg bg-bg-primary/50">
                     <social.icon className={`w-5 h-5 ${social.color}`} />
@@ -265,7 +269,9 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={contentInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.7 }}
-              className="flex items-center gap-4 p-4 rounded-lg border border-border-secondary hover:border-accent/30 transition-all duration-300 group bg-bg-secondary/20 hover:bg-bg-secondary/40">
+              className="flex items-center gap-4 p-4 rounded-xl border border-border-secondary/50 transition-all duration-300 group bg-bg-secondary/10 backdrop-blur-sm hover:bg-bg-secondary/20 hover:border-accent/20 hover:shadow-lg hover:shadow-accent/10"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}>
               
               <div className="p-3 rounded-lg bg-red-500/10">
                 <FaFilePdf className="w-5 h-5 text-red-400" />

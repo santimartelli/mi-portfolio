@@ -44,10 +44,8 @@ const getTechnologies = (t: any) => [
 ];
 
 const getStats = (t: any) => [
-  { icon: FaCode, value: "100+", label: t.stats.projects, color: "text-blue-400", bgColor: "from-blue-500/10 to-blue-600/10" },
-  { icon: FaRocket, value: "3+", label: t.stats.experience, color: "text-green-400", bgColor: "from-green-500/10 to-green-600/10" },
-  { icon: HiTrendingUp, value: "50+", label: t.stats.clients, color: "text-purple-400", bgColor: "from-purple-500/10 to-purple-600/10" },
-  { icon: FaLightbulb, value: "24/7", label: t.stats.learning, color: "text-orange-400", bgColor: "from-orange-500/10 to-orange-600/10" },
+  { icon: FaCode, value: "3+", label: t.stats.experience, color: "text-blue-400", bgColor: "from-blue-500/10 to-blue-600/10" },
+  { icon: HiTrendingUp, value: "100%", label: t.stats.commitment, color: "text-green-400", bgColor: "from-green-500/10 to-green-600/10" },
 ];
 
 const AboutMeSection = () => {
@@ -106,14 +104,14 @@ const AboutMeSection = () => {
           <div className="w-16 h-0.5 bg-accent mx-auto mb-6" />
           
           <div className="max-w-2xl mx-auto">
-            <p className="text-lg text-text-tertiary leading-relaxed mb-4">
-              {t.description.paragraph1.intro} <span className="text-accent font-semibold">{t.description.paragraph1.highlight1}</span> {t.description.paragraph1.middle}
+            <p className="text-lg text-text-secondary leading-relaxed mb-4">
+              {t.description.paragraph1.intro} <span className="text-accent font-semibold">{t.description.paragraph1.highlight1}</span> {t.description.paragraph1.middle} <span className="text-accent font-medium">{t.description.paragraph1.highlight2}</span> {t.description.paragraph1.continuation} <span className="text-accent font-medium">{t.description.paragraph1.highlight3}</span>{t.description.paragraph1.end}
             </p>
             
             <p className="text-base text-text-muted leading-relaxed">
               {t.description.paragraph2.intro} <span className="text-accent font-medium">
                 {t.description.paragraph2.highlight}
-              </span> {t.description.paragraph2.continuation}
+              </span>, {t.description.paragraph2.continuation}
             </p>
           </div>
         </motion.div>
@@ -139,20 +137,20 @@ const AboutMeSection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={contentInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  className={`p-4 rounded-lg border border-border-secondary transition-all duration-300 group bg-bg-secondary/20 ${tech.hoverColor}`}>
+                  className={`p-5 rounded-xl border border-border-secondary/50 transition-all duration-300 group bg-bg-secondary/10 hover:bg-bg-secondary/20 hover:border-accent/20 backdrop-blur-sm`}>
                   
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className={`p-2 rounded-lg bg-gradient-to-br ${tech.bgColor} transition-colors duration-300`}>
-                      <tech.icon className={`w-4 h-4 ${tech.color}`} />
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`p-3 rounded-lg bg-gradient-to-br ${tech.bgColor} border border-opacity-20 transition-colors duration-300`} style={{borderColor: `${tech.color.replace('text-', '')}`}}>
+                      <tech.icon className={`w-5 h-5 ${tech.color}`} />
                     </div>
-                    <div className="text-sm font-medium text-text-primary">
+                    <div className="text-base font-semibold text-text-primary">
                       {tech.name}
                     </div>
                   </div>
                   
                   <div className="flex flex-wrap gap-2">
                     {tech.skills.map((skill) => (
-                      <span key={skill} className="px-3 py-1 text-xs bg-bg-tertiary/50 text-text-muted rounded-full border border-border-secondary/50">
+                      <span key={skill} className="px-3 py-1.5 text-xs bg-bg-tertiary/30 text-text-tertiary rounded-full border border-border-secondary/30 hover:bg-accent/10 hover:text-accent transition-colors duration-200">
                         {skill}
                       </span>
                     ))}
@@ -175,25 +173,25 @@ const AboutMeSection = () => {
 
             <div className="space-y-4">
               {/* Key Stats */}
-              <div className="grid grid-cols-2 gap-3 mb-6">
+              <div className="grid grid-cols-2 gap-4 mb-6">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={contentInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.5 }}
-                  className="text-center p-4 rounded-lg bg-bg-secondary/20 border border-border-secondary">
-                  <div className="text-2xl font-bold text-accent-400 mb-1">3+</div>
-                  <div className="text-xs text-text-muted">
-                    {currentLocale === 'es' ? 'Años' : 'Years'}
+                  className="text-center p-6 rounded-xl bg-bg-secondary/10 border border-border-secondary/50 backdrop-blur-sm">
+                  <div className="text-3xl font-bold text-accent mb-2">3+</div>
+                  <div className="text-sm text-text-muted font-medium">
+                    {currentLocale === 'es' ? 'Años de Experiencia' : 'Years Experience'}
                   </div>
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={contentInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.6 }}
-                  className="text-center p-4 rounded-lg bg-bg-secondary/20 border border-border-secondary">
-                  <div className="text-2xl font-bold text-accent-400 mb-1">50+</div>
-                  <div className="text-xs text-text-muted">
-                    {currentLocale === 'es' ? 'Proyectos' : 'Projects'}
+                  className="text-center p-6 rounded-xl bg-bg-secondary/10 border border-border-secondary/50 backdrop-blur-sm">
+                  <div className="text-3xl font-bold text-accent mb-2">100%</div>
+                  <div className="text-sm text-text-muted font-medium">
+                    {currentLocale === 'es' ? 'Compromiso' : 'Commitment'}
                   </div>
                 </motion.div>
               </div>
@@ -203,18 +201,18 @@ const AboutMeSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={contentInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.7 }}
-                className="p-4 rounded-lg border border-border-secondary bg-bg-secondary/20">
+                className="p-6 rounded-xl border border-border-secondary/50 bg-bg-secondary/10 backdrop-blur-sm">
                 
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2 rounded-lg bg-blue-500/10">
-                    <FaCode className="w-4 h-4 text-blue-400" />
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-3 rounded-lg bg-accent/10 border border-accent/20">
+                    <FaCode className="w-5 h-5 text-accent" />
                   </div>
-                  <div className="text-sm font-medium text-text-primary">
+                  <div className="text-base font-semibold text-text-primary">
                     {currentLocale === 'es' ? 'Desarrollo Full Stack' : 'Full Stack Development'}
                   </div>
                 </div>
                 
-                <div className="text-xs text-text-muted leading-relaxed">
+                <div className="text-sm text-text-tertiary leading-relaxed">
                   {currentLocale === 'es' ? 
                     'Especializado en crear aplicaciones web completas, desde el frontend hasta el backend, con enfoque en código limpio y arquitecturas escalables.' : 
                     'Specialized in creating complete web applications, from frontend to backend, with focus on clean code and scalable architectures.'
@@ -227,14 +225,14 @@ const AboutMeSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={contentInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.8 }}
-                className="pt-4">
+                className="pt-6">
                 <motion.a
                   href="#projects"
-                  className="flex items-center justify-center gap-3 p-4 rounded-lg border border-accent-500/30 bg-accent-500/10 hover:bg-accent-500/20 hover:border-accent-500/50 transition-all duration-300 group text-accent-400 hover:text-accent-300"
-                  whileHover={{ y: -2 }}
+                  className="theme-button-secondary flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-semibold group"
+                  whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}>
-                  <FaRocket className="w-4 h-4" />
-                  <span className="text-sm font-medium">
+                  <FaRocket className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
+                  <span>
                     {currentLocale === 'es' ? 'Ver Portfolio' : 'View Portfolio'}
                   </span>
                 </motion.a>

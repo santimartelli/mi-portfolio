@@ -3,24 +3,24 @@
   "title": "About Me",
   "description": {
     "paragraph1": {
-      "intro": "I am a",
-      "highlight1": "passionate full-stack developer",
-      "middle": "creating digital solutions that make a difference. My approach combines",
-      "highlight2": "user-centered design",
-      "continuation": "with",
-      "highlight3": "robust and scalable architecture",
+      "intro": "Full-stack developer specialized in crafting",
+      "highlight1": "exceptional digital experiences",
+      "middle": "that blend intuitive design with solid architectures.",
+      "highlight2": "My passion for clean code",
+      "continuation": "and best practices enables me to deliver",
+      "highlight3": "scalable, high-performance solutions",
       "end": "."
     },
     "paragraph2": {
-      "intro": "With over",
-      "highlight": "3 years of experience",
-      "continuation": ", I have worked on diverse projects, from startups to established companies, always pursuing technical excellence and continuous innovation."
+      "intro": "With",
+      "highlight": "3+ years perfecting my craft",
+      "continuation": "in modern technologies, I'm ready to add value from day one in challenging projects that make a real difference."
     }
   },
   "stats": {
-    "projects": "Completed Projects",
-    "experience": "Years of Experience",
-    "clients": "Satisfied Clients",
+    "experience": "Years Experience",
+    "commitment": "Commitment",
+    "projects": "Project Developed",
     "learning": "Continuous Learning"
   },
   "technologies": {

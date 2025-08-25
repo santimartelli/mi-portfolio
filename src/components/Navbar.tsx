@@ -175,8 +175,8 @@ export default function Navbar() {
                   className={`relative py-1 transition-colors duration-300 hover:text-white focus:outline-none ${
                     isActive(section.key) ? "text-white" : ""
                   }`}
-                  whileHover={{ y: -1 }}
-                  whileTap={{ y: 0 }}>
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}>
                   {isActive(section.key) && (
                     <motion.span
                       layoutId="activeSection"

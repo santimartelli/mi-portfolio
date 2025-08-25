@@ -4,8 +4,8 @@
   "lastName": "Martelli",
   "description": {
     "intro": "Full Stack Developer specialized in building",
-    "highlight": "scalable, high-performance web solutions",
-    "continuation": "with 3+ years of experience in modern technologies like",
+    "highlight": "scalable, high-performance web solutions.",
+    "continuation": "With 3+ years of experience in modern technologies like",
     "technologies": ["React", "TypeScript", "Node.js", "SQL/NoSQL databases"]
   },
   "buttons": {

@@ -69,7 +69,9 @@ const Footer = () => {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-                    className="p-3 rounded-lg border border-border-secondary hover:border-accent/30 transition-all duration-300 group bg-bg-secondary/20 hover:bg-bg-secondary/40"
+                    className="p-3 rounded-lg border border-border-secondary/50 hover:border-accent/30 transition-all duration-300 group bg-bg-secondary/10 hover:bg-bg-secondary/20 backdrop-blur-sm hover:shadow-lg hover:shadow-accent/5"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     <social.icon className="w-4 h-4 text-text-muted group-hover:text-accent transition-colors duration-300" />
                   </motion.a>
@@ -99,7 +101,7 @@ const Footer = () => {
                   >
                     <a
                       href={item.href}
-                      className="text-text-muted hover:text-accent text-sm transition-colors duration-300 block">
+                      className="text-text-muted hover:text-accent text-sm transition-all duration-300 block hover:translate-x-1">
                       {item.name}
                     </a>
                   </motion.li>
@@ -126,7 +128,7 @@ const Footer = () => {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.2, delay: 0.6 + index * 0.03 }}
-                    className="px-2.5 py-1 text-xs font-medium rounded border border-border-secondary bg-bg-secondary/20 text-text-muted hover:text-accent hover:border-accent/30 transition-all duration-300">
+                    className="px-2.5 py-1 text-xs font-medium rounded border border-border-secondary/50 bg-bg-secondary/10 text-text-muted hover:text-accent hover:border-accent/30 hover:bg-accent/5 transition-all duration-300 cursor-default hover:scale-105">
                     {tech}
                   </motion.span>
                 ))}
@@ -188,8 +190,8 @@ const Footer = () => {
           <motion.a
             href="#contact"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border-secondary hover:border-accent/30 transition-all duration-300 group bg-bg-secondary/20 hover:bg-bg-secondary/40 text-sm font-medium text-text-primary hover:text-accent"
-            whileHover={{ y: -1 }}
-            whileTap={{ y: 0 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <HiSparkles className="w-4 h-4" />
             {t.cta.button}

@@ -129,8 +129,8 @@ const Projects = () => {
               transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
               onHoverStart={() => setHoveredProject(project.id)}
               onHoverEnd={() => setHoveredProject(null)}
-              className="group relative theme-card rounded-3xl overflow-hidden p-0 hover:scale-[1.02] transition-all duration-500"
-              whileHover={{ y: -8 }}
+              className="group relative theme-card rounded-3xl overflow-hidden p-0 transition-all duration-500"
+              whileHover={{ scale: 1.03 }}
             >
               {/* Project Image with Overlay */}
               <div className="relative aspect-video overflow-hidden rounded-t-3xl">
@@ -138,8 +138,8 @@ const Projects = () => {
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.4 }}
                 />
                 
                 {/* Gradient Overlay */}
@@ -182,7 +182,7 @@ const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="theme-button-primary p-4 rounded-full"
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <FaEye className="w-6 h-6" />
@@ -192,7 +192,7 @@ const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="theme-button-secondary p-4 rounded-full"
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <FaGithub className="w-6 h-6" />

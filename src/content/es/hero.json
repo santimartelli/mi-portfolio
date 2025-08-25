@@ -4,8 +4,8 @@
   "lastName": "Martelli",
   "description": {
     "intro": "Desarrollador Full Stack especializado en crear",
-    "highlight": "soluciones web escalables y de alto rendimiento",
-    "continuation": "con más de 3 años de experiencia en tecnologías modernas como",
+    "highlight": "soluciones web escalables y de alto rendimiento.",
+    "continuation": "Con más de 3 años de experiencia en tecnologías modernas como",
     "technologies": ["React", "TypeScript", "Node.js", "bases de datos SQL/NoSQL"]
   },
   "buttons": {
