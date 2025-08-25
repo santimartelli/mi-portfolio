@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal portfolio website for Santiago Martelli built with Astro, React, TypeScript, and Tailwind CSS. The site showcases projects, skills, and contact information in a modern, responsive design.
+This is a bilingual personal portfolio website for Santiago Martelli built with Astro, React, TypeScript, and Tailwind CSS. The site showcases projects, skills, and contact information in a modern, responsive design with full internationalization support for Spanish and English.
 
 ## Development Commands
 
@@ -16,55 +16,72 @@ This is a personal portfolio website for Santiago Martelli built with Astro, Rea
 ## Architecture
 
 ### Core Technologies
-- **Astro**: Static site generator with islands architecture
+- **Astro**: Static site generator with islands architecture and i18n routing
 - **React**: Component framework for interactive elements
 - **TypeScript**: Type safety throughout the codebase
-- **Tailwind CSS**: Utility-first CSS framework
+- **Tailwind CSS**: Utility-first CSS framework with custom theme
 - **Framer Motion**: Animation library for React components
 
 ### Project Structure
 ```
 src/
 ├── components/          # React components (.tsx files)
-│   ├── Hero.tsx        # Main hero section
-│   ├── AboutMe.tsx     # About section
-│   ├── Projects.tsx    # Projects showcase
-│   ├── Contact.tsx     # Contact form
-│   ├── Navbar.tsx      # Navigation
-│   └── Modal.tsx       # Project detail modal
+│   ├── *WithTranslations.tsx  # Internationalized components
+│   ├── Modal.tsx       # Project detail modal
+│   ├── NavControls.tsx # Theme and language controls
+│   └── *.tsx          # Base components
+├── content/            # Translation JSON files
+│   ├── es/            # Spanish translations
+│   └── en/            # English translations
 ├── layouts/            # Astro layouts
-│   └── Layout.astro    # Base HTML layout with meta tags
+│   └── Layout.astro   # Base HTML layout with meta tags
 ├── pages/              # Astro pages (routes)
-│   ├── index.astro     # Main page with all sections
+│   ├── index.astro    # Spanish main page (default)
+│   ├── en/index.astro # English main page
 │   └── feedbackemail.astro # Contact form handler
 ├── icons/              # Custom icon components (.astro)
 ├── styles/             # Custom CSS files
 └── util/               # Utility hooks and functions
+    ├── i18n.tsx       # Translation context and types
+    ├── ThemeContext.tsx # Dark/light theme context
+    └── *.ts           # Custom hooks and utilities
 ```
 
+### Internationalization System
+- **Astro i18n Config**: Routes configured for Spanish (default) and English
+- **Translation Components**: Components with "WithTranslations" suffix handle localized content
+- **Type-Safe Translations**: Complete TypeScript interfaces for all translation structures
+- **JSON-based Content**: Translations stored in `src/content/{locale}/` directories
+- **Context-based Translation**: React Context provides translations to components
+
 ### Component Architecture
-- **Astro Islands**: React components are loaded with `client:*` directives
-  - `client:load` - Load immediately
-  - `client:visible` - Load when component enters viewport
-- **Section-based Layout**: Single-page application with sections for each content area
-- **Modal System**: Projects use a modal overlay for detailed views
-- **Responsive Design**: Tailwind CSS classes with custom breakpoints
+- **Astro Islands**: React components loaded with `client:*` directives
+  - `client:load` - Load immediately (navbar, critical UI)
+  - `client:visible` - Load when entering viewport (sections)
+- **Translation Pattern**: Base components wrapped by translation-aware versions
+- **Theme System**: Global dark/light theme with React Context
+- **Modal System**: Projects use overlay modals for detailed views
 
 ### Styling System
-- **Custom Tailwind Theme**: Extended with custom colors (darkbg, darktext variants)
-- **Global Styles**: CSS reset and typography in Layout.astro
-- **Component-specific CSS**: Additional styles in src/styles/ directory
-- **Font Loading**: Multiple web fonts loaded via Fontsource
+- **Custom Tailwind Theme**: Extended with project-specific colors
+  - `darkbg`: Dark background variants (950, 900)
+  - `darktext`: Light text for dark mode (300)
+  - `accent`: Teal accent colors (400, 500)
+- **Custom Animations**: Fade effects, hover states, and entrance animations
+- **Font System**: Multiple web fonts via Fontsource
+- **CSS Modules**: Component-specific styles in src/styles/
 
 ### State Management
-- React hooks for local component state
-- Custom hooks in src/util/ for reusable logic
-- No global state management system
+- **Theme Context**: Global dark/light mode state
+- **Translation Context**: Locale-specific content delivery
+- **Local State**: React hooks for component-specific state
+- **Custom Hooks**: Utilities for media queries, forms, and active sections
 
 ## Key Development Notes
 
-- All React components use TypeScript with proper type definitions
-- Astro components handle server-side rendering and layout
-- Interactive elements require `client:*` directives in Astro
+- All React components use TypeScript with comprehensive type definitions
+- Translation interfaces ensure type safety across all localized content
+- Interactive elements require appropriate `client:*` directives in Astro
 - The build process includes automatic type checking via `astro check`
-- Custom CSS variables and Tailwind utilities work together for theming
+- Theme switching persists across page reloads via localStorage
+- Routes automatically handle locale prefixing (Spanish default, /en/ for English)
