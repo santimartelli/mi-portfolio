@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { useInView } from "framer-motion";
-import { FaGithub, FaLinkedin, FaFileDownload, FaFilePdf, FaFileAlt, FaTwitter, FaInstagram, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaFilePdf, FaFileAlt, FaEnvelope } from "react-icons/fa";
 import { HiSparkles, HiDownload, HiExternalLink, HiShare } from "react-icons/hi";
 import { BiNetworkChart } from "react-icons/bi";
 
@@ -12,7 +12,6 @@ const SocialCV = () => {
   const headerRef = useRef(null);
   const cardsRef = useRef(null);
   
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const headerInView = useInView(headerRef, { once: true, amount: 0.3 });
   const cardsInView = useInView(cardsRef, { once: true, amount: 0.2 });
 

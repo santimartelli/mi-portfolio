@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useRef, memo } from "react";
 import { useInView } from "framer-motion";
 import { FaGithub, FaLinkedin, FaFilePdf, FaEnvelope, FaWhatsapp } from "react-icons/fa";
-import { HiOutlineMail, HiOutlinePhone, HiLocationMarker } from "react-icons/hi";
+import { HiLocationMarker } from "react-icons/hi";
 import { useTranslations } from "../util/i18n";
 
 // Helper function to determine current locale from URL or context
@@ -17,10 +17,8 @@ const getCurrentLocale = (): string => {
 const Contact = () => {
   const { contact: t } = useTranslations();
   
-  const sectionRef = useRef(null);
   const contentRef = useRef(null);
   
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
 
   const currentLocale = getCurrentLocale();
@@ -93,7 +91,6 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      ref={sectionRef}
       className="relative w-full bg-darkbg-950 py-24 md:py-32">
       
       {/* Subtle Background */}

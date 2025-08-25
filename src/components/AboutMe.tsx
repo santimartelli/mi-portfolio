@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, memo } from "react";
-import { FaReact, FaNodeJs, FaDatabase, FaServer, FaCode, FaBrain, FaRocket, FaLightbulb } from "react-icons/fa";
-import { HiOutlineCode, HiTrendingUp } from "react-icons/hi";
+import { FaReact, FaDatabase, FaServer, FaCode, FaBrain, FaRocket } from "react-icons/fa";
+import { HiOutlineCode } from "react-icons/hi";
 import { useTranslations } from "../util/i18n";
 
 const getTechnologies = (t: any) => [
@@ -43,17 +43,12 @@ const getTechnologies = (t: any) => [
   },
 ];
 
-const getStats = (t: any) => [
-  { icon: FaCode, value: "3+", label: t.stats.experience, color: "text-blue-400", bgColor: "from-blue-500/10 to-blue-600/10" },
-  { icon: HiTrendingUp, value: "100%", label: t.stats.commitment, color: "text-green-400", bgColor: "from-green-500/10 to-green-600/10" },
-];
 
 const AboutMeSection = () => {
   const { aboutme: t } = useTranslations();
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
   
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
 
   // Helper function for current locale like in Contact
@@ -67,7 +62,6 @@ const AboutMeSection = () => {
 
   const currentLocale = getCurrentLocale();
   const technologies = getTechnologies(t);
-  const stats = getStats(t);
 
   return (
     <section

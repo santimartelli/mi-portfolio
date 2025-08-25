@@ -40,7 +40,6 @@ const getProjects = (t: any) => [
 
 const Projects = () => {
   const { projects: t } = useTranslations();
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   const sectionRef = useRef(null);
@@ -239,7 +238,7 @@ const Projects = () => {
                     {t.featuresLabel}
                   </h5>
                   <div className="space-y-2">
-                    {project.features.slice(0, 3).map((feature, idx) => (
+                    {project.features.slice(0, 3).map((feature: string, idx: number) => (
                       <motion.div
                         key={idx}
                         initial={{ opacity: 0, x: -20 }}

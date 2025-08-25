@@ -34,30 +34,6 @@ const itemMotion = {
   },
 };
 
-const mobileMenuMotion = {
-  open: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 40,
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
-    },
-  },
-  closed: {
-    opacity: 0,
-    y: -20,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 40,
-      staggerChildren: 0.05,
-      staggerDirection: -1,
-    },
-  },
-};
 
 const dropdownVariants = {
   hidden: {
@@ -259,7 +235,7 @@ export default function Navbar() {
               exit="exit"
               className="absolute right-4 top-16 w-48 rounded-lg bg-darkbg-900 border border-accent-500/20 shadow-lg mobile-menu overflow-hidden">
               <div className="bg-gradient-to-b from-darkbg-900 to-darkbg-950 divide-y divide-accent-500/10">
-                {navigationSections.map((section, index) => (
+                {navigationSections.map((section) => (
                   <motion.a
                     key={section.key}
                     href={`${getLanguagePrefix()}/#${section.key}`}

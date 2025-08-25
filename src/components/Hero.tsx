@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { FaGithub, FaLinkedin, FaArrowRight } from "react-icons/fa";
-import { HiChevronDown, HiOutlineCode } from "react-icons/hi";
+import { HiOutlineCode } from "react-icons/hi";
 import { useMemo, memo, useRef } from "react";
 import { useTranslations } from "../util/i18n";
 
@@ -12,10 +12,8 @@ interface SocialLink {
 
 const Hero = () => {
   const { hero: t } = useTranslations();
-  const sectionRef = useRef(null);
   const contentRef = useRef(null);
   
-  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
   const contentInView = useInView(contentRef, { once: true, amount: 0.2 });
   
   const socialLinks: readonly SocialLink[] = useMemo(() => [
@@ -31,12 +29,6 @@ const Hero = () => {
     },
   ], []);
 
-  const scrollToAbout = () => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   // Helper function for current locale like in Contact
   const getCurrentLocale = (): string => {
@@ -52,7 +44,6 @@ const Hero = () => {
   return (
     <section 
       id="home"
-      ref={sectionRef}
       className="relative w-full bg-darkbg-950 py-24 md:py-32 min-h-screen flex items-center">
       
       {/* Subtle Background */}
@@ -106,7 +97,7 @@ const Hero = () => {
                   animate={contentInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="flex flex-wrap gap-2">
-                  {t.description.technologies.slice(0, 4).map((tech: string, index: number) => (
+                  {t.description.technologies.slice(0, 4).map((tech: string) => (
                     <span 
                       key={tech}
                       className="px-3 py-1 bg-accent/10 text-accent text-sm rounded-full border border-accent/20">

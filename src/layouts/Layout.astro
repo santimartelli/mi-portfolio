@@ -22,14 +22,12 @@ const { description, title } = Astro.props;
   <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SEW399N9F"></script>
-    <script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(...args) {
-        window.dataLayer.push(arguments);
+      function gtag() {
+        dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
-      gtag();
       gtag("config", "G-4SEW399N9F");
     </script>
     <meta charset="UTF-8" />

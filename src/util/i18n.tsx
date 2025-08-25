@@ -51,9 +51,9 @@ export interface AboutMeTranslations {
     };
   };
   stats: {
-    projects: string;
     experience: string;
-    clients: string;
+    commitment: string;
+    projects: string;
     learning: string;
   };
   technologies: {
