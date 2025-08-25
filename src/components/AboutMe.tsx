@@ -1,7 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, memo } from "react";
 import { FaReact, FaDatabase, FaServer, FaCode, FaBrain, FaRocket } from "react-icons/fa";
-import { HiOutlineCode } from "react-icons/hi";
 import { useTranslations } from "../util/i18n";
 
 const getTechnologies = (t: any) => [
@@ -81,28 +80,22 @@ const AboutMeSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16">
           
-          {/* Professional Badge */}
-          <motion.div
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={contentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-3 px-4 py-2 bg-accent-500/10 border border-accent-500/20 rounded-full text-sm font-medium text-accent-400 backdrop-blur-sm mb-8">
-            <HiOutlineCode className="w-4 h-4" />
-            <span>{t.badge}</span>
-          </motion.div>
-
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary">
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-5xl font-bold mb-4 text-text-primary">
             {t.title}
-          </h2>
+          </motion.h2>
           
-          <div className="w-16 h-0.5 bg-accent mx-auto mb-6" />
+          <div className="w-16 h-0.5 bg-accent mx-auto mb-8" />
           
           <div className="max-w-2xl mx-auto">
             <p className="text-lg text-text-secondary leading-relaxed mb-4">
               {t.description.paragraph1.intro} <span className="text-accent font-semibold">{t.description.paragraph1.highlight1}</span> {t.description.paragraph1.middle} <span className="text-accent font-medium">{t.description.paragraph1.highlight2}</span> {t.description.paragraph1.continuation} <span className="text-accent font-medium">{t.description.paragraph1.highlight3}</span>{t.description.paragraph1.end}
             </p>
             
-            <p className="text-base text-text-muted leading-relaxed">
+            <p className="text-lg text-text-secondary leading-relaxed">
               {t.description.paragraph2.intro} <span className="text-accent font-medium">
                 {t.description.paragraph2.highlight}
               </span>, {t.description.paragraph2.continuation}
@@ -110,130 +103,65 @@ const AboutMeSection = () => {
           </div>
         </motion.div>
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 max-w-5xl mx-auto">
+        {/* Technology Stack - Clean Grid Layout */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={contentInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-4xl mx-auto">
           
-          {/* Technologies */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={contentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6">
-            
-            <h3 className="text-xl font-semibold text-text-primary mb-6">
-              {currentLocale === 'es' ? 'Stack Tecnológico' : 'Technology Stack'}
-            </h3>
+          <h3 className="text-2xl font-semibold text-text-primary mb-8 text-center">
+            {currentLocale === 'es' ? 'Stack Tecnológico' : 'Technology Stack'}
+          </h3>
 
-            <div className="space-y-4">
-              {technologies.map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  className={`p-5 rounded-xl border border-border-secondary/50 transition-all duration-300 group bg-bg-secondary/10 hover:bg-bg-secondary/20 hover:border-accent/20 backdrop-blur-sm`}>
-                  
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`p-3 rounded-lg bg-gradient-to-br ${tech.bgColor} border border-opacity-20 transition-colors duration-300`} style={{borderColor: `${tech.color.replace('text-', '')}`}}>
-                      <tech.icon className={`w-5 h-5 ${tech.color}`} />
-                    </div>
-                    <div className="text-base font-semibold text-text-primary">
-                      {tech.name}
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-2">
-                    {tech.skills.map((skill) => (
-                      <span key={skill} className="px-3 py-1.5 text-xs bg-bg-tertiary/30 text-text-tertiary rounded-full border border-border-secondary/30 hover:bg-accent/10 hover:text-accent transition-colors duration-200">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Professional Summary */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={contentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-6">
-            
-            <h3 className="text-xl font-semibold text-text-primary mb-6">
-              {currentLocale === 'es' ? 'Experiencia & Enfoque' : 'Experience & Focus'}
-            </h3>
-
-            <div className="space-y-4">
-              {/* Key Stats */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                  className="text-center p-6 rounded-xl bg-bg-secondary/10 border border-border-secondary/50 backdrop-blur-sm">
-                  <div className="text-3xl font-bold text-accent mb-2">3+</div>
-                  <div className="text-sm text-text-muted font-medium">
-                    {currentLocale === 'es' ? 'Años de Experiencia' : 'Years Experience'}
-                  </div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.6 }}
-                  className="text-center p-6 rounded-xl bg-bg-secondary/10 border border-border-secondary/50 backdrop-blur-sm">
-                  <div className="text-3xl font-bold text-accent mb-2">100%</div>
-                  <div className="text-sm text-text-muted font-medium">
-                    {currentLocale === 'es' ? 'Compromiso' : 'Commitment'}
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Professional Focus */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {technologies.map((tech, index) => (
               <motion.div
+                key={tech.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.7 }}
-                className="p-6 rounded-xl border border-border-secondary/50 bg-bg-secondary/10 backdrop-blur-sm">
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                className="p-6 rounded-xl border border-border-secondary/50 bg-bg-secondary/10 hover:bg-bg-secondary/20 hover:border-accent/20 transition-all duration-300 group backdrop-blur-sm text-center">
                 
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-3 rounded-lg bg-accent/10 border border-accent/20">
-                    <FaCode className="w-5 h-5 text-accent" />
-                  </div>
-                  <div className="text-base font-semibold text-text-primary">
-                    {currentLocale === 'es' ? 'Desarrollo Full Stack' : 'Full Stack Development'}
+                <div className="flex justify-center mb-4">
+                  <div className={`p-4 rounded-lg bg-gradient-to-br ${tech.bgColor} border border-opacity-20 transition-colors duration-300`} style={{borderColor: `${tech.color.replace('text-', '')}`}}>
+                    <tech.icon className={`w-6 h-6 ${tech.color}`} />
                   </div>
                 </div>
                 
-                <div className="text-sm text-text-tertiary leading-relaxed">
-                  {currentLocale === 'es' ? 
-                    'Especializado en crear aplicaciones web completas, desde el frontend hasta el backend, con enfoque en código limpio y arquitecturas escalables.' : 
-                    'Specialized in creating complete web applications, from frontend to backend, with focus on clean code and scalable architectures.'
-                  }
+                <h4 className="text-lg font-semibold text-text-primary mb-3">
+                  {tech.name}
+                </h4>
+                
+                <div className="flex flex-wrap gap-1.5 justify-center">
+                  {tech.skills.map((skill) => (
+                    <span key={skill} className="px-2 py-1 text-xs bg-bg-tertiary/30 text-text-tertiary rounded-full border border-border-secondary/30 hover:bg-accent/10 hover:text-accent transition-colors duration-200">
+                      {skill}
+                    </span>
+                  ))}
                 </div>
               </motion.div>
-
-              {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                className="pt-6">
-                <motion.a
-                  href="#projects"
-                  className="theme-button-secondary flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-semibold group"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}>
-                  <FaRocket className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
-                  <span>
-                    {currentLocale === 'es' ? 'Ver Portfolio' : 'View Portfolio'}
-                  </span>
-                </motion.a>
-              </motion.div>
-            </div>
+            ))}
+          </div>
+          
+          {/* Call to Action */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={contentInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="text-center mt-12">
+            <motion.a
+              href="#projects"
+              className="theme-button-secondary inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-semibold group"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}>
+              <FaRocket className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
+              <span>
+                {currentLocale === 'es' ? 'Ver Portfolio' : 'View Portfolio'}
+              </span>
+            </motion.a>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

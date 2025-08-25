@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 # cursor rules directory
 .cursor/rules/
+
+# Playwright
+
+.playwright-mcp/
+
+

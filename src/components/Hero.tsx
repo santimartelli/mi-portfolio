@@ -96,7 +96,7 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={contentInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="flex flex-wrap gap-2">
+                  className="flex flex-wrap gap-2 justify-center lg:justify-start">
                   {t.description.technologies.slice(0, 4).map((tech: string) => (
                     <span 
                       key={tech}
