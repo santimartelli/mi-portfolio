@@ -24,7 +24,10 @@
       "Bash(git commit:*)",
       "mcp__playwright__browser_close",
       "mcp__playwright__browser_install",
-      "WebFetch(domain:rothelowman.com.au)"
+      "WebFetch(domain:rothelowman.com.au)",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_console_messages"
     ],
     "deny": [],
     "ask": []

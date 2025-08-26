@@ -46,7 +46,7 @@ const Hero = () => {
       id="home"
       className="relative w-full bg-white dark:bg-gray-950 min-h-screen flex items-center">
 
-      <div ref={contentRef} className="relative w-full max-w-7xl mx-auto px-8 py-20">
+      <div ref={contentRef} className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
         
         {/* Rothelowman-inspired Minimalist Hero */}
         <div className="max-w-5xl">
@@ -58,7 +58,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-16">
             
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-gray-900 dark:text-white leading-none tracking-tight mb-8">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900 dark:text-white leading-none tracking-tight mb-6 sm:mb-8">
               <motion.span 
                 className="block"
                 initial={{ opacity: 0, x: -50 }}
@@ -81,7 +81,7 @@ const Hero = () => {
               animate={contentInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
               className="max-w-3xl">
-              <p className="text-2xl md:text-3xl lg:text-4xl text-gray-800 dark:text-gray-300 leading-relaxed font-light">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-gray-800 dark:text-gray-300 leading-relaxed font-light">
                 {currentLocale === 'es' 
                   ? 'Desarrollador especializado en crear experiencias digitales excepcionales que combinan diseño intuitivo con arquitecturas sólidas.'
                   : 'Developer specialized in creating exceptional digital experiences that combine intuitive design with solid architectures.'
@@ -95,13 +95,13 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={contentInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 1.0 }}
-            className="grid md:grid-cols-3 gap-8 md:gap-16 mb-16">
+            className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-16 mb-12 sm:mb-16">
             
             <div className="space-y-2">
               <p className="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-500 font-medium">
                 {currentLocale === 'es' ? 'Especialización' : 'Specialization'}
               </p>
-              <p className="text-lg text-gray-900 dark:text-white">
+              <p className="text-base sm:text-lg text-gray-900 dark:text-white">
                 Full Stack Developer
               </p>
             </div>
@@ -110,7 +110,7 @@ const Hero = () => {
               <p className="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-500 font-medium">
                 {currentLocale === 'es' ? 'Stack Principal' : 'Main Stack'}
               </p>
-              <p className="text-lg text-gray-900 dark:text-white">
+              <p className="text-base sm:text-lg text-gray-900 dark:text-white">
                 React, TypeScript, Node.js
               </p>
             </div>
@@ -119,7 +119,7 @@ const Hero = () => {
               <p className="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-500 font-medium">
                 {currentLocale === 'es' ? 'Disponibilidad' : 'Availability'}
               </p>
-              <p className="text-lg text-gray-900 dark:text-white flex items-center gap-2">
+              <p className="text-base sm:text-lg text-gray-900 dark:text-white flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                 {currentLocale === 'es' ? 'Disponible' : 'Available'}
               </p>
@@ -131,11 +131,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={contentInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 1.2 }}
-            className="flex flex-col sm:flex-row gap-6 sm:gap-12 items-start">
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-12 items-start">
             
             <a
               href="#projects"
-              className="group text-lg text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300 border-b border-transparent hover:border-gray-900 dark:hover:border-white pb-1">
+              className="group text-base sm:text-lg text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300 border-b border-transparent hover:border-gray-900 dark:hover:border-white pb-1">
               <span className="flex items-center gap-3">
                 {t.buttons.projects}
                 <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -144,12 +144,12 @@ const Hero = () => {
 
             <a
               href="#contact"
-              className="group text-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300 border-b border-transparent hover:border-gray-600 dark:hover:border-gray-400 pb-1">
+              className="group text-base sm:text-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300 border-b border-transparent hover:border-gray-600 dark:hover:border-gray-400 pb-1">
               {t.buttons.contact}
             </a>
             
             {/* Social Links - Minimal */}
-            <div className="flex gap-6 ml-auto">
+            <div className="flex gap-4 sm:gap-6 sm:ml-auto">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
