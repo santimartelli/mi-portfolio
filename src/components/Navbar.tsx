@@ -130,10 +130,10 @@ export default function Navbar() {
       initial="hidden"
       animate="visible"
       variants={navMotion}
-      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 backdrop-blur-md ${
-        isScrolled ? "bg-darkbg-950/90 shadow-lg" : "bg-darkbg-950/70"
-      } border-b border-accent-500/30`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white/95 dark:bg-gray-950/95 shadow-sm border-b border-gray-200 dark:border-gray-800" : "bg-white/90 dark:bg-gray-950/90"
+      } backdrop-blur-sm`}>
+      <div className="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
         <motion.a 
           href={typeof window !== 'undefined' && window.location.pathname.startsWith('/en') ? '/en/' : '/'} 
           variants={itemMotion} 
@@ -142,21 +142,21 @@ export default function Navbar() {
         </motion.a>
 
         {!isMobile && (
-          <div className="flex items-center gap-8">
-            <motion.div variants={itemMotion} className="flex gap-x-8 text-sm lg:text-base text-darktext-300">
+          <div className="flex items-center gap-12">
+            <motion.div variants={itemMotion} className="flex gap-x-12 text-base font-medium text-gray-600 dark:text-gray-400">
               {navigationSections.map((section) => (
                 <motion.a
                   key={section.key}
                   href={`${getLanguagePrefix()}/#${section.key}`}
-                  className={`relative py-1 transition-colors duration-300 hover:text-white focus:outline-none ${
-                    isActive(section.key) ? "text-white" : ""
+                  className={`relative py-2 transition-colors duration-300 hover:text-gray-900 dark:hover:text-white focus:outline-none ${
+                    isActive(section.key) ? "text-gray-900 dark:text-white" : ""
                   }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}>
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.98 }}>
                   {isActive(section.key) && (
                     <motion.span
                       layoutId="activeSection"
-                      className="absolute -bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-accent-400 to-accent-500"
+                      className="absolute -bottom-1 left-0 w-full h-[2px] bg-gray-900 dark:bg-white"
                       transition={{
                         type: "spring",
                         stiffness: 380,
@@ -186,7 +186,7 @@ export default function Navbar() {
                 }
                 setToggled(!toggled);
               }}
-              className="relative z-50 flex flex-col justify-center items-center p-2 text-darktext-300 hover:text-white rounded-lg hover:bg-darkbg-900/70 focus:outline-none menu-button"
+              className="relative z-50 flex flex-col justify-center items-center p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800/70 focus:outline-none menu-button"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}>
               <motion.span
@@ -233,17 +233,17 @@ export default function Navbar() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="absolute right-4 top-16 w-48 rounded-lg bg-darkbg-900 border border-accent-500/20 shadow-lg mobile-menu overflow-hidden">
-              <div className="bg-gradient-to-b from-darkbg-900 to-darkbg-950 divide-y divide-accent-500/10">
+              className="absolute right-4 top-16 w-48 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-xl mobile-menu overflow-hidden">
+              <div className="divide-y divide-gray-200 dark:divide-gray-700">
                 {navigationSections.map((section) => (
                   <motion.a
                     key={section.key}
                     href={`${getLanguagePrefix()}/#${section.key}`}
                     onClick={() => setToggled(false)}
-                    className={`flex w-full items-center px-4 py-2 text-sm transition-colors duration-150 ${
+                    className={`flex w-full items-center px-4 py-3 text-base transition-colors duration-150 ${
                       isActive(section.key)
-                        ? "text-white bg-darkbg-900/80"
-                        : "text-darktext-300 hover:bg-darkbg-900/50 hover:text-white"
+                        ? "text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800"
+                        : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
                     } focus:outline-none`}
                     whileTap={{ scale: 0.95 }}>
                     {section.label}

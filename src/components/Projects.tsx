@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { FaGithub, FaCode } from "react-icons/fa";
-import { HiExternalLink, HiSparkles } from "react-icons/hi";
+import { FaGithub } from "react-icons/fa";
+import { HiExternalLink } from "react-icons/hi";
 import { useTranslations } from "../util/i18n";
 
 const getProjects = (t: any) => [
@@ -53,71 +53,66 @@ const Projects = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative w-full bg-darkbg-950 text-white py-24 md:py-32">
-      
-      {/* Simple Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-primary/2 to-transparent" />
+      className="relative w-full bg-gray-50 dark:bg-gray-950 py-32 md:py-40">
 
-      <div className="relative w-full max-w-7xl mx-auto px-6">
-        {/* Header Section */}
-        <div ref={headerRef} className="text-center mb-16">
+      <div className="relative w-full max-w-7xl mx-auto px-8">
+        {/* Rothelowman-inspired Minimal Header */}
+        <div ref={headerRef} className="mb-24">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
-            <span className="text-accent">{t.title}</span>
+            transition={{ duration: 0.8 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-tight mb-16">
+            {t.title}
           </motion.h2>
-
-          <div className="w-16 h-0.5 bg-accent mb-8 mx-auto" />
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto">
-            {t.description.intro} <span className="text-accent font-semibold">{t.description.highlight}</span> {t.description.continuation}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-2xl md:text-3xl lg:text-4xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl font-light">
+            {t.description.intro} <span className="text-gray-900 dark:text-white font-normal">{t.description.highlight}</span> {t.description.continuation}
           </motion.p>
         </div>
 
-        {/* Projects Grid */}
+        {/* Minimal Projects Grid */}
         <motion.div
           ref={projectsRef}
           initial={{ opacity: 0, y: 50 }}
           animate={isProjectsInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 80 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isProjectsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
-              className="bg-bg-secondary/10 border border-border-secondary/50 rounded-xl overflow-hidden backdrop-blur-sm hover:bg-bg-secondary/20 hover:border-accent/20 transition-all duration-300 group"
+              transition={{ duration: 0.8, delay: 0.6 + index * 0.2 }}
+              className="space-y-6"
             >
               {/* Project Image */}
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover"
                 />
                 
-                {/* Status Badge */}
+                {/* Minimal Status Badge */}
                 <div className="absolute top-4 right-4">
-                  <div className="px-3 py-1 bg-green-500/90 backdrop-blur-sm rounded-full text-xs font-medium text-white flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-300 rounded-full" />
+                  <div className="px-3 py-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-full text-xs font-medium text-gray-900 dark:text-white flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
                     {project.status === 'production' ? t.status.production : t.status.development}
                   </div>
                 </div>
 
-                {/* Quick Actions */}
+                {/* Clean Action Icons */}
                 <div className="absolute top-4 left-4 flex gap-2">
                   <a
                     href={project.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-bg-primary/80 hover:bg-accent/20 backdrop-blur-sm rounded-full text-text-muted hover:text-accent transition-all duration-200"
+                    className="p-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
                   >
                     <HiExternalLink className="w-4 h-4" />
                   </a>
@@ -125,51 +120,53 @@ const Projects = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-bg-primary/80 hover:bg-accent/20 backdrop-blur-sm rounded-full text-text-muted hover:text-accent transition-all duration-200"
+                    className="p-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
                   >
                     <FaGithub className="w-4 h-4" />
                   </a>
                 </div>
               </div>
 
-              {/* Project Content */}
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm text-text-muted">{project.year}</span>
-                  <span className="text-sm text-accent font-medium">{project.category}</span>
+              {/* Clean Project Details */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-500 font-medium">{project.year}</span>
+                  <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">{project.category}</span>
                 </div>
 
-                <h3 className="text-xl font-bold text-text-primary mb-2">
-                  {project.title}
-                </h3>
-                
-                <h4 className="text-base text-accent font-medium mb-3">
-                  {project.subtitle}
-                </h4>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                    {project.title}
+                  </h3>
+                  
+                  <h4 className="text-lg text-gray-600 dark:text-gray-400 font-medium mb-4">
+                    {project.subtitle}
+                  </h4>
 
-                <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                  {project.body}
-                </p>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {project.body}
+                  </p>
+                </div>
 
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-1.5 mb-4">
+                {/* Simple Technology List */}
+                <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 text-xs bg-bg-tertiary/30 text-text-tertiary rounded-full border border-border-secondary/30"
+                      className="text-sm text-gray-600 dark:text-gray-400"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex gap-3">
+                {/* Minimal Action Links */}
+                <div className="flex gap-6 pt-2">
                   <a
                     href={project.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="theme-button-primary flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium flex-1 justify-center"
+                    className="text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300 border-b border-transparent hover:border-gray-900 dark:hover:border-white pb-1 flex items-center gap-2"
                   >
                     <HiExternalLink className="w-4 h-4" />
                     {t.buttons.viewProject}
@@ -178,9 +175,9 @@ const Projects = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="theme-button-secondary flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium"
+                    className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300 border-b border-transparent hover:border-gray-600 dark:hover:border-gray-400 pb-1 flex items-center gap-2"
                   >
-                    <FaCode className="w-4 h-4" />
+                    <FaGithub className="w-4 h-4" />
                     {t.buttons.code}
                   </a>
                 </div>
@@ -189,22 +186,21 @@ const Projects = () => {
           ))}
         </motion.div>
 
-        {/* Call to Action */}
+        {/* Minimal Call to Action */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isProjectsInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="max-w-2xl mx-auto mt-20 p-8 bg-bg-secondary/10 border border-border-secondary/50 rounded-xl backdrop-blur-sm text-center"
+          transition={{ duration: 0.8, delay: 1.0 }}
+          className="mt-32 text-center"
         >
-          <p className="text-lg text-text-primary mb-6 font-medium">
+          <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 font-light max-w-2xl mx-auto">
             {t.cta.question}
           </p>
           <a
             href="#contact"
-            className="theme-button-secondary px-6 py-3 rounded-lg font-medium inline-flex items-center gap-2 hover:scale-105 transition-transform duration-200"
+            className="text-lg text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300 border-b border-transparent hover:border-gray-900 dark:hover:border-white pb-1"
           >
             {t.cta.button}
-            <HiSparkles className="w-4 h-4" />
           </a>
         </motion.div>
       </div>
