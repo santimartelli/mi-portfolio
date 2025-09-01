@@ -16,8 +16,8 @@ const Logo = () => {
           SM
         </span>
       </div>
-      <div className="hidden sm:block">
-        <p className={`text-base font-semibold ${
+      <div className="block">
+        <p className={`text-base font-semibold leading-tight ${
           theme === "light" ? "text-black" : "text-white"
         }`}>
           Santiago Martelli

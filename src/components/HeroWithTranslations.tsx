@@ -1,5 +1,6 @@
 import React from 'react';
 import Hero from './Hero';
+import { ThemeProvider } from "../util/ThemeContext";
 import { I18nProvider, type Translations } from '../util/i18n';
 
 interface HeroWithTranslationsProps {
@@ -8,9 +9,11 @@ interface HeroWithTranslationsProps {
 
 const HeroWithTranslations: React.FC<HeroWithTranslationsProps> = ({ translations }) => {
   return (
-    <I18nProvider translations={translations}>
-      <Hero />
-    </I18nProvider>
+    <ThemeProvider>
+      <I18nProvider translations={translations}>
+        <Hero />
+      </I18nProvider>
+    </ThemeProvider>
   );
 };
 

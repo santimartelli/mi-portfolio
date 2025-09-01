@@ -1,8 +1,9 @@
 import { motion, useInView } from "framer-motion";
-import { FaGithub, FaLinkedin, FaArrowRight } from "react-icons/fa";
-import { HiOutlineCode } from "react-icons/hi";
+import { FaGithub, FaLinkedin, FaDownload, FaMapMarkerAlt } from "react-icons/fa";
+import { HiOutlineMail, HiOutlineBadgeCheck } from "react-icons/hi";
 import { useMemo, memo, useRef } from "react";
 import { useTranslations } from "../util/i18n";
+import { useThemeContext } from "../util/ThemeContext";
 
 interface SocialLink {
   readonly icon: React.ComponentType<{ className?: string }>;
@@ -12,6 +13,7 @@ interface SocialLink {
 
 const Hero = () => {
   const { hero: t } = useTranslations();
+  const { theme } = useThemeContext();
   const contentRef = useRef(null);
   
   const contentInView = useInView(contentRef, { once: true, amount: 0.2 });
@@ -29,8 +31,7 @@ const Hero = () => {
     },
   ], []);
 
-
-  // Helper function for current locale like in Contact
+  // Helper function for current locale
   const getCurrentLocale = (): string => {
     if (typeof window !== 'undefined') {
       const pathname = window.location.pathname;
@@ -48,7 +49,7 @@ const Hero = () => {
 
       <div ref={contentRef} className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
         
-        {/* Rothelowman-inspired Minimalist Hero */}
+        {/* Minimalist Professional Hero */}
         <div className="max-w-5xl">
           
           {/* Large Typography - Main Statement */}
@@ -58,7 +59,9 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-16">
             
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900 dark:text-white leading-none tracking-tight mb-6 sm:mb-8">
+            <h1 className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-none tracking-tight mb-6 sm:mb-8 ${
+              theme === "light" ? "text-black" : "text-white"
+            }`}>
               <motion.span 
                 className="block"
                 initial={{ opacity: 0, x: -50 }}
@@ -67,7 +70,7 @@ const Hero = () => {
                 {t.firstName}
               </motion.span>
               <motion.span 
-                className="block text-gray-600 dark:text-gray-400"
+                className={`block ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
                 initial={{ opacity: 0, x: 50 }}
                 animate={contentInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.6 }}>
@@ -81,7 +84,9 @@ const Hero = () => {
               animate={contentInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
               className="max-w-3xl">
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-gray-800 dark:text-gray-300 leading-relaxed font-light">
+              <p className={`text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-relaxed font-light ${
+                theme === "light" ? "text-gray-800" : "text-gray-300"
+              }`}>
                 {currentLocale === 'es' 
                   ? 'Desarrollador especializado en crear experiencias digitales excepcionales que combinan diseño intuitivo con arquitecturas sólidas.'
                   : 'Developer specialized in creating exceptional digital experiences that combine intuitive design with solid architectures.'
@@ -90,7 +95,7 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Minimal Professional Info */}
+          {/* Minimal Professional Info - E-ink Style */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={contentInView ? { opacity: 1, y: 0 } : {}}
@@ -98,35 +103,47 @@ const Hero = () => {
             className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-16 mb-12 sm:mb-16">
             
             <div className="space-y-2">
-              <p className="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-500 font-medium">
+              <p className={`text-sm uppercase tracking-wider font-medium ${
+                theme === "light" ? "text-gray-500" : "text-gray-500"
+              }`}>
                 {currentLocale === 'es' ? 'Especialización' : 'Specialization'}
               </p>
-              <p className="text-base sm:text-lg text-gray-900 dark:text-white">
+              <p className={`text-base sm:text-lg ${
+                theme === "light" ? "text-black" : "text-white"
+              }`}>
                 Full Stack Developer
               </p>
             </div>
             
             <div className="space-y-2">
-              <p className="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-500 font-medium">
+              <p className={`text-sm uppercase tracking-wider font-medium ${
+                theme === "light" ? "text-gray-500" : "text-gray-500"
+              }`}>
                 {currentLocale === 'es' ? 'Stack Principal' : 'Main Stack'}
               </p>
-              <p className="text-base sm:text-lg text-gray-900 dark:text-white">
+              <p className={`text-base sm:text-lg ${
+                theme === "light" ? "text-black" : "text-white"
+              }`}>
                 React, TypeScript, Node.js
               </p>
             </div>
             
             <div className="space-y-2">
-              <p className="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-500 font-medium">
+              <p className={`text-sm uppercase tracking-wider font-medium ${
+                theme === "light" ? "text-gray-500" : "text-gray-500"
+              }`}>
                 {currentLocale === 'es' ? 'Disponibilidad' : 'Availability'}
               </p>
-              <p className="text-base sm:text-lg text-gray-900 dark:text-white flex items-center gap-2">
+              <p className={`text-base sm:text-lg flex items-center gap-2 ${
+                theme === "light" ? "text-black" : "text-white"
+              }`}>
                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                 {currentLocale === 'es' ? 'Disponible' : 'Available'}
               </p>
             </div>
           </motion.div>
 
-          {/* Clean Action Links */}
+          {/* Clean Action Links - E-ink Style */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={contentInView ? { opacity: 1, y: 0 } : {}}
@@ -135,16 +152,24 @@ const Hero = () => {
             
             <a
               href="#projects"
-              className="group text-base sm:text-lg text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300 border-b border-transparent hover:border-gray-900 dark:hover:border-white pb-1">
+              className={`group text-base sm:text-lg transition-colors duration-300 border-b border-transparent pb-1 ${
+                theme === "light" 
+                  ? "text-black hover:text-gray-600 hover:border-black" 
+                  : "text-white hover:text-gray-300 hover:border-white"
+              }`}>
               <span className="flex items-center gap-3">
                 {t.buttons.projects}
-                <FaArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                <FaDownload className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </span>
             </a>
 
             <a
               href="#contact"
-              className="group text-base sm:text-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300 border-b border-transparent hover:border-gray-600 dark:hover:border-gray-400 pb-1">
+              className={`group text-base sm:text-lg transition-colors duration-300 border-b border-transparent pb-1 ${
+                theme === "light" 
+                  ? "text-gray-600 hover:text-black hover:border-gray-600" 
+                  : "text-gray-400 hover:text-white hover:border-gray-400"
+              }`}>
               {t.buttons.contact}
             </a>
             
@@ -156,7 +181,11 @@ const Hero = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
+                  className={`transition-colors duration-300 ${
+                    theme === "light" 
+                      ? "text-gray-400 hover:text-black" 
+                      : "text-gray-400 hover:text-white"
+                  }`}
                   aria-label={social.label}>
                   <social.icon className="w-5 h-5" />
                 </a>
