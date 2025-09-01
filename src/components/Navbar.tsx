@@ -1,10 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { useMediaQuery } from "../util/useMediaQuery";
 import { useActiveSection } from "../util/useActiveSection";
 import { useTranslations } from "../util/i18n";
 import Logo from "./Logo";
-import NavControls from "./NavControls";
+import Settings from "./Settings";
 
 const navMotion = {
   visible: {
@@ -64,7 +63,6 @@ const dropdownVariants = {
 export default function Navbar() {
   const [toggled, setToggled] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 768px)");
   const activeSection = useActiveSection();
   const { navbar: t } = useTranslations();
   
@@ -87,13 +85,11 @@ export default function Navbar() {
   // Function to close all dropdowns
   const closeAllDropdowns = () => {
     setToggled(false);
-    // Access NavControls state through a ref
-    const navControlsElement = document.querySelector("[data-nav-controls]");
-    if (navControlsElement) {
+    // Access Settings state through a ref
+    const settingsElement = document.querySelector("[data-settings]");
+    if (settingsElement) {
       // @ts-ignore - we know these properties exist
-      navControlsElement.setIsLangOpen?.(false);
-      // @ts-ignore - we know these properties exist
-      navControlsElement.setIsThemeOpen?.(false);
+      settingsElement.setIsSettingsOpen?.(false);
     }
   };
 
@@ -108,12 +104,8 @@ export default function Navbar() {
 
   const isActive = (section: string) => activeSection === section;
 
-  // Close mobile menu when switching to desktop view or clicking outside
+  // Close menu when clicking outside
   useEffect(() => {
-    if (!isMobile) {
-      setToggled(false);
-    }
-
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (!target.closest(".mobile-menu") && !target.closest(".menu-button")) {
@@ -123,7 +115,7 @@ export default function Navbar() {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isMobile]);
+  }, []);
 
   return (
     <motion.nav
@@ -131,9 +123,9 @@ export default function Navbar() {
       animate="visible"
       variants={navMotion}
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/95 dark:bg-gray-950/95 shadow-sm border-b border-gray-200 dark:border-gray-800" : "bg-white/90 dark:bg-gray-950/90"
-      } backdrop-blur-sm`}>
-      <div className="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+        isScrolled ? "bg-white dark:bg-gray-950 border-b border-black dark:border-gray-700" : "bg-white dark:bg-gray-950"
+      }`}>
+      <div className="w-full px-8 py-4 flex justify-between items-center">
         <motion.a 
           href={typeof window !== 'undefined' && window.location.pathname.startsWith('/en') ? '/en/' : '/'} 
           variants={itemMotion} 
@@ -141,44 +133,11 @@ export default function Navbar() {
           <Logo />
         </motion.a>
 
-        {!isMobile && (
-          <div className="flex items-center gap-12">
-            <motion.div variants={itemMotion} className="flex gap-x-12 text-base font-medium text-gray-600 dark:text-gray-400">
-              {navigationSections.map((section) => (
-                <motion.a
-                  key={section.key}
-                  href={`${getLanguagePrefix()}/#${section.key}`}
-                  className={`relative py-2 transition-colors duration-300 hover:text-gray-900 dark:hover:text-white focus:outline-none ${
-                    isActive(section.key) ? "text-gray-900 dark:text-white" : ""
-                  }`}
-                  whileHover={{ y: -1 }}
-                  whileTap={{ scale: 0.98 }}>
-                  {isActive(section.key) && (
-                    <motion.span
-                      layoutId="activeSection"
-                      className="absolute -bottom-1 left-0 w-full h-[2px] bg-gray-900 dark:bg-white"
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                  {section.label}
-                </motion.a>
-              ))}
-            </motion.div>
-            <motion.div variants={itemMotion}>
-              <NavControls />
-            </motion.div>
-          </div>
-        )}
-
-        {isMobile && (
-          <div className="flex items-center gap-4">
-            <motion.div variants={itemMotion}>
-              <NavControls />
-            </motion.div>
+        <div className="flex items-center gap-2">
+          <motion.div variants={itemMotion}>
+            <Settings />
+          </motion.div>
+          <div className="relative">
             <motion.button
               onClick={() => {
                 if (!toggled) {
@@ -186,7 +145,7 @@ export default function Navbar() {
                 }
                 setToggled(!toggled);
               }}
-              className="relative z-50 flex flex-col justify-center items-center p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800/70 focus:outline-none menu-button"
+              className="relative z-50 flex flex-col justify-center items-center w-14 h-14 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none menu-button"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}>
               <motion.span
@@ -198,7 +157,7 @@ export default function Navbar() {
                   duration: 0.2,
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
-                className="block h-0.5 w-5 bg-current transition-transform"
+                className="block h-0.5 w-6 bg-current"
               />
               <motion.span
                 animate={{
@@ -209,7 +168,7 @@ export default function Navbar() {
                   duration: 0.2,
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
-                className="block h-0.5 w-5 bg-current my-1"
+                className="block h-0.5 w-6 bg-current my-1"
               />
               <motion.span
                 animate={{
@@ -220,39 +179,49 @@ export default function Navbar() {
                   duration: 0.2,
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
-                className="block h-0.5 w-5 bg-current transition-transform"
+                className="block h-0.5 w-6 bg-current"
               />
             </motion.button>
-          </div>
-        )}
 
-        <AnimatePresence>
-          {isMobile && toggled && (
-            <motion.div
-              variants={dropdownVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="absolute right-4 top-16 w-48 rounded-lg bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-xl mobile-menu overflow-hidden">
-              <div className="divide-y divide-gray-200 dark:divide-gray-700">
-                {navigationSections.map((section) => (
-                  <motion.a
-                    key={section.key}
-                    href={`${getLanguagePrefix()}/#${section.key}`}
-                    onClick={() => setToggled(false)}
-                    className={`flex w-full items-center px-4 py-3 text-base transition-colors duration-150 ${
-                      isActive(section.key)
-                        ? "text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800"
-                        : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
-                    } focus:outline-none`}
-                    whileTap={{ scale: 0.95 }}>
-                    {section.label}
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <AnimatePresence>
+              {toggled && (
+                <motion.div
+                  variants={dropdownVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  className="absolute right-0 top-16 w-56 bg-white dark:bg-gray-950 border border-black dark:border-gray-700 mobile-menu overflow-hidden">
+                  <div className="p-3">
+                    <div className="space-y-1">
+                      {navigationSections.map((section) => (
+                        <motion.a
+                          key={section.key}
+                          href={`${getLanguagePrefix()}/#${section.key}`}
+                          onClick={() => setToggled(false)}
+                          className={`flex w-full items-center px-3 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none ${
+                            isActive(section.key)
+                              ? "text-black dark:text-white bg-gray-100 dark:bg-gray-800"
+                              : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white"
+                          }`}
+                          whileTap={{ scale: 0.98 }}>
+                          {section.label}
+                          {isActive(section.key) && (
+                            <motion.div
+                              initial={{ scale: 0, opacity: 0 }}
+                              animate={{ scale: 1, opacity: 1 }}
+                              className="ml-auto w-1.5 h-1.5 bg-black dark:bg-white rounded-full"
+                            />
+                          )}
+                        </motion.a>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+
       </div>
     </motion.nav>
   );

@@ -27,7 +27,8 @@
       "WebFetch(domain:rothelowman.com.au)",
       "mcp__playwright__browser_snapshot",
       "mcp__playwright__browser_click",
-      "mcp__playwright__browser_console_messages"
+      "mcp__playwright__browser_console_messages",
+      "Bash(astro check:*)"
     ],
     "deny": [],
     "ask": []
