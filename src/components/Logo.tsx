@@ -8,9 +8,11 @@ const Logo = () => {
   return (
     <motion.div className="flex items-center gap-4">
       <div className={`w-10 h-10 border ${
-        theme === "light" ? "border-black bg-gray-50" : "border-black bg-gray-900"
+        theme === "light" ? "border-black bg-white" : "border-white bg-black"
       } flex items-center justify-center`}>
-        <span className="logo-text-eink text-xl font-bold">
+        <span className={`text-xl font-bold ${
+          theme === "light" ? "text-black" : "text-white"
+        }`}>
           SM
         </span>
       </div>
