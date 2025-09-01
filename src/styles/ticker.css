@@ -1,0 +1,53 @@
+/* Ticker Text Animation */
+.ticker-container {
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: scroll-left 25s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Ensure smooth animation performance */
+.ticker-content {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Alternative marquee using CSS only */
+.marquee {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.marquee-content {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-content span {
+  flex-shrink: 0;
+  margin-right: 4rem;
+}

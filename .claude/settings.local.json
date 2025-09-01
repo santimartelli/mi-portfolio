@@ -28,7 +28,9 @@
       "mcp__playwright__browser_snapshot",
       "mcp__playwright__browser_click",
       "mcp__playwright__browser_console_messages",
-      "Bash(astro check:*)"
+      "Bash(astro check:*)",
+      "Bash(npx astro:*)",
+      "Bash(start http://localhost:4321)"
     ],
     "deny": [],
     "ask": []
