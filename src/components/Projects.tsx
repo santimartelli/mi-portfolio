@@ -53,7 +53,7 @@ const Projects = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative w-full bg-gray-50 dark:bg-gray-950 py-32 md:py-40">
+      className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
 
       <div className="relative w-full max-w-7xl mx-auto px-8">
         {/* Rothelowman-inspired Minimal Header */}

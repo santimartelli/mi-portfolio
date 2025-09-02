@@ -30,7 +30,8 @@
       "mcp__playwright__browser_console_messages",
       "Bash(astro check:*)",
       "Bash(npx astro:*)",
-      "Bash(start http://localhost:4321)"
+      "Bash(start http://localhost:4321)",
+      "mcp__playwright__browser_evaluate"
     ],
     "deny": [],
     "ask": []
