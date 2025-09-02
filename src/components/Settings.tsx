@@ -98,14 +98,44 @@ const Settings = ({ className = "" }: SettingsProps) => {
 
   const dropdownVariants = {
     hidden: {
+      height: 0,
+      opacity: 1,
+      transformOrigin: "top",
+    },
+    visible: {
+      height: "auto",
+      opacity: 1,
+      transition: {
+        height: {
+          duration: 0.3,
+          ease: "easeOut",
+        },
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+      },
+    },
+    exit: {
+      height: 0,
+      opacity: 1,
+      transition: {
+        height: {
+          duration: 0.2,
+          ease: "easeIn",
+        },
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: {
       opacity: 0,
       y: -10,
-      scale: 0.95,
     },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: {
         duration: 0.2,
         ease: "easeOut",
@@ -114,7 +144,6 @@ const Settings = ({ className = "" }: SettingsProps) => {
     exit: {
       opacity: 0,
       y: -10,
-      scale: 0.95,
       transition: {
         duration: 0.15,
         ease: "easeIn",
@@ -160,14 +189,16 @@ const Settings = ({ className = "" }: SettingsProps) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className={`absolute right-0 top-16 w-56 overflow-hidden border ${
+            className={`absolute right-0 top-[72px] w-56 overflow-hidden border z-30 ${
               theme === 'dark' 
                 ? 'bg-gray-950 border-gray-700' 
                 : 'bg-white border-black'
             }`}>
             
             {/* Theme Section */}
-            <div className="p-3 border-b border-black dark:border-gray-700">
+            <motion.div 
+              variants={itemVariants}
+              className="p-3 border-b border-black dark:border-gray-700">
               <div className={`flex items-center justify-between ${
                 theme === 'dark' ? 'text-darktext-200' : 'text-gray-700'
               }`}>
@@ -238,10 +269,12 @@ const Settings = ({ className = "" }: SettingsProps) => {
                   </motion.div>
                 </motion.button>
               </div>
-            </div>
+            </motion.div>
 
             {/* Language Section */}
-            <div className="p-3">
+            <motion.div 
+              variants={itemVariants}
+              className="p-3">
               <div className={`flex items-center gap-3 mb-3 ${
                 theme === 'dark' ? 'text-darktext-200' : 'text-gray-700'
               }`}>
@@ -311,7 +344,7 @@ const Settings = ({ className = "" }: SettingsProps) => {
                   )}
                 </motion.button>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

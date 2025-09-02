@@ -36,14 +36,44 @@ const itemMotion = {
 
 const dropdownVariants = {
   hidden: {
+    height: 0,
+    opacity: 1,
+    transformOrigin: "top",
+  },
+  visible: {
+    height: "auto",
+    opacity: 1,
+    transition: {
+      height: {
+        duration: 0.3,
+        ease: "easeOut",
+      },
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+  exit: {
+    height: 0,
+    opacity: 1,
+    transition: {
+      height: {
+        duration: 0.2,
+        ease: "easeIn",
+      },
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+    },
+  },
+};
+
+const menuItemVariants = {
+  hidden: {
     opacity: 0,
     y: -10,
-    scale: 0.95,
   },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
       duration: 0.2,
       ease: "easeOut",
@@ -52,7 +82,6 @@ const dropdownVariants = {
   exit: {
     opacity: 0,
     y: -10,
-    scale: 0.95,
     transition: {
       duration: 0.15,
       ease: "easeIn",
@@ -122,8 +151,8 @@ export default function Navbar() {
       initial="hidden"
       animate="visible"
       variants={navMotion}
-      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white dark:bg-gray-950 border-b border-black dark:border-gray-700" : "bg-white dark:bg-gray-950"
+      className={`fixed top-0 right-0 left-0 z-50 bg-white dark:bg-gray-950 border-b transition-colors duration-300 ${
+        isScrolled ? "border-black dark:border-gray-800" : "border-transparent"
       }`}>
       <div className="w-full px-8 py-4 flex justify-between items-center">
         <motion.a 
@@ -190,8 +219,10 @@ export default function Navbar() {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="absolute right-0 top-16 w-56 bg-white dark:bg-gray-950 border border-black dark:border-gray-700 mobile-menu overflow-hidden">
-                  <div className="p-3">
+                  className="absolute right-0 top-[72px] w-56 bg-white dark:bg-gray-950 border border-black dark:border-gray-800 mobile-menu overflow-hidden z-30">
+                  <motion.div 
+                    variants={menuItemVariants}
+                    className="p-3">
                     <div className="space-y-1">
                       {navigationSections.map((section) => (
                         <motion.a
@@ -215,7 +246,7 @@ export default function Navbar() {
                         </motion.a>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 </motion.div>
               )}
             </AnimatePresence>
