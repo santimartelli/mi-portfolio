@@ -44,11 +44,11 @@ const Hero = () => {
   const currentLocale = getCurrentLocale();
 
   return (
-    <section id="home" className="relative w-full bg-white dark:bg-gray-950 min-h-screen pt-28">
+    <section id="home" className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
       {/* Full-width e-ink inspired layout */}
-      <div ref={contentRef} className="w-full min-h-screen flex flex-col justify-center items-center">
+      <div ref={contentRef} className="w-full flex flex-col justify-center items-center">
         {/* Main content area - positioned higher */}
-        <div className="flex-1 w-full max-w-4xl mx-auto px-6 sm:px-8 pt-4 pb-12 sm:pt-12 sm:pb-20 flex items-start justify-center">
+        <div className="w-full max-w-4xl mx-auto px-6 sm:px-8 flex items-start justify-center">
           <div className="w-full text-center">
             {/* Hero Content - Centered with e-ink aesthetic */}
             <div className="flex flex-col items-center justify-center space-y-8 sm:space-y-12">
