@@ -7,10 +7,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a bilingual personal portfolio website for Santiago Martelli built with Astro, React, TypeScript, and Tailwind CSS. The site showcases projects, skills, and contact information in a modern, responsive design with full internationalization support for Spanish and English.
 
 ### Live Site
+
 - **Production URL**: [https://www.martelli.dev](https://www.martelli.dev)
 - **Repository**: [GitHub](https://github.com/santimartelli/mi-portfolio.git)
 
 ### Project Goals
+
 - **Professional Showcase**: Display technical skills and featured projects
 - **Bilingual Accessibility**: Full Spanish/English internationalization
 - **Modern Performance**: Fast loading, responsive design, SEO optimized
@@ -19,17 +21,20 @@ This is a bilingual personal portfolio website for Santiago Martelli built with 
 ## Development Commands
 
 ### Essential Commands
+
 - `npm run dev` or `npm start` - Start development server at http://localhost:4321
 - `npm run build` - Build for production (includes Astro type checking)
 - `npm run preview` - Preview production build locally
 - `astro check` - Run Astro's built-in type checking
 
 ### Quality Assurance
+
 - **Type Checking**: Run `astro check` before committing changes
 - **Build Verification**: Always run `npm run build` to ensure production readiness
 - **Local Testing**: Use `npm run preview` to test production build locally
 
 ### Development Workflow
+
 1. Start dev server: `npm run dev`
 2. Make changes and verify in browser
 3. Run type checking: `astro check`
@@ -86,6 +91,7 @@ src/
 ```
 
 ### File Organization Principles
+
 - **Co-location**: Related files grouped by feature/domain
 - **Clear Naming**: Descriptive file names indicating purpose
 - **Separation of Concerns**: Logic, styling, and content separated
@@ -112,7 +118,7 @@ src/
 
 - **Dynamic Theme System**: CSS variables that adapt between dark/light modes
   - `--bg-primary/secondary/tertiary`: Background hierarchy
-  - `--text-primary/secondary/tertiary`: Text color hierarchy  
+  - `--text-primary/secondary/tertiary`: Text color hierarchy
   - `--accent/accent-hover`: Professional blue accent colors
   - `--border-primary/secondary`: Border color variants
 - **Custom Tailwind Extension**: Enhanced with project-specific design tokens
@@ -143,12 +149,14 @@ src/
 ## Key Development Notes
 
 ### Code Quality Standards
+
 - **TypeScript First**: All React components use comprehensive type definitions
 - **Type-Safe Translations**: Translation interfaces ensure compile-time safety
 - **Strict Type Checking**: Zero TypeScript errors policy
 - **Component Props**: All props properly typed with interfaces
 
 ### Performance Optimization
+
 - **Astro Islands**: Strategic use of `client:*` directives
   - `client:load`: Critical UI (navbar, theme controls)
   - `client:visible`: Sections that load on scroll
@@ -158,12 +166,14 @@ src/
 - **Build Process**: Automatic type checking via `astro check`
 
 ### User Experience
+
 - **Theme Persistence**: Dark/light mode persists across sessions via localStorage
 - **Scroll Restoration**: Maintains position during language switching
 - **Responsive Design**: Mobile-first approach with touch-friendly interactions
 - **Accessibility**: WCAG AA compliance, keyboard navigation, screen reader support
 
 ### Internationalization
+
 - **Route Handling**: Automatic locale prefixing (Spanish default, /en/ for English)
 - **Content Management**: JSON-based translations with TypeScript interfaces
 - **Context Delivery**: React Context provides translations to all components
@@ -229,6 +239,7 @@ Invoke the `@agent-design-review` subagent for thorough design validation when:
 ## Best Practices & Guidelines
 
 ### Component Development
+
 - **Single Responsibility**: Each component has one clear purpose
 - **Props Interface**: Always define TypeScript interfaces for props
 - **Error Boundaries**: Handle errors gracefully with fallback UI
@@ -236,19 +247,22 @@ Invoke the `@agent-design-review` subagent for thorough design validation when:
 - **Hooks Pattern**: Custom hooks for reusable stateful logic
 
 ### Styling Guidelines
+
 - **Design Tokens**: Use CSS variables for consistent theming
 - **Utility Classes**: Prefer Tailwind utilities over custom CSS
-- **Component Variants**: Use theme-* classes for consistent styling
+- **Component Variants**: Use theme-\* classes for consistent styling
 - **Mobile First**: Design and code for mobile, enhance for desktop
 - **Performance**: Minimize CSS bundle size, avoid unused styles
 
 ### Content Management
+
 - **Translation Keys**: Use descriptive, hierarchical keys
 - **Content Validation**: Ensure all translations have matching keys
 - **SEO Content**: Include meta descriptions and titles in translations
 - **Image Assets**: Optimize and provide multiple formats (WebP, fallbacks)
 
 ### Testing Strategy
+
 - **Type Safety**: Use TypeScript to catch errors at compile time
 - **Build Verification**: Always test production builds locally
 - **Cross-Browser**: Test in Chrome, Firefox, Safari, Edge
@@ -256,6 +270,7 @@ Invoke the `@agent-design-review` subagent for thorough design validation when:
 - **Accessibility**: Test with screen readers and keyboard navigation
 
 ### Deployment Checklist
+
 - [ ] All TypeScript errors resolved (`astro check`)
 - [ ] Production build successful (`npm run build`)
 - [ ] Images optimized and properly sized

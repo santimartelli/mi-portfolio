@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useRef, memo } from "react";
 import { useInView } from "framer-motion";
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaDownload, FaMapMarkerAlt } from "react-icons/fa";
 import { useTranslations } from "../util/i18n";
 
 // Helper function to determine current locale from URL or context
@@ -17,8 +17,13 @@ const Contact = () => {
   const { contact: t } = useTranslations();
   
   const contentRef = useRef(null);
+  const headerRef = useRef(null);
+  const contactMethodsRef = useRef(null);
+  const additionalInfoRef = useRef(null);
   
-  const contentInView = useInView(contentRef, { once: true, amount: 0.3 });
+  const isHeaderInView = useInView(headerRef, { once: true, amount: 0.2 });
+  const isContactMethodsInView = useInView(contactMethodsRef, { once: true, amount: 0.1 });
+  const isAdditionalInfoInView = useInView(additionalInfoRef, { once: true, amount: 0.1 });
 
   const currentLocale = getCurrentLocale();
 
@@ -26,14 +31,16 @@ const Contact = () => {
     {
       icon: FaEnvelope,
       label: t.contact.methods.email.label,
-      action: t.contact.methods.email.action,
+      value: "santimartelli@gmail.com",
       href: "mailto:santimartelli@gmail.com",
+      description: currentLocale === 'es' ? 'Respuesta en 24 horas' : 'Response within 24 hours',
     },
     {
       icon: FaWhatsapp,
       label: t.contact.methods.whatsapp.label,
-      action: t.contact.methods.whatsapp.action,
+      value: "+34 628 434 434",
       href: "https://wa.me/34628434434",
+      description: currentLocale === 'es' ? 'Respuesta inmediata' : 'Immediate response',
     },
   ];
 
@@ -43,12 +50,14 @@ const Contact = () => {
       label: "GitHub",
       href: "https://github.com/santimartelli",
       username: "@santimartelli",
+      description: currentLocale === 'es' ? 'Código abierto y proyectos' : 'Open source and projects',
     },
     {
       icon: FaLinkedin,
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/santiagomartelli/",
       username: "@santiagomartelli",
+      description: currentLocale === 'es' ? 'Experiencia profesional' : 'Professional experience',
     },
   ];
 
@@ -82,205 +91,212 @@ const Contact = () => {
       id="contact"
       className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
 
-      <div ref={contentRef} className="relative w-full max-w-7xl mx-auto px-8">
-        
-        {/* Rothelowman-inspired Minimal Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={contentInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="mb-24">
+      <div ref={contentRef} className="w-full">
+        {/* Full-width container to match other sections */}
+        <div className="w-full max-w-7xl mx-auto px-6 sm:px-8">
           
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-tight mb-16">
-            {t.title}
-          </h2>
-          
-          <p className="text-2xl md:text-3xl lg:text-4xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl font-light">
-            {t.description.line1}<br />
-            <span className="text-gray-900 dark:text-white font-normal">{t.description.line2}</span> {t.description.line2_highlight}
-          </p>
-        </motion.div>
+          {/* Header with e-ink aesthetic */}
+          <div ref={headerRef} className="text-center mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl sm:text-5xl md:text-6xl font-light text-black dark:text-white leading-tight mb-8 tracking-tight">
+              {currentLocale === 'es' ? 'Hablemos' : 'Let\'s Connect'}
+            </motion.h2>
 
-        {/* Minimal Contact Layout */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-24">
-          
-          {/* Contact Methods */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={contentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8">
-            
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
-              {t.contact.title}
-            </h3>
+            {/* Professional intro matching other sections */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="max-w-3xl mx-auto">
+              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light tracking-wide">
+                {currentLocale === 'es'
+                  ? 'Siempre abierto a nuevas oportunidades, colaboraciones interesantes y proyectos que desafíen mis habilidades técnicas. ¿Tienes algo en mente?'
+                  : 'Always open to new opportunities, interesting collaborations and projects that challenge my technical skills. Have something in mind?'
+                }
+              </p>
+            </motion.div>
+          </div>
 
-            <div className="space-y-6">
-              {contactMethods.map((method, index) => (
-                <motion.a
-                  key={method.label}
-                  href={method.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.4 + index * 0.1 }}
-                  className="flex items-center gap-4 text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300 group">
-                  
-                  <method.icon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                  
-                  <div>
-                    <div className="text-lg font-medium mb-1">
-                      {method.label}
-                    </div>
-                    <div className="text-base text-gray-600 dark:text-gray-400">
-                      {method.action}
-                    </div>
-                  </div>
-                </motion.a>
-              ))}
+          {/* Contact methods - Simplified single row */}
+          <div ref={contactMethodsRef} className="mb-20">
+            <div className="flex items-center gap-3 mb-12 justify-center">
+              <div className="w-2 h-2 bg-blue-400 dark:bg-blue-500 rounded-full"></div>
+              <h3 className="text-2xl font-light text-black dark:text-white tracking-wide">
+                {currentLocale === 'es' ? 'Formas de Contacto' : 'Get in Touch'}
+              </h3>
             </div>
 
-            {/* Location */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={contentInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="pt-4 border-t border-gray-200 dark:border-gray-800">
-              <div className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                {currentLocale === 'es' ? 'Ubicación' : 'Location'}
-              </div>
-              <div className="text-base text-gray-600 dark:text-gray-400">
-                {currentLocale === 'es' ? 'España (Remoto Disponible)' : 'Spain (Remote Available)'}
-              </div>
-            </motion.div>
-          </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+              {/* Email */}
+              <motion.a
+                href="mailto:santimartelli@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isContactMethodsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
+                
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 border border-gray-200 dark:border-gray-600 group-hover:border-gray-400 dark:group-hover:border-gray-500 transition-colors duration-300">
+                    <FaEnvelope className="w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors duration-300" />
+                  </div>
+                </div>
+                
+                <h4 className="text-lg font-light text-black dark:text-white mb-2">Email</h4>
+                <p className="text-sm text-gray-500 dark:text-gray-500 font-light mb-3">
+                  {currentLocale === 'es' ? 'Respuesta en 24h' : 'Reply within 24h'}
+                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 font-mono">santimartelli@gmail.com</p>
+              </motion.a>
 
-          {/* Professional Networks */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={contentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-8">
+              {/* WhatsApp */}
+              <motion.a
+                href="https://wa.me/34628434434"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isContactMethodsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
+                
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 border border-gray-200 dark:border-gray-600 group-hover:border-gray-400 dark:group-hover:border-gray-500 transition-colors duration-300">
+                    <FaWhatsapp className="w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors duration-300" />
+                  </div>
+                </div>
+                
+                <h4 className="text-lg font-light text-black dark:text-white mb-2">WhatsApp</h4>
+                <p className="text-sm text-gray-500 dark:text-gray-500 font-light mb-3">
+                  {currentLocale === 'es' ? 'Respuesta inmediata' : 'Instant reply'}
+                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 font-mono">+34 628 434 434</p>
+              </motion.a>
+
+              {/* GitHub */}
+              <motion.a
+                href="https://github.com/santimartelli"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isContactMethodsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
+                
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 border border-gray-200 dark:border-gray-600 group-hover:border-gray-400 dark:group-hover:border-gray-500 transition-colors duration-300">
+                    <FaGithub className="w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors duration-300" />
+                  </div>
+                </div>
+                
+                <h4 className="text-lg font-light text-black dark:text-white mb-2">GitHub</h4>
+                <p className="text-sm text-gray-500 dark:text-gray-500 font-light mb-3">
+                  {currentLocale === 'es' ? 'Código y proyectos' : 'Code & projects'}
+                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 font-mono">@santimartelli</p>
+              </motion.a>
+
+              {/* LinkedIn */}
+              <motion.a
+                href="https://www.linkedin.com/in/santiagomartelli/"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isContactMethodsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.9 }}
+                className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
+                
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 border border-gray-200 dark:border-gray-600 group-hover:border-gray-400 dark:group-hover:border-gray-500 transition-colors duration-300">
+                    <FaLinkedin className="w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors duration-300" />
+                  </div>
+                </div>
+                
+                <h4 className="text-lg font-light text-black dark:text-white mb-2">LinkedIn</h4>
+                <p className="text-sm text-gray-500 dark:text-gray-500 font-light mb-3">
+                  {currentLocale === 'es' ? 'Experiencia profesional' : 'Professional profile'}
+                </p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 font-mono">@santiagomartelli</p>
+              </motion.a>
+            </div>
+          </div>
+
+          {/* Professional summary and CV section */}
+          <div ref={additionalInfoRef} className="mt-20">
             
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
-              {t.socialNetworks.title}
-            </h3>
+            <div className="max-w-4xl mx-auto text-center">
+              
+              {/* Professional summary text */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isAdditionalInfoInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 1.1 }}
+                className="mb-12">
+                
+                <div className="flex items-center justify-center gap-3 mb-8">
+                  <div className="w-2 h-2 bg-green-400 dark:bg-green-500 rounded-full animate-pulse"></div>
+                  <h3 className="text-2xl font-light text-black dark:text-white tracking-wide">
+                    {currentLocale === 'es' ? 'Disponibilidad' : 'Availability'}
+                  </h3>
+                </div>
+                
+                <div className="max-w-2xl mx-auto space-y-4">
+                  <p className="text-lg text-gray-600 dark:text-gray-400 font-light leading-relaxed">
+                    {currentLocale === 'es'
+                      ? 'Actualmente disponible para nuevos proyectos y colaboraciones. Trabajo desde Barcelona, Girona o completamente remoto, adaptándome a las necesidades específicas de cada proyecto.'
+                      : 'Currently available for new projects and collaborations. I work from Barcelona, Girona or completely remote, adapting to the specific needs of each project.'
+                    }
+                  </p>
+                  
+                  <p className="text-base text-gray-500 dark:text-gray-500 font-light">
+                    {currentLocale === 'es'
+                      ? 'Para conocer mi experiencia completa, proyectos destacados y stack técnico detallado, puedes descargar mi curriculum vitae actualizado.'
+                      : 'To learn about my complete experience, featured projects and detailed tech stack, you can download my updated resume.'
+                    }
+                  </p>
+                </div>
+              </motion.div>
 
-            <div className="space-y-6">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
+              {/* CV Download */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isAdditionalInfoInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 1.3 }}
+                className="inline-block">
+                
+                <a
+                  href={currentCV.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-                  className="flex items-center gap-4 text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300 group">
+                  className="group inline-flex items-center gap-4 p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300">
                   
-                  <social.icon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                  <div className="p-3 border border-gray-200 dark:border-gray-600 group-hover:border-gray-400 dark:group-hover:border-gray-500 transition-colors duration-300">
+                    <FaDownload className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors duration-300" />
+                  </div>
                   
-                  <div>
-                    <div className="text-lg font-medium mb-1">
-                      {social.label}
+                  <div className="text-left">
+                    <div className="text-lg font-light text-black dark:text-white mb-1 group-hover:text-black dark:group-hover:text-white">
+                      {currentLocale === 'es' ? 'Curriculum Vitae' : 'Resume'}
                     </div>
-                    <div className="text-base text-gray-600 dark:text-gray-400 font-mono">
-                      {social.username}
+                    <div className="text-sm text-gray-500 dark:text-gray-500 font-light">
+                      {currentCV.language} • {currentCV.size} • {currentCV.lastUpdate}
                     </div>
                   </div>
-                </motion.a>
-              ))}
+                  
+                  <div className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="text-xs text-gray-600 dark:text-gray-400 uppercase tracking-widest font-light">
+                      {currentLocale === 'es' ? 'Descargar' : 'Download'}
+                    </div>
+                  </div>
+                </a>
+              </motion.div>
             </div>
+          </div>
 
-            {/* Why Follow - Simplified */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={contentInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="pt-4 border-t border-gray-200 dark:border-gray-800">
-              
-              <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
-                {t.socialNetworks.whyFollow.title}
-              </h4>
-              
-              <ul className="space-y-2">
-                {t.socialNetworks.whyFollow.reasons.map((reason, index) => (
-                  <li
-                    key={index}
-                    className="text-base text-gray-600 dark:text-gray-400">
-                    • {reason}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </motion.div>
-
-          {/* CV Download - Simplified */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={contentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="space-y-8">
-            
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
-              {t.cv.title}
-            </h3>
-
-            <motion.a
-              href={currentCV.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              animate={contentInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="block text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300">
-              
-              <div className="text-lg font-medium mb-2">
-                {currentCV.language}
-              </div>
-              <div className="text-base text-gray-600 dark:text-gray-400 mb-2">
-                {currentCV.description}
-              </div>
-              <div className="text-sm text-gray-500 dark:text-gray-500">
-                {currentCV.size} • {currentCV.lastUpdate}
-              </div>
-            </motion.a>
-
-            {/* CV Info - Simplified */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={contentInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1.0 }}
-              className="pt-4 border-t border-gray-200 dark:border-gray-800">
-              
-              <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
-                {t.cv.info.title}
-              </h4>
-              
-              <ul className="space-y-2">
-                {t.cv.info.highlights.map((highlight, index) => (
-                  <li
-                    key={index}
-                    className="text-base text-gray-600 dark:text-gray-400">
-                    • {highlight}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </motion.div>
         </div>
-
-        {/* Minimal Availability */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={contentInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="text-center mt-32">
-          <p className="text-xl text-gray-600 dark:text-gray-400 font-light">
-            {t.availability}
-          </p>
-        </motion.div>
       </div>
     </section>
   );

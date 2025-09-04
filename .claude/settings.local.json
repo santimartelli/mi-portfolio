@@ -31,7 +31,20 @@
       "Bash(astro check:*)",
       "Bash(npx astro:*)",
       "Bash(start http://localhost:4321)",
-      "mcp__playwright__browser_evaluate"
+      "mcp__playwright__browser_evaluate",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\layouts/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\pages/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\util/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\util/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\components/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\components/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\content\\es/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\content\\en/**)"
     ],
     "deny": [],
     "ask": []
