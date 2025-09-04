@@ -44,7 +44,8 @@
       "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\components/**)",
       "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\components/**)",
       "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\content\\es/**)",
-      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\content\\en/**)"
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\content\\en/**)",
+      "Read(/C:\\Users\\santi\\Desktop\\Dev\\Proyectos\\mi-portfolio\\src\\components/**)"
     ],
     "deny": [],
     "ask": []
