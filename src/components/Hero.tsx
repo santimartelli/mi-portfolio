@@ -14,7 +14,7 @@ const Hero = () => {
   const { hero: t } = useTranslations();
   const contentRef = useRef(null);
 
-  const contentInView = useInView(contentRef, { once: true, amount: 0.2 });
+  const contentInView = useInView(contentRef, { once: true, amount: 0.05 });
 
   const socialLinks: readonly SocialLink[] = useMemo(
     () => [

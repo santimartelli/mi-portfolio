@@ -12,8 +12,8 @@ const SocialCV = () => {
   const headerRef = useRef(null);
   const cardsRef = useRef(null);
   
-  const headerInView = useInView(headerRef, { once: true, amount: 0.3 });
-  const cardsInView = useInView(cardsRef, { once: true, amount: 0.2 });
+  const headerInView = useInView(headerRef, { once: true, amount: 0.05 });
+  const cardsInView = useInView(cardsRef, { once: true, amount: 0.05 });
 
   const socialLinks = [
     {

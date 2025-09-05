@@ -12,9 +12,9 @@ const Footer = () => {
   const linksRef = useRef(null);
   const bottomRef = useRef(null);
   
-  const isHeaderInView = useInView(headerRef, { once: true, amount: 0.2 });
-  const isLinksInView = useInView(linksRef, { once: true, amount: 0.1 });
-  const isBottomInView = useInView(bottomRef, { once: true, amount: 0.2 });
+  const isHeaderInView = useInView(headerRef, { once: true, amount: 0.05 });
+  const isLinksInView = useInView(linksRef, { once: true, amount: 0.05 });
+  const isBottomInView = useInView(bottomRef, { once: true, amount: 0.05 });
 
   // Helper function for current locale
   const getCurrentLocale = (): string => {

@@ -59,7 +59,7 @@ const Projects = () => {
   const { projects: t } = useTranslations();
 
   const contentRef = useRef(null);
-  const isContentInView = useInView(contentRef, { once: true, amount: 0.1 });
+  const isContentInView = useInView(contentRef, { once: true, amount: 0.05 });
 
   // Helper function for current locale
   const getCurrentLocale = (): string => {

@@ -21,9 +21,9 @@ const Contact = () => {
   const contactMethodsRef = useRef(null);
   const additionalInfoRef = useRef(null);
   
-  const isHeaderInView = useInView(headerRef, { once: true, amount: 0.2 });
-  const isContactMethodsInView = useInView(contactMethodsRef, { once: true, amount: 0.1 });
-  const isAdditionalInfoInView = useInView(additionalInfoRef, { once: true, amount: 0.1 });
+  const isHeaderInView = useInView(headerRef, { once: true, amount: 0.05 });
+  const isContactMethodsInView = useInView(contactMethodsRef, { once: true, amount: 0.05 });
+  const isAdditionalInfoInView = useInView(additionalInfoRef, { once: true, amount: 0.05 });
 
   const currentLocale = getCurrentLocale();
 
