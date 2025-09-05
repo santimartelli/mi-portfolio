@@ -9,7 +9,7 @@
     "technologies": ["React", "TypeScript", "Node.js", "bases de datos SQL/NoSQL"]
   },
   "buttons": {
-    "projects": "Ver Portfolio",
+    "projects": "Ver portfolio",
     "contact": "Colaboremos"
   },
   "scrollIndicator": "Explorar más",

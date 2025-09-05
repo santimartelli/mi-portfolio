@@ -64,7 +64,7 @@ const AboutMeSection = () => {
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-2 h-2 bg-blue-400 dark:bg-blue-500 rounded-full"></div>
                   <h3 className="text-xl font-light text-black dark:text-white tracking-wide">
-                    {currentLocale === 'es' ? 'Mi Trayectoria' : 'My Journey'}
+                    {currentLocale === 'es' ? 'Mi trayectoria' : 'My journey'}
                   </h3>
                 </div>
                 <div className="space-y-6 text-gray-600 dark:text-gray-400 font-light leading-relaxed">
@@ -87,7 +87,7 @@ const AboutMeSection = () => {
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
                   <h3 className="text-xl font-light text-black dark:text-white tracking-wide">
-                    {currentLocale === 'es' ? 'Filosofía de Desarrollo' : 'Development Philosophy'}
+                    {currentLocale === 'es' ? 'Filosofía de desarrollo' : 'Development philosophy'}
                   </h3>
                 </div>
                 <div className="space-y-4 text-gray-600 dark:text-gray-400 font-light leading-relaxed">
@@ -118,7 +118,7 @@ const AboutMeSection = () => {
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-2 h-2 bg-green-400 dark:bg-green-500 rounded-full"></div>
                   <h3 className="text-xl font-light text-black dark:text-white tracking-wide">
-                    {currentLocale === 'es' ? 'Especialización Técnica' : 'Technical Specialization'}
+                    {currentLocale === 'es' ? 'Especialización técnica' : 'Technical specialization'}
                   </h3>
                 </div>
                 <div className="space-y-6">
@@ -181,14 +181,14 @@ const AboutMeSection = () => {
               <div className="flex items-center justify-center gap-3 mb-8">
                 <div className="w-2 h-2 bg-blue-400 dark:bg-blue-500 rounded-full"></div>
                 <h3 className="text-2xl font-light text-black dark:text-white tracking-wide">
-                  {currentLocale === 'es' ? 'Lo que Aporto a los Proyectos' : 'What I Bring to Projects'}
+                  {currentLocale === 'es' ? 'Lo que aporto a los proyectos' : 'What I bring to projects'}
                 </h3>
               </div>
 
               <div className="grid md:grid-cols-3 gap-8 mb-20">
                 <div className="text-center">
                   <h4 className="text-lg font-light text-black dark:text-white mb-3">
-                    {currentLocale === 'es' ? 'Visión Integral' : 'Holistic Vision'}
+                    {currentLocale === 'es' ? 'Visión integral' : 'Holistic vision'}
                   </h4>
                   <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed">
                     {currentLocale === 'es'
@@ -200,7 +200,7 @@ const AboutMeSection = () => {
 
                 <div className="text-center">
                   <h4 className="text-lg font-light text-black dark:text-white mb-3">
-                    {currentLocale === 'es' ? 'Código Limpio' : 'Clean Code'}
+                    {currentLocale === 'es' ? 'Código limpio' : 'Clean code'}
                   </h4>
                   <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed">
                     {currentLocale === 'es'
@@ -212,7 +212,7 @@ const AboutMeSection = () => {
 
                 <div className="text-center">
                   <h4 className="text-lg font-light text-black dark:text-white mb-3">
-                    {currentLocale === 'es' ? 'Aprendizaje Continuo' : 'Continuous Learning'}
+                    {currentLocale === 'es' ? 'Aprendizaje continuo' : 'Continuous learning'}
                   </h4>
                   <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed">
                     {currentLocale === 'es'

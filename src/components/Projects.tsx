@@ -59,11 +59,7 @@ const Projects = () => {
   const { projects: t } = useTranslations();
 
   const contentRef = useRef(null);
-  const headerRef = useRef(null);
-  const projectsRef = useRef(null);
-  
-  const isHeaderInView = useInView(headerRef, { once: true, amount: 0.2 });
-  const isProjectsInView = useInView(projectsRef, { once: true, amount: 0.1 });
+  const isContentInView = useInView(contentRef, { once: true, amount: 0.1 });
 
   // Helper function for current locale
   const getCurrentLocale = (): string => {
@@ -87,20 +83,20 @@ const Projects = () => {
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-8">
           
           {/* Header with e-ink aesthetic */}
-          <div ref={headerRef} className="text-center mb-20">
+          <div className="text-center mb-20">
             <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={isContentInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1.2, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="text-4xl sm:text-5xl md:text-6xl font-light text-black dark:text-white leading-tight mb-8 tracking-tight">
               {t.title}
             </motion.h2>
 
             {/* Professional intro matching AboutMe style */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              initial={{ opacity: 0, y: 6 }}
+              animate={isContentInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="max-w-3xl mx-auto">
               <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light tracking-wide">
                 {currentLocale === 'es'
@@ -112,13 +108,13 @@ const Projects = () => {
           </div>
 
           {/* Projects - Card Layout */}
-          <div ref={projectsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isProjectsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 + index * 0.2 }}
+                initial={{ opacity: 0, y: 6 }}
+                animate={isContentInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 1.4, delay: 0.5 + index * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300"
               >
                 {/* Project Image */}
@@ -274,16 +270,16 @@ const Projects = () => {
 
           {/* Final CTA - e-ink style */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isProjectsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={isContentInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.2, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="mt-32 text-center"
           >
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center justify-center gap-3 mb-8">
                 <div className="w-2 h-2 bg-blue-400 dark:bg-blue-500 rounded-full"></div>
                 <h3 className="text-2xl font-light text-black dark:text-white tracking-wide">
-                  {currentLocale === 'es' ? '¿Tienes un Proyecto en Mente?' : 'Have a Project in Mind?'}
+                  {currentLocale === 'es' ? '¿Tienes un proyecto en mente?' : 'Have a project in mind?'}
                 </h3>
               </div>
               

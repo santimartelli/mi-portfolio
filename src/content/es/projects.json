@@ -1,18 +1,18 @@
 {
-  "badge": "Proyectos Destacados",
-  "title": "Mis Proyectos",
+  "badge": "Proyectos destacados",
+  "title": "Mis proyectos",
   "description": {
     "intro": "Cada proyecto es una",
     "highlight": "historia única",
     "continuation": "de innovación, creatividad y soluciones técnicas que transforman ideas en realidades digitales excepcionales."
   },
   "status": {
-    "production": "En Producción",
-    "development": "En Desarrollo"
+    "production": "En producción",
+    "development": "En desarrollo"
   },
-  "featuresLabel": "Características Principales",
+  "featuresLabel": "Características principales",
   "buttons": {
-    "viewProject": "Ver Proyecto",
+    "viewProject": "Ver proyecto",
     "code": "Código"
   },
   "cta": {
@@ -22,8 +22,8 @@
   "projects": {
     "tanyaPortfolio": {
       "title": "Tanya Martelli",
-      "subtitle": "Photography Portfolio",
-      "category": "Web Development",
+      "subtitle": "Photography portfolio",
+      "category": "Web development",
       "body": "Portfolio profesional para la fotógrafa Tanya Martelli con diseño minimalista centrado en la experiencia visual. Incluye galería interactiva con categorías, sistema de reserva de sesiones, panel de administración completo y formulario de contacto personalizado.",
       "features": [
         "Galería interactiva con filtros",
@@ -34,14 +34,14 @@
       ]
     },
     "personalPortfolio": {
-      "title": "Portfolio Personal",
+      "title": "Portfolio personal",
       "subtitle": "Santiago Martelli",
       "category": "Full-Stack",
       "body": "Portfolio personal diseñado con enfoque en rendimiento y experiencia visual fluida. Implementa arquitectura moderna con Astro, React y TypeScript, siguiendo principios SOLID y patrones de diseño modernos para máximo rendimiento.",
       "features": [
-        "Arquitectura Astro Islands",
+        "Arquitectura Astro islands",
         "TypeScript completo",
-        "Animaciones Framer Motion",
+        "Animaciones Framer motion",
         "Tailwind CSS moderno",
         "Optimización extrema"
       ]

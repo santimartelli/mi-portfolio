@@ -1,6 +1,6 @@
 {
   "badge": "Experiencia & Habilidades",
-  "title": "Sobre Mí",
+  "title": "Sobre mí",
   "description": {
     "paragraph1": {
       "intro": "Desarrollador full-stack especializado en crear",
@@ -20,8 +20,8 @@
   "stats": {
     "experience": "Años de Experiencia",
     "commitment": "Compromiso",
-    "projects": "Proyecto Desarrollado",
-    "learning": "Aprendizaje Continuo"
+    "projects": "Proyecto desarrollado",
+    "learning": "Aprendizaje continuo"
   },
   "technologies": {
     "frontend": {
@@ -43,6 +43,6 @@
   },
   "cta": {
     "question": "¿Listo para llevar tu proyecto al siguiente nivel?",
-    "button": "Trabajemos Juntos"
+    "button": "Trabajemos juntos"
   }
 }

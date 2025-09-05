@@ -125,7 +125,7 @@ const Contact = () => {
             <div className="flex items-center gap-3 mb-12 justify-center">
               <div className="w-2 h-2 bg-blue-400 dark:bg-blue-500 rounded-full"></div>
               <h3 className="text-2xl font-light text-black dark:text-white tracking-wide">
-                {currentLocale === 'es' ? 'Formas de Contacto' : 'Get in Touch'}
+                {currentLocale === 'es' ? 'Formas de contacto' : 'Get in touch'}
               </h3>
             </div>
 
@@ -135,9 +135,9 @@ const Contact = () => {
                 href="mailto:santimartelli@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={isContactMethodsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                transition={{ duration: 0.7, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
                 
                 <div className="flex justify-center mb-4">
@@ -158,9 +158,9 @@ const Contact = () => {
                 href="https://wa.me/34628434434"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={isContactMethodsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.7 }}
+                transition={{ duration: 0.7, delay: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
                 
                 <div className="flex justify-center mb-4">
@@ -181,9 +181,9 @@ const Contact = () => {
                 href="https://github.com/santimartelli"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={isContactMethodsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                transition={{ duration: 0.7, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
                 
                 <div className="flex justify-center mb-4">
@@ -204,9 +204,9 @@ const Contact = () => {
                 href="https://www.linkedin.com/in/santiagomartelli/"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={isContactMethodsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.9 }}
+                transition={{ duration: 0.7, delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
                 
                 <div className="flex justify-center mb-4">
@@ -231,9 +231,9 @@ const Contact = () => {
               
               {/* Professional summary text */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={isAdditionalInfoInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 1.1 }}
+                transition={{ duration: 0.7, delay: 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="mb-12">
                 
                 <div className="flex items-center justify-center gap-3 mb-8">
@@ -262,9 +262,9 @@ const Contact = () => {
 
               {/* CV Download */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={isAdditionalInfoInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 1.3 }}
+                transition={{ duration: 0.7, delay: 1.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="inline-block">
                 
                 <a

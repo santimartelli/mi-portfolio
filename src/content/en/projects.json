@@ -1,6 +1,6 @@
 {
   "badge": "Featured Projects",
-  "title": "My Projects",
+  "title": "My projects",
   "description": {
     "intro": "Each project is a",
     "highlight": "unique story",
@@ -34,7 +34,7 @@
       ]
     },
     "personalPortfolio": {
-      "title": "Personal Portfolio",
+      "title": "Personal portfolio",
       "subtitle": "Santiago Martelli",
       "category": "Full-Stack",
       "body": "Personal portfolio designed with focus on performance and smooth visual experience. Implements modern architecture with Astro, React and TypeScript, following SOLID principles and modern design patterns for maximum performance.",
