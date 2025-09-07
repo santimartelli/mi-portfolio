@@ -85,18 +85,20 @@ const Projects = () => {
           {/* Header with e-ink aesthetic */}
           <div className="text-center mb-20">
             <motion.h2
-              initial={{ opacity: 0, y: 8 }}
-              animate={isContentInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1.2, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              initial={{ opacity: 0, transform: "translateY(30px)" }}
+              animate={isContentInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+              style={{ willChange: 'transform, opacity' }}
               className="text-4xl sm:text-5xl md:text-6xl font-light text-black dark:text-white leading-tight mb-8 tracking-tight">
               {t.title}
             </motion.h2>
 
             {/* Professional intro matching AboutMe style */}
             <motion.div
-              initial={{ opacity: 0, y: 6 }}
-              animate={isContentInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              initial={{ opacity: 0, transform: "translateY(30px)" }}
+              animate={isContentInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              style={{ willChange: 'transform, opacity' }}
               className="max-w-3xl mx-auto">
               <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light tracking-wide">
                 {currentLocale === 'es'
@@ -112,9 +114,10 @@ const Projects = () => {
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 6 }}
-                animate={isContentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 1.4, delay: 0.5 + index * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
+                initial={{ opacity: 0, transform: "translateY(40px)" }}
+                animate={isContentInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
+                transition={{ duration: 0.8, delay: 0.6 + index * 0.15, ease: [0.4, 0, 0.2, 1] }}
+                style={{ willChange: 'transform, opacity' }}
                 className="border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300"
               >
                 {/* Project Image */}
@@ -270,9 +273,10 @@ const Projects = () => {
 
           {/* Final CTA - e-ink style */}
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={isContentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1.2, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            initial={{ opacity: 0, transform: "translateY(30px)" }}
+            animate={isContentInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
+            transition={{ duration: 0.8, delay: 1.0, ease: [0.4, 0, 0.2, 1] }}
+            style={{ willChange: 'transform, opacity' }}
             className="mt-32 text-center"
           >
             <div className="max-w-3xl mx-auto">

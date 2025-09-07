@@ -98,18 +98,20 @@ const Contact = () => {
           {/* Header with e-ink aesthetic */}
           <div ref={headerRef} className="text-center mb-20">
             <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ opacity: 0, transform: "translateY(30px)" }}
+              animate={isHeaderInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+              style={{ willChange: 'transform, opacity' }}
               className="text-4xl sm:text-5xl md:text-6xl font-light text-black dark:text-white leading-tight mb-8 tracking-tight">
               {currentLocale === 'es' ? 'Hablemos' : 'Let\'s Connect'}
             </motion.h2>
 
             {/* Professional intro matching other sections */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              initial={{ opacity: 0, transform: "translateY(30px)" }}
+              animate={isHeaderInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              style={{ willChange: 'transform, opacity' }}
               className="max-w-3xl mx-auto">
               <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light tracking-wide">
                 {currentLocale === 'es'
@@ -135,9 +137,10 @@ const Contact = () => {
                 href="mailto:santimartelli@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 15 }}
-                animate={isContactMethodsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                initial={{ opacity: 0, transform: "translateY(30px)" }}
+                animate={isContactMethodsInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
+                transition={{ duration: 0.8, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                style={{ willChange: 'transform, opacity' }}
                 className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
                 
                 <div className="flex justify-center mb-4">
@@ -158,9 +161,10 @@ const Contact = () => {
                 href="https://wa.me/34628434434"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 15 }}
-                animate={isContactMethodsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+                initial={{ opacity: 0, transform: "translateY(30px)" }}
+                animate={isContactMethodsInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
+                transition={{ duration: 0.8, delay: 0.7, ease: [0.4, 0, 0.2, 1] }}
+                style={{ willChange: 'transform, opacity' }}
                 className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
                 
                 <div className="flex justify-center mb-4">
@@ -181,9 +185,10 @@ const Contact = () => {
                 href="https://github.com/santimartelli"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 15 }}
-                animate={isContactMethodsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                initial={{ opacity: 0, transform: "translateY(30px)" }}
+                animate={isContactMethodsInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
+                transition={{ duration: 0.8, delay: 0.8, ease: [0.4, 0, 0.2, 1] }}
+                style={{ willChange: 'transform, opacity' }}
                 className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
                 
                 <div className="flex justify-center mb-4">
@@ -204,9 +209,10 @@ const Contact = () => {
                 href="https://www.linkedin.com/in/santiagomartelli/"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 15 }}
-                animate={isContactMethodsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+                initial={{ opacity: 0, transform: "translateY(30px)" }}
+                animate={isContactMethodsInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
+                transition={{ duration: 0.8, delay: 0.9, ease: [0.4, 0, 0.2, 1] }}
+                style={{ willChange: 'transform, opacity' }}
                 className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
                 
                 <div className="flex justify-center mb-4">
@@ -231,9 +237,10 @@ const Contact = () => {
               
               {/* Professional summary text */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isAdditionalInfoInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                initial={{ opacity: 0, transform: "translateY(30px)" }}
+                animate={isAdditionalInfoInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
+                transition={{ duration: 0.8, delay: 1.1, ease: [0.4, 0, 0.2, 1] }}
+                style={{ willChange: 'transform, opacity' }}
                 className="mb-12">
                 
                 <div className="flex items-center justify-center gap-3 mb-8">
@@ -262,9 +269,10 @@ const Contact = () => {
 
               {/* CV Download */}
               <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={isAdditionalInfoInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 1.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                initial={{ opacity: 0, transform: "translateY(30px)" }}
+                animate={isAdditionalInfoInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
+                transition={{ duration: 0.8, delay: 1.3, ease: [0.4, 0, 0.2, 1] }}
+                style={{ willChange: 'transform, opacity' }}
                 className="inline-block">
                 
                 <a
