@@ -125,6 +125,13 @@ export default function Navbar() {
 
   const isActive = (section: string) => activeSection === section;
 
+  // Ensure language dropdown closes when burger menu opens
+  useEffect(() => {
+    if (toggled) {
+      setIsLanguageOpen(false);
+    }
+  }, [toggled]);
+
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -166,7 +173,10 @@ export default function Navbar() {
           <motion.div variants={itemMotion}>
             <LanguageSelector
               isOpen={isLanguageOpen}
-              onToggle={() => setIsLanguageOpen((prev) => !prev)}
+              onToggle={() => {
+                setToggled(false);
+                setIsLanguageOpen((prev) => !prev);
+              }}
               onClose={() => setIsLanguageOpen(false)}
             />
           </motion.div>
