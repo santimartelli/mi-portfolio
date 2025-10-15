@@ -109,7 +109,7 @@ export interface ProjectsTranslations {
       body: string;
       features: string[];
     };
-    personalPortfolio: {
+    acerkoFreelance: {
       title: string;
       subtitle: string;
       category: string;
