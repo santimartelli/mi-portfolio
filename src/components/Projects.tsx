@@ -20,38 +20,37 @@ const getProjects = (t: any, currentLocale: string) => [
     year: "2024",
     gradient: "from-purple-500 to-pink-600",
     challenges: currentLocale === 'es' 
-      ? "Diseñar una experiencia visual que destacara el trabajo fotográfico sin distraer del contenido principal."
+      ? "Diseñé una experiencia visual que destacara el trabajo fotográfico sin distraer del contenido principal."
       : "Design a visual experience that highlighted the photographic work without distracting from the main content.",
     impact: currentLocale === 'es'
-      ? "Incremento del 40% en consultas de clientes y mejora significativa en la percepción profesional."
-      : "40% increase in client inquiries and significant improvement in professional perception.",
+      ? "El rediseño refuerza su posicionamiento profesional y facilita el contacto de clientes mediante una navegación estratégica y llamadas a la acción claras."
+      : "The redesign strengthens her professional positioning and streamlines client outreach through strategic navigation and clear calls to action.",
     learnings: currentLocale === 'es'
       ? "Profundización en optimización de imágenes y desarrollo de sistemas de gestión de contenido personalizados."
       : "Deep dive into image optimization and development of custom content management systems.",
   },
   {
     id: 2,
-    image: "/smportfolio.webp",
-    title: t.projects.personalPortfolio.title,
-    subtitle: t.projects.personalPortfolio.subtitle,
-    category: t.projects.personalPortfolio.category,
-    body: t.projects.personalPortfolio.body,
-    features: t.projects.personalPortfolio.features,
-    href: "https://martelli.dev",
-    github: "https://github.com/santimartelli/mi-portfolio.git",
-    technologies: ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    image: "/acerko.png",
+    title: t.projects.acerkoFreelance.title,
+    subtitle: t.projects.acerkoFreelance.subtitle,
+    category: t.projects.acerkoFreelance.category,
+    body: t.projects.acerkoFreelance.body,
+    features: t.projects.acerkoFreelance.features,
+    href: "https://acerko.com",
+    technologies: ["WordPress", "WPBakery", "JavaScript", "CSS3"],
     status: "production",
-    year: "2024",
-    gradient: "from-blue-500 to-cyan-500",
+    year: "2025",
+    gradient: "from-amber-500 to-orange-500",
     challenges: currentLocale === 'es'
-      ? "Crear un portafolio que fuera tanto técnicamente impresionante como visualmente atractivo para recruiters."
-      : "Create a portfolio that was both technically impressive and visually appealing to recruiters.",
+      ? "Coordiné un rediseño integral manteniendo el sitio activo, migrando plantillas heredadas a componentes reutilizables sin interrumpir el flujo de contacto."
+      : "Led an end-to-end redesign while keeping the site live, migrating legacy templates into reusable components without disrupting the contact funnel.",
     impact: currentLocale === 'es'
-      ? "Conversión directa en oportunidades de empleo y reconocimiento por parte de la comunidad de desarrolladores."
-      : "Direct conversion into job opportunities and recognition from the developer community.",
+      ? "Evolucioné el sitio hacia una experiencia centrada en la conversión, con navegación más clara y una propuesta visual consistente con los servicios ofrecidos."
+      : "Reframed the site into a conversion-focused experience with clearer navigation and a visual language aligned to the offered services.",
     learnings: currentLocale === 'es'
-      ? "Dominio avanzado de Astro islands, optimización de performance y arquitecturas de componentes escalables."
-      : "Advanced mastery of Astro islands, performance optimization and scalable component architectures.",
+      ? "Refuerzo de flujos de trabajo con clientes freelance y mejores prácticas al extender WordPress mediante WPBakery y JavaScript vanilla."
+      : "Strengthened freelance client workflows and best practices for extending WordPress with WPBakery and vanilla JavaScript.",
   },
 ];
 
@@ -143,19 +142,21 @@ const Projects = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 bg-gray-50/95 dark:bg-gray-800/95 backdrop-blur-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
-                      aria-label="View project"
+                      aria-label={currentLocale === 'es' ? 'Abrir sitio en vivo' : 'Open live site'}
                     >
                       <HiExternalLink className="w-4 h-4" />
                     </a>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-gray-50/95 dark:bg-gray-800/95 backdrop-blur-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
-                      aria-label="View source code"
-                    >
-                      <FaGithub className="w-4 h-4" />
-                    </a>
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-gray-50/95 dark:bg-gray-800/95 backdrop-blur-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                        aria-label={currentLocale === 'es' ? 'Ver repositorio' : 'View source code'}
+                      >
+                        <FaGithub className="w-4 h-4" />
+                      </a>
+                    )}
                   </div>
                 </div>
 
@@ -247,24 +248,28 @@ const Projects = () => {
 
                   {/* Action Links - e-ink style */}
                   <div className="flex gap-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-light text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-300 uppercase tracking-widest flex items-center gap-2"
-                    >
-                      <HiExternalLink className="w-3 h-3" />
-                      {t.buttons.viewProject}
-                    </a>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-light text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-300 uppercase tracking-widest flex items-center gap-2"
-                    >
-                      <FaGithub className="w-3 h-3" />
-                      {t.buttons.code}
-                    </a>
+                    {project.href && (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-light text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-300 uppercase tracking-widest flex items-center gap-2"
+                      >
+                        <HiExternalLink className="w-3 h-3" />
+                        {t.buttons.viewProject}
+                      </a>
+                    )}
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-light text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-300 uppercase tracking-widest flex items-center gap-2"
+                      >
+                        <FaGithub className="w-3 h-3" />
+                        {t.buttons.code}
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.div>

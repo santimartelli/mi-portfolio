@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export type Theme = 'light' | 'dark';
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>('light');
 
   // Función para aplicar el tema al documento
   const applyTheme = (newTheme: Theme) => {
@@ -36,7 +36,7 @@ export function useTheme() {
 
     // Obtener tema guardado o usar 'dark' por defecto
     const savedTheme = localStorage.getItem('theme') as Theme | null;
-    const initialTheme = (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : 'dark';
+    const initialTheme = (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : 'light';
     
     setTheme(initialTheme);
     applyTheme(initialTheme);

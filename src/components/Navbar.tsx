@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { useActiveSection } from "../util/useActiveSection";
 import { useTranslations } from "../util/i18n";
 import Logo from "./Logo";
-import Settings from "./Settings";
+import ThemeToggleButton from "./ThemeToggleButton";
+import LanguageSelector from "./LanguageSelector";
 
 const navMotion = {
   visible: {
@@ -92,6 +93,7 @@ const menuItemVariants = {
 export default function Navbar() {
   const [toggled, setToggled] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const activeSection = useActiveSection();
   const { navbar: t } = useTranslations();
   
@@ -112,16 +114,6 @@ export default function Navbar() {
   ];
 
   // Function to close all dropdowns
-  const closeAllDropdowns = () => {
-    setToggled(false);
-    // Access Settings state through a ref
-    const settingsElement = document.querySelector("[data-settings]");
-    if (settingsElement) {
-      // @ts-ignore - we know these properties exist
-      settingsElement.setIsSettingsOpen?.(false);
-    }
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -137,8 +129,13 @@ export default function Navbar() {
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (!target.closest(".mobile-menu") && !target.closest(".menu-button")) {
+      if (
+        !target.closest(".mobile-menu") &&
+        !target.closest(".menu-button") &&
+        !target.closest(".language-selector")
+      ) {
         setToggled(false);
+        setIsLanguageOpen(false);
       }
     };
 
@@ -164,52 +161,56 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2">
           <motion.div variants={itemMotion}>
-            <Settings />
+            <ThemeToggleButton />
+          </motion.div>
+          <motion.div variants={itemMotion}>
+            <LanguageSelector
+              isOpen={isLanguageOpen}
+              onToggle={() => setIsLanguageOpen((prev) => !prev)}
+              onClose={() => setIsLanguageOpen(false)}
+            />
           </motion.div>
           <div className="relative">
             <motion.button
+              variants={itemMotion}
               onClick={() => {
-                if (!toggled) {
-                  closeAllDropdowns();
-                }
-                setToggled(!toggled);
+                setIsLanguageOpen(false);
+                setToggled((prev) => !prev);
               }}
-              className="relative z-50 flex flex-col justify-center items-center w-14 h-14 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none menu-button"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}>
-              <motion.span
-                animate={{
-                  rotate: toggled ? 45 : 0,
-                  y: toggled ? 6 : 0,
-                }}
-                transition={{
-                  duration: 0.2,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-                className="block h-0.5 w-6 bg-current"
-              />
-              <motion.span
-                animate={{
-                  opacity: toggled ? 0 : 1,
-                  x: toggled ? 20 : 0,
-                }}
-                transition={{
-                  duration: 0.2,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-                className="block h-0.5 w-6 bg-current my-1"
-              />
-              <motion.span
-                animate={{
-                  rotate: toggled ? -45 : 0,
-                  y: toggled ? -6 : 0,
-                }}
-                transition={{
-                  duration: 0.2,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-                className="block h-0.5 w-6 bg-current"
-              />
+              className="relative z-50 flex flex-col justify-center items-center w-14 h-14 text-black dark:text-white focus:outline-none menu-button">
+                <motion.span
+                  animate={{
+                    rotate: toggled ? 45 : 0,
+                    y: toggled ? 6 : 0,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                  className="block h-0.5 w-6 bg-current"
+                />
+                <motion.span
+                  animate={{
+                    opacity: toggled ? 0 : 1,
+                    x: toggled ? 20 : 0,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                  className="block h-0.5 w-6 bg-current my-1"
+                />
+                <motion.span
+                  animate={{
+                    rotate: toggled ? -45 : 0,
+                    y: toggled ? -6 : 0,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                  className="block h-0.5 w-6 bg-current"
+                />
             </motion.button>
 
             <AnimatePresence>

@@ -12,7 +12,7 @@
   },
   "featuresLabel": "Key Features",
   "buttons": {
-    "viewProject": "View Project",
+    "viewProject": "Live web",
     "code": "Code"
   },
   "cta": {
@@ -33,17 +33,16 @@
         "Responsive design"
       ]
     },
-    "personalPortfolio": {
-      "title": "Personal portfolio",
-      "subtitle": "Santiago Martelli",
-      "category": "Full-Stack",
-      "body": "Personal portfolio designed with focus on performance and smooth visual experience. Implements modern architecture with Astro, React and TypeScript, following SOLID principles and modern design patterns for maximum performance.",
+    "acerkoFreelance": {
+      "title": "Acerko.com",
+      "subtitle": "WordPress Developer (Freelance)",
+      "category": "WordPress · Freelance",
+      "body": "Full redesign of Acerko.com's corporate site to improve navigation clarity and visual consistency, delivering reusable components and brand-aligned microinteractions.",
       "features": [
-        "Astro Islands architecture",
-        "Complete TypeScript",
-        "Framer Motion animations",
-        "Modern Tailwind CSS",
-        "Extreme optimization"
+        "Complete WordPress redesign with WPBakery",
+        "Custom microinteractions and components",
+        "Performance and caching optimization",
+        "Cross-browser and accessibility testing"
       ]
     }
   }

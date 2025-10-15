@@ -4,6 +4,7 @@ import { useInView } from "framer-motion";
 import { FaGithub, FaLinkedin, FaFilePdf, FaFileAlt, FaEnvelope } from "react-icons/fa";
 import { HiSparkles, HiDownload, HiExternalLink, HiShare } from "react-icons/hi";
 import { BiNetworkChart } from "react-icons/bi";
+import { getOrderedCvMetadata, type CvLocale } from "../util/cvMetadata";
 
 const SocialCV = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -14,6 +15,27 @@ const SocialCV = () => {
   
   const headerInView = useInView(headerRef, { once: true, amount: 0.05 });
   const cardsInView = useInView(cardsRef, { once: true, amount: 0.05 });
+
+  const getCurrentLocale = (): CvLocale => {
+    if (typeof window !== 'undefined') {
+      const pathname = window.location.pathname;
+      if (pathname.startsWith('/en')) return 'en';
+    }
+    return 'es';
+  };
+
+  const handleCvDownload = (path: string, downloadName: string) => {
+    if (typeof document === 'undefined') return;
+    const link = document.createElement('a');
+    link.href = path;
+    link.download = downloadName;
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const currentLocale = getCurrentLocale();
 
   const socialLinks = [
     {
@@ -48,26 +70,29 @@ const SocialCV = () => {
     },
   ];
 
-  const cvOptions = [
-    {
-      id: 'cv-es',
-      language: 'Español',
+  const languageMap: Record<CvLocale, { label: string; description: string }> = {
+    es: {
+      label: 'Español',
       description: 'Curriculum Vitae completo',
-      href: '/cv-es.pdf',
-      available: true,
-      size: '2.3 MB',
-      lastUpdate: 'Dic 2024',
     },
-    {
-      id: 'cv-en',
-      language: 'English',
+    en: {
+      label: 'English',
       description: 'Complete Resume',
-      href: '/cv-en.pdf',
-      available: false,
-      size: 'Próximamente',
-      lastUpdate: 'Coming Soon',
     },
-  ];
+  };
+
+  const cvOptions = getOrderedCvMetadata(currentLocale).map((meta) => {
+    return {
+      id: `cv-${meta.locale}`,
+      language: languageMap[meta.locale].label,
+      description: languageMap[meta.locale].description,
+      href: meta.href,
+      downloadName: meta.downloadName,
+      size: meta.size,
+      lastUpdate: meta.lastUpdate,
+      available: true,
+    };
+  });
 
   return (
     <section
@@ -246,11 +271,10 @@ const SocialCV = () => {
                   }`}
                 >
                   {cv.available ? (
-                    <motion.a
-                      href={cv.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 group"
+                    <motion.button
+                      type="button"
+                      onClick={() => handleCvDownload(cv.href, cv.downloadName)}
+                      className="flex items-center gap-4 group text-left w-full"
                       whileHover={{ x: 5 }}
                     >
                       <FaFilePdf className="w-6 h-6 text-red-400" />
@@ -265,7 +289,7 @@ const SocialCV = () => {
                         <div className="text-xs text-accent font-medium">{cv.size}</div>
                         <div className="text-xs text-text-muted">{cv.lastUpdate}</div>
                       </div>
-                    </motion.a>
+                    </motion.button>
                   ) : (
                     <div className="flex items-center gap-4">
                       <FaFileAlt className="w-6 h-6 text-text-muted" />

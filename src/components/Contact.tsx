@@ -3,9 +3,10 @@ import { useRef, memo } from "react";
 import { useInView } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaDownload, FaMapMarkerAlt } from "react-icons/fa";
 import { useTranslations } from "../util/i18n";
+import { getCvMetadata, type CvLocale } from "../util/cvMetadata";
 
 // Helper function to determine current locale from URL or context
-const getCurrentLocale = (): string => {
+const getCurrentLocale = (): CvLocale => {
   if (typeof window !== 'undefined') {
     const pathname = window.location.pathname;
     if (pathname.startsWith('/en')) return 'en';
@@ -63,22 +64,25 @@ const Contact = () => {
 
   // Determine which CV to show based on current language
   const getCurrentCV = () => {
+    const meta = getCvMetadata(currentLocale);
     if (currentLocale === 'en') {
       return {
         language: t.cv.english.language,
         description: t.cv.english.description,
-        href: '/cv-en.pdf',
-        size: t.cv.english.size,
-        lastUpdate: t.cv.english.lastUpdate,
+        href: meta.href,
+        downloadName: meta.downloadName,
+        size: meta.size,
+        lastUpdate: meta.lastUpdate,
         available: true
       };
     } else {
       return {
         language: t.cv.spanish.language,
         description: t.cv.spanish.description,
-        href: '/cv-es.pdf',
-        size: t.cv.spanish.size,
-        lastUpdate: t.cv.spanish.lastUpdate,
+        href: meta.href,
+        downloadName: meta.downloadName,
+        size: meta.size,
+        lastUpdate: meta.lastUpdate,
         available: true
       };
     }
@@ -277,8 +281,7 @@ const Contact = () => {
                 
                 <a
                   href={currentCV.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  download={currentCV.downloadName}
                   className="group inline-flex items-center gap-4 p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300">
                   
                   <div className="p-3 border border-gray-200 dark:border-gray-600 group-hover:border-gray-400 dark:group-hover:border-gray-500 transition-colors duration-300">
