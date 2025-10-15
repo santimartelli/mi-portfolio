@@ -30,4 +30,10 @@ pnpm-debug.log*
 
 .playwright-mcp/
 
+# IA files
+.claude/
+CLAUDE.md
+src/agents/
+
+
 
