@@ -1,3 +1,4 @@
+// Importación de bibliotecas de animación, hooks y componentes
 import { motion } from "framer-motion";
 import { useRef, memo } from "react";
 import { useInView } from "framer-motion";
@@ -5,7 +6,10 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaDownload, FaMapMarkerAl
 import { useTranslations } from "../util/i18n";
 import { getCvMetadata, type CvLocale } from "../util/cvMetadata";
 
-// Helper function to determine current locale from URL or context
+/**
+ * Función auxiliar que determina el idioma actual basado en la URL
+ * @returns 'en' si la ruta comienza con /en, caso contrario 'es' (español por defecto)
+ */
 const getCurrentLocale = (): CvLocale => {
   if (typeof window !== 'undefined') {
     const pathname = window.location.pathname;
@@ -14,20 +18,30 @@ const getCurrentLocale = (): CvLocale => {
   return 'es';
 };
 
+/**
+ * Componente Contact - Sección de contacto del portfolio
+ * Muestra métodos de contacto (email, WhatsApp), redes sociales (GitHub, LinkedIn),
+ * información de disponibilidad y enlace de descarga del CV
+ */
 const Contact = () => {
+  // Obtiene las traducciones de la sección "contact"
   const { contact: t } = useTranslations();
-  
+
+  // Referencias para detectar cuando cada sección entra en el viewport
   const contentRef = useRef(null);
   const headerRef = useRef(null);
   const contactMethodsRef = useRef(null);
   const additionalInfoRef = useRef(null);
-  
+
+  // Hooks para detectar visibilidad de cada sección (activa animaciones)
   const isHeaderInView = useInView(headerRef, { once: true, amount: 0.05 });
   const isContactMethodsInView = useInView(contactMethodsRef, { once: true, amount: 0.05 });
   const isAdditionalInfoInView = useInView(additionalInfoRef, { once: true, amount: 0.05 });
 
+  // Obtiene el idioma actual
   const currentLocale = getCurrentLocale();
 
+  // Array de métodos de contacto directo
   const contactMethods = [
     {
       icon: FaEnvelope,
@@ -45,6 +59,7 @@ const Contact = () => {
     },
   ];
 
+  // Array de enlaces a redes sociales
   const socialLinks = [
     {
       icon: FaGithub,
@@ -62,7 +77,10 @@ const Contact = () => {
     },
   ];
 
-  // Determine which CV to show based on current language
+  /**
+   * Determina qué CV mostrar según el idioma actual
+   * @returns Objeto con información del CV (href, nombre, tamaño, etc.)
+   */
   const getCurrentCV = () => {
     const meta = getCvMetadata(currentLocale);
     if (currentLocale === 'en') {
@@ -91,15 +109,9 @@ const Contact = () => {
   const currentCV = getCurrentCV();
 
   return (
-    <section
-      id="contact"
-      className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
-
+    <section id="contact" className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
       <div ref={contentRef} className="w-full">
-        {/* Full-width container to match other sections */}
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-8">
-          
-          {/* Header with e-ink aesthetic */}
           <div ref={headerRef} className="text-center mb-20">
             <motion.h2
               initial={{ opacity: 0, transform: "translateY(30px)" }}
@@ -109,8 +121,6 @@ const Contact = () => {
               className="text-4xl sm:text-5xl md:text-6xl font-light text-black dark:text-white leading-tight mb-8 tracking-tight">
               {currentLocale === 'es' ? 'Hablemos' : 'Let\'s Connect'}
             </motion.h2>
-
-            {/* Professional intro matching other sections */}
             <motion.div
               initial={{ opacity: 0, transform: "translateY(30px)" }}
               animate={isHeaderInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
@@ -125,8 +135,6 @@ const Contact = () => {
               </p>
             </motion.div>
           </div>
-
-          {/* Contact methods - Simplified single row */}
           <div ref={contactMethodsRef} className="mb-20">
             <div className="flex items-center gap-3 mb-12 justify-center">
               <div className="w-2 h-2 bg-blue-400 dark:bg-blue-500 rounded-full"></div>
@@ -134,9 +142,7 @@ const Contact = () => {
                 {currentLocale === 'es' ? 'Formas de contacto' : 'Get in touch'}
               </h3>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-              {/* Email */}
               <motion.a
                 href="mailto:santimartelli@gmail.com"
                 target="_blank"
@@ -146,7 +152,6 @@ const Contact = () => {
                 transition={{ duration: 0.8, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
                 style={{ willChange: 'transform, opacity' }}
                 className="text-center p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 group">
-                
                 <div className="flex justify-center mb-4">
                   <div className="p-3 border border-gray-200 dark:border-gray-600 group-hover:border-gray-400 dark:group-hover:border-gray-500 transition-colors duration-300">
                     <FaEnvelope className="w-6 h-6 text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors duration-300" />
@@ -159,8 +164,6 @@ const Contact = () => {
                 </p>
                 <p className="text-xs text-gray-600 dark:text-gray-400 font-mono">santimartelli@gmail.com</p>
               </motion.a>
-
-              {/* WhatsApp */}
               <motion.a
                 href="https://wa.me/34628434434"
                 target="_blank"
@@ -183,8 +186,6 @@ const Contact = () => {
                 </p>
                 <p className="text-xs text-gray-600 dark:text-gray-400 font-mono">+34 628 434 434</p>
               </motion.a>
-
-              {/* GitHub */}
               <motion.a
                 href="https://github.com/santimartelli"
                 target="_blank"
@@ -207,8 +208,6 @@ const Contact = () => {
                 </p>
                 <p className="text-xs text-gray-600 dark:text-gray-400 font-mono">@santimartelli</p>
               </motion.a>
-
-              {/* LinkedIn */}
               <motion.a
                 href="https://www.linkedin.com/in/santiagomartelli/"
                 target="_blank"
@@ -233,27 +232,20 @@ const Contact = () => {
               </motion.a>
             </div>
           </div>
-
-          {/* Professional summary and CV section */}
           <div ref={additionalInfoRef} className="mt-20">
-            
             <div className="max-w-4xl mx-auto text-center">
-              
-              {/* Professional summary text */}
               <motion.div
                 initial={{ opacity: 0, transform: "translateY(30px)" }}
                 animate={isAdditionalInfoInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
                 transition={{ duration: 0.8, delay: 1.1, ease: [0.4, 0, 0.2, 1] }}
                 style={{ willChange: 'transform, opacity' }}
                 className="mb-12">
-                
                 <div className="flex items-center justify-center gap-3 mb-8">
                   <div className="w-2 h-2 bg-green-400 dark:bg-green-500 rounded-full animate-pulse"></div>
                   <h3 className="text-2xl font-light text-black dark:text-white tracking-wide">
                     {currentLocale === 'es' ? 'Disponibilidad' : 'Availability'}
                   </h3>
                 </div>
-                
                 <div className="max-w-2xl mx-auto space-y-4">
                   <p className="text-lg text-gray-600 dark:text-gray-400 font-light leading-relaxed">
                     {currentLocale === 'es'
@@ -261,7 +253,6 @@ const Contact = () => {
                       : 'Currently available for new projects and collaborations. I work from Barcelona, Girona or completely remote, adapting to the specific needs of each project.'
                     }
                   </p>
-                  
                   <p className="text-base text-gray-500 dark:text-gray-500 font-light">
                     {currentLocale === 'es'
                       ? 'Para conocer mi experiencia completa, proyectos destacados y stack técnico detallado, puedes descargar mi curriculum vitae actualizado.'
@@ -270,24 +261,19 @@ const Contact = () => {
                   </p>
                 </div>
               </motion.div>
-
-              {/* CV Download */}
               <motion.div
                 initial={{ opacity: 0, transform: "translateY(30px)" }}
                 animate={isAdditionalInfoInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
                 transition={{ duration: 0.8, delay: 1.3, ease: [0.4, 0, 0.2, 1] }}
                 style={{ willChange: 'transform, opacity' }}
                 className="inline-block">
-                
                 <a
                   href={currentCV.href}
                   download={currentCV.downloadName}
                   className="group inline-flex items-center gap-4 p-6 border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300">
-                  
                   <div className="p-3 border border-gray-200 dark:border-gray-600 group-hover:border-gray-400 dark:group-hover:border-gray-500 transition-colors duration-300">
                     <FaDownload className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors duration-300" />
                   </div>
-                  
                   <div className="text-left">
                     <div className="text-lg font-light text-black dark:text-white mb-1 group-hover:text-black dark:group-hover:text-white">
                       {currentLocale === 'es' ? 'Curriculum Vitae' : 'Resume'}
@@ -296,7 +282,6 @@ const Contact = () => {
                       {currentCV.language} • {currentCV.size} • {currentCV.lastUpdate}
                     </div>
                   </div>
-                  
                   <div className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="text-xs text-gray-600 dark:text-gray-400 uppercase tracking-widest font-light">
                       {currentLocale === 'es' ? 'Descargar' : 'Download'}
@@ -306,11 +291,12 @@ const Contact = () => {
               </motion.div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
   );
 };
 
+// Exporta el componente memorizado para optimizar renders
+// memo() previene re-renders innecesarios cuando las props no cambian
 export default memo(Contact);

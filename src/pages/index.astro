@@ -1,4 +1,5 @@
 ---
+// Importaciones: fuente, layout principal, componentes con traducciones y divisor
 import "@fontsource/titillium-web";
 import Layout from "../layouts/Layout.astro";
 import NavbarWithTranslations from "../components/NavbarWithTranslations";
@@ -7,9 +8,9 @@ import AboutMeWithTranslations from "../components/AboutMeWithTranslations";
 import HeroWithTranslations from "../components/HeroWithTranslations";
 import ContactWithTranslations from "../components/ContactWithTranslations";
 import FooterWithTranslations from "../components/FooterWithTranslations";
-import Divider from "../components/Divider.astro";
+import Divider from "../components/Divider";
 
-// Cargar traducciones en español
+// Carga de traducciones en español para todas las secciones
 const heroTranslations = await import("../content/es/hero.json");
 const navbarTranslations = await import("../content/es/navbar.json");
 const aboutmeTranslations = await import("../content/es/aboutme.json");
@@ -17,6 +18,7 @@ const projectsTranslations = await import("../content/es/projects.json");
 const contactTranslations = await import("../content/es/contact.json");
 const footerTranslations = await import("../content/es/footer.json");
 
+// Objeto consolidado de traducciones para pasar a los componentes
 const translations = {
   hero: heroTranslations.default,
   navbar: navbarTranslations.default,
@@ -31,36 +33,30 @@ const translations = {
   title="Santiago Martelli | Programador y Desarrollador Web"
   description="Hola! Soy Santiago Martelli, un programador y desarrollador web con conocimientos de HTML, CSS, JavaScript, Vue.js, PHP, Laravel, SQL y más. Disponible para trabajar!">
   <main>
-    <!-- Navbar -->
     <NavbarWithTranslations translations={translations} client:load />
 
-    <!-- Hero section with translations -->
     <section id="home" class="relative">
       <HeroWithTranslations translations={translations} client:visible />
     </section>
 
-    <Divider />
+    <Divider client:load />
 
-    <!-- About me section -->
     <section id="about" class="relative">
       <AboutMeWithTranslations translations={translations} client:visible />
     </section>
 
-    <Divider />
+    <Divider client:load />
 
-    <!-- Projects section -->
     <section id="projects" class="relative">
       <ProjectsWithTranslations translations={translations} client:visible />
     </section>
 
-    <Divider />
+    <Divider client:load />
 
-    <!-- Contact section -->
     <section id="contact" class="relative">
       <ContactWithTranslations translations={translations} client:visible />
     </section>
 
-    <!-- Footer -->
     <FooterWithTranslations translations={translations} client:visible />
   </main>
 </Layout>

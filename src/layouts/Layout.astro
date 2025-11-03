@@ -1,13 +1,15 @@
 ---
-// Supports weights 100-900
+// Importaciones de fuentes: Inter Variable (pesos 100-900) y Titillium Web
 import "@fontsource-variable/inter";
 import "@fontsource/titillium-web";
 
+// Interfaz que define las props del layout
 interface Props {
   title: string;
   description: string;
 }
 
+// Declaración global de Window para Google Analytics
 declare global {
   interface Window {
     dataLayer: any[];
@@ -20,7 +22,7 @@ const { description, title } = Astro.props;
 <!doctype html>
 <html lang="es">
   <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SEW399N9F"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -36,27 +38,27 @@ const { description, title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    
-    <!-- Scroll Position Restoration Script -->
+
+    <!-- Script de restauración de posición de scroll -->
     <script>
-      // Restore scroll position after language change
+      // Restaura la posición de scroll después del cambio de idioma
       document.addEventListener('DOMContentLoaded', function() {
         const storedPosition = sessionStorage.getItem('scrollPosition');
         if (storedPosition) {
           try {
             const { x, y } = JSON.parse(storedPosition);
-            // Use requestAnimationFrame to ensure the page is fully rendered
+            // Usa requestAnimationFrame para asegurar que la página esté completamente renderizada
             requestAnimationFrame(() => {
               window.scrollTo({
                 left: x,
                 top: y,
-                behavior: 'instant' // Use instant to avoid smooth scrolling animation
+                behavior: 'instant' // Usa 'instant' para evitar animación de scroll suave
               });
             });
-            // Clear the stored position after restoring
+            // Limpia la posición guardada después de restaurarla
             sessionStorage.removeItem('scrollPosition');
           } catch (error) {
-            console.error('Error restoring scroll position:', error);
+            console.error('Error al restaurar posición de scroll:', error);
             sessionStorage.removeItem('scrollPosition');
           }
         }
@@ -167,7 +169,7 @@ const { description, title } = Astro.props;
       --shadow-primary: rgba(37, 99, 235, 0.1);
     }
 
-    /* Reset CSS */
+    /* Reset de CSS base */
     *, *::before, *::after {
       margin: 0;
       padding: 0;

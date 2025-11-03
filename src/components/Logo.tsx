@@ -1,7 +1,13 @@
+// Importaciones necesarias: Framer Motion para animaciones, contexto de tema y estilos del logo
 import { motion } from "framer-motion";
 import { useThemeContext } from "../util/ThemeContext";
 import "../styles/logo.css";
 
+/**
+ * Componente Logo - Muestra el logo y nombre del portfolio
+ * Contiene las iniciales "SM" en un cuadro y el nombre completo con título profesional
+ * Se adapta al tema actual (dark/light) y oculta el texto en dispositivos móviles
+ */
 const Logo = () => {
   const { theme } = useThemeContext();
 
@@ -32,4 +38,5 @@ const Logo = () => {
   );
 };
 
+// Exporta el componente para ser usado en el Navbar
 export default Logo;

@@ -1,3 +1,5 @@
+// Importaciones necesarias: Framer Motion para animaciones, hooks de React,
+// hooks personalizados, componentes del navbar y utilidades de i18n
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useActiveSection } from "../util/useActiveSection";
@@ -6,6 +8,7 @@ import Logo from "./Logo";
 import ThemeToggleButton from "./ThemeToggleButton";
 import LanguageSelector from "./LanguageSelector";
 
+// Variantes de animación para la aparición del navbar
 const navMotion = {
   visible: {
     opacity: 1,
@@ -19,6 +22,7 @@ const navMotion = {
   },
 };
 
+// Variantes de animación para cada item del navbar (fade + desplazamiento)
 const itemMotion = {
   visible: {
     opacity: 1,
@@ -34,7 +38,7 @@ const itemMotion = {
   },
 };
 
-
+// Variantes de animación para el menú desplegable (transición de altura)
 const dropdownVariants = {
   hidden: {
     height: 0,
@@ -67,6 +71,7 @@ const dropdownVariants = {
   },
 };
 
+// Variantes de animación para cada item del menú desplegable
 const menuItemVariants = {
   hidden: {
     opacity: 0,
@@ -90,14 +95,18 @@ const menuItemVariants = {
   },
 };
 
-export default function Navbar() {
+/**
+ * Componente Navbar - Barra de navegación principal del portfolio
+ * Incluye logo, toggle de tema, selector de idioma y menú hamburguesa
+ * Detecta la sección activa, maneja scroll y cierra dropdowns al hacer clic fuera
+ */
+const Navbar = () => {
   const [toggled, setToggled] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const activeSection = useActiveSection();
   const { navbar: t } = useTranslations();
-  
-  // Get current language prefix
+
   const getLanguagePrefix = () => {
     if (typeof window !== 'undefined') {
       return window.location.pathname.startsWith('/en') ? '/en' : '';
@@ -105,7 +114,6 @@ export default function Navbar() {
     return '';
   };
 
-  // Navigation sections with their translated labels
   const navigationSections = [
     { key: 'home', label: t.navigation.home },
     { key: 'about', label: t.navigation.about },
@@ -113,7 +121,7 @@ export default function Navbar() {
     { key: 'contact', label: t.navigation.contact }
   ];
 
-  // Function to close all dropdowns
+  // Detecta el scroll para agregar borde al navbar
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -125,14 +133,14 @@ export default function Navbar() {
 
   const isActive = (section: string) => activeSection === section;
 
-  // Ensure language dropdown closes when burger menu opens
+  // Cierra el selector de idioma cuando se abre el menú hamburguesa
   useEffect(() => {
     if (toggled) {
       setIsLanguageOpen(false);
     }
   }, [toggled]);
 
-  // Close menu when clicking outside
+  // Cierra los menús al hacer clic fuera de ellos
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -267,4 +275,7 @@ export default function Navbar() {
       </div>
     </motion.nav>
   );
-}
+};
+
+// Exporta el componente para ser usado en las páginas de Astro
+export default Navbar;

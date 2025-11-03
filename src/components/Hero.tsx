@@ -1,65 +1,86 @@
-import { motion, useInView } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { useMemo, memo, useRef, useEffect } from "react";
-import { useTranslations } from "../util/i18n";
-import "../styles/ticker.css";
+// Importación de bibliotecas de animación y componentes
+import { motion, useInView } from 'framer-motion';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { useMemo, memo, useRef, useEffect } from 'react';
+import { useTranslations } from '../util/i18n';
+import '../styles/ticker.css';
 
+// Interfaz que define la estructura de un enlace social
 interface SocialLink {
   readonly icon: React.ComponentType<{ className?: string }>;
   readonly href: string;
   readonly label: string;
 }
 
+/**
+ * Componente Hero - Sección principal de presentación del portfolio
+ * Muestra el nombre, descripción profesional, información clave y enlaces sociales
+ * con animaciones sutiles y diseño responsivo inspirado en e-ink
+ */
 const Hero = () => {
+  // Obtiene las traducciones del contexto de internacionalización
   const { hero: t } = useTranslations();
+
+  // Referencia para detectar cuando el contenido entra en el viewport
   const contentRef = useRef(null);
 
+  // Hook que detecta si el contenido está visible (para activar animaciones)
+  // once: true = solo detecta la primera vez, amount: 0.05 = se activa con 5% visible
   const contentInView = useInView(contentRef, { once: true, amount: 0.05 });
 
+  // Array memoizado de enlaces sociales (no cambia entre renders)
   const socialLinks: readonly SocialLink[] = useMemo(
     () => [
       {
         icon: FaGithub,
-        href: "https://github.com/santimartelli",
-        label: "GitHub",
+        href: 'https://github.com/santimartelli',
+        label: 'GitHub',
       },
       {
         icon: FaLinkedin,
-        href: "https://www.linkedin.com/in/santiagomartelli/",
-        label: "LinkedIn",
+        href: 'https://www.linkedin.com/in/santiagomartelli/',
+        label: 'LinkedIn',
       },
     ],
     []
   );
 
-  // Helper function for current locale
+  /**
+   * Función auxiliar que determina el idioma actual basado en la URL
+   * @returns 'en' si la ruta comienza con /en, caso contrario 'es' (español por defecto)
+   */
   const getCurrentLocale = (): string => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       const pathname = window.location.pathname;
-      if (pathname.startsWith("/en")) return "en";
+      if (pathname.startsWith('/en')) return 'en';
     }
-    return "es";
+    return 'es';
   };
 
   const currentLocale = getCurrentLocale();
 
   return (
-    <section id="home" className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
-      {/* Full-width e-ink inspired layout */}
-      <div ref={contentRef} className="w-full flex flex-col justify-center items-center">
-        {/* Main content area - positioned higher */}
+    // Sección principal
+    <section
+      id="home"
+      className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
+      {/* Contenedor principal */}
+      <div
+        ref={contentRef}
+        className="w-full flex flex-col justify-center items-center">
+        {/* Área de contenido */}
         <div className="w-full max-w-4xl mx-auto px-6 sm:px-8 flex items-start justify-center">
           <div className="w-full text-center">
-            {/* Hero Content - Centered with e-ink aesthetic */}
+            {/* Contenedor de elementos */}
             <div className="flex flex-col items-center justify-center space-y-8 sm:space-y-12">
-              {/* Name - clean typography with e-ink feel */}
+              {/* Nombre */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={contentInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-center space-y-2">
                 <h1 className="text-black dark:text-white font-light leading-[0.85] tracking-tight">
-                  {/* Mobile version - stacked */}
+                  {/* Versión móvil */}
                   <div className="block sm:hidden">
                     <motion.div
                       initial={{ opacity: 0, y: -20 }}
@@ -76,8 +97,7 @@ const Hero = () => {
                       {t.lastName}
                     </motion.div>
                   </div>
-                  
-                  {/* Desktop version - same line */}
+                  {/* Versión escritorio */}
                   <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={contentInView ? { opacity: 1, y: 0 } : {}}
@@ -88,95 +108,91 @@ const Hero = () => {
                 </h1>
               </motion.div>
 
-              {/* Professional description - cleaner typography */}
+              {/* Descripción profesional */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={contentInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 1.0 }}
                 className="max-w-lg sm:max-w-xl mx-auto">
                 <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-light tracking-wide">
-                  {currentLocale === "es"
-                    ? "Desarrollador especializado en crear experiencias digitales que combinan diseño intuitivo con arquitecturas sólidas."
-                    : "Developer specialized in creating digital experiences that combine intuitive design with solid architectures."}
+                  {currentLocale === 'es'
+                    ? 'Desarrollador especializado en crear experiencias digitales que combinan diseño intuitivo con arquitecturas sólidas.'
+                    : 'Developer specialized in creating digital experiences that combine intuitive design with solid architectures.'}
                 </p>
               </motion.div>
 
-              {/* Professional info - minimal e-ink cards with mobile 2x2+1 layout */}
+              {/* Tarjetas de información */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={contentInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 1.2 }}
                 className="w-full max-w-2xl sm:max-w-3xl">
-                {/* First row: 2 cards side by side on mobile, 3 cards on desktop */}
+                {/* Primera fila */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-6 mb-3 sm:mb-0">
-                  {/* Specialization Card */}
+                  {/* Tarjeta Especialización */}
                   <div className="group p-4 sm:p-5 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 bg-gray-50/30 dark:bg-gray-800/20">
                     <div className="text-center space-y-2">
                       <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full mx-auto"></div>
                       <p className="text-xs uppercase tracking-widest font-medium text-gray-500 dark:text-gray-500">
-                        {currentLocale === "es" ? "Especialización" : "Specialization"}
+                        {currentLocale === 'es' ? 'Especialización' : 'Specialization'}
                       </p>
                       <p className="text-sm font-light text-gray-700 dark:text-gray-300">Full Stack Developer</p>
                     </div>
                   </div>
-
-                  {/* Main Stack Card */}
+                  {/* Tarjeta Stack Principal */}
                   <div className="group p-4 sm:p-5 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 bg-gray-50/30 dark:bg-gray-800/20">
                     <div className="text-center space-y-2">
                       <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full mx-auto"></div>
                       <p className="text-xs uppercase tracking-widest font-medium text-gray-500 dark:text-gray-500">
-                        {currentLocale === "es" ? "Stack Principal" : "Main Stack"}
+                        {currentLocale === 'es' ? 'Stack Principal' : 'Main Stack'}
                       </p>
                       <p className="text-sm font-light text-gray-700 dark:text-gray-300">React, TypeScript, Node.js</p>
                     </div>
                   </div>
-                  
-                  {/* Availability Card - only visible on desktop */}
+                  {/* Tarjeta Disponibilidad - solo visible en escritorio */}
                   <div className="hidden sm:block group p-4 sm:p-5 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 bg-gray-50/30 dark:bg-gray-800/20">
                     <div className="text-center space-y-2">
                       <div className="w-1 h-1 bg-green-400 rounded-full mx-auto"></div>
                       <p className="text-xs uppercase tracking-widest font-medium text-gray-500 dark:text-gray-500">
-                        {currentLocale === "es" ? "Disponibilidad" : "Availability"}
+                        {currentLocale === 'es' ? 'Disponibilidad' : 'Availability'}
                       </p>
                       <p className="text-sm font-light text-gray-700 dark:text-gray-300">
-                        {currentLocale === "es" ? "Disponible" : "Available"}
+                        {currentLocale === 'es' ? 'Disponible' : 'Available'}
                       </p>
                     </div>
                   </div>
                 </div>
-                
-                {/* Second row: Only for mobile - 1 card full width */}
+                {/* Segunda fila - solo móvil */}
                 <div className="grid grid-cols-1 sm:hidden gap-3">
-                  {/* Availability Card - mobile only */}
+                  {/* Tarjeta Disponibilidad - solo móvil */}
                   <div className="group p-4 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 bg-gray-50/30 dark:bg-gray-800/20">
                     <div className="text-center space-y-2">
                       <div className="w-1 h-1 bg-green-400 rounded-full mx-auto"></div>
                       <p className="text-xs uppercase tracking-widest font-medium text-gray-500 dark:text-gray-500">
-                        {currentLocale === "es" ? "Disponibilidad" : "Availability"}
+                        {currentLocale === 'es' ? 'Disponibilidad' : 'Availability'}
                       </p>
                       <p className="text-sm font-light text-gray-700 dark:text-gray-300">
-                        {currentLocale === "es" ? "Disponible" : "Available"}
+                        {currentLocale === 'es' ? 'Disponible' : 'Available'}
                       </p>
                     </div>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Call to Action - minimal e-ink style */}
+              {/* Llamado a la acción */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={contentInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 1.4 }}
                 className="flex flex-col gap-6 sm:gap-8 items-center justify-center">
-                {/* Simple text link - no underline */}
+                {/* Enlace a proyectos */}
                 <motion.a
                   href="#projects"
                   whileHover={{ y: -1 }}
                   className="text-base sm:text-lg font-light text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-300 uppercase tracking-widest">
-                  {currentLocale === "es" ? "Ver Proyectos" : "View Projects"}
+                  {currentLocale === 'es' ? 'Ver Proyectos' : 'View Projects'}
                 </motion.a>
-
-                {/* Social links - minimalist */}
+                {/* Enlaces sociales */}
                 <div className="flex gap-6 sm:gap-8">
                   {socialLinks.map((social, index) => (
                     <motion.a
@@ -200,26 +216,25 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Subtle scrolling text - e-ink style - HIDDEN FOR NOW */}
+        {/* Ticker de texto - oculto */}
         <div className="hidden absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 w-[80%] sm:w-[70%] h-8 sm:h-10 overflow-hidden z-50">
-          {/* Fade gradients - softer */}
+          {/* Gradientes de desvanecimiento */}
           <div className="absolute left-0 top-0 h-full w-8 sm:w-12 bg-gradient-to-r from-white dark:from-gray-950 to-transparent z-10"></div>
           <div className="absolute right-0 top-0 h-full w-8 sm:w-12 bg-gradient-to-l from-white dark:from-gray-950 to-transparent z-10"></div>
-
-          {/* Ticker content - more minimal */}
+          {/* Contenido del ticker */}
           <div className="relative h-full flex items-center">
             <motion.div
               animate={{ x: [400, -400] }}
               transition={{
                 duration: 50,
                 repeat: Infinity,
-                ease: "linear",
+                ease: 'linear',
               }}
               className="flex items-center whitespace-nowrap h-full">
               <span className="text-xs sm:text-sm font-light text-gray-400 dark:text-gray-500 px-6 sm:px-8 tracking-widest">
-                {currentLocale === "es"
-                  ? "FULL STACK DEVELOPER × REACT × TYPESCRIPT × NODE.JS × UI/UX DESIGN × DIGITAL EXPERIENCES × CLEAN CODE × FULL STACK DEVELOPER × REACT × TYPESCRIPT"
-                  : "FULL STACK DEVELOPER × REACT × TYPESCRIPT × NODE.JS × UI/UX DESIGN × DIGITAL EXPERIENCES × CLEAN CODE × FULL STACK DEVELOPER × REACT × TYPESCRIPT"}
+                {currentLocale === 'es'
+                  ? 'FULL STACK DEVELOPER × REACT × TYPESCRIPT × NODE.JS × UI/UX DESIGN × DIGITAL EXPERIENCES × CLEAN CODE × FULL STACK DEVELOPER × REACT × TYPESCRIPT'
+                  : 'FULL STACK DEVELOPER × REACT × TYPESCRIPT × NODE.JS × UI/UX DESIGN × DIGITAL EXPERIENCES × CLEAN CODE × FULL STACK DEVELOPER × REACT × TYPESCRIPT'}
               </span>
             </motion.div>
           </div>
@@ -229,4 +244,6 @@ const Hero = () => {
   );
 };
 
+// Exporta el componente memorizado para optimizar renders
+// memo() previene re-renders innecesarios cuando las props no cambian
 export default memo(Hero);

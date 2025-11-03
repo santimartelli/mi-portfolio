@@ -1,4 +1,4 @@
-/* Ticker Text Animation */
+/* Animación de texto tipo ticker (desplazamiento horizontal) */
 .ticker-container {
   overflow: hidden;
   position: relative;
@@ -19,13 +19,13 @@
   }
 }
 
-/* Ensure smooth animation performance */
+/* Optimización para suavidad de la animación */
 .ticker-content {
   will-change: transform;
   backface-visibility: hidden;
 }
 
-/* Alternative marquee using CSS only */
+/* Alternativa marquesina usando solo CSS */
 .marquee {
   overflow: hidden;
   position: relative;

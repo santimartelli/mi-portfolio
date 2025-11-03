@@ -1,6 +1,20 @@
+/**
+ * Sistema de internacionalización (i18n) del portfolio
+ *
+ * Proporciona un contexto de React para manejar traducciones en español e inglés.
+ * Utiliza TypeScript para garantizar la seguridad de tipos en todas las traducciones.
+ */
+
 import React, { createContext, useContext } from 'react';
 
-// Tipos para las traducciones
+// ============================================
+// INTERFACES DE TRADUCCIONES POR SECCIÓN
+// ============================================
+
+/**
+ * Traducciones para la sección Hero (página principal)
+ * Incluye el badge, nombre, descripción y botones de acción
+ */
 export interface HeroTranslations {
   badge: string;
   firstName: string;
@@ -22,6 +36,10 @@ export interface HeroTranslations {
   };
 }
 
+/**
+ * Traducciones para la barra de navegación
+ * Contiene los enlaces principales del sitio
+ */
 export interface NavbarTranslations {
   navigation: {
     home: string;
@@ -31,6 +49,10 @@ export interface NavbarTranslations {
   };
 }
 
+/**
+ * Traducciones para la sección "Sobre Mí"
+ * Incluye descripción personal, estadísticas, tecnologías y call-to-action
+ */
 export interface AboutMeTranslations {
   badge: string;
   title: string;
@@ -80,6 +102,10 @@ export interface AboutMeTranslations {
   };
 }
 
+/**
+ * Traducciones para la sección de Proyectos
+ * Contiene información de cada proyecto, estados, características y botones
+ */
 export interface ProjectsTranslations {
   badge: string;
   title: string;
@@ -119,6 +145,10 @@ export interface ProjectsTranslations {
   };
 }
 
+/**
+ * Traducciones para la sección de Contacto
+ * Incluye métodos de contacto, redes sociales y descarga de CV
+ */
 export interface ContactTranslations {
   badge: string;
   title: string;
@@ -172,6 +202,10 @@ export interface ContactTranslations {
   availability: string;
 }
 
+/**
+ * Traducciones para el footer (pie de página)
+ * Contiene marca, navegación, tecnologías y copyright
+ */
 export interface FooterTranslations {
   brand: {
     name: string;
@@ -203,6 +237,10 @@ export interface FooterTranslations {
   };
 }
 
+/**
+ * Interfaz principal que agrupa todas las traducciones del sitio
+ * Garantiza que todas las secciones estén presentes en cada idioma
+ */
 export interface Translations {
   hero: HeroTranslations;
   navbar: NavbarTranslations;
@@ -212,15 +250,30 @@ export interface Translations {
   footer: FooterTranslations;
 }
 
-// Context
+// ============================================
+// CONTEXTO Y PROVIDER
+// ============================================
+
+/**
+ * Contexto de React para las traducciones
+ * Permite acceder a las traducciones desde cualquier componente hijo
+ */
 const I18nContext = createContext<Translations | null>(null);
 
-// Provider component
+/**
+ * Props para el componente I18nProvider
+ */
 interface I18nProviderProps {
   children: React.ReactNode;
   translations: Translations;
 }
 
+/**
+ * Componente Provider que envuelve la aplicación y proporciona las traducciones
+ *
+ * @param children - Componentes hijos que tendrán acceso a las traducciones
+ * @param translations - Objeto con todas las traducciones cargadas
+ */
 export const I18nProvider: React.FC<I18nProviderProps> = ({ children, translations }) => {
   return (
     <I18nContext.Provider value={translations}>
@@ -229,7 +282,20 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children, translatio
   );
 };
 
-// Hook para usar las traducciones
+// ============================================
+// HOOKS Y UTILIDADES
+// ============================================
+
+/**
+ * Hook personalizado para acceder a las traducciones desde cualquier componente
+ *
+ * @returns Objeto con todas las traducciones del idioma actual
+ * @throws Error si se usa fuera de un I18nProvider
+ *
+ * @example
+ * const { hero, navbar } = useTranslations();
+ * console.log(hero.title);
+ */
 export const useTranslations = (): Translations => {
   const context = useContext(I18nContext);
   if (!context) {
@@ -238,7 +304,15 @@ export const useTranslations = (): Translations => {
   return context;
 };
 
-// Helper para cargar traducciones
+/**
+ * Función helper para cargar traducciones dinámicamente según el idioma
+ *
+ * @param locale - Código del idioma ('es' para español, 'en' para inglés)
+ * @returns Promise con el objeto completo de traducciones
+ *
+ * @example
+ * const translations = await loadTranslations('es');
+ */
 export const loadTranslations = async (locale: string): Promise<Translations> => {
   const heroTranslations = await import(`../content/${locale}/hero.json`);
   const navbarTranslations = await import(`../content/${locale}/navbar.json`);

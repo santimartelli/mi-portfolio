@@ -1,5 +1,7 @@
+// Tipo que define los locales disponibles para los CVs
 export type CvLocale = 'es' | 'en';
 
+// Metadata de los archivos CV en ambos idiomas
 const CV_METADATA = {
   es: {
     fileName: 'Santiago_Martelli_CV_Esp.pdf',
@@ -13,6 +15,7 @@ const CV_METADATA = {
   },
 } as const satisfies Record<CvLocale, { fileName: string; sizeBytes: number; lastUpdate: string }>;
 
+// Formatea el tamaño del archivo en bytes a formato legible (B, KB, MB, GB)
 const formatFileSize = (bytes: number): string => {
   if (!Number.isFinite(bytes) || bytes <= 0) return '0 B';
   const units = ['B', 'KB', 'MB', 'GB'];
@@ -24,6 +27,7 @@ const formatFileSize = (bytes: number): string => {
   return `${parseFloat(formatted)} ${units[unitIndex]}`;
 };
 
+// Construye la ruta pública del archivo CV considerando el BASE_URL de Astro
 const buildPublicPath = (fileName: string): string => {
   const base = import.meta.env.BASE_URL ?? '/';
   const normalizedBase = base.endsWith('/') ? base.slice(0, -1) : base;
@@ -31,6 +35,7 @@ const buildPublicPath = (fileName: string): string => {
   return `${normalizedBase}/${normalizedPath}`;
 };
 
+// Obtiene la metadata completa del CV para un locale específico
 export const getCvMetadata = (locale: CvLocale) => {
   const meta = CV_METADATA[locale];
   return {
@@ -42,6 +47,7 @@ export const getCvMetadata = (locale: CvLocale) => {
   };
 };
 
+// Retorna array de metadata de CVs ordenados con prioridad al locale actual
 export const getOrderedCvMetadata = (locale: CvLocale) => {
   const order: CvLocale[] = locale === 'es' ? ['es', 'en'] : ['en', 'es'];
   return order.map((key) => getCvMetadata(key));

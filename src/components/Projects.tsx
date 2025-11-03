@@ -1,9 +1,12 @@
+// Importaciones necesarias: hooks de React, Framer Motion para animaciones,
+// iconos de enlaces y hook de traducciones
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { HiExternalLink } from "react-icons/hi";
 import { useTranslations } from "../util/i18n";
 
+// Función que retorna el array de proyectos con sus datos traducidos
 const getProjects = (t: any, currentLocale: string) => [
   {
     id: 1,
@@ -54,13 +57,17 @@ const getProjects = (t: any, currentLocale: string) => [
   },
 ];
 
+/**
+ * Componente Projects - Sección de proyectos destacados del portfolio
+ * Muestra una galería de proyectos con información detallada, imágenes, tecnologías usadas,
+ * desafíos, impacto y aprendizajes. Incluye animaciones al hacer scroll y enlaces a sitios en vivo y código
+ */
 const Projects = () => {
   const { projects: t } = useTranslations();
 
   const contentRef = useRef(null);
   const isContentInView = useInView(contentRef, { once: true, amount: 0.05 });
 
-  // Helper function for current locale
   const getCurrentLocale = (): string => {
     if (typeof window !== 'undefined') {
       const pathname = window.location.pathname;
@@ -78,10 +85,7 @@ const Projects = () => {
       className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
 
       <div ref={contentRef} className="w-full">
-        {/* Full-width container to match AboutMe */}
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-8">
-          
-          {/* Header with e-ink aesthetic */}
           <div className="text-center mb-20">
             <motion.h2
               initial={{ opacity: 0, transform: "translateY(30px)" }}
@@ -91,8 +95,6 @@ const Projects = () => {
               className="text-4xl sm:text-5xl md:text-6xl font-light text-black dark:text-white leading-tight mb-8 tracking-tight">
               {t.title}
             </motion.h2>
-
-            {/* Professional intro matching AboutMe style */}
             <motion.div
               initial={{ opacity: 0, transform: "translateY(30px)" }}
               animate={isContentInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
@@ -107,8 +109,6 @@ const Projects = () => {
               </p>
             </motion.div>
           </div>
-
-          {/* Projects - Card Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {projects.map((project, index) => (
               <motion.div
@@ -119,23 +119,18 @@ const Projects = () => {
                 style={{ willChange: 'transform, opacity' }}
                 className="border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300"
               >
-                {/* Project Image */}
                 <div className="relative aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover"
                   />
-                  
-                  {/* Status Badge - e-ink style */}
                   <div className="absolute top-4 right-4">
                     <div className="px-3 py-1 bg-gray-50/95 dark:bg-gray-800/95 backdrop-blur-sm text-xs font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
                       <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
                       {project.status === 'production' ? t.status.production : t.status.development}
                     </div>
                   </div>
-
-                  {/* Action Links - cleaner */}
                   <div className="absolute top-4 left-4 flex gap-2">
                     <a
                       href={project.href}
@@ -159,11 +154,7 @@ const Projects = () => {
                     )}
                   </div>
                 </div>
-
-                {/* Card Content */}
                 <div className="p-8 space-y-6">
-                  
-                  {/* Header */}
                   <div>
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-1 h-1 bg-blue-400 dark:bg-blue-500 rounded-full"></div>
@@ -186,8 +177,6 @@ const Projects = () => {
                       {project.body}
                     </p>
                   </div>
-
-                  {/* Technology Stack */}
                   <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                     <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">
                       {currentLocale === 'es' ? 'Stack Técnico' : 'Tech Stack'}
@@ -203,10 +192,7 @@ const Projects = () => {
                       ))}
                     </div>
                   </div>
-
-                  {/* Project Insights - Compact */}
                   <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                    {/* Challenge */}
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
@@ -218,8 +204,6 @@ const Projects = () => {
                         {project.challenges}
                       </p>
                     </div>
-
-                    {/* Impact */}
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-1 h-1 bg-green-400 dark:bg-green-500 rounded-full"></div>
@@ -231,8 +215,6 @@ const Projects = () => {
                         {project.impact}
                       </p>
                     </div>
-
-                    {/* Learnings */}
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-1 h-1 bg-blue-400 dark:bg-blue-500 rounded-full"></div>
@@ -245,8 +227,6 @@ const Projects = () => {
                       </p>
                     </div>
                   </div>
-
-                  {/* Action Links - e-ink style */}
                   <div className="flex gap-6 pt-4 border-t border-gray-200 dark:border-gray-700">
                     {project.href && (
                       <a
@@ -275,8 +255,6 @@ const Projects = () => {
               </motion.div>
             ))}
           </div>
-
-          {/* Final CTA - e-ink style */}
           <motion.div
             initial={{ opacity: 0, transform: "translateY(30px)" }}
             animate={isContentInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
@@ -313,4 +291,5 @@ const Projects = () => {
   );
 };
 
+// Exporta el componente para ser usado en las páginas de Astro
 export default Projects;

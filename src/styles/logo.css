@@ -1,29 +1,29 @@
-/* E-ink aesthetic for logo icons */
+/* Estética e-ink para los iconos del logo */
 .e-ink-icon {
   filter: contrast(1.1) brightness(0.9);
   opacity: 0.9;
   transition: all 0.3s ease;
 }
 
-/* Light theme e-ink effect */
+/* Efecto e-ink en tema claro */
 .light .e-ink-icon {
   color: #374151;
   filter: contrast(1.0) brightness(0.95);
 }
 
-/* Dark theme e-ink effect */
+/* Efecto e-ink en tema oscuro */
 .dark .e-ink-icon {
   color: #d1d5db;
   filter: contrast(1.2) brightness(0.9);
 }
 
-/* Logo container e-ink styling */
+/* Contenedor del logo con estilo e-ink */
 .logo-container {
-  background: linear-gradient(145deg, 
-    rgba(255, 255, 255, 0.95), 
+  background: linear-gradient(145deg,
+    rgba(255, 255, 255, 0.95),
     rgba(248, 250, 252, 0.95)
   );
-  box-shadow: 
+  box-shadow:
     inset 1px 1px 2px rgba(255, 255, 255, 0.8),
     inset -1px -1px 2px rgba(0, 0, 0, 0.1),
     0 1px 3px rgba(0, 0, 0, 0.05);
@@ -31,23 +31,23 @@
 }
 
 .dark .logo-container {
-  background: linear-gradient(145deg, 
-    rgba(17, 24, 39, 0.95), 
+  background: linear-gradient(145deg,
+    rgba(17, 24, 39, 0.95),
     rgba(31, 41, 55, 0.95)
   );
-  box-shadow: 
+  box-shadow:
     inset 1px 1px 2px rgba(55, 65, 81, 0.8),
     inset -1px -1px 2px rgba(0, 0, 0, 0.5),
     0 1px 3px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(75, 85, 99, 0.6);
 }
 
-/* Subtle animation for state transitions */
+/* Animación sutil para transiciones de estado */
 .logo-content {
   transform-origin: center;
 }
 
-/* Slightly muted colors for the "SM" text in e-ink style */
+/* Colores ligeramente apagados para el texto "SM" en estilo e-ink */
 .logo-text-eink {
   color: #374151;
   font-weight: 600;

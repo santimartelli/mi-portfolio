@@ -1,11 +1,18 @@
+// Importaciones necesarias: Framer Motion para animaciones y contexto de tema
 import { motion } from "framer-motion";
 import { useThemeContext } from "../util/ThemeContext";
 
+// Colores del fondo del toggle según el tema activo
 const trackColors = {
   light: "#f59e0b",
   dark: "#374151",
 };
 
+/**
+ * Componente ThemeToggleButton - Botón toggle para cambiar entre tema claro y oscuro
+ * Incluye un switch animado con iconos de sol y luna que cambian según el tema activo
+ * Utiliza animaciones suaves de Framer Motion para las transiciones
+ */
 const ThemeToggleButton = () => {
   const { theme, changeTheme } = useThemeContext();
   const isLight = theme === "light";
@@ -62,4 +69,5 @@ const ThemeToggleButton = () => {
   );
 };
 
+// Exporta el componente para ser usado en el Navbar
 export default ThemeToggleButton;
