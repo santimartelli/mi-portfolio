@@ -1,7 +1,7 @@
 // Importaciones necesarias: Framer Motion para animaciones, contexto de tema y estilos del logo
 import { motion } from "framer-motion";
-import { useThemeContext } from "../util/ThemeContext";
-import "../styles/logo.css";
+import { useThemeContext } from "../../util/ThemeContext";
+import "../../styles/logo.css";
 
 /**
  * Componente Logo - Muestra el logo y nombre del portfolio

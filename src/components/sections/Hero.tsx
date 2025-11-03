@@ -1,9 +1,9 @@
 // Importación de bibliotecas de animación y componentes
 import { motion, useInView } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { useMemo, memo, useRef, useEffect } from 'react';
-import { useTranslations } from '../util/i18n';
-import '../styles/ticker.css';
+import { useMemo, memo, useRef } from 'react';
+import { useTranslations } from '../../util/i18n';
+import '../../styles/ticker.css';
 
 // Interfaz que define la estructura de un enlace social
 interface SocialLink {

@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { useRef, memo } from "react";
 import { useInView } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaDownload, FaMapMarkerAlt } from "react-icons/fa";
-import { useTranslations } from "../util/i18n";
-import { getCvMetadata, type CvLocale } from "../util/cvMetadata";
+import { useTranslations } from "../../util/i18n";
+import { getCvMetadata, type CvLocale } from "../../util/cvMetadata";
 
 /**
  * Función auxiliar que determina el idioma actual basado en la URL

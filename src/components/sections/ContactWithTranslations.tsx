@@ -1,6 +1,6 @@
 // Importación del componente Contact y proveedor de traducciones
 import Contact from './Contact';
-import { I18nProvider, type Translations } from '../util/i18n';
+import { I18nProvider, type Translations } from '../../util/i18n';
 
 // Interfaz que define las props del componente wrapper
 interface ContactWithTranslationsProps {

@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { HiExternalLink } from "react-icons/hi";
-import { useTranslations } from "../util/i18n";
+import { useTranslations } from "../../util/i18n";
 
 // Función que retorna el array de proyectos con sus datos traducidos
 const getProjects = (t: any, currentLocale: string) => [

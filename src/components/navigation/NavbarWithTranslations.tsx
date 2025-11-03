@@ -1,6 +1,6 @@
 // Importaciones necesarias: providers de tema y traducciones, tipos y componente Navbar
-import { ThemeProvider } from "../util/ThemeContext";
-import { I18nProvider, type Translations } from '../util/i18n';
+import { ThemeProvider } from "../../util/ThemeContext";
+import { I18nProvider, type Translations } from '../../util/i18n';
 import Navbar from './Navbar';
 
 // Interfaz que define las props del componente

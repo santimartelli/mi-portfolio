@@ -1,7 +1,7 @@
 // Importación de bibliotecas de animación y hooks de React
 import { motion, useInView } from 'framer-motion';
 import { useRef, memo } from 'react';
-import { useTranslations } from '../util/i18n';
+import { useTranslations } from '../../util/i18n';
 
 /**
  * Componente AboutMeSection - Sección "Sobre mí" del portfolio

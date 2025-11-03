@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
-import { useThemeContext } from '../util/ThemeContext';
-import type { CvLocale } from '../util/cvMetadata';
+import { useThemeContext } from '../../util/ThemeContext';
+import type { CvLocale } from '../../util/cvMetadata';
 import 'flag-icons/css/flag-icons.min.css';
 
 // Interfaz que define las props del componente

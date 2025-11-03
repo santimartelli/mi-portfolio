@@ -1,6 +1,6 @@
 // Importaciones necesarias para el componente wrapper
 import Footer from './Footer';
-import { I18nProvider, type Translations } from '../util/i18n';
+import { I18nProvider, type Translations } from '../../util/i18n';
 
 // Interfaz que define las props del componente
 interface FooterWithTranslationsProps {

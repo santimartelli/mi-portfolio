@@ -1,7 +1,7 @@
 // Importación del componente Hero y proveedores de contexto
 import Hero from './Hero';
-import { ThemeProvider } from "../util/ThemeContext";
-import { I18nProvider, type Translations } from '../util/i18n';
+import { ThemeProvider } from "../../util/ThemeContext";
+import { I18nProvider, type Translations } from '../../util/i18n';
 
 // Interfaz que define las props del componente wrapper
 interface HeroWithTranslationsProps {

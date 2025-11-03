@@ -2,9 +2,9 @@
 // hooks personalizados, componentes del navbar y utilidades de i18n
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { useActiveSection } from "../util/useActiveSection";
-import { useTranslations } from "../util/i18n";
-import Logo from "./Logo";
+import { useActiveSection } from "../../util/useActiveSection";
+import { useTranslations } from "../../util/i18n";
+import Logo from "../common/Logo";
 import ThemeToggleButton from "./ThemeToggleButton";
 import LanguageSelector from "./LanguageSelector";
 

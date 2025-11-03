@@ -1,6 +1,6 @@
 // Importaciones necesarias: Framer Motion para animaciones y contexto de tema
 import { motion } from "framer-motion";
-import { useThemeContext } from "../util/ThemeContext";
+import { useThemeContext } from "../../util/ThemeContext";
 
 // Colores del fondo del toggle según el tema activo
 const trackColors = {

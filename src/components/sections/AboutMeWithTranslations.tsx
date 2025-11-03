@@ -1,6 +1,6 @@
 // Importación del componente AboutMe y proveedor de traducciones
 import AboutMe from './AboutMe';
-import { I18nProvider, type Translations } from '../util/i18n';
+import { I18nProvider, type Translations } from '../../util/i18n';
 
 // Interfaz que define las props del componente wrapper
 interface AboutMeWithTranslationsProps {

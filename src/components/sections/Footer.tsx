@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { HiHeart } from "react-icons/hi";
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
-import { useTranslations } from "../util/i18n";
+import { useTranslations } from "../../util/i18n";
 
 /**
  * Componente Footer - Pie de página del portfolio

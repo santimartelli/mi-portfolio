@@ -2,13 +2,13 @@
 // Importaciones: fuente, layout principal, componentes con traducciones y divisor
 import "@fontsource/titillium-web";
 import Layout from "../../layouts/Layout.astro";
-import NavbarWithTranslations from "../../components/NavbarWithTranslations";
-import ProjectsWithTranslations from "../../components/ProjectsWithTranslations";
-import AboutMeWithTranslations from "../../components/AboutMeWithTranslations";
-import HeroWithTranslations from "../../components/HeroWithTranslations";
-import ContactWithTranslations from "../../components/ContactWithTranslations";
-import FooterWithTranslations from "../../components/FooterWithTranslations";
-import Divider from "../../components/Divider";
+import NavbarWithTranslations from "../../components/navigation/NavbarWithTranslations";
+import ProjectsWithTranslations from "../../components/sections/ProjectsWithTranslations";
+import AboutMeWithTranslations from "../../components/sections/AboutMeWithTranslations";
+import HeroWithTranslations from "../../components/sections/HeroWithTranslations";
+import ContactWithTranslations from "../../components/sections/ContactWithTranslations";
+import FooterWithTranslations from "../../components/sections/FooterWithTranslations";
+import Divider from "../../components/common/Divider";
 
 // Carga de traducciones en inglés para todas las secciones
 const heroTranslations = await import("../../content/en/hero.json");
