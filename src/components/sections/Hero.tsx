@@ -35,13 +35,17 @@ const Hero = ({ content: t }: HeroProps) => {
             {t.description}
           </p>
 
-          {/* La accion principal del hero. Reutiliza .cta-primary, que ya estaba
-              definida y verificada en el sistema, en vez de un estilo suelto. */}
-          <a href="#experience" className="cta-primary mt-8 inline-flex items-center px-6 py-3 text-small font-medium">
+          {/* La accion principal del hero, centrada en la columna. El boton es
+              un flex de ancho ajustado al contenido, asi que mx-auto lo centra;
+              con inline-flex mx-auto no haria nada, porque no es una caja de
+              nivel bloque. */}
+          <a
+            href="#experience"
+            className="cta-primary mx-auto mt-8 flex w-fit items-center px-6 py-3 text-small font-medium">
             {t.cta}
           </a>
 
-          <ul className="mt-8 flex list-none items-center gap-1">
+          <ul className="mt-8 flex list-none items-center justify-center gap-1">
             {contactLinks.map((link) => (
               <li key={link.label}>
                 <a

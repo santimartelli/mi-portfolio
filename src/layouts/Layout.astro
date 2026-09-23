@@ -440,15 +440,16 @@ const jsonLd = {
 
     /* ==========================================
        LLAMADA A LA ACCION
-       Se define con los tokens del mundo y no con utilidades de acento: la tabla
-       de remapeo casa nombres exactos de clase, asi que cualquier variante
-       (hover:, dark:) se le escapa y cae en la paleta antigua. El borde tenue
-       anterior componia 1.25:1, practicamente invisible.
+       Solida, con la tinta del mundo de fondo y el color del papel como texto:
+       en reposo compone 17,85:1, y al pasar por encima se enciende con el acento
+       (5,17:1). Se define con los tokens y no con utilidades de acento porque la
+       tabla de remapeo casa nombres exactos de clase, asi que cualquier variante
+       (hover:, dark:) se le escapa y cae en la paleta antigua.
        ========================================== */
     .cta-primary {
-      border: 1px solid var(--accent);
-      color: var(--text-primary);
-      background-color: transparent;
+      border: 1px solid var(--text-primary);
+      color: var(--bg-primary);
+      background-color: var(--text-primary);
       transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     }
 
