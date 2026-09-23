@@ -422,19 +422,24 @@
     ],
     "motion": [
       {
-        "name": "ease",
-        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
-        "purpose": "Curva estandar de las transiciones."
+        "name": "dropdown",
+        "value": "0.18s ease-out",
+        "purpose": "Apertura del menu y del selector de idioma. Lo unico que anima Framer Motion."
       },
       {
-        "name": "section-entrance",
-        "value": "0.8s, retardo escalonado",
-        "purpose": "Fade-up identico en las siete secciones (Framer Motion)."
+        "name": "theme-toggle",
+        "value": "spring (stiffness 700, damping 30)",
+        "purpose": "Desplazamiento del boton de tema."
+      },
+      {
+        "name": "hover",
+        "value": "0.2s ease / 0.3s ease",
+        "purpose": "Transiciones CSS de color y borde. Sin animaciones de entrada."
       },
       {
         "name": "reduced-motion",
         "value": "prefers-reduced-motion: reduce",
-        "purpose": "Anula animacion y transiciones; existe un <noscript> que fuerza la visibilidad del contenido."
+        "purpose": "Anula animacion y transiciones. El contenido no depende de ninguna."
       }
     ],
     "breakpoints": [
@@ -534,8 +539,9 @@
       "Fondo casi negro con tinte azulado y un unico acento saturado.",
       "Una sola familia tipografica en peso 300 para los titulares grandes.",
       "Esquinas rectas en todo el sistema.",
-      "Secciones separadas por un divider de gradiente y 8-10rem de respiracion.",
-      "Animacion de entrada identica en las siete secciones (Framer Motion)."
+      "Secciones a todo el ancho (.shell, techo 1800px) con la prosa limitada a 68ch.",
+      "Unidades repetibles con la misma anatomia en lugar de tarjetas.",
+      "Sin animaciones de entrada: el contenido es visible en el HTML y no depende de JavaScript."
     ],
     "rules": [
       {
@@ -550,34 +556,41 @@
       },
       {
         "name": "Esquinas rectas",
-        "body": "No se introducen radios: el mundo es geometrico.",
+        "body": "No se introducen radios salvo el foco, los botones y el rail del conmutador.",
         "section": "shapes"
       },
       {
         "name": "El acento no es un fondo",
         "body": "El acento es una senal, no una superficie.",
         "section": "colors"
+      },
+      {
+        "name": "Ancho sin coste de lectura",
+        "body": "Las secciones cruzan la pantalla con .shell; la prosa se limita con .measure (68ch).",
+        "section": "layout"
+      },
+      {
+        "name": "Sin animaciones de entrada",
+        "body": "Nada aparece al hacer scroll. Framer Motion solo cubre transiciones funcionales.",
+        "section": "motion"
       }
     ],
     "dos": [
       "Usa signal-blue como unica senal de acento.",
       "Manten el peso 300 en los titulares grandes.",
-      "Separa secciones con el divider y deja respirar 8-10rem.",
-      "Reserva la monoespaciada para identificadores literales."
+      "Deja que .shell de la anchura y .measure proteja la lectura.",
+      "Organiza el contenido denso en unidades repetibles con filete, no en tarjetas."
     ],
     "donts": [
       "No introduzcas una segunda familia tipografica.",
-      "No anadas radios.",
+      "No anadas animaciones de entrada ni apariciones al hacer scroll.",
+      "No estires la prosa a todo el ancho.",
       "No uses el acento en superficies grandes."
     ],
     "knownDeviations": [
-      "Kicker/badge encima del h1 (el craft floor lo prohibe).",
-      "El mismo fade-up en las siete secciones; el contenido no es visible sin JavaScript.",
-      "border-left de color >1px en About, Skills y Projects.",
-      "Halo de color sin offset en boton primario y tarjetas.",
       "Display a 8rem, por encima del techo de 6rem.",
-      "Superficies del navegador sin tematizar.",
-      "8 islas hidratadas y Framer Motion en cada una (~103 kB de JS comprimido)."
+      "Inter como respaldo, que el detector marca como fuente sobreusada.",
+      "Dos islas hidratadas (navbar y filtro) y ~89 kB de JS comprimido, casi todo el runtime de React."
     ]
   }
 }

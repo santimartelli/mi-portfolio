@@ -154,13 +154,15 @@ Los metadatos (etiquetas de sección, periodos, categorías) van en mayúsculas 
 
 ## Layout
 
-Contenedor `max-w-7xl` con `1.5rem` de padding lateral. Cada sección respira `8rem` en móvil y `10rem` en escritorio, separadas por un `Divider` de gradiente que se desvanece en los extremos.
+Las secciones **cruzan la pantalla** y el contenido se ordena con una única clase, `.shell`: ancho completo con un techo de `1800px` y márgenes laterales que crecen de `1.5rem` a `4rem` según el viewport. Ocupar todo el ancho no puede costar lectura, así que la prosa se limita aparte con `.measure` (68ch) y las cabeceras de sección van a `12` columnas: título a la izquierda, entradilla a la derecha.
 
-Las secciones de contenido se organizan en rejillas de dos o tres columnas, y las fichas de proyecto usan contenedores con borde de 1px. La medida de lectura de la prosa va de `max-w-2xl` a `max-w-3xl`.
+Cada sección respira `5rem` en móvil y `7rem` en escritorio, y abre con un filete de 1px (`border-t`). El contenido denso se organiza en **unidades repetibles** con la misma anatomía: metadatos a la izquierda, relato a la derecha, filete entre unidades. Las listas largas (hitos de un puesto, canales de contacto, métricas) se despliegan en dos columnas o cruzan toda la anchura en vez de apilarse en una columna estrecha.
+
+Los casos de estudio usan una unidad de dos columnas: a la izquierda la prueba visual y los datos (imagen, canal, stack, enlaces) con la imagen fija al hacer scroll; a la derecha el relato. La tabla de métricas cruza la anchura completa porque es una comparación.
 
 ## Elevation & Depth
 
-La profundidad se declara con **borde de 1px** (`border-gray-200` en claro, `border-gray-700` en oscuro). Hay además sombras de acento teñidas de azul (`--shadow-primary`) en las utilidades `.theme-card`, usadas para elevar tarjetas en hover.
+La profundidad se declara **una sola vez y con borde de 1px** (`border-gray-200` en claro, `border-gray-700` en oscuro). No hay sombras: las utilidades `.theme-card` y `.theme-button-primary` que llevaban sombras teñidas de azul eran código muerto y se retiraron junto con `.theme-text-gradient`. Esto elimina las dos únicas desviaciones que el detector marcaba como anti-patrón (texto con degradado y halo de color sin offset).
 
 ## Shapes
 
@@ -179,7 +181,18 @@ La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo se
 - **Tarjeta** (`.theme-card`): fondo `slate`, borde de acento al 10%, hover con `slate-raised` y sombra de acento.
 - **Filtros** (experiencia): botones con borde; el activo usa fondo `gray-100`/`gray-800` y texto de máximo contraste.
 - **Enlaces de sección**: mayúsculas, tracking amplio, sin subrayado; el color cambia en hover.
-- **Navbar**: fijo, con borde inferior que aparece al hacer scroll; menú desplegable animado con Framer Motion.
+- **Navbar**: fijo, con filete inferior. En escritorio (≥1024px) las seis secciones son **enlaces visibles** con la activa resaltada: en una página larga, un menú escondido obliga a abrir para saber dónde estás. El menú desplegable queda para móvil y tablet.
+- **Filtros** (experiencia): rectángulos con filete; el activo se invierte a tinta sólida. Llevan `aria-pressed`.
+- **Filas enlazadas** (contacto, CV): rejilla de 12 columnas con etiqueta, valor y descripción; el fondo se aclara en hover.
+- **Tabla de métricas**: cruza el ancho, con cifras monoespaciadas y `font-variant-numeric: tabular-nums`.
+
+## Motion
+
+Sin animaciones de entrada. Cada sección aparecía antes con el mismo fade-up, y ese patrón repetido es lo que resta sensación de solidez: el contenido ahora está visible de entrada en el HTML, sin depender de JavaScript.
+
+Framer Motion se limita a lo funcional, donde una transición explica un cambio de estado: el desplegable del menú, el del selector de idioma y el botón de tema. La barra de navegación **no** se anima a sí misma, para que sea visible aunque no haya JavaScript.
+
+Queda un único momento de motion, y es funcional: la apertura del menú.
 
 ## Do's and Don'ts
 
@@ -195,16 +208,17 @@ La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo se
 - No introduzcas una segunda familia tipográfica: Titillium Web con Inter de respaldo es todo el sistema.
 - No añadas radios: el mundo es de esquinas rectas.
 - No uses el acento en superficies grandes; es una señal, no un fondo.
+- No añadas animaciones de entrada ni hagas aparecer secciones al hacer scroll.
+- No estires la prosa a todo el ancho: usa `.measure` para el texto y deja que `.shell` dé la anchura.
 
 ## Desviaciones conocidas
 
 Registradas por el detector y el craft floor de Impeccable, **no corregidas** porque el usuario pidió volver a este mundo tal cual estaba. Si en el futuro se retoma el pulido, este es el orden de valor:
 
-1. **Kicker sobre el titular**: el badge de posicionamiento se sitúa encima del `h1`, y el craft floor lo marca como prohibición absoluta.
-2. **Mismo fade-up en cada sección**: las siete secciones comparten idéntica animación de entrada de 59 estilos `opacity:0` en el HTML inicial. Sin JavaScript el contenido queda invisible (hay un `<noscript>` que lo fuerza).
-3. **`border-left` de color >1px** en About, Skills y Projects.
-4. **Halo de color sin offset** (`dark-glow`): la sombra azul de `.theme-button-primary` y `.theme-card`.
-5. **Display a 8rem**, por encima del techo de 6rem.
-6. **Falta el tematizado de las superficies del navegador**: selección, cursor, scrollbar, subrayado y cifras tabulares.
-7. **`Inter` como respaldo**: el detector la marca como fuente sobreusada.
-8. **Peso del JS**: Framer Motion se envía en cada isla; son 8 islas hidratadas y ~103 kB de JS comprimido. Convertir las secciones sin estado a componentes de Astro eliminaría React entero.
+Resueltas en esta pasada: el kicker sobre el titular, el fade-up idéntico en cada sección, los `border-left` de color >1px, el halo de color sin offset, el tematizado de las superficies del navegador y el `<noscript>`.
+
+Siguen abiertas:
+
+1. **Display a 8rem**, por encima del techo de 6rem del craft floor.
+2. **`Inter` como respaldo**: el detector la marca como fuente sobreusada.
+3. **Peso del JS**: quedan dos islas hidratadas (navbar y filtro de experiencia) y Framer Motion viaja con el navbar para tres transiciones funcionales. Son ~89 kB comprimidos, casi todo el runtime de React. Sustituir esas dos islas por componentes de Astro con un script mínimo eliminaría React y Framer Motion enteros del envío.
