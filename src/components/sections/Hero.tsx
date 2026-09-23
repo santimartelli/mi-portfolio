@@ -35,10 +35,10 @@ const Hero = ({ content: t }: HeroProps) => {
             {t.description}
           </p>
 
-          {/* Accion a la izquierda y contacto a la derecha, en la misma fila.
-              Los objetivos tactiles son de 48px y los iconos de 20px, algo mas
-              grandes que los 44/16 anteriores. */}
-          <div className="mt-8 flex flex-wrap items-center justify-between gap-6">
+          {/* La accion y el contacto van juntos y centrados como un solo grupo.
+              Los iconos suben a 24px sobre objetivos de 48px, que es el minimo
+              recomendado de area tactil. El gap-8 separa los dos grupos. */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-8">
             <a
               href="#experience"
               className="cta-primary flex w-fit items-center px-6 py-3 text-small font-medium">
@@ -53,7 +53,7 @@ const Hero = ({ content: t }: HeroProps) => {
                     {...(link.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
                     aria-label={link.label}
                     className="flex h-12 w-12 items-center justify-center text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
-                    <link.icon className="h-5 w-5" aria-hidden="true" />
+                    <link.icon className="h-6 w-6" aria-hidden="true" />
                   </a>
                 </li>
               ))}
