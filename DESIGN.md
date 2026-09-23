@@ -27,31 +27,31 @@ colors:
   ink-muted: "#475569"
 typography:
   display:
-    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
+    fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
     fontSize: "clamp(3.75rem, 2rem + 7vw, 8rem)"
     fontWeight: 300
     lineHeight: 0.85
     letterSpacing: "-0.025em"
   headline:
-    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
+    fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
     fontSize: "clamp(2.25rem, 1.5rem + 3vw, 3.75rem)"
     fontWeight: 300
     lineHeight: 1.1
     letterSpacing: "-0.02em"
   title:
-    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
+    fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
     fontSize: "1.5rem"
     fontWeight: 300
     lineHeight: 1.3
     letterSpacing: "normal"
   body:
-    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
+    fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 300
     lineHeight: 1.625
     letterSpacing: "normal"
   meta:
-    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
+    fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
     fontSize: "0.75rem"
     fontWeight: 500
     lineHeight: 1.4
@@ -63,19 +63,19 @@ typography:
     lineHeight: 1.5
     letterSpacing: "normal"
   micro:
-    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
+    fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
     fontSize: "0.6rem"
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: "0.16em"
   micro-lg:
-    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
+    fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
     fontSize: "0.65rem"
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: "0.1em"
   small:
-    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
+    fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 300
     lineHeight: 1.5
@@ -146,11 +146,9 @@ Tema **claro**: los mismos papeles invertidos (`paper`, `paper-soft`, `paper-sun
 
 ## Typography
 
-Una sola familia para todo el sitio: **Alumni Sans**, en todos los tamaños.
+Una sola familia para todo el sitio: **Manrope**, en todos los tamaños.
 
-La pila se declara una vez, en el token `--font-sans`, con `"Alumni Sans Hero"` delante: esa es una fuente del sistema, no un archivo que sirvamos, así que si está instalada se usa, y si no cae en `Alumni Sans Variable`, que sí viaja con el sitio. El `<body>` la aplica y todo lo demás la hereda, así que no hay reglas de fuente repartidas por los componentes.
-
-**Alumni Sans es una condensada**, y eso tiene una consecuencia real: a igual tamaño de fuente se lee más estrecha y más pequeña que una sans ancha. Si el texto corrido pide más presencia, el ajuste es subir el tamaño base o el peso, no cambiar de familia.
+Es una geométrica de trazo abierto y buena legibilidad, así que sirve igual para un titular grande que para un párrafo: no hay que repartir familias por función. La pila se declara una vez, en el token `--font-sans`, con `"Manrope Variable"` delante y `Manrope` después por si está instalada en el sistema. El `<body>` la aplica y todo lo demás la hereda, así que no hay reglas de fuente repartidas por los componentes.
 
 La monoespaciada (`font-mono`) es la del sistema y se reserva para lo que es dato: periodos, versiones, correos y cifras. No se descarga ninguna fuente para eso.
 
@@ -158,7 +156,7 @@ La escala es la de Tailwind, de `text-xs` a `text-9xl`. El display llega a **8re
 
 Los metadatos (etiquetas de sección, periodos, categorías) van en mayúsculas con tracking amplio, y los identificadores literales (correo, usuario) en monoespaciada.
 
-> **Aviso de peso.** Casi todo el texto va en `font-light` (300) y Alumni Sans es una condensada. A 300 puede leerse fina, sobre todo en tamaños pequeños. Si al verlo ocurre, el ajuste es subir el peso a 400 en el cuerpo y en los titulares, o subir un punto el tamaño base.
+> **Nota de peso.** El eje variable de Manrope va de 200 a 800, así que `font-light` (300) existe como instancia real y el texto no depende de un peso sintetizado.
 
 ## Layout
 

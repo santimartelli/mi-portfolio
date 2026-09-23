@@ -19,13 +19,7 @@ export default {
       },
       fontFamily: {
         // Fuente unica del sitio. Misma pila que el token --font-sans.
-        sans: [
-          "Alumni Sans Hero",
-          "Alumni Sans Variable",
-          "Alumni Sans",
-          "system-ui",
-          "sans-serif",
-        ],
+        sans: ["Manrope Variable", "Manrope", "system-ui", "sans-serif"],
       },
       animation: {
         fadeIn: "fadeIn .5s ease-in forwards",

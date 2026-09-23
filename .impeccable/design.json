@@ -355,39 +355,39 @@
     },
     "typographyMeta": {
       "display": {
-        "fontFamily": "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif",
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
         "fontSize": "clamp(3.75rem, 2rem + 7vw, 8rem)",
         "fontWeight": 300,
         "lineHeight": 0.85,
         "letterSpacing": "-0.025em",
-        "purpose": "Nombre del hero. Llega a 8rem. En Alumni Sans (display)."
+        "purpose": "Nombre en el hero. Techo 6rem. Manrope, no condensada."
       },
       "headline": {
-        "fontFamily": "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif",
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
         "fontSize": "clamp(2.25rem, 1.5rem + 3vw, 3.75rem)",
         "fontWeight": 300,
         "lineHeight": 1.1,
         "letterSpacing": "-0.02em",
-        "purpose": "Titulares de seccion. En Alumni Sans (display)."
+        "purpose": "Titulares de seccion."
       },
       "title": {
-        "fontFamily": "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif",
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
         "fontSize": "1.5rem",
         "fontWeight": 300,
         "lineHeight": 1.3,
         "letterSpacing": "normal",
-        "purpose": "Empresas y subtitulos. En Alumni Sans (display)."
+        "purpose": "Empresas y subtitulos."
       },
       "body": {
-        "fontFamily": "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif",
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
         "fontSize": "1rem",
         "fontWeight": 300,
         "lineHeight": 1.625,
         "letterSpacing": "normal",
-        "purpose": "Texto corrido. Toda la web usa una sola familia (condensada)."
+        "purpose": "Texto corrido. Una sola familia geometrica para toda la web."
       },
       "meta": {
-        "fontFamily": "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif",
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
         "fontSize": "0.75rem",
         "fontWeight": 500,
         "lineHeight": 1.4,
@@ -545,7 +545,7 @@
     "overview": "Un mundo casi negro con tinte azulado, tipografia ligera de gran tamano y un unico azul de senal. La estetica quiere parecer la de alguien que construye software: minimalista, geometrica, sin adornos, con el propio codigo como argumento. El contenido cuenta una sola trayectoria (hospitalidad + operaciones + tecnologia) y la tecnologia aparece como evidencia verificable, no como titular.",
     "keyCharacteristics": [
       "Fondo casi negro con tinte azulado y un unico acento saturado.",
-      "Una sola familia para todo el sitio: Alumni Sans (condensada), con la monoespaciada del sistema solo para datos.",
+      "Una sola familia para todo el sitio: Manrope (geometrica), con la monoespaciada del sistema solo para datos.",
       "Esquinas rectas en todo el sistema.",
       "Secciones a todo el ancho (.shell, techo 1800px) con la prosa limitada a 68ch.",
       "Unidades repetibles con la misma anatomia en lugar de tarjetas.",
@@ -585,7 +585,7 @@
       },
       {
         "name": "Una sola familia",
-        "body": "Alumni Sans en toda la web, declarada una vez en --font-sans. La monoespaciada del sistema solo para datos.",
+        "body": "Manrope en toda la web, declarada una vez en --font-sans. La monoespaciada del sistema solo para datos.",
         "section": "typography"
       }
     ],
