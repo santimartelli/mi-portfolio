@@ -28,11 +28,18 @@ const Hero = ({ content: t }: HeroProps) => {
     // de arriba es el header (4rem mas 1px de su border-b); el aire entre el
     // header y la imagen lo pone el margen del propio <picture>, para que se lea
     // donde esta. El padding de abajo es el margen bajo los iconos.
-    // Desde lg vuelve al hero de dos columnas centrado en vertical.
+    // Desde lg el contenedor se queda con todo el alto que queda bajo el header:
+    // la seccion deja de centrarlo y de tener padding abajo, asi que la caja del
+    // contenedor va del borde inferior del header al borde inferior de la
+    // pantalla. Dentro, la rejilla reparte ese alto en dos filas: la de las dos
+    // columnas se lleva el espacio libre (1fr) y el marquee queda como franja al
+    // pie (auto). El centrado vertical de la rejilla coloca entonces el bloque
+    // de texto y el de la imagen en el medio de la primera fila, y el aire de
+    // abajo lo pone el propio contenedor (pb-8), no la seccion.
     <section
       id="home"
-      className="flex min-h-[100dvh] flex-col pt-[65px] pb-6 lg:min-h-screen lg:flex-row lg:items-center lg:pb-28">
-      <div className="shell flex flex-1 flex-col justify-between gap-1 lg:grid lg:flex-none lg:grid-cols-12 lg:items-center lg:gap-x-12 lg:gap-y-6">
+      className="flex min-h-[100dvh] flex-col pt-[65px] pb-6 lg:min-h-screen lg:flex-row lg:pb-0">
+      <div className="shell flex flex-1 flex-col justify-between gap-1 lg:grid lg:flex-none lg:grid-cols-12 lg:grid-rows-[1fr_auto] lg:items-center lg:gap-x-12 lg:gap-y-6 lg:pb-8">
         {/*
           En movil esta caja no genera caja propia (display: contents), asi que el
           titular, el parrafo, la accion y los iconos pasan a ser hijos directos
@@ -118,7 +125,8 @@ const Hero = ({ content: t }: HeroProps) => {
             para que quien use lector de pantalla no oiga la lista dos veces, y los
             puntos que separan las piezas son decorativos por el mismo motivo.
             En movil es el ultimo bloque del reparto; desde lg ocupa una fila
-            propia a lo ancho, debajo de las dos columnas. */}
+            propia a lo ancho, pegada al pie del contenedor, debajo de las dos
+            columnas. */}
         <div className="marquee lg:col-span-12">
           <div className="marquee-track">
             {[false, true].map((duplicada) => (
