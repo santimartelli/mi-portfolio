@@ -17,14 +17,18 @@ Modo: **Persuade**. El visitante decide y actúa: contactar.
 
 ## Direction contract
 
-THESIS: La web es una **publicación profesional**, no un escaparate de tarjetas: tipografía con carácter sobre papel cálido, jerarquía por escala y espacio, y separaciones por filetes de un píxel. Refuta la rejilla de tarjetas iguales, el kicker sobre el titular y el halo de color sin offset.
+THESIS: La web se presenta como una pieza **oscura y técnica**: casi negro con tinte azulado, tipografía ligera a gran escala y un único azul de señal, con el propio código como argumento. Refuta el portfolio claro de tarjetas y el badge de posicionamiento como titular.
 
-OWN-WORLD: Papel cálido (#FAF9F6) y tinta casi negra (#171614); acento ámbar que solo aparece como baño o filete, nunca como texto sobre papel claro, con un ámbar oscuro para texto cuando haga falta contraste; un verde patina secundario. Alumni Sans condensada para display, Albert Sans para texto, JetBrains Mono solo para etiquetas y cadenas literales. Esquinas rectas, filetes de 1px, cero sombras decorativas.
+OWN-WORLD: Fondo `#0a0b0f` con superficies `#151821` y `#1f2937`; texto de `#f8fafc` a `#94a3b8`; un solo acento saturado, `signal-blue` `#3b82f6`, con `#2563eb` en hover y cian/violeta para gradientes. Titillium Web en peso 300 con Inter de respaldo. Esquinas rectas, bordes de 1px, sombras tenidas de azul.
 
 STORY: El visitante entiende en cinco segundos que el perfil combina operaciones hoteleras y tecnología, comprueba que hay producto real detrás, y escribe.
 
-FIRST VIEWPORT: Sobre papel, sin kicker. El nombre en Alumni Sans a 6rem como máximo, ocupando el ancho de lectura; debajo, el titular de posicionamiento en dos líneas; después una línea de contexto operativo y los dos accesos (experiencia y contacto). Un único momento de motion: el nombre se descubre con un barrido de máscara al cargar.
+FIRST VIEWPORT: Fondo casi negro. Badge de posicionamiento, después el nombre en Titillium Web a 8rem en peso 300, el titular de posicionamiento debajo, una descripción breve, tres tarjetas de contexto, la disponibilidad y los dos accesos. Las secciones aparecen con un fade-up escalonado.
 
-FORM: Publicación sobre papel con filetes, séptima de siete candidatas; seed de dirección `98d9d5d1` (modo persuade, index 3). Dirección fijada por el usuario por encima del roll.
+FORM: Pieza técnica oscura con acento único. Roll de dirección `98d9d5d1` (modo persuade, index 3).
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+
+## Historia
+
+El 2026-09-23 se construyó un mundo alternativo de papel cálido como dirección fijada por el usuario, siguiendo su referencia a `impeccable.style`. El usuario lo rechazó y pidió volver al mundo oscuro. Revertido en el commit `4426660`. No se reintenta sin una petición explícita.

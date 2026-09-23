@@ -43,13 +43,13 @@ No se presenta como ingeniero senior, ni como customer success manager experimen
 - El CV actual está orientado a desarrollo web y se identifica como tal.
 - Stack: Astro con islas de React, TypeScript, Tailwind CSS, i18n por archivos JSON, SSR estático de dos páginas.
 - Restricciones técnicas ya resueltas que no deben romperse: `<html lang>` y contenido correctos por idioma en el HTML inicial, canonical y hreflang (es, en, x-default), Open Graph, Twitter Cards, JSON-LD, sitemap y robots, enlace de salto, foco visible, ARIA en controles con solo icono, `prefers-reduced-motion` y alternativa sin JavaScript para las animaciones.
-- Decisión abierta: si el tema oscuro se mantiene como opción o se retira en favor de un único mundo claro.
+- El tema oscuro es el mundo por defecto y se mantiene, con el tema claro como opción secundaria.
 
 ## Brand Commitments
 
 - Nombre: Santiago Martelli. Marca personal, no de producto.
 - Tono confirmado: humano, concreto, sin clichés corporativos ("passionate", "results-driven", "technology enthusiast" están prohibidos en el brief).
-- **Restricción visual vinculante aportada por el usuario:** quiere una estética muy cercana a la de `https://impeccable.style/` — tipografía con carácter, paleta cálida y sobria, limpieza visual, sensación de solidez y de rendimiento alto. Las decisiones visuales concretas se toman en el flujo de trabajo visual, no aquí.
+- **Restricción visual confirmada por el usuario:** el mundo vigente es el **oscuro y técnico** (fondo casi negro con tinte azulado, Titillium Web en peso ligero y un azul de señal como único acento). Se construyó un rediseño hacia un mundo de papel cálido inspirado en `https://impeccable.style/` y el usuario lo **rechazó**, pidiendo volver al mundo oscuro. No se reintenta ese camino sin que lo pida. El sistema vigente está registrado en `DESIGN.md`.
 - Prohibiciones del brief: fotos de stock de hoteles, iconografía corporativa genérica, estética de consultora hotelera, exceso de badges, barras de progreso y keyword stuffing visual.
 
 ## Evidence on Hand
