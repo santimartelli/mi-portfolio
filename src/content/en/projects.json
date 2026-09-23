@@ -112,19 +112,19 @@
         "Performance: removed unused dependencies and an icon-font CSS bundle that weighed more than the rest of the stylesheet combined, plus optimisation of the project imagery."
       ],
       "result": "The site now tells the same story as LinkedIn, with the technical detail as backing rather than as the headline. The /en/ HTML grew because the page now has two extra sections and four case studies instead of two project cards; every other metric went down. All figures in the table were measured on the production build, before and after.",
-      "technologies": ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      "technologies": ["Astro", "React", "TypeScript", "Tailwind CSS"],
       "metrics": {
         "title": "Before / after",
         "columns": ["Metric", "Before", "After"],
         "rows": [
           ["<html lang> on /en/", "es", "en"],
-          ["CSS, uncompressed", "880 kB", "35 kB"],
-          ["CSS, gzip", "180 kB", "7.1 kB"],
+          ["CSS, uncompressed", "880 kB", "26 kB"],
+          ["CSS, gzip", "180 kB", "9.2 kB"],
           ["Heaviest project image", "1.10 MB", "81 kB"],
-          ["Total build size", "6.7 MB", "1.5 MB"],
+          ["Total build size", "6.7 MB", "1.2 MB"],
           ["Production dependencies", "21", "14"],
           ["astro check hints", "85", "0"],
-          ["/en/ HTML", "115 kB", "147 kB"]
+          ["/en/ HTML", "115 kB", "99 kB"]
         ]
       }
     }

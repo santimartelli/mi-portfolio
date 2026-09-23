@@ -112,19 +112,19 @@
         "Rendimiento: eliminación de dependencias sin usar y de un paquete de CSS de iconos que pesaba más que todo el resto de la hoja de estilos, más optimización de las imágenes de proyecto."
       ],
       "result": "El sitio cuenta ahora la misma historia que LinkedIn, con el detalle técnico como respaldo en lugar de como titular. El HTML de /en/ creció porque la página tiene dos secciones nuevas y cuatro casos de estudio en lugar de dos fichas de proyecto; el resto de métricas bajó. Todas las cifras de la tabla están medidas sobre el build de producción, antes y después.",
-      "technologies": ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      "technologies": ["Astro", "React", "TypeScript", "Tailwind CSS"],
       "metrics": {
         "title": "Antes / después",
         "columns": ["Métrica", "Antes", "Después"],
         "rows": [
           ["<html lang> en /en/", "es", "en"],
-          ["CSS sin comprimir", "880 kB", "35 kB"],
-          ["CSS comprimido (gzip)", "180 kB", "7,1 kB"],
+          ["CSS sin comprimir", "880 kB", "26 kB"],
+          ["CSS comprimido (gzip)", "180 kB", "9,2 kB"],
           ["Imagen de proyecto más pesada", "1,10 MB", "81 kB"],
-          ["Peso total del build", "6,7 MB", "1,5 MB"],
+          ["Peso total del build", "6,7 MB", "1,2 MB"],
           ["Dependencias de producción", "21", "14"],
           ["Avisos de astro check", "85", "0"],
-          ["HTML de /en/", "115 kB", "147 kB"]
+          ["HTML de /en/", "115 kB", "99 kB"]
         ]
       }
     }
