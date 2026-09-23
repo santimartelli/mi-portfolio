@@ -36,28 +36,34 @@ const Hero = ({ content: t }: HeroProps) => {
           </p>
 
           {/* La accion y el contacto van juntos y centrados como un solo grupo.
-              Los iconos suben a 24px sobre objetivos de 48px, que es el minimo
-              recomendado de area tactil. El gap-8 separa los dos grupos. */}
+              El rotulo sigue la convencion de rotulos del sitio, en versalitas y
+              con tracking amplio, igual que el resto de la pagina. Los iconos van
+              a 24px sobre objetivos de 48px, el minimo de area tactil. */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-8">
             <a
               href="#experience"
-              className="cta-primary flex w-fit items-center px-6 py-3 text-small font-medium">
+              className="cta-primary flex w-fit items-center px-6 py-3 text-small font-medium uppercase tracking-widest">
               {t.cta}
             </a>
 
-            <ul className="flex list-none items-center gap-1">
-              {contactLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    {...(link.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
-                    aria-label={link.label}
-                    className="flex h-12 w-12 items-center justify-center text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
-                    <link.icon className="h-6 w-6" aria-hidden="true" />
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="flex items-center gap-4">
+              <span className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                {t.contactLabel}
+              </span>
+              <ul className="flex list-none items-center gap-1">
+                {contactLinks.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      {...(link.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
+                      aria-label={link.label}
+                      className="flex h-12 w-12 items-center justify-center text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
+                      <link.icon className="h-6 w-6" aria-hidden="true" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 

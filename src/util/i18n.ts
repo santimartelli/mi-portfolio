@@ -19,6 +19,12 @@ export interface HeroTranslations {
   /** Accion principal del hero. Enlaza a la seccion de experiencia. */
   cta: string;
   /**
+   * Rotulo que precede a los tres accesos de contacto. Lleva los dos puntos en
+   * el propio texto, para que quien traduce controle la puntuacion; se pinta en
+   * versalitas por CSS, como el resto de rotulos del sitio.
+   */
+  contactLabel: string;
+  /**
    * Texto alternativo de la ilustracion del hero. Es contenido, no decoracion:
    * la imagen ocupa una columna entera y aporta significado, asi que se
    * describe en cada idioma en vez de dejarla con alt vacio.
