@@ -15,7 +15,8 @@ export type Locale = 'es' | 'en';
 export interface HeroTranslations {
   headline: string;
   description: string;
-  cards: Array<{ label: string; value: string }>;
+  /** Datos de contexto del hero. No son tarjetas: son una lista de definicion. */
+  facts: Array<{ label: string; value: string }>;
   availability: { label: string; value: string };
   buttons: { experience: string; contact: string };
   ariaLabels: { experienceButton: string; contactButton: string };

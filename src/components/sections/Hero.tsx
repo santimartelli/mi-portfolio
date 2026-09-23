@@ -29,7 +29,7 @@ const Hero = ({ content: t }: HeroProps) => {
           <a
             href="#experience"
             aria-label={t.ariaLabels.experienceButton}
-            className="text-small font-light uppercase tracking-widest text-gray-600 underline transition-colors duration-300 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
+            className="text-small font-medium uppercase tracking-widest text-gray-600 underline transition-colors duration-300 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
             {t.buttons.experience}
           </a>
           <a
@@ -68,13 +68,13 @@ const Hero = ({ content: t }: HeroProps) => {
 
         {/* Contexto en una fila, sin filetes ni columnas */}
         <dl className="mt-12 flex flex-wrap gap-x-12 gap-y-6">
-          {t.cards.map((card) => (
-            <div key={card.label} className="min-w-0">
+          {t.facts.map((fact) => (
+            <div key={fact.label} className="min-w-0">
               <dt className="text-micro font-medium uppercase text-gray-500 dark:text-gray-400">
-                {card.label}
+                {fact.label}
               </dt>
-              <dd className="mt-1.5 break-words text-small font-light text-gray-700 dark:text-gray-300">
-                {card.value}
+              <dd className="mt-1.5 break-words text-base font-light text-gray-700 dark:text-gray-300">
+                {fact.value}
               </dd>
             </div>
           ))}
