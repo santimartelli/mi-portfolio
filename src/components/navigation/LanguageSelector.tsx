@@ -2,10 +2,11 @@
 //
 // Los idiomas son enlaces reales (`/` y `/en/`), no navegación por JavaScript:
 // así funcionan sin JS, son rastreables y respetan los hreflang del documento.
-// Se eliminó `flag-icons`, que aportaba ~420 KB de CSS para dos banderas.
+// Se eliminó `flag-icons`, que aportaba ~420 KB de CSS para dos banderas. El
+// icono de diccionario se retiró a petición del usuario: el botón es solo el
+// código del idioma, que es lo que se lee.
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { MdOutlineTranslate } from 'react-icons/md';
 import type { Locale, NavbarTranslations } from '../../util/i18n';
 import { pathForLocale } from '../../util/site';
 import { dropdownVariants, dropdownItemClass, dropdownPanelClass, menuItemVariants } from './dropdownMotion';
@@ -60,11 +61,10 @@ const LanguageSelector = ({ content, locale, isOpen, onToggle, onClose }: Langua
       <button
         type="button"
         onClick={onToggle}
-        className="relative z-40 flex items-center justify-center gap-2 h-14 px-3 text-sm font-medium text-black dark:text-white rounded-sm"
+        className="relative z-40 flex items-center justify-center h-14 px-3 text-sm font-medium text-black dark:text-white rounded-sm"
         aria-haspopup="true"
         aria-expanded={isOpen}
         aria-label={t.languageLabel}>
-        <MdOutlineTranslate className="w-5 h-5" aria-hidden="true" />
         <span className="text-sm font-semibold uppercase tracking-wide">
           {locale === 'en' ? 'EN' : 'ES'}
         </span>

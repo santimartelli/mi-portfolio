@@ -1,6 +1,12 @@
 // Barra de navegacion con menu desplegable en todos los tamanos.
 // Framer Motion se limita al desplegable; la barra en si no se anima, para que
-// sea visible aunque no haya JavaScript.
+// sea visible aunque no haya JavaScript. El unico estado que depende del scroll
+// es el fondo: en cuanto la pagina se mueve, la barra pasa de opaca a
+// translucida con el fondo difuminado (backdrop-filter) para que el contenido
+// que pasa por debajo se lea como tal y no desaparezca de golpe. El difuminado
+// esta siempre declarado y lo que cambia es la opacidad del blanco, que es lo
+// unico que se puede interpolar: asi la transicion es continua. Sin JavaScript
+// la barra se queda opaca, que es exactamente el estado de antes.
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useActiveSection } from "../../util/useActiveSection";
@@ -17,6 +23,7 @@ interface NavbarProps {
 const Navbar = ({ content: t, locale }: NavbarProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const activeSection = useActiveSection();
 
   const prefix = locale === "en" ? "/en" : "";
@@ -34,6 +41,17 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
   useEffect(() => {
     if (menuOpen) setLanguageOpen(false);
   }, [menuOpen]);
+
+  // Estado del fondo segun el scroll. El listener es pasivo y lleva un umbral de
+  // 8px, que absorbe el rebote elastico de iOS (scrollY puede ser negativo) y el
+  // ruido de las ruedas de los trackpads. Se comprueba tambien al montar porque
+  // el selector de idioma guarda y restaura la posicion del scroll al navegar.
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 8);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -58,7 +76,11 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
   }, []);
 
   return (
-    <nav aria-label={t.menuLabel} className="nav-bar fixed inset-x-0 top-0 z-50 border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
+    <nav
+      aria-label={t.menuLabel}
+      className={`nav-bar fixed inset-x-0 top-0 z-50 border-b border-gray-200 bg-white backdrop-blur-md transition-colors duration-200 ease-out dark:border-gray-800 dark:bg-gray-950 ${
+        scrolled ? "supports-[backdrop-filter]:bg-white/85 dark:supports-[backdrop-filter]:bg-gray-950/85" : ""
+      }`}>
       {/* El header no usa .shell, porque necesita el ancho completo, pero desde
           lg comparte sus escalones de margen lateral (4rem y sube con la
           pantalla) para que la marca y el contenido de las secciones empiecen en
