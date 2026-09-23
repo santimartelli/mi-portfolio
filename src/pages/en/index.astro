@@ -28,8 +28,9 @@ const description =
       <Hero content={translations.hero} />
     </section>
 
-    <Divider />
-
+    {/* Bajo el hero no va el separador de gradiente: el marquee ya cierra el
+        bloque y esa linea se sumaba, a 32px, al filete con el que abre About.
+        Entre las demas secciones sigue. */}
     <section>
       <About content={translations.about} />
     </section>
