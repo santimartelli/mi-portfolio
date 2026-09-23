@@ -24,7 +24,7 @@ const Hero = ({ content: t }: HeroProps) => {
     // queda bajo el header: 4rem de barra (h-16) mas 1px de su border-b. Asi el
     // texto y la imagen reparten el aire arriba y abajo en vez de colgar de la
     // linea del header, y el conjunto no se sale por el borde inferior.
-    <section id="home" className="flex min-h-screen items-center pt-[65px] pb-4 sm:pb-28">
+    <section id="home" className="flex min-h-screen items-start pt-[65px] pb-4 sm:pb-28 lg:items-center">
       <div className="shell grid gap-3 lg:grid-cols-12 lg:items-center lg:gap-16">
         <div className="text-center lg:col-span-6 lg:text-left">
           <h1 className="text-display font-light text-balance text-black dark:text-white">
@@ -86,7 +86,7 @@ const Hero = ({ content: t }: HeroProps) => {
             src="/images/hero-portrait.webp"
             alt={t.imageAlt}
             width="1000"
-            height="1250"
+            height="1102"
             loading="eager"
             decoding="async"
             className="hero-media"
