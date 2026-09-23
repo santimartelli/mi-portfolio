@@ -46,7 +46,7 @@ const Hero = ({ content: t }: HeroProps) => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={contentInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-xs sm:text-sm uppercase tracking-[0.25em] font-medium text-gray-500 dark:text-gray-500">
+                className="text-xs sm:text-sm uppercase tracking-[0.25em] font-medium text-gray-500 dark:text-gray-400">
                 {t.badge}
               </motion.p>
 
@@ -100,7 +100,7 @@ const Hero = ({ content: t }: HeroProps) => {
                   <div
                     key={card.label}
                     className="p-4 sm:p-5 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200 bg-gray-50/30 dark:bg-gray-800/20">
-                    <dt className="text-xs uppercase tracking-widest font-medium text-gray-500 dark:text-gray-500 mb-2">
+                    <dt className="text-xs uppercase tracking-widest font-medium text-gray-500 dark:text-gray-400 mb-2">
                       {card.label}
                     </dt>
                     <dd className="text-sm font-light text-gray-700 dark:text-gray-300">
@@ -118,7 +118,7 @@ const Hero = ({ content: t }: HeroProps) => {
                 className="flex items-center gap-3 text-sm font-light text-gray-600 dark:text-gray-400">
                 <span className="w-1.5 h-1.5 bg-green-500 rounded-full" aria-hidden="true" />
                 <span>
-                  <span className="uppercase tracking-widest text-xs text-gray-500 dark:text-gray-500 mr-2">
+                  <span className="uppercase tracking-widest text-xs text-gray-500 dark:text-gray-400 mr-2">
                     {t.availability.label}
                   </span>
                   {t.availability.value}
@@ -157,7 +157,7 @@ const Hero = ({ content: t }: HeroProps) => {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer me"
-                        className="block p-2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors duration-300 hover:bg-gray-50 dark:hover:bg-gray-800/30 rounded-sm"
+                        className="block p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-300 hover:bg-gray-50 dark:hover:bg-gray-800/30 rounded-sm"
                         aria-label={social.label}>
                         <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                       </a>

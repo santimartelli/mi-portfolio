@@ -160,10 +160,10 @@ const Footer = ({ content: t }: FooterProps) => {
             animate={isBottomInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.6 }}
             className="flex flex-col lg:flex-row justify-between items-center gap-3">
-            <p className="text-gray-500 dark:text-gray-500 font-light text-xs">
+            <p className="text-gray-500 dark:text-gray-400 font-light text-xs">
               © {currentYear} {t.brand.name}. {t.copyright}
             </p>
-            <p className="text-gray-500 dark:text-gray-500 font-light text-xs">
+            <p className="text-gray-500 dark:text-gray-400 font-light text-xs">
               {t.builtWith.label}: {t.builtWith.items.join(' · ')}
             </p>
           </motion.div>

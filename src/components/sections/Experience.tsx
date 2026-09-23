@@ -77,7 +77,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
                   className={`px-4 py-2 text-xs uppercase tracking-widest font-medium border transition-colors duration-200 ${
                     isActive
                       ? 'border-blue-400 dark:border-blue-500 text-black dark:text-white bg-gray-100 dark:bg-gray-800'
-                      : 'border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-500 hover:border-gray-400 dark:hover:border-gray-500 hover:text-gray-800 dark:hover:text-gray-200'
+                      : 'border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-gray-400 dark:hover:border-gray-500 hover:text-gray-800 dark:hover:text-gray-200'
                   }`}>
                   {option.label}
                 </button>
@@ -104,14 +104,14 @@ const Experience = ({ content: t }: ExperienceProps) => {
                     </p>
                   </div>
                   <div className="flex flex-wrap items-center gap-3 lg:flex-col lg:items-end lg:text-right shrink-0">
-                    <span className="text-sm text-gray-500 dark:text-gray-500 font-light whitespace-nowrap">
+                    <span className="text-sm text-gray-500 dark:text-gray-400 font-light whitespace-nowrap">
                       {entry.period}
                     </span>
                     <span className="text-[0.65rem] uppercase tracking-widest font-medium px-2 py-1 border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400">
                       {t.trackLabels[entry.track]}
                     </span>
                     {entry.location && (
-                      <span className="text-xs text-gray-500 dark:text-gray-500 font-light">
+                      <span className="text-xs text-gray-500 dark:text-gray-400 font-light">
                         {entry.location}
                       </span>
                     )}
@@ -122,7 +122,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
                   {entry.summary}
                 </p>
 
-                <ul className="list-disc list-outside pl-5 space-y-1.5 text-sm text-gray-600 dark:text-gray-400 font-light marker:text-gray-400 dark:marker:text-gray-600">
+                <ul className="list-disc list-outside pl-5 space-y-1.5 text-sm text-gray-600 dark:text-gray-400 font-light marker:text-gray-500 dark:marker:text-gray-400">
                   {entry.highlights.map((highlight) => (
                     <li key={highlight}>{highlight}</li>
                   ))}
@@ -144,7 +144,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
           </ol>
 
           {/* Nota de honestidad sobre áreas objetivo */}
-          <p className="mt-12 max-w-3xl mx-auto text-sm text-gray-500 dark:text-gray-500 font-light leading-relaxed text-center border-t border-gray-200 dark:border-gray-700 pt-8">
+          <p className="mt-12 max-w-3xl mx-auto text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed text-center border-t border-gray-200 dark:border-gray-700 pt-8">
             {t.note}
           </p>
         </div>

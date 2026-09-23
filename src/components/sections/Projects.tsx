@@ -73,7 +73,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                 <div className="p-6 sm:p-10">
                   {/* Cabecera del caso */}
                   <div className="mb-8">
-                    <p className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500 font-medium mb-3">
+                    <p className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400 font-medium mb-3">
                       {project.category} · {project.period}
                     </p>
                     <h3
@@ -89,7 +89,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                   {/* Problema / solución / rol */}
                   <dl className="grid lg:grid-cols-3 gap-8 mb-10">
                     <div>
-                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
                         <span className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full" aria-hidden="true" />
                         {t.labels.problem}
                       </dt>
@@ -98,7 +98,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                       </dd>
                     </div>
                     <div>
-                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
                         <span className="w-1 h-1 bg-blue-400 dark:bg-blue-500 rounded-full" aria-hidden="true" />
                         {t.labels.solution}
                       </dt>
@@ -107,7 +107,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                       </dd>
                     </div>
                     <div>
-                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
                         <span className="w-1 h-1 bg-green-400 dark:bg-green-500 rounded-full" aria-hidden="true" />
                         {t.labels.role}
                       </dt>
@@ -119,10 +119,10 @@ const Projects = ({ content: t }: ProjectsProps) => {
 
                   {/* Implementación y evolución */}
                   <div className="mb-10">
-                    <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-4">
+                    <h4 className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">
                       {t.labels.implementation}
                     </h4>
-                    <ul className="list-disc list-outside pl-5 space-y-2 text-sm text-gray-600 dark:text-gray-400 font-light marker:text-gray-400 dark:marker:text-gray-600">
+                    <ul className="list-disc list-outside pl-5 space-y-2 text-sm text-gray-600 dark:text-gray-400 font-light marker:text-gray-500 dark:marker:text-gray-400">
                       {project.implementation.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
@@ -131,7 +131,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
 
                   {/* Resultado */}
                   <div className="mb-10 border-l-2 border-blue-400 dark:border-blue-500 pl-5">
-                    <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">
+                    <h4 className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">
                       {t.labels.result}
                     </h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">
@@ -142,7 +142,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                   {/* Métricas medidas */}
                   {project.metrics && (
                     <div className="mb-10 overflow-x-auto">
-                      <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-4">
+                      <h4 className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">
                         {project.metrics.title}
                       </h4>
                       <table className="w-full text-sm border-collapse">
@@ -152,7 +152,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                               <th
                                 key={column}
                                 scope="col"
-                                className="text-left font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest text-xs pb-3 border-b border-gray-200 dark:border-gray-700 pr-6">
+                                className="text-left font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest text-xs pb-3 border-b border-gray-200 dark:border-gray-700 pr-6">
                                 {column}
                               </th>
                             ))}
@@ -167,7 +167,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                                   className={`py-2.5 border-b border-gray-100 dark:border-gray-700/50 pr-6 font-light ${
                                     cellIndex === 0
                                       ? 'text-gray-700 dark:text-gray-300'
-                                      : 'text-gray-500 dark:text-gray-500'
+                                      : 'text-gray-500 dark:text-gray-400'
                                   }`}>
                                   {cell}
                                 </td>
@@ -182,7 +182,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                   {/* Stack */}
                   <div className="flex flex-col sm:flex-row sm:items-start gap-6 sm:gap-10 pt-6 border-t border-gray-200 dark:border-gray-700">
                     <div>
-                      <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">
+                      <h4 className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">
                         {t.labels.technology}
                       </h4>
                       <ul className="list-none flex flex-wrap gap-2">
@@ -198,14 +198,14 @@ const Projects = ({ content: t }: ProjectsProps) => {
 
                     {project.previousStack && (
                       <div>
-                        <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">
+                        <h4 className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">
                           {t.labels.previousStack}
                         </h4>
                         <ul className="list-none flex flex-wrap gap-2">
                           {project.previousStack.map((tech) => (
                             <li
                               key={tech}
-                              className="text-xs px-2 py-1 border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-500 font-light">
+                              className="text-xs px-2 py-1 border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 font-light">
                               {tech}
                             </li>
                           ))}

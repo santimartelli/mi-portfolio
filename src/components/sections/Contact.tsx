@@ -63,7 +63,7 @@ const Contact = ({ content: t }: ContactProps) => {
           <p className="max-w-3xl mx-auto text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light mb-6">
             {t.description}
           </p>
-          <p className="max-w-3xl mx-auto text-base text-gray-500 dark:text-gray-500 leading-relaxed font-light">
+          <p className="max-w-3xl mx-auto text-base text-gray-500 dark:text-gray-400 leading-relaxed font-light">
             {t.statement}
           </p>
         </header>
@@ -98,7 +98,7 @@ const Contact = ({ content: t }: ContactProps) => {
                   <h4 className="text-lg font-light text-black dark:text-white mb-2">
                     {channel.label}
                   </h4>
-                  <p className="text-sm text-gray-500 dark:text-gray-500 font-light mb-3">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 font-light mb-3">
                     {channel.description}
                   </p>
                   <p className="text-xs text-gray-600 dark:text-gray-400 font-mono mt-auto">
@@ -123,7 +123,7 @@ const Contact = ({ content: t }: ContactProps) => {
             initial={{ opacity: 0, y: 20 }}
             animate={isCvInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-3xl mx-auto text-center text-base text-gray-500 dark:text-gray-500 leading-relaxed font-light mb-10">
+            className="max-w-3xl mx-auto text-center text-base text-gray-500 dark:text-gray-400 leading-relaxed font-light mb-10">
             {t.cv.summary}
           </motion.p>
 
@@ -150,10 +150,10 @@ const Contact = ({ content: t }: ContactProps) => {
                     <span className="block text-base font-light text-black dark:text-white mb-1">
                       {file.language} · {file.label}
                     </span>
-                    <span className="block text-sm text-gray-500 dark:text-gray-500 font-light mb-2">
+                    <span className="block text-sm text-gray-500 dark:text-gray-400 font-light mb-2">
                       {file.description}
                     </span>
-                    <span className="block text-xs text-gray-500 dark:text-gray-500 font-light">
+                    <span className="block text-xs text-gray-500 dark:text-gray-400 font-light">
                       PDF · {meta.size} · {meta.lastUpdate}
                     </span>
                   </span>
@@ -168,16 +168,16 @@ const Contact = ({ content: t }: ContactProps) => {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex items-start gap-4 p-6 border border-dashed border-gray-300 dark:border-gray-600">
               <span className="p-3 border border-gray-200 dark:border-gray-600">
-                <FaClock className="w-5 h-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />
+                <FaClock className="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" />
               </span>
               <span className="text-left">
                 <span className="block text-base font-light text-gray-700 dark:text-gray-300 mb-1">
                   {t.cv.hotelTech.title}
                 </span>
-                <span className="block text-sm text-gray-500 dark:text-gray-500 font-light mb-2">
+                <span className="block text-sm text-gray-500 dark:text-gray-400 font-light mb-2">
                   {t.cv.hotelTech.description}
                 </span>
-                <span className="inline-block text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500 border border-gray-300 dark:border-gray-600 px-2 py-1">
+                <span className="inline-block text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400 border border-gray-300 dark:border-gray-600 px-2 py-1">
                   {t.cv.hotelTech.status}
                 </span>
               </span>
@@ -196,7 +196,7 @@ const Contact = ({ content: t }: ContactProps) => {
             <p className="text-base text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-4">
               {t.availability.text}
             </p>
-            <p className="text-base text-gray-500 dark:text-gray-500 font-light leading-relaxed">
+            <p className="text-base text-gray-500 dark:text-gray-400 font-light leading-relaxed">
               {t.closing}
             </p>
           </motion.div>
