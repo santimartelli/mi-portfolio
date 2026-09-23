@@ -35,29 +35,30 @@ const Hero = ({ content: t }: HeroProps) => {
             {t.description}
           </p>
 
-          {/* La accion principal del hero, centrada en la columna. El boton es
-              un flex de ancho ajustado al contenido, asi que mx-auto lo centra;
-              con inline-flex mx-auto no haria nada, porque no es una caja de
-              nivel bloque. */}
-          <a
-            href="#experience"
-            className="cta-primary mx-auto mt-8 flex w-fit items-center px-6 py-3 text-small font-medium">
-            {t.cta}
-          </a>
+          {/* Accion a la izquierda y contacto a la derecha, en la misma fila.
+              Los objetivos tactiles son de 48px y los iconos de 20px, algo mas
+              grandes que los 44/16 anteriores. */}
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-6">
+            <a
+              href="#experience"
+              className="cta-primary flex w-fit items-center px-6 py-3 text-small font-medium">
+              {t.cta}
+            </a>
 
-          <ul className="mt-8 flex list-none items-center justify-center gap-1">
-            {contactLinks.map((link) => (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  {...(link.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
-                  aria-label={link.label}
-                  className="flex h-11 w-11 items-center justify-center text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
-                  <link.icon className="h-4 w-4" aria-hidden="true" />
-                </a>
-              </li>
-            ))}
-          </ul>
+            <ul className="flex list-none items-center gap-1">
+              {contactLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    {...(link.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
+                    aria-label={link.label}
+                    className="flex h-12 w-12 items-center justify-center text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
+                    <link.icon className="h-5 w-5" aria-hidden="true" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Ilustracion del perfil. Se declaran sus dimensiones reales para que
