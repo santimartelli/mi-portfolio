@@ -15,14 +15,15 @@
       "role": "Operations & property management",
       "period": "2026 – present",
       "location": "Girona",
-      "summary": "An apart-hotel with around 30 apartments. I take part in daily operations and in the guest relationship, from booking to stay.",
+      "summary": "An apart-hotel with 33 apartments. I take part in daily operations and in the guest relationship, from booking to stay.",
       "highlights": [
         "Daily operations of the property",
         "Reservations, availability and amendments",
         "Guest support in person, by email and by phone, in several languages",
         "Channel management: Booking.com, Expedia and direct sales",
         "Incident handling and coordination of operational needs",
-        "Pricing and revenue-related operations"
+        "Pricing and revenue-related operations",
+        "I design and build my own internal tool for daily operations: arrivals, message templates, quotes and housekeeping"
       ],
       "tools": ["Booking.com", "Expedia", "Excel"]
     },

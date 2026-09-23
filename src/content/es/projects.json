@@ -1,6 +1,6 @@
 {
   "title": "Proyectos",
-  "description": "Tres productos reales, contados desde el problema hasta el resultado. No son escaparates de tecnología: cada uno explica qué había que resolver y qué hice exactamente.",
+  "description": "Cuatro productos reales, contados desde el problema hasta el resultado. No son escaparates de tecnología: cada uno explica qué había que resolver y qué hice exactamente.",
   "labels": {
     "problem": "Problema",
     "solution": "Solución",
@@ -17,6 +17,31 @@
     "development": "En desarrollo"
   },
   "projects": [
+    {
+      "id": "recep-app",
+      "title": "recep-app",
+      "subtitle": "Herramienta interna para las operaciones diarias de un aparthotel",
+      "category": "Producto propio",
+      "period": "2026 – actualidad",
+      "status": "production",
+      "image": "/images/recep-app.webp",
+      "imageAlt": "Diagrama de los módulos de recep-app: llegadas, plantillas multiidioma, cotizaciones, salidas y fianzas, limpiezas, mantenimiento, reseñas e importación del PMS.",
+      "problem": "El trabajo diario de recepción en un aparthotel de 33 apartamentos estaba repartido entre notas, WhatsApp, email y las extranets de las OTAs. Preparar cada llegada tiene ramas distintas según la hora (presencial o check-in autónomo), las plantillas de mensajes se reescribían a mano en varios idiomas y cada cotización se calculaba a mano con tasas turísticas, parking y depósito. El PMS sigue siendo la fuente de reservas, facturación y sincronización con OTAs, pero no cubre esa capa de trabajo diario.",
+      "solution": "Una herramienta web interna, móvil primero porque se usa de pie, que centraliza ese flujo: checklist de llegada adaptativo, biblioteca de plantillas multiidioma, cotizaciones deterministas, salidas y fianzas, limpiezas, mantenimiento y borradores de respuesta a reseñas. La herramienta prepara; yo envío. Nada se envía automáticamente y no se almacenan datos sensibles ni de contacto: solo nombre, habitación, fechas y estados.",
+      "role": "Desarrollo completo en solitario: definición de producto, modelado del dominio, frontend, backend, base de datos, pruebas y despliegue.",
+      "implementation": [
+        "Monorepo con tres piezas: la web (React 19 sobre Vite), la API (Fastify con PostgreSQL) y un paquete de dominio puro, sin dependencias de framework ni de entorno.",
+        "El dominio concentra las reglas deterministas: cálculo de cotizaciones en céntimos enteros (nunca decimales para dinero), tasas turísticas, parking y depósito; checklist de llegada con ramas dentro y fuera de horario; plantillas con variables; programación de limpiezas; aviso diario.",
+        "API contract-first: esquemas de Fastify, OpenAPI y cliente tipado generado, para que la web nunca dependa de los tipos internos de la base de datos.",
+        "Guardado automático con revisión explícita: cada escritura envía la revisión esperada y el servidor responde 409 si otra vista la ha modificado, con aviso de conflicto en la interfaz.",
+        "Actualización en vivo por Server-Sent Events en lugar de WebSockets: suficiente para invalidar las vistas cuando cambia una estancia.",
+        "Importación de la planificación desde la exportación real del PMS, con coincidencia por capas (número de reserva, coincidencia exacta, renombrada o movida). Las propuestas nunca tocan el progreso ya hecho, requieren aprobación antes de aplicarse e ignoran a propósito las columnas con datos sensibles o de dinero.",
+        "Reseñas asistidas por IA a través de un gateway propio en el backend: la clave nunca llega al frontend, la IA solo devuelve borradores editables y las preferencias de estilo que voy guardando se reinyectan en el prompt.",
+        "Calidad: 48 archivos de test (dominio, componentes y API contra PostgreSQL real, con property tests y pruebas de zona horaria), pruebas end-to-end con Playwright y auditoría de accesibilidad con axe en tres resoluciones."
+      ],
+      "result": "La uso a diario para preparar llegadas, mensajes, cotizaciones y salidas. Sustituye un flujo que vivía repartido en cuatro sitios sin tocar el PMS: sigue siendo la fuente de reservas y facturación, y esta herramienta cubre la capa que faltaba. Está construida para un solo operador, pero con la entidad «establecimiento» desde el primer día, así que puede reutilizarse en otros alojamientos.",
+      "technologies": ["React 19", "TypeScript", "Vite", "TanStack Router", "TanStack Query", "Tailwind CSS v4", "Fastify", "PostgreSQL", "Drizzle ORM", "Better Auth", "Docker", "pnpm"]
+    },
     {
       "id": "tanya-martelli",
       "title": "Tanya Martelli Photography",
@@ -86,7 +111,7 @@
         "Accesibilidad: enlace de salto al contenido, estados de foco visibles, ARIA en controles que solo llevan icono, respeto por prefers-reduced-motion y alternativa sin JavaScript para las animaciones de aparición.",
         "Rendimiento: eliminación de dependencias sin usar y de un paquete de CSS de iconos que pesaba más que todo el resto de la hoja de estilos, más optimización de las imágenes de proyecto."
       ],
-      "result": "El sitio cuenta ahora la misma historia que LinkedIn, con el detalle técnico como respaldo en lugar de como titular. El HTML de /en/ creció porque la página tiene dos secciones nuevas y tres casos de estudio en lugar de dos fichas de proyecto; el resto de métricas bajó. Todas las cifras de la tabla están medidas sobre el build de producción, antes y después.",
+      "result": "El sitio cuenta ahora la misma historia que LinkedIn, con el detalle técnico como respaldo en lugar de como titular. El HTML de /en/ creció porque la página tiene dos secciones nuevas y cuatro casos de estudio en lugar de dos fichas de proyecto; el resto de métricas bajó. Todas las cifras de la tabla están medidas sobre el build de producción, antes y después.",
       "technologies": ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
       "metrics": {
         "title": "Antes / después",
@@ -96,10 +121,10 @@
           ["CSS sin comprimir", "880 kB", "35 kB"],
           ["CSS comprimido (gzip)", "180 kB", "7,1 kB"],
           ["Imagen de proyecto más pesada", "1,10 MB", "81 kB"],
-          ["Peso total del build", "6,7 MB", "1,4 MB"],
+          ["Peso total del build", "6,7 MB", "1,5 MB"],
           ["Dependencias de producción", "21", "14"],
           ["Avisos de astro check", "85", "0"],
-          ["HTML de /en/", "115 kB", "134 kB"]
+          ["HTML de /en/", "115 kB", "147 kB"]
         ]
       }
     }

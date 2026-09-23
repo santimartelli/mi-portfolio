@@ -15,14 +15,15 @@
       "role": "Operaciones y gestión del establecimiento",
       "period": "2026 – actualidad",
       "location": "Girona",
-      "summary": "Aparthotel de unos 30 apartamentos. Participo en la operativa diaria y en la relación con el huésped, desde la reserva hasta la estancia.",
+      "summary": "Aparthotel de 33 apartamentos. Participo en la operativa diaria y en la relación con el huésped, desde la reserva hasta la estancia.",
       "highlights": [
         "Operativa diaria del establecimiento",
         "Gestión de reservas, disponibilidad y modificaciones",
         "Atención al cliente presencial, por email y por teléfono, en varios idiomas",
         "Gestión de canales: Booking.com, Expedia y venta directa",
         "Resolución de incidencias y coordinación de necesidades operativas",
-        "Operaciones de pricing y apoyo a decisiones relacionadas con revenue"
+        "Operaciones de pricing y apoyo a decisiones relacionadas con revenue",
+        "Diseño y desarrollo mi propia herramienta interna para la operativa diaria: llegadas, plantillas de mensajes, cotizaciones y limpiezas"
       ],
       "tools": ["Booking.com", "Expedia", "Excel"]
     },

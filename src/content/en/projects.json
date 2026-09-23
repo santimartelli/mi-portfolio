@@ -1,6 +1,6 @@
 {
   "title": "Work",
-  "description": "Three real products, told from the problem to the result. These are not technology showcases: each one explains what had to be solved and what I actually did.",
+  "description": "Four real products, told from the problem to the result. These are not technology showcases: each one explains what had to be solved and what I actually did.",
   "labels": {
     "problem": "Problem",
     "solution": "Solution",
@@ -17,6 +17,31 @@
     "development": "In development"
   },
   "projects": [
+    {
+      "id": "recep-app",
+      "title": "recep-app",
+      "subtitle": "Internal tool for the daily operations of an apart-hotel",
+      "category": "Own product",
+      "period": "2026 – present",
+      "status": "production",
+      "image": "/images/recep-app.webp",
+      "imageAlt": "Diagram of recep-app's modules: arrivals, multilingual templates, quotes, departures and deposits, housekeeping, maintenance, reviews and PMS import.",
+      "problem": "Daily front desk work at a 33-apartment apart-hotel was spread across notes, WhatsApp, email and OTA extranets. Preparing each arrival branches differently depending on the time of day (in person or self check-in), message templates were rewritten by hand in several languages, and every quote was calculated manually with tourist tax, parking and deposit. The PMS remains the source of bookings, invoicing and OTA sync, but it does not cover that daily layer of work.",
+      "solution": "An internal web tool, mobile first because it is used standing up, that centralises that flow: an adaptive arrival checklist, a multilingual template library, deterministic quotes, departures and deposits, housekeeping, maintenance, and drafts for replying to reviews. The tool prepares; I send. Nothing is sent automatically, and no sensitive or contact data is stored: only name, room, dates and states.",
+      "role": "Sole developer end to end: product definition, domain modelling, frontend, backend, database, testing and deployment.",
+      "implementation": [
+        "Monorepo with three parts: the web app (React 19 on Vite), the API (Fastify with PostgreSQL) and a pure domain package with no framework or environment dependencies.",
+        "The domain holds the deterministic rules: quote calculation in integer cents (never floats for money), tourist tax, parking and deposit; arrival checklist branching for in-hours and out-of-hours; templates with variables; cleaning schedule; daily briefing.",
+        "Contract-first API: Fastify schemas, OpenAPI and a generated typed client, so the web app never depends on the database's internal types.",
+        "Autosave with an explicit revision: every write sends the revision it expects and the server answers 409 if another view changed it, with a conflict notice in the UI.",
+        "Live updates over Server-Sent Events instead of WebSockets: enough to invalidate views when a stay changes.",
+        "Import of the planning from the PMS's real export, with layered matching (booking reference, exact match, renamed, or moved). Proposed changes never touch work already done, require approval before being applied, and deliberately ignore columns holding sensitive or money data.",
+        "AI-assisted reviews through the API's own gateway: the key never reaches the frontend, the AI only returns editable drafts, and the style preferences I keep saving are fed back into the prompt.",
+        "Quality: 48 test files (domain, components and API against a real PostgreSQL, with property tests and timezone tests), Playwright end-to-end tests and axe accessibility audits at three screen sizes."
+      ],
+      "result": "I use it daily to prepare arrivals, messages, quotes and departures. It replaces a workflow that lived in four different places without touching the PMS: that stays the source of bookings and invoicing, and this tool covers the layer that was missing. It is built for a single operator, but with the \"establishment\" entity from day one, so it can be reused at other properties.",
+      "technologies": ["React 19", "TypeScript", "Vite", "TanStack Router", "TanStack Query", "Tailwind CSS v4", "Fastify", "PostgreSQL", "Drizzle ORM", "Better Auth", "Docker", "pnpm"]
+    },
     {
       "id": "tanya-martelli",
       "title": "Tanya Martelli Photography",
@@ -86,7 +111,7 @@
         "Accessibility: skip link, visible focus states, ARIA on icon-only controls, prefers-reduced-motion support and a no-JavaScript fallback for the reveal animations.",
         "Performance: removed unused dependencies and an icon-font CSS bundle that weighed more than the rest of the stylesheet combined, plus optimisation of the project imagery."
       ],
-      "result": "The site now tells the same story as LinkedIn, with the technical detail as backing rather than as the headline. The /en/ HTML grew because the page now has two extra sections and three case studies instead of two project cards; every other metric went down. All figures in the table were measured on the production build, before and after.",
+      "result": "The site now tells the same story as LinkedIn, with the technical detail as backing rather than as the headline. The /en/ HTML grew because the page now has two extra sections and four case studies instead of two project cards; every other metric went down. All figures in the table were measured on the production build, before and after.",
       "technologies": ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
       "metrics": {
         "title": "Before / after",
@@ -96,10 +121,10 @@
           ["CSS, uncompressed", "880 kB", "35 kB"],
           ["CSS, gzip", "180 kB", "7.1 kB"],
           ["Heaviest project image", "1.10 MB", "81 kB"],
-          ["Total build size", "6.7 MB", "1.4 MB"],
+          ["Total build size", "6.7 MB", "1.5 MB"],
           ["Production dependencies", "21", "14"],
           ["astro check hints", "85", "0"],
-          ["/en/ HTML", "115 kB", "134 kB"]
+          ["/en/ HTML", "115 kB", "147 kB"]
         ]
       }
     }
