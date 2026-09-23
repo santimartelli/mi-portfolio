@@ -1,11 +1,11 @@
-// Hero en dos columnas, calcado de la referencia visual aportada por el
-// usuario: a la izquierda el discurso con los chips del enfoque y las dos
-// acciones; a la derecha un panel con los dibujos (dos circulos suaves que
-// sangran por los bordes) y el eje con el punto de acento.
+// Hero en dos columnas, segun la referencia visual aportada por el usuario: a
+// la izquierda el titular, los parrafos de presentacion y el contacto directo;
+// a la derecha un panel con los dibujos (dos circulos suaves que sangran por
+// los bordes) y el eje con el punto de acento.
 // Sin estado y sin JavaScript: el unico movimiento es el latido del punto de
 // estado, que es CSS y no necesita hidratacion, asi que el hero se renderiza
 // entero en el servidor.
-import { FaArrowRight, FaEnvelope, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { FaEnvelope, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import type { HeroTranslations } from '../../util/i18n';
 import { SITE } from '../../util/site';
 
@@ -37,44 +37,6 @@ const Hero = ({ content: t }: HeroProps) => {
               {paragraph}
             </p>
           ))}
-
-          <ul className="mt-10 flex list-none flex-wrap gap-2">
-            {t.focus.map((item) => (
-              <li
-                key={item}
-                className="rounded-md bg-gray-100 px-3.5 py-1.5 text-small text-gray-800 dark:bg-gray-800 dark:text-gray-200">
-                {item}
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-8">
-            <p className="text-micro font-medium uppercase text-gray-500 dark:text-gray-400">
-              {t.practice.label}
-            </p>
-            <p className="mt-2 text-base font-light text-gray-700 dark:text-gray-300">
-              {t.practice.value}
-            </p>
-          </div>
-
-          {/* Las dos acciones: la principal solida y la secundaria con filete,
-              como en la referencia. */}
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a
-              href="#experience"
-              className="inline-flex items-center gap-2 rounded-lg bg-[var(--text-primary)] px-5 py-3 text-small font-medium text-[var(--bg-primary)] transition-opacity duration-200 ease-out hover:opacity-85">
-              {t.buttons.experience}
-              <FaArrowRight className="h-3 w-3" aria-hidden="true" />
-            </a>
-            <a
-              href={SITE.linkedin}
-              target="_blank"
-              rel="noopener noreferrer me"
-              className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-5 py-3 text-small font-medium text-gray-900 transition-colors duration-200 ease-out hover:border-gray-400 dark:border-gray-700 dark:bg-transparent dark:text-gray-100 dark:hover:border-gray-600">
-              <FaLinkedin className="h-4 w-4" aria-hidden="true" />
-              {t.buttons.linkedin}
-            </a>
-          </div>
 
           <div className="mt-10 flex flex-wrap items-center justify-between gap-6">
             <p className="flex items-center gap-3 text-small font-light text-gray-600 dark:text-gray-400">

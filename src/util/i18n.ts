@@ -16,12 +16,6 @@ export interface HeroTranslations {
   headline: string;
   /** Parrafos de presentacion, en orden. */
   description: string[];
-  /** El enfoque: las areas hacia las que apunta el perfil, como chips. */
-  focus: string[];
-  /** La experiencia practica, en una sola linea de rotulo y valor. */
-  practice: { label: string; value: string };
-  /** Las dos acciones del hero: ir a la experiencia y abrir LinkedIn. */
-  buttons: { experience: string; linkedin: string };
   /**
    * El panel lateral. Cada texto va como lista de lineas para fijar los cortes
    * exactos: en mayusculas y con tracking amplio, el corte automatico no es
