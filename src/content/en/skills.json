@@ -1,0 +1,90 @@
+{
+  "title": "Skills",
+  "description": "What I can do, grouped by where I learned it. No progress bars or percentages: hotel tools are listed by real day-to-day use at work, not by certified level.",
+  "groups": [
+    {
+      "id": "hospitality",
+      "title": "Hospitality & Operations",
+      "items": [
+        { "label": "Hotel operations" },
+        { "label": "Front office" },
+        { "label": "Reservations and availability" },
+        { "label": "Guest experience" },
+        { "label": "PMS" },
+        { "label": "Opera" },
+        { "label": "Avalon" },
+        { "label": "OTAs" },
+        { "label": "Booking.com" },
+        { "label": "Expedia" },
+        { "label": "Direct sales" },
+        { "label": "Pricing and revenue operations" }
+      ]
+    },
+    {
+      "id": "customer",
+      "title": "Customer & Product",
+      "note": "Areas I want to move towards. My front office and customer service experience transfers directly, but I have not held these as a formal role yet.",
+      "items": [
+        { "label": "Customer service" },
+        { "label": "Customer onboarding" },
+        { "label": "Implementation support" },
+        { "label": "Technical support" },
+        { "label": "Troubleshooting" },
+        { "label": "Cross-functional communication" }
+      ]
+    },
+    {
+      "id": "technology",
+      "title": "Technology",
+      "note": "Higher Vocational Qualification in Web Application Development, plus hands-on experience building and maintaining products in production.",
+      "items": [
+        { "label": "JavaScript" },
+        { "label": "TypeScript" },
+        { "label": "React" },
+        { "label": "Vue" },
+        { "label": "Astro" },
+        { "label": "Node.js" },
+        { "label": "Express" },
+        { "label": "REST APIs" },
+        { "label": "MySQL" },
+        { "label": "Docker" },
+        { "label": "Git / GitHub" },
+        { "label": "Nginx" },
+        { "label": "WordPress" },
+        { "label": "Tailwind CSS" },
+        { "label": "HTML" },
+        { "label": "CSS" }
+      ]
+    },
+    {
+      "id": "business",
+      "title": "Business",
+      "items": [
+        { "label": "Excel", "level": "Advanced" },
+        { "label": "Operations" },
+        { "label": "Problem solving" },
+        { "label": "Communication" },
+        { "label": "International customer service" }
+      ]
+    }
+  ],
+  "languages": {
+    "title": "Languages",
+    "items": [
+      { "name": "Spanish", "level": "Native" },
+      { "name": "Catalan", "level": "Advanced" },
+      { "name": "English", "level": "Advanced" },
+      { "name": "Italian", "level": "Intermediate" },
+      { "name": "French", "level": "Intermediate" }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "items": [
+      {
+        "title": "Higher Vocational Qualification in Web Application Development",
+        "meta": "Advanced Vocational Training"
+      }
+    ]
+  }
+}

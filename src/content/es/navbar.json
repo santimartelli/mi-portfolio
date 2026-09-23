@@ -1,8 +1,16 @@
 {
   "navigation": {
     "home": "Inicio",
-    "about": "Acerca de",
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "skills": "Skills",
     "projects": "Proyectos",
     "contact": "Contacto"
+  },
+  "menuLabel": "Menú de navegación",
+  "languageLabel": "Seleccionar idioma",
+  "themeLabels": {
+    "toLight": "Cambiar a tema claro",
+    "toDark": "Cambiar a tema oscuro"
   }
 }

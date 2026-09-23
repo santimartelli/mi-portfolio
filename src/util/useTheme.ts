@@ -15,8 +15,9 @@ export type Theme = 'light' | 'dark';
 /**
  * Hook que proporciona el estado del tema y la funcionalidad para cambiarlo
  *
- * Inicializa el tema desde localStorage (o usa 'light' por defecto),
- * aplica las clases CSS necesarias al documento, y persiste los cambios.
+ * El tema inicial ya lo fijó el script inline del layout antes del primer
+ * pintado (leyendo localStorage). Este hook adopta esa decisión en lugar de
+ * volver a elegirla, que era lo que provocaba el destello de tema.
  *
  * @returns Objeto con el tema actual y la función para cambiarlo
  * @returns theme - Tema actual ('light' | 'dark')
@@ -26,9 +27,19 @@ export type Theme = 'light' | 'dark';
  * const { theme, changeTheme } = useTheme();
  * changeTheme('dark'); // Cambia al tema oscuro
  */
+
+/** Lee el tema que el script inline ya aplicó a <html>. Oscuro si no hay clase. */
+const readThemeFromDom = (): Theme => {
+  if (typeof document === 'undefined') return 'dark';
+  const root = document.documentElement;
+  if (root.classList.contains('light')) return 'light';
+  if (root.classList.contains('dark')) return 'dark';
+  return 'dark';
+};
+
 export function useTheme() {
-  // Estado local del tema, inicializado con 'light'
-  const [theme, setTheme] = useState<Theme>('light');
+  // Estado local del tema, sincronizado con la clase ya presente en <html>
+  const [theme, setTheme] = useState<Theme>(readThemeFromDom);
 
   /**
    * Aplica el tema al documento HTML agregando/removiendo clases CSS
@@ -67,20 +78,19 @@ export function useTheme() {
   };
 
   /**
-   * Efecto que se ejecuta al montar el componente
-   * Recupera el tema guardado en localStorage o usa 'light' por defecto
+   * Efecto que se ejecuta al montar el componente.
+   *
+   * El script inline del layout ya aplicó la clase correcta a <html> antes del
+   * primer pintado. Aquí solo sincronizamos <body> y el estado de React con esa
+   * decisión: no se vuelve a leer localStorage ni se elige un tema distinto.
    */
   useEffect(() => {
     // Verifica si está en el navegador (no en SSR)
     if (typeof window === 'undefined') return;
 
-    // Recupera el tema guardado o usa 'light' como valor por defecto
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    const initialTheme = (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : 'light';
-
-    // Aplica el tema inicial
-    setTheme(initialTheme);
-    applyTheme(initialTheme);
+    const current = readThemeFromDom();
+    setTheme(current);
+    applyTheme(current);
   }, []);
 
   return {

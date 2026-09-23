@@ -1,184 +1,93 @@
-// Importaciones necesarias: hooks de React, Framer Motion para animaciones,
-// icono de traducción, contexto de tema, tipos de locale y estilos de banderas
-import { useEffect, useMemo, useRef, useState } from 'react';
+// Selector de idioma.
+//
+// Los idiomas son enlaces reales (`/` y `/en/`), no navegación por JavaScript:
+// así funcionan sin JS, son rastreables y respetan los hreflang del documento.
+// Se eliminó `flag-icons`, que aportaba ~420 KB de CSS para dos banderas.
+import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
-import { useThemeContext } from '../../util/ThemeContext';
-import type { CvLocale } from '../../util/cvMetadata';
-import 'flag-icons/css/flag-icons.min.css';
+import type { Locale, NavbarTranslations } from '../../util/i18n';
+import { pathForLocale } from '../../util/site';
 
-// Interfaz que define las props del componente
 interface LanguageSelectorProps {
+  content: NavbarTranslations;
+  locale: Locale;
   isOpen: boolean;
   onToggle: () => void;
   onClose: () => void;
 }
 
-// Array de opciones de idioma con código, etiqueta y clase de bandera
-const LANGUAGE_OPTIONS: Array<{ code: CvLocale; label: string; flag: string }> = [
-  { code: 'en', label: 'English', flag: 'fi fi-us' },
-  { code: 'es', label: 'Español', flag: 'fi fi-es' },
+const LANGUAGE_OPTIONS: Array<{ code: Locale; label: string; short: string }> = [
+  { code: 'en', label: 'English', short: 'EN' },
+  { code: 'es', label: 'Español', short: 'ES' },
 ];
 
-// Variantes de animación para el dropdown (apertura/cierre con transición de altura)
 const dropdownVariants = {
-  hidden: {
-    height: 0,
-    opacity: 1,
-    transformOrigin: 'top',
-  },
+  hidden: { height: 0, opacity: 1, transformOrigin: 'top' },
   visible: {
     height: 'auto',
     opacity: 1,
-    transition: {
-      height: {
-        duration: 0.3,
-        ease: 'easeOut',
-      },
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
-    },
+    transition: { height: { duration: 0.3, ease: 'easeOut' }, staggerChildren: 0.1, delayChildren: 0.1 },
   },
   exit: {
     height: 0,
     opacity: 1,
-    transition: {
-      height: {
-        duration: 0.2,
-        ease: 'easeIn',
-      },
-      staggerChildren: 0.05,
-      staggerDirection: -1,
-    },
+    transition: { height: { duration: 0.2, ease: 'easeIn' }, staggerChildren: 0.05, staggerDirection: -1 },
   },
 };
 
-// Variantes de animación para cada item del menú (fade + desplazamiento vertical)
 const menuItemVariants = {
-  hidden: {
-    opacity: 0,
-    y: -10,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.2,
-      ease: 'easeOut',
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -10,
-    transition: {
-      duration: 0.15,
-      ease: 'easeIn',
-    },
-  },
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: 'easeOut' } },
+  exit: { opacity: 0, y: -10, transition: { duration: 0.15, ease: 'easeIn' } },
 };
 
-// Función helper que detecta el idioma actual basándose en la ruta del navegador
-const getCurrentLocaleFromPath = (): CvLocale => {
-  if (typeof window !== 'undefined') {
-    return window.location.pathname.startsWith('/en') ? 'en' : 'es';
-  }
-  return 'es';
-};
-
-/**
- * Componente LanguageSelector - Selector de idioma con dropdown animado
- * Permite cambiar entre español e inglés, con animaciones suaves y manejo de estado de scroll
- * Incluye detección de clics fuera del componente para cerrar el dropdown automáticamente
- */
-const LanguageSelector = ({ isOpen, onToggle, onClose }: LanguageSelectorProps) => {
-  const { theme } = useThemeContext();
-  const [currentLocale, setCurrentLocale] = useState<CvLocale>(getCurrentLocaleFromPath);
+const LanguageSelector = ({ content, locale, isOpen, onToggle, onClose }: LanguageSelectorProps) => {
+  const t = content;
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Escucha cambios en el historial del navegador para actualizar el idioma actual
-  useEffect(() => {
-    const handleLocationChange = () => {
-      setCurrentLocale(getCurrentLocaleFromPath());
-    };
-
-    window.addEventListener('popstate', handleLocationChange);
-    return () => window.removeEventListener('popstate', handleLocationChange);
-  }, []);
-
-  // Detecta clics fuera del selector para cerrarlo automáticamente
+  // Cierra el dropdown al hacer clic fuera
   useEffect(() => {
     if (!isOpen) return;
-
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       if (containerRef.current && !containerRef.current.contains(target)) {
         onClose();
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen, onClose]);
 
-  const buttonClass = useMemo(
-    () =>
-      [
-        'relative z-40 flex items-center justify-center gap-2 h-14 px-3 text-sm font-medium focus:outline-none',
-        theme === 'dark' ? 'text-white' : 'text-black',
-      ].join(' '),
-    [theme]
-  );
-
-  // Maneja el cambio de idioma: construye la nueva ruta, guarda la posición de scroll y navega
-  const changeLanguage = (locale: CvLocale) => {
-    if (typeof window === 'undefined') return;
-
-    const currentPath = window.location.pathname;
-    let newPath = '';
-
-    if (locale === 'en') {
-      if (currentPath === '/') {
-        newPath = '/en/';
-      } else if (currentPath.startsWith('/en')) {
-        newPath = currentPath;
-      } else {
-        newPath = `/en${currentPath}`;
-      }
-    } else {
-      if (currentPath.startsWith('/en/')) {
-        newPath = currentPath.replace('/en/', '/');
-      } else if (currentPath === '/en') {
-        newPath = '/';
-      } else {
-        newPath = currentPath;
-      }
+  /**
+   * Guarda la posición de scroll antes de navegar para que el layout la
+   * restaure al cargar el otro idioma.
+   */
+  const rememberScrollPosition = () => {
+    try {
+      sessionStorage.setItem(
+        'scrollPosition',
+        JSON.stringify({ x: window.scrollX, y: window.scrollY })
+      );
+    } catch {
+      // sessionStorage puede no estar disponible; no es crítico.
     }
-
-    const currentScrollY = window.scrollY;
-    const currentScrollX = window.scrollX;
-
-    sessionStorage.setItem('scrollPosition', JSON.stringify({ x: currentScrollX, y: currentScrollY }));
-
-    if (newPath) {
-      window.location.href = newPath;
-    }
-    onClose();
   };
 
   return (
-    <div
-      className="relative language-selector"
-      ref={containerRef}>
-      <motion.button
+    <div className="relative language-selector" ref={containerRef}>
+      <button
         type="button"
         onClick={onToggle}
-        className={buttonClass}
+        className="relative z-40 flex items-center justify-center gap-2 h-14 px-3 text-sm font-medium text-black dark:text-white rounded-sm"
         aria-haspopup="true"
         aria-expanded={isOpen}
-        aria-label="Select language">
-        <MdOutlineTranslate className="w-5 h-5" />
-        <span className="text-sm font-semibold uppercase tracking-wide">{currentLocale === 'en' ? 'EN' : 'ES'}</span>
-      </motion.button>
+        aria-label={t.languageLabel}>
+        <MdOutlineTranslate className="w-5 h-5" aria-hidden="true" />
+        <span className="text-sm font-semibold uppercase tracking-wide">
+          {locale === 'en' ? 'EN' : 'ES'}
+        </span>
+      </button>
 
       <AnimatePresence>
         {isOpen && (
@@ -189,40 +98,45 @@ const LanguageSelector = ({ isOpen, onToggle, onClose }: LanguageSelectorProps) 
             exit="exit"
             variants={dropdownVariants}
             className="absolute right-0 top-[72px] w-56 bg-white dark:bg-gray-950 border border-black dark:border-gray-800 mobile-menu overflow-hidden z-30">
-            <motion.div
-              variants={menuItemVariants}
-              className="p-3">
-              <div className="space-y-1">
+            <motion.div variants={menuItemVariants} className="p-3">
+              <ul className="list-none space-y-1">
                 {LANGUAGE_OPTIONS.map((option) => {
-                  const isActive = option.code === currentLocale;
+                  const isActive = option.code === locale;
                   return (
-                    <motion.button
-                      key={option.code}
-                      type="button"
-                      className={`flex w-full items-center gap-3 px-3 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none ${
-                        isActive
-                          ? 'text-black dark:text-white bg-gray-100 dark:bg-gray-800'
-                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white'
-                      }`}
-                      onClick={() => changeLanguage(option.code)}
-                      whileTap={{ scale: 0.98 }}
-                      aria-current={isActive ? 'true' : 'false'}>
-                      <span
-                        className={`${option.flag} rounded-sm shadow-sm`}
-                        style={{ width: '16px', height: '11px', display: 'inline-block' }}
-                      />
-                      <span className="font-medium">{option.label}</span>
-                      {isActive && (
-                        <motion.div
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          className="ml-auto w-1.5 h-1.5 rounded-full bg-black dark:bg-white"
-                        />
-                      )}
-                    </motion.button>
+                    <li key={option.code}>
+                      <motion.a
+                        href={pathForLocale(option.code)}
+                        hrefLang={option.code}
+                        onClick={() => {
+                          rememberScrollPosition();
+                          onClose();
+                        }}
+                        whileTap={{ scale: 0.98 }}
+                        aria-current={isActive ? 'true' : undefined}
+                        className={`flex w-full items-center gap-3 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-sm ${
+                          isActive
+                            ? 'text-black dark:text-white bg-gray-100 dark:bg-gray-800'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white'
+                        }`}>
+                        <span
+                          aria-hidden="true"
+                          className="inline-flex items-center justify-center w-6 h-4 border border-gray-300 dark:border-gray-600 text-[0.6rem] font-semibold tracking-wider">
+                          {option.short}
+                        </span>
+                        <span className="font-medium">{option.label}</span>
+                        {isActive && (
+                          <motion.span
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            className="ml-auto w-1.5 h-1.5 rounded-full bg-black dark:bg-white"
+                            aria-hidden="true"
+                          />
+                        )}
+                      </motion.a>
+                    </li>
                   );
                 })}
-              </div>
+              </ul>
             </motion.div>
           </motion.div>
         )}
@@ -231,5 +145,4 @@ const LanguageSelector = ({ isOpen, onToggle, onClose }: LanguageSelectorProps) 
   );
 };
 
-// Exporta el componente para ser usado en el NavControls
 export default LanguageSelector;

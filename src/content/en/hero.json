@@ -1,20 +1,21 @@
 {
-  "badge": "Full Stack Developer",
+  "badge": "Hospitality Operations · Hotel Tech",
   "firstName": "Santiago",
   "lastName": "Martelli",
-  "description": {
-    "intro": "Full Stack Developer specialized in building",
-    "highlight": "scalable, high-performance web solutions.",
-    "continuation": "With 3+ years of experience in modern technologies like",
-    "technologies": ["React", "TypeScript", "Node.js", "SQL/NoSQL databases"]
-  },
+  "headline": "Hotel operations and technology, in one profile.",
+  "description": "I work in accommodation operations and front office, and I also build web products. I know how PMS, OTAs and hotel digital tools are actually used because I work with them every day, and I can speak the same language as the teams who build them.",
+  "cards": [
+    { "label": "Focus", "value": "Hospitality + Technology" },
+    { "label": "Experience", "value": "Hotel operations and front office" },
+    { "label": "Tools", "value": "Opera · Avalon · Booking.com · Expedia" }
+  ],
+  "availability": { "label": "Status", "value": "Open to new opportunities" },
   "buttons": {
-    "projects": "View Portfolio",
-    "contact": "Let's Collaborate"
+    "experience": "View experience",
+    "contact": "Let's connect"
   },
-  "scrollIndicator": "Explore more",
   "ariaLabels": {
-    "projectsButton": "View project portfolio",
-    "contactButton": "Contact for opportunities"
+    "experienceButton": "Go to the professional experience section",
+    "contactButton": "Go to the contact section"
   }
 }

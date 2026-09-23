@@ -1,12 +1,13 @@
 // Importaciones necesarias: Framer Motion para animaciones, contexto de tema y estilos del logo
 import { motion } from "framer-motion";
 import { useThemeContext } from "../../util/ThemeContext";
+import { SITE } from "../../util/site";
 import "../../styles/logo.css";
 
 /**
  * Componente Logo - Muestra el logo y nombre del portfolio
- * Contiene las iniciales "SM" en un cuadro y el nombre completo con título profesional
- * Se adapta al tema actual (dark/light) y oculta el texto en dispositivos móviles
+ * Contiene las iniciales "SM" en un cuadro y el nombre con la línea de
+ * posicionamiento actual. Se adapta al tema y oculta el texto en móvil.
  */
 const Logo = () => {
   const { theme } = useThemeContext();
@@ -26,12 +27,12 @@ const Logo = () => {
         <p className={`text-base font-semibold leading-tight ${
           theme === "light" ? "text-black" : "text-white"
         }`}>
-          Santiago Martelli
+          {SITE.name}
         </p>
         <p className={`text-sm ${
           theme === "light" ? "text-gray-700" : "text-gray-300"
         }`}>
-          Full Stack Developer
+          {SITE.tagline}
         </p>
       </div>
     </motion.div>

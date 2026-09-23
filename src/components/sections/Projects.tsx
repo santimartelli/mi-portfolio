@@ -1,295 +1,252 @@
-// Importaciones necesarias: hooks de React, Framer Motion para animaciones,
-// iconos de enlaces y hook de traducciones
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
-import { HiExternalLink } from "react-icons/hi";
-import { useTranslations } from "../../util/i18n";
-
-// Función que retorna el array de proyectos con sus datos traducidos
-const getProjects = (t: any, currentLocale: string) => [
-  {
-    id: 1,
-    image: "/tmphoto.webp",
-    title: t.projects.tanyaPortfolio.title,
-    subtitle: t.projects.tanyaPortfolio.subtitle,
-    category: t.projects.tanyaPortfolio.category,
-    body: t.projects.tanyaPortfolio.body,
-    features: t.projects.tanyaPortfolio.features,
-    href: "https://tanyamartelli.com",
-    github: "https://github.com/santimartelli/tanyamartelliphoto-project.git",
-    technologies: ["Vue.js", "Node.js", "Express", "MySQL", "CSS3"],
-    status: "production",
-    year: "2024",
-    gradient: "from-purple-500 to-pink-600",
-    challenges: currentLocale === 'es' 
-      ? "Diseñé una experiencia visual que destacara el trabajo fotográfico sin distraer del contenido principal."
-      : "Design a visual experience that highlighted the photographic work without distracting from the main content.",
-    impact: currentLocale === 'es'
-      ? "El rediseño refuerza su posicionamiento profesional y facilita el contacto de clientes mediante una navegación estratégica y llamadas a la acción claras."
-      : "The redesign strengthens her professional positioning and streamlines client outreach through strategic navigation and clear calls to action.",
-    learnings: currentLocale === 'es'
-      ? "Profundización en optimización de imágenes y desarrollo de sistemas de gestión de contenido personalizados."
-      : "Deep dive into image optimization and development of custom content management systems.",
-  },
-  {
-    id: 2,
-    image: "/acerko.png",
-    title: t.projects.acerkoFreelance.title,
-    subtitle: t.projects.acerkoFreelance.subtitle,
-    category: t.projects.acerkoFreelance.category,
-    body: t.projects.acerkoFreelance.body,
-    features: t.projects.acerkoFreelance.features,
-    href: "https://acerko.com",
-    technologies: ["WordPress", "WPBakery", "JavaScript", "CSS3"],
-    status: "production",
-    year: "2025",
-    gradient: "from-amber-500 to-orange-500",
-    challenges: currentLocale === 'es'
-      ? "Coordiné un rediseño integral manteniendo el sitio activo, migrando plantillas heredadas a componentes reutilizables sin interrumpir el flujo de contacto."
-      : "Led an end-to-end redesign while keeping the site live, migrating legacy templates into reusable components without disrupting the contact funnel.",
-    impact: currentLocale === 'es'
-      ? "Evolucioné el sitio hacia una experiencia centrada en la conversión, con navegación más clara y una propuesta visual consistente con los servicios ofrecidos."
-      : "Reframed the site into a conversion-focused experience with clearer navigation and a visual language aligned to the offered services.",
-    learnings: currentLocale === 'es'
-      ? "Refuerzo de flujos de trabajo con clientes freelance y mejores prácticas al extender WordPress mediante WPBakery y JavaScript vanilla."
-      : "Strengthened freelance client workflows and best practices for extending WordPress with WPBakery and vanilla JavaScript.",
-  },
-];
+// Sección de proyectos: casos de estudio, no escaparates de tecnología.
+import { useRef, memo } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { FaGithub } from 'react-icons/fa';
+import { HiExternalLink } from 'react-icons/hi';
+import type { ProjectsTranslations } from '../../util/i18n';
 
 /**
- * Componente Projects - Sección de proyectos destacados del portfolio
- * Muestra una galería de proyectos con información detallada, imágenes, tecnologías usadas,
- * desafíos, impacto y aprendizajes. Incluye animaciones al hacer scroll y enlaces a sitios en vivo y código
+ * Proyectos.
+ *
+ * Cada caso de estudio responde al mismo guion: qué problema había, qué
+ * solución se planteó, cuál fue mi rol, cómo se implementó y evolucionó, y qué
+ * resultado tuvo. La tabla de métricas solo aparece si existen números medidos.
  */
-const Projects = () => {
-  const { projects: t } = useTranslations();
+interface ProjectsProps {
+  content: ProjectsTranslations;
+}
+
+const Projects = ({ content: t }: ProjectsProps) => {
 
   const contentRef = useRef(null);
   const isContentInView = useInView(contentRef, { once: true, amount: 0.05 });
 
-  const getCurrentLocale = (): string => {
-    if (typeof window !== 'undefined') {
-      const pathname = window.location.pathname;
-      if (pathname.startsWith('/en')) return 'en';
-    }
-    return 'es';
-  };
-
-  const currentLocale = getCurrentLocale();
-  const projects = getProjects(t, currentLocale);
-
   return (
-    <section
-      id="projects"
-      className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
-
+    <section id="projects" className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
       <div ref={contentRef} className="w-full">
-        <div className="w-full max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="text-center mb-20">
+        <div className="w-full max-w-6xl mx-auto px-6 sm:px-8">
+          {/* Encabezado */}
+          <header className="text-center mb-20">
             <motion.h2
-              initial={{ opacity: 0, transform: "translateY(30px)" }}
-              animate={isContentInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-              style={{ willChange: 'transform, opacity' }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isContentInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl sm:text-5xl md:text-6xl font-light text-black dark:text-white leading-tight mb-8 tracking-tight">
               {t.title}
             </motion.h2>
-            <motion.div
-              initial={{ opacity: 0, transform: "translateY(30px)" }}
-              animate={isContentInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-              style={{ willChange: 'transform, opacity' }}
-              className="max-w-3xl mx-auto">
-              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light tracking-wide">
-                {currentLocale === 'es'
-                  ? 'Cada proyecto representa un desafío único donde aplico tecnologías modernas para resolver problemas reales, creando soluciones que no solo funcionan, sino que generan impacto medible.'
-                  : 'Each project represents a unique challenge where I apply modern technologies to solve real problems, creating solutions that not only work, but generate measurable impact.'
-                }
-              </p>
-            </motion.div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {projects.map((project, index) => (
-              <motion.div
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={isContentInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="max-w-3xl mx-auto text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light">
+              {t.description}
+            </motion.p>
+          </header>
+
+          {/* Casos de estudio */}
+          <div className="space-y-16">
+            {t.projects.map((project, index) => (
+              <motion.article
                 key={project.id}
-                initial={{ opacity: 0, transform: "translateY(40px)" }}
-                animate={isContentInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
-                transition={{ duration: 0.8, delay: 0.6 + index * 0.15, ease: [0.4, 0, 0.2, 1] }}
-                style={{ willChange: 'transform, opacity' }}
-                className="border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300"
-              >
+                initial={{ opacity: 0, y: 30 }}
+                animate={isContentInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 + index * 0.1 }}
+                aria-labelledby={`project-${project.id}`}
+                className="border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20">
+                {/* Imagen */}
                 <div className="relative aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={project.imageAlt}
+                    width={1200}
+                    height={675}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute top-4 right-4">
-                    <div className="px-3 py-1 bg-gray-50/95 dark:bg-gray-800/95 backdrop-blur-sm text-xs font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-                      {project.status === 'production' ? t.status.production : t.status.development}
-                    </div>
-                  </div>
-                  <div className="absolute top-4 left-4 flex gap-2">
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-gray-50/95 dark:bg-gray-800/95 backdrop-blur-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
-                      aria-label={currentLocale === 'es' ? 'Abrir sitio en vivo' : 'Open live site'}
-                    >
-                      <HiExternalLink className="w-4 h-4" />
-                    </a>
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 bg-gray-50/95 dark:bg-gray-800/95 backdrop-blur-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
-                        aria-label={currentLocale === 'es' ? 'Ver repositorio' : 'View source code'}
-                      >
-                        <FaGithub className="w-4 h-4" />
-                      </a>
-                    )}
-                  </div>
+                  <p className="absolute top-4 right-4 px-3 py-1 bg-gray-50/95 dark:bg-gray-800/95 backdrop-blur-sm text-xs font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full" aria-hidden="true" />
+                    {t.status[project.status]}
+                  </p>
                 </div>
-                <div className="p-8 space-y-6">
-                  <div>
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-1 h-1 bg-blue-400 dark:bg-blue-500 rounded-full"></div>
-                      <div className="flex items-center gap-4 text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500 font-medium">
-                        <span>{project.year}</span>
-                        <span>•</span>
-                        <span>{project.category}</span>
-                      </div>
-                    </div>
 
-                    <h3 className="text-2xl md:text-3xl font-light text-black dark:text-white mb-2 tracking-tight">
+                <div className="p-6 sm:p-10">
+                  {/* Cabecera del caso */}
+                  <div className="mb-8">
+                    <p className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500 font-medium mb-3">
+                      {project.category} · {project.period}
+                    </p>
+                    <h3
+                      id={`project-${project.id}`}
+                      className="text-2xl md:text-3xl font-light text-black dark:text-white tracking-tight mb-2">
                       {project.title}
                     </h3>
-                    
-                    <h4 className="text-lg text-gray-600 dark:text-gray-400 font-light mb-4">
+                    <p className="text-lg text-gray-600 dark:text-gray-400 font-light">
                       {project.subtitle}
-                    </h4>
-
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-light text-sm">
-                      {project.body}
                     </p>
                   </div>
-                  <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">
-                      {currentLocale === 'es' ? 'Stack Técnico' : 'Tech Stack'}
+
+                  {/* Problema / solución / rol */}
+                  <dl className="grid lg:grid-cols-3 gap-8 mb-10">
+                    <div>
+                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <span className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full" aria-hidden="true" />
+                        {t.labels.problem}
+                      </dt>
+                      <dd className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">
+                        {project.problem}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <span className="w-1 h-1 bg-blue-400 dark:bg-blue-500 rounded-full" aria-hidden="true" />
+                        {t.labels.solution}
+                      </dt>
+                      <dd className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">
+                        {project.solution}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <span className="w-1 h-1 bg-green-400 dark:bg-green-500 rounded-full" aria-hidden="true" />
+                        {t.labels.role}
+                      </dt>
+                      <dd className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">
+                        {project.role}
+                      </dd>
+                    </div>
+                  </dl>
+
+                  {/* Implementación y evolución */}
+                  <div className="mb-10">
+                    <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-4">
+                      {t.labels.implementation}
                     </h4>
-                    <div className="flex flex-wrap gap-3">
-                      {project.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-xs px-2 py-1 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-light"
-                        >
-                          {tech}
-                        </span>
+                    <ul className="list-disc list-outside pl-5 space-y-2 text-sm text-gray-600 dark:text-gray-400 font-light marker:text-gray-400 dark:marker:text-gray-600">
+                      {project.implementation.map((item) => (
+                        <li key={item}>{item}</li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
-                  <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
-                        <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest">
-                          {currentLocale === 'es' ? 'Desafío' : 'Challenge'}
-                        </h4>
-                      </div>
-                      <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed text-sm">
-                        {project.challenges}
-                      </p>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-1 h-1 bg-green-400 dark:bg-green-500 rounded-full"></div>
-                        <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest">
-                          {currentLocale === 'es' ? 'Impacto' : 'Impact'}
-                        </h4>
-                      </div>
-                      <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed text-sm">
-                        {project.impact}
-                      </p>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-1 h-1 bg-blue-400 dark:bg-blue-500 rounded-full"></div>
-                        <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest">
-                          {currentLocale === 'es' ? 'Aprendizajes' : 'Learnings'}
-                        </h4>
-                      </div>
-                      <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed text-sm">
-                        {project.learnings}
-                      </p>
-                    </div>
+
+                  {/* Resultado */}
+                  <div className="mb-10 border-l-2 border-blue-400 dark:border-blue-500 pl-5">
+                    <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">
+                      {t.labels.result}
+                    </h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">
+                      {project.result}
+                    </p>
                   </div>
-                  <div className="flex gap-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+
+                  {/* Métricas medidas */}
+                  {project.metrics && (
+                    <div className="mb-10 overflow-x-auto">
+                      <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-4">
+                        {project.metrics.title}
+                      </h4>
+                      <table className="w-full text-sm border-collapse">
+                        <thead>
+                          <tr>
+                            {project.metrics.columns.map((column) => (
+                              <th
+                                key={column}
+                                scope="col"
+                                className="text-left font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest text-xs pb-3 border-b border-gray-200 dark:border-gray-700 pr-6">
+                                {column}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {project.metrics.rows.map((row) => (
+                            <tr key={row[0]}>
+                              {row.map((cell, cellIndex) => (
+                                <td
+                                  key={`${row[0]}-${cellIndex}`}
+                                  className={`py-2.5 border-b border-gray-100 dark:border-gray-700/50 pr-6 font-light ${
+                                    cellIndex === 0
+                                      ? 'text-gray-700 dark:text-gray-300'
+                                      : 'text-gray-500 dark:text-gray-500'
+                                  }`}>
+                                  {cell}
+                                </td>
+                              ))}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+
+                  {/* Stack */}
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-6 sm:gap-10 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <div>
+                      <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">
+                        {t.labels.technology}
+                      </h4>
+                      <ul className="list-none flex flex-wrap gap-2">
+                        {project.technologies.map((tech) => (
+                          <li
+                            key={tech}
+                            className="text-xs px-2 py-1 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-light">
+                            {tech}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {project.previousStack && (
+                      <div>
+                        <h4 className="text-xs font-medium text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">
+                          {t.labels.previousStack}
+                        </h4>
+                        <ul className="list-none flex flex-wrap gap-2">
+                          {project.previousStack.map((tech) => (
+                            <li
+                              key={tech}
+                              className="text-xs px-2 py-1 border border-dashed border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-500 font-light">
+                              {tech}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Enlaces */}
+                  <div className="flex flex-wrap items-center gap-6 mt-8">
                     {project.href && (
                       <a
                         href={project.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-light text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-300 uppercase tracking-widest flex items-center gap-2"
-                      >
-                        <HiExternalLink className="w-3 h-3" />
-                        {t.buttons.viewProject}
+                        className="text-sm font-light text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-300 uppercase tracking-widest flex items-center gap-2">
+                        <HiExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                        {t.labels.visit}
+                        <span className="sr-only"> — {project.title}</span>
                       </a>
                     )}
-                    {project.github && (
+                    {project.code && (
                       <a
-                        href={project.github}
+                        href={project.code}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-light text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-300 uppercase tracking-widest flex items-center gap-2"
-                      >
-                        <FaGithub className="w-3 h-3" />
-                        {t.buttons.code}
+                        className="text-sm font-light text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-300 uppercase tracking-widest flex items-center gap-2">
+                        <FaGithub className="w-3.5 h-3.5" aria-hidden="true" />
+                        {t.labels.code}
+                        <span className="sr-only"> — {project.title}</span>
                       </a>
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
-          <motion.div
-            initial={{ opacity: 0, transform: "translateY(30px)" }}
-            animate={isContentInView ? { opacity: 1, transform: "translateY(0px)" } : {}}
-            transition={{ duration: 0.8, delay: 1.0, ease: [0.4, 0, 0.2, 1] }}
-            style={{ willChange: 'transform, opacity' }}
-            className="mt-32 text-center"
-          >
-            <div className="max-w-3xl mx-auto">
-              <div className="flex items-center justify-center gap-3 mb-8">
-                <div className="w-2 h-2 bg-blue-400 dark:bg-blue-500 rounded-full"></div>
-                <h3 className="text-2xl font-light text-black dark:text-white tracking-wide">
-                  {currentLocale === 'es' ? '¿Tienes un proyecto en mente?' : 'Have a project in mind?'}
-                </h3>
-              </div>
-              
-              <p className="text-lg text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-12 max-w-2xl mx-auto">
-                {currentLocale === 'es'
-                  ? 'Me especializo en transformar ideas complejas en soluciones digitales elegantes y funcionales. Cada proyecto es una oportunidad para crear algo excepcional juntos.'
-                  : 'I specialize in transforming complex ideas into elegant and functional digital solutions. Every project is an opportunity to create something exceptional together.'
-                }
-              </p>
-
-              <a
-                href="#contact"
-                className="text-base font-light text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-300 uppercase tracking-widest"
-              >
-                {currentLocale === 'es' ? 'Hablemos' : 'Let\'s Talk'}
-              </a>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
   );
 };
 
-// Exporta el componente para ser usado en las páginas de Astro
-export default Projects;
+export default memo(Projects);

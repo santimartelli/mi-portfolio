@@ -1,62 +1,63 @@
 ---
-// Importaciones: fuente, layout principal, componentes con traducciones y divisor
-import "@fontsource/titillium-web";
+// English homepage (`/en/`). LinkedIn links here directly.
 import Layout from "../../layouts/Layout.astro";
-import NavbarWithTranslations from "../../components/navigation/NavbarWithTranslations";
-import ProjectsWithTranslations from "../../components/sections/ProjectsWithTranslations";
-import AboutMeWithTranslations from "../../components/sections/AboutMeWithTranslations";
-import HeroWithTranslations from "../../components/sections/HeroWithTranslations";
-import ContactWithTranslations from "../../components/sections/ContactWithTranslations";
-import FooterWithTranslations from "../../components/sections/FooterWithTranslations";
+import Navbar from "../../components/navigation/NavbarWithTranslations";
+import Hero from "../../components/sections/HeroWithTranslations";
+import About from "../../components/sections/AboutWithTranslations";
+import Experience from "../../components/sections/ExperienceWithTranslations";
+import Skills from "../../components/sections/SkillsWithTranslations";
+import Projects from "../../components/sections/ProjectsWithTranslations";
+import Contact from "../../components/sections/ContactWithTranslations";
+import Footer from "../../components/sections/FooterWithTranslations";
 import Divider from "../../components/common/Divider";
+import { getTranslations } from "../../util/content";
 
-// Carga de traducciones en inglés para todas las secciones
-const heroTranslations = await import("../../content/en/hero.json");
-const navbarTranslations = await import("../../content/en/navbar.json");
-const aboutmeTranslations = await import("../../content/en/aboutme.json");
-const projectsTranslations = await import("../../content/en/projects.json");
-const contactTranslations = await import("../../content/en/contact.json");
-const footerTranslations = await import("../../content/en/footer.json");
+const locale = "en" as const;
+const translations = getTranslations(locale);
 
-// Objeto consolidado de traducciones para pasar a los componentes
-const translations = {
-  hero: heroTranslations.default,
-  navbar: navbarTranslations.default,
-  aboutme: aboutmeTranslations.default,
-  projects: projectsTranslations.default,
-  contact: contactTranslations.default,
-  footer: footerTranslations.default
-};
+const title = "Santiago Martelli | Hospitality, Hotel Tech & Web Development";
+const description =
+  "Hospitality professional with a background in web development, combining hotel operations, guest experience, PMS and OTAs with the ability to build and maintain real digital products.";
 ---
 
-<Layout
-  title="Santiago Martelli | Programmer and Web Developer"
-  description="Hello! I'm Santiago Martelli, a programmer and web developer with knowledge of HTML, CSS, JavaScript, Vue.js, PHP, Laravel, SQL and more. Available for work!">
-  <main>
-    <NavbarWithTranslations translations={translations} client:load />
+<Layout {title} {description} {locale} path="/en/">
+  <Navbar content={translations.navbar} locale={locale} client:load />
 
+  <main>
     <section id="home" class="relative">
-      <HeroWithTranslations translations={translations} client:visible />
+      <Hero content={translations.hero} client:visible />
     </section>
 
-    <Divider client:load />
+    <Divider />
 
     <section id="about" class="relative">
-      <AboutMeWithTranslations translations={translations} client:visible />
+      <About content={translations.about} client:visible />
     </section>
 
-    <Divider client:load />
+    <Divider />
+
+    <section id="experience" class="relative">
+      <Experience content={translations.experience} client:visible />
+    </section>
+
+    <Divider />
+
+    <section id="skills" class="relative">
+      <Skills content={translations.skills} client:visible />
+    </section>
+
+    <Divider />
 
     <section id="projects" class="relative">
-      <ProjectsWithTranslations translations={translations} client:visible />
+      <Projects content={translations.projects} client:visible />
     </section>
 
-    <Divider client:load />
+    <Divider />
 
     <section id="contact" class="relative">
-      <ContactWithTranslations translations={translations} client:visible />
+      <Contact content={translations.contact} client:visible />
     </section>
 
-    <FooterWithTranslations translations={translations} client:visible />
+    <Footer content={translations.footer} client:visible />
   </main>
 </Layout>

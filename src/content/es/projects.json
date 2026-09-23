@@ -1,49 +1,107 @@
 {
-  "badge": "Proyectos destacados",
-  "title": "Mis proyectos",
-  "description": {
-    "intro": "Cada proyecto es una",
-    "highlight": "historia única",
-    "continuation": "de innovación, creatividad y soluciones técnicas que transforman ideas en realidades digitales excepcionales."
+  "title": "Proyectos",
+  "description": "Tres productos reales, contados desde el problema hasta el resultado. No son escaparates de tecnología: cada uno explica qué había que resolver y qué hice exactamente.",
+  "labels": {
+    "problem": "Problema",
+    "solution": "Solución",
+    "role": "Mi rol",
+    "implementation": "Implementación y evolución",
+    "result": "Resultado",
+    "technology": "Tecnología",
+    "previousStack": "Stack anterior",
+    "visit": "Ver el sitio",
+    "code": "Código"
   },
   "status": {
     "production": "En producción",
     "development": "En desarrollo"
   },
-  "featuresLabel": "Características principales",
-  "buttons": {
-    "viewProject": "Live web",
-    "code": "Código"
-  },
-  "cta": {
-    "question": "¿Tienes un proyecto en mente? Me encantaría colaborar contigo.",
-    "button": "Hablemos"
-  },
-  "projects": {
-    "tanyaPortfolio": {
-      "title": "Tanya Martelli",
-      "subtitle": "Photography portfolio",
-      "category": "Web development",
-      "body": "Portfolio profesional para la fotógrafa Tanya Martelli con diseño minimalista centrado en la experiencia visual. Incluye galería interactiva con categorías, sistema de reserva de sesiones, panel de administración completo y formulario de contacto personalizado.",
-      "features": [
-        "Galería interactiva con filtros",
-        "Sistema de reservas integrado",
-        "Panel de administración",
-        "SEO optimizado",
-        "Diseño responsive"
-      ]
+  "projects": [
+    {
+      "id": "tanya-martelli",
+      "title": "Tanya Martelli Photography",
+      "subtitle": "Sitio web y sistema de gestión para una fotógrafa profesional",
+      "category": "Producto propio",
+      "period": "2024 – actualidad",
+      "status": "production",
+      "image": "/images/tanya-martelli.webp",
+      "imageAlt": "Composición del sitio y del panel de administración de Tanya Martelli Photography, donde se gestionan las reservas de sesiones y la galería de trabajos.",
+      "href": "https://tanyamartelli.com",
+      "problem": "Una fotógrafa profesional necesitaba un único sitio donde mostrar su trabajo, publicar series editoriales, recibir solicitudes de sesión y gestionar su agenda sin depender de mí para cada cambio. La primera versión funcionaba, pero era cara de evolucionar: las imágenes vivían en un servicio externo y cualquier cambio de contenido pasaba por código o por la base de datos a mano.",
+      "solution": "Un sitio multiidioma con Next.js (App Router) y Supabase como base de datos y autenticación, más un panel de administración propio para que ella gestione el portfolio, las experiencias, las sedes, la portada y las solicitudes. Los medios se movieron a Cloudflare R2 servidos por CDN, con subida directa del navegador a R2 mediante URLs prefirmadas.",
+      "role": "Desarrollo completo en solitario: decisiones de producto, frontend, backend, modelo de datos, despliegue y mantenimiento continuo.",
+      "implementation": [
+        "Primera versión con Vue, Node/Express y MySQL.",
+        "Migración a Next.js, React y TypeScript con Tailwind CSS.",
+        "Contenido estructurado en Supabase y panel de administración a medida (portfolio, experiencias, sedes, portada, relaciones con clientas).",
+        "Migración del almacenamiento de imágenes de Cloudinary a Cloudflare R2, conservando las URLs antiguas durante la transición.",
+        "Subida directa navegador → R2 con URLs prefirmadas: las credenciales nunca salen del servidor y el archivo no pasa por la aplicación.",
+        "Sitio en cinco idiomas y envío de correo transaccional para las solicitudes de reserva y contacto."
+      ],
+      "result": "Un producto en producción, en uso real y mantenido de forma continua desde 2024. La clienta gestiona su propio contenido, el sitio sirve cinco idiomas y la entrega de imágenes quedó desacoplada del servidor de la aplicación.",
+      "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "Cloudflare R2"],
+      "previousStack": ["Vue", "Node.js / Express", "MySQL", "Cloudinary"]
     },
-    "acerkoFreelance": {
+    {
+      "id": "acerko",
       "title": "Acerko.com",
-      "subtitle": "Desarrollador WordPress (Freelance)",
-      "category": "WordPress · Freelance",
-      "body": "Rediseño integral del sitio de Acerko.com para mejorar claridad de navegación y consistencia visual, creando componentes reutilizables y microinteracciones alineadas a la identidad de marca.",
-      "features": [
-        "Rediseño completo en WordPress con WPBakery",
-        "Microinteracciones y componentes personalizados",
-        "Optimización de performance y caching",
-        "Pruebas cross-browser y accesibilidad"
-      ]
+      "subtitle": "Rediseño de un sitio comercial en producción",
+      "category": "Freelance · WordPress",
+      "period": "2024 – 2025",
+      "status": "production",
+      "image": "/images/acerko.webp",
+      "imageAlt": "Composición del sitio de Acerko.com con las páginas de tarifas de fibra y móvil y los botones de contratación y contacto.",
+      "href": "https://acerko.com",
+      "problem": "Un sitio comercial en activo cuya estructura se había ido degradando: lenguajes visuales distintos según la página, navegación poco clara y plantillas sin componentes reutilizables, lo que hacía cada cambio de contenido más lento y más arriesgado de lo necesario.",
+      "solution": "Un rediseño incremental sobre la instalación de WordPress existente, en lugar de una reescritura: componentes reutilizables y una navegación más clara, manteniendo el sitio en línea y el canal de contacto funcionando durante todo el proceso.",
+      "role": "Freelance Web Developer, con trato directo con el cliente.",
+      "implementation": [
+        "Reconstrucción de las plantillas con WPBakery y componentes propios reutilizables.",
+        "Unificación de tipografía, espaciado y color para que todas las páginas compartieran el mismo lenguaje visual.",
+        "Microinteracciones y ajustes de JavaScript y CSS a medida.",
+        "Trabajo sobre caché y carga de recursos.",
+        "Pruebas en distintos navegadores y corrección de incidencias reportadas por el cliente."
+      ],
+      "result": "El sitio pasó a una estructura coherente y reutilizable, con una navegación más clara y menos dependencia de un desarrollador para los cambios rutinarios de contenido.",
+      "technologies": ["WordPress", "WPBakery", "JavaScript", "CSS"]
+    },
+    {
+      "id": "martelli-dev",
+      "title": "martelli.dev",
+      "subtitle": "Reposicionar un portfolio para que cuente una sola historia",
+      "category": "Producto propio",
+      "period": "2026",
+      "status": "production",
+      "image": "/images/martelli-dev.webp",
+      "imageAlt": "Comparativa antes y después del reposicionamiento de martelli.dev: de presentarse como desarrollador full stack a comunicar hospitality y tecnología en un mismo perfil.",
+      "code": "https://github.com/santimartelli/mi-portfolio",
+      "problem": "LinkedIn y martelli.dev contaban dos historias profesionales distintas. LinkedIn hablaba de operaciones hoteleras; la web presentaba a un desarrollador full stack. Quien llegaba desde LinkedIn veía un perfil que no encajaba con el que acababa de leer, y la evidencia técnica real quedaba enterrada bajo copy genérico de portfolio.",
+      "solution": "Reposicionar el sitio como una narrativa única —hospitality, operaciones y tecnología— manteniendo el trabajo técnico como evidencia verificable en lugar de eliminarlo. La tecnología no desaparece: pasa a ser la prueba de que además sé construir productos.",
+      "role": "Todo: estrategia de contenido, arquitectura de la información, diseño e implementación frontend.",
+      "implementation": [
+        "Corregido el renderizado por idioma: /en/ servía HTML inicial en español porque el idioma se detectaba desde el navegador después de cargar. Ahora el locale se resuelve en el servidor y se pasa por el árbol de componentes.",
+        "Todo el texto salió de los componentes a archivos JSON por idioma, tipados y validados en el typecheck.",
+        "Secciones nuevas de experiencia y skills; los proyectos se convirtieron en casos de estudio con problema, solución, rol y resultado.",
+        "Metadatos: canonical, hreflang (es / en / x-default), Open Graph, Twitter Cards, JSON-LD, sitemap y robots.txt.",
+        "Accesibilidad: enlace de salto al contenido, estados de foco visibles, ARIA en controles que solo llevan icono, respeto por prefers-reduced-motion y alternativa sin JavaScript para las animaciones de aparición.",
+        "Rendimiento: eliminación de dependencias sin usar y de un paquete de CSS de iconos que pesaba más que todo el resto de la hoja de estilos, más optimización de las imágenes de proyecto."
+      ],
+      "result": "El sitio cuenta ahora la misma historia que LinkedIn, con el detalle técnico como respaldo en lugar de como titular. El HTML de /en/ creció porque la página tiene dos secciones nuevas y tres casos de estudio en lugar de dos fichas de proyecto; el resto de métricas bajó. Todas las cifras de la tabla están medidas sobre el build de producción, antes y después.",
+      "technologies": ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      "metrics": {
+        "title": "Antes / después",
+        "columns": ["Métrica", "Antes", "Después"],
+        "rows": [
+          ["<html lang> en /en/", "es", "en"],
+          ["CSS sin comprimir", "880 kB", "35 kB"],
+          ["CSS comprimido (gzip)", "180 kB", "7,3 kB"],
+          ["Imagen de proyecto más pesada", "1,10 MB", "79 kB"],
+          ["Peso total del build", "6,7 MB", "1,4 MB"],
+          ["Dependencias de producción", "21", "14"],
+          ["Avisos de astro check", "85", "0"],
+          ["HTML de /en/", "115 kB", "129 kB"]
+        ]
+      }
     }
-  }
+  ]
 }

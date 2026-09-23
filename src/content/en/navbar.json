@@ -2,7 +2,15 @@
   "navigation": {
     "home": "Home",
     "about": "About",
-    "projects": "Projects",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Work",
     "contact": "Contact"
+  },
+  "menuLabel": "Navigation menu",
+  "languageLabel": "Select language",
+  "themeLabels": {
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme"
   }
 }

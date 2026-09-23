@@ -1,0 +1,146 @@
+{
+  "title": "Experiencia",
+  "description": "Una sola trayectoria con dos facetas: operaciones hoteleras y desarrollo web. Puedes filtrar para ver cada una por separado.",
+  "allLabel": "Toda la trayectoria",
+  "trackLabels": {
+    "hospitality": "Hospitality & Operations",
+    "technology": "Technology"
+  },
+  "note": "Customer Success e Implementation son áreas hacia las que quiero orientarme. Mi experiencia en front office y en operaciones es directamente transferible, pero no las presento como cargos que ya haya desempeñado.",
+  "entries": [
+    {
+      "id": "els-quimics",
+      "track": "hospitality",
+      "company": "Apartaments Els Químics",
+      "role": "Operaciones y gestión del establecimiento",
+      "period": "2026 – actualidad",
+      "location": "Girona",
+      "summary": "Aparthotel de unos 30 apartamentos. Participo en la operativa diaria y en la relación con el huésped, desde la reserva hasta la estancia.",
+      "highlights": [
+        "Operativa diaria del establecimiento",
+        "Gestión de reservas, disponibilidad y modificaciones",
+        "Atención al cliente presencial, por email y por teléfono, en varios idiomas",
+        "Gestión de canales: Booking.com, Expedia y venta directa",
+        "Resolución de incidencias y coordinación de necesidades operativas",
+        "Operaciones de pricing y apoyo a decisiones relacionadas con revenue"
+      ],
+      "tools": ["Booking.com", "Expedia", "Excel"]
+    },
+    {
+      "id": "hotel-marsol",
+      "track": "hospitality",
+      "company": "Hotel Marsol",
+      "role": "Front Office · Recepción",
+      "period": "2025 – 2026",
+      "location": "Lloret de Mar",
+      "summary": "Recepción de un hotel de costa con un volumen alto de llegadas y salidas.",
+      "highlights": [
+        "Atención presencial, por email y por teléfono",
+        "Reservas y modificaciones",
+        "Gestión de incidencias",
+        "Asignación y coordinación de habitaciones",
+        "Walk-ins y solicitudes especiales",
+        "Cotización y gestión de grupos",
+        "Centralita"
+      ]
+    },
+    {
+      "id": "tanya-martelli",
+      "track": "technology",
+      "company": "Tanya Martelli Photography",
+      "role": "Desarrollo y mantenimiento de producto propio",
+      "period": "2024 – actualidad",
+      "summary": "Sitio web y sistema de gestión para una fotógrafa profesional. Producto real en producción que desarrollo y mantengo.",
+      "highlights": [
+        "Producto en producción cuyo contenido gestiona la propia clienta",
+        "Evolución de arquitectura: de Vue + Node/Express + MySQL a Next.js, React y Supabase",
+        "Migración del almacenamiento de medios de Cloudinary a Cloudflare R2",
+        "Sitio multiidioma y panel de administración a medida",
+        "Mantenimiento y evolución continuos desde 2024"
+      ],
+      "tools": ["Next.js", "React", "TypeScript", "Supabase", "Cloudflare R2"]
+    },
+    {
+      "id": "gran-hotel-flamingo",
+      "track": "hospitality",
+      "company": "Gran Hotel Flamingo",
+      "role": "Front Office · Recepción",
+      "period": "2024 – 2025",
+      "location": "Lloret de Mar",
+      "summary": "Recepción con clientes individuales y grupos durante la temporada alta.",
+      "highlights": [
+        "Atención multilingüe a clientes individuales y grupos",
+        "Check-in y check-out",
+        "Pagos, facturación, TPV y arqueo",
+        "Gestión de incidencias",
+        "Coordinación con otros departamentos"
+      ]
+    },
+    {
+      "id": "acerko",
+      "track": "technology",
+      "company": "Acerko.com",
+      "role": "Freelance Web Developer",
+      "period": "2024 – 2025",
+      "summary": "Rediseño y mejora de un sitio comercial en producción, trabajando directamente con el cliente.",
+      "highlights": [
+        "Rediseño de un sitio WordPress en producción, sin sacarlo de línea",
+        "Mejoras de navegación y de experiencia de usuario",
+        "JavaScript y CSS a medida",
+        "Diseño responsive",
+        "Optimización de rendimiento",
+        "Testing, troubleshooting y mejoras a partir de necesidades reales del negocio"
+      ],
+      "tools": ["WordPress", "WPBakery", "JavaScript", "CSS"]
+    },
+    {
+      "id": "dorna-corporate",
+      "track": "hospitality",
+      "company": "Dorna Sports · MotoGP",
+      "role": "Corporate Reception & Administration",
+      "period": "2019 – 2024",
+      "summary": "Recepción corporativa en un entorno internacional, a lo largo de varias temporadas del Mundial de MotoGP.",
+      "highlights": [
+        "Atención a ejecutivos, patrocinadores, proveedores y prensa internacional",
+        "Gestión de visitas y de visitantes internacionales",
+        "Tareas administrativas y de coordinación",
+        "Comunicación en varios idiomas"
+      ]
+    },
+    {
+      "id": "dorna-webdev",
+      "track": "technology",
+      "company": "Dorna Sports",
+      "role": "Web Development Internship",
+      "period": "2023",
+      "summary": "Prácticas de desarrollo web dentro del equipo técnico, en paralelo a la recepción corporativa.",
+      "highlights": [
+        "Desarrollo con HTML, CSS y JavaScript",
+        "Componentes con Vue.js",
+        "Consumo e integración de APIs REST",
+        "Integración frontend/backend",
+        "Debugging y QA/testing",
+        "Mejoras de usabilidad"
+      ],
+      "tools": ["HTML", "CSS", "JavaScript", "Vue.js", "REST APIs"]
+    },
+    {
+      "id": "ac-palau",
+      "track": "hospitality",
+      "company": "AC Palau de Bellavista by Marriott",
+      "role": "Front Office",
+      "period": "2 años",
+      "location": "Girona",
+      "summary": "Front office en un hotel urbano de la marca Marriott.",
+      "highlights": [
+        "Front office y atención al cliente",
+        "Reservas y facturación",
+        "Gestión de incidencias",
+        "Atención a clientes VIP y a equipos deportivos profesionales",
+        "Solicitudes especiales y protocolos de privacidad",
+        "Uso diario de PMS"
+      ],
+      "tools": ["PMS"]
+    }
+  ]
+}

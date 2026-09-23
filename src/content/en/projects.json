@@ -1,49 +1,107 @@
 {
-  "badge": "Featured Projects",
-  "title": "My projects",
-  "description": {
-    "intro": "Each project is a",
-    "highlight": "unique story",
-    "continuation": "of innovation, creativity and technical solutions that transform ideas into exceptional digital realities."
-  },
-  "status": {
-    "production": "In Production",
-    "development": "In Development"
-  },
-  "featuresLabel": "Key Features",
-  "buttons": {
-    "viewProject": "Live web",
+  "title": "Work",
+  "description": "Three real products, told from the problem to the result. These are not technology showcases: each one explains what had to be solved and what I actually did.",
+  "labels": {
+    "problem": "Problem",
+    "solution": "Solution",
+    "role": "My role",
+    "implementation": "Implementation and evolution",
+    "result": "Result",
+    "technology": "Technology",
+    "previousStack": "Previous stack",
+    "visit": "Visit site",
     "code": "Code"
   },
-  "cta": {
-    "question": "Have a project in mind? I'd love to collaborate with you.",
-    "button": "Let's Talk"
+  "status": {
+    "production": "In production",
+    "development": "In development"
   },
-  "projects": {
-    "tanyaPortfolio": {
-      "title": "Tanya Martelli",
-      "subtitle": "Photography Portfolio",
-      "category": "Web Development",
-      "body": "Professional portfolio for photographer Tanya Martelli with minimalist design focused on visual experience. Includes interactive gallery with categories, session booking system, complete admin panel and custom contact form.",
-      "features": [
-        "Interactive gallery with filters",
-        "Integrated booking system",
-        "Administration panel",
-        "SEO optimized",
-        "Responsive design"
-      ]
+  "projects": [
+    {
+      "id": "tanya-martelli",
+      "title": "Tanya Martelli Photography",
+      "subtitle": "Website and management system for a professional photographer",
+      "category": "Own product",
+      "period": "2024 – present",
+      "status": "production",
+      "image": "/images/tanya-martelli.webp",
+      "imageAlt": "Composite of the Tanya Martelli Photography site and admin dashboard, where session bookings and the photo gallery are managed.",
+      "href": "https://tanyamartelli.com",
+      "problem": "A professional photographer needed a single place to show her work, publish editorial series, take session enquiries and manage her schedule without depending on me for every change. The first version worked, but it was expensive to evolve: images lived in a third-party service and any content change went through code or through the database by hand.",
+      "solution": "A multi-language site built with Next.js (App Router) and Supabase for database and authentication, plus a custom admin dashboard so she can manage the portfolio, experiences, locations, homepage and guest enquiries herself. Media moved to Cloudflare R2 served over a CDN, with direct browser-to-R2 uploads through presigned URLs.",
+      "role": "Sole developer end to end: product decisions, frontend, backend, data model, deployment and ongoing maintenance.",
+      "implementation": [
+        "First version built with Vue, Node/Express and MySQL.",
+        "Migration to Next.js, React and TypeScript with Tailwind CSS.",
+        "Content modelled in Supabase with a custom admin dashboard (portfolio, experiences, locations, homepage, guest relations).",
+        "Image storage migrated from Cloudinary to Cloudflare R2, keeping the old URLs working during the transition.",
+        "Direct browser → R2 uploads via presigned URLs: credentials never leave the server and the file never passes through the application.",
+        "Five-language site with transactional email for booking and contact requests."
+      ],
+      "result": "A product in production, in real use and maintained continuously since 2024. The client manages her own content, the site serves five languages, and image delivery is decoupled from the application server.",
+      "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "Cloudflare R2"],
+      "previousStack": ["Vue", "Node.js / Express", "MySQL", "Cloudinary"]
     },
-    "acerkoFreelance": {
+    {
+      "id": "acerko",
       "title": "Acerko.com",
-      "subtitle": "WordPress Developer (Freelance)",
-      "category": "WordPress · Freelance",
-      "body": "Full redesign of Acerko.com's corporate site to improve navigation clarity and visual consistency, delivering reusable components and brand-aligned microinteractions.",
-      "features": [
-        "Complete WordPress redesign with WPBakery",
-        "Custom microinteractions and components",
-        "Performance and caching optimization",
-        "Cross-browser and accessibility testing"
-      ]
+      "subtitle": "Redesign of a live commercial website",
+      "category": "Freelance · WordPress",
+      "period": "2024 – 2025",
+      "status": "production",
+      "image": "/images/acerko.webp",
+      "imageAlt": "Composite of the Acerko.com site showing the fibre and mobile pricing pages and the sign-up and contact buttons.",
+      "href": "https://acerko.com",
+      "problem": "A live commercial site whose structure had drifted: different visual languages from page to page, unclear navigation and templates with no reusable components, which made every content change slower and riskier than it needed to be.",
+      "solution": "An incremental redesign on top of the existing WordPress installation rather than a rewrite: reusable components and clearer navigation, keeping the site online and the contact funnel working throughout.",
+      "role": "Freelance Web Developer, working directly with the client.",
+      "implementation": [
+        "Rebuilt the page templates with WPBakery and custom reusable components.",
+        "Unified typography, spacing and colour so every page shared the same visual language.",
+        "Custom microinteractions and JavaScript/CSS adjustments.",
+        "Work on caching and asset loading.",
+        "Cross-browser testing and fixes for issues reported by the client."
+      ],
+      "result": "The site moved to a coherent, reusable structure with clearer navigation and less dependence on a developer for routine content changes.",
+      "technologies": ["WordPress", "WPBakery", "JavaScript", "CSS"]
+    },
+    {
+      "id": "martelli-dev",
+      "title": "martelli.dev",
+      "subtitle": "Repositioning a portfolio to tell one story",
+      "category": "Own product",
+      "period": "2026",
+      "status": "production",
+      "image": "/images/martelli-dev.webp",
+      "imageAlt": "Before-and-after comparison of the martelli.dev repositioning: from presenting as a full stack developer to communicating hospitality and technology in one profile.",
+      "code": "https://github.com/santimartelli/mi-portfolio",
+      "problem": "LinkedIn and martelli.dev were telling two different professional stories. LinkedIn talked about hotel operations; the site presented a full stack developer. Anyone arriving from LinkedIn saw a profile that did not match the one they had just read, and the real technical evidence was buried under generic portfolio copy.",
+      "solution": "Reposition the site as a single narrative — hospitality, operations and technology — keeping the technical work as verifiable evidence instead of removing it. Technology does not disappear: it becomes the proof that I can also build products.",
+      "role": "Everything: content strategy, information architecture, design and frontend implementation.",
+      "implementation": [
+        "Fixed per-language rendering: /en/ served Spanish in its initial HTML because the language was detected from the browser after load. The locale is now resolved on the server and passed through the component tree.",
+        "Moved all copy out of the components into per-locale JSON files, typed and validated at typecheck time.",
+        "Added experience and skills sections; turned projects into case studies covering problem, solution, role and result.",
+        "Metadata: canonical, hreflang (es / en / x-default), Open Graph, Twitter Cards, JSON-LD, sitemap and robots.txt.",
+        "Accessibility: skip link, visible focus states, ARIA on icon-only controls, prefers-reduced-motion support and a no-JavaScript fallback for the reveal animations.",
+        "Performance: removed unused dependencies and an icon-font CSS bundle that weighed more than the rest of the stylesheet combined, plus optimisation of the project imagery."
+      ],
+      "result": "The site now tells the same story as LinkedIn, with the technical detail as backing rather than as the headline. The /en/ HTML grew because the page now has two extra sections and three case studies instead of two project cards; every other metric went down. All figures in the table were measured on the production build, before and after.",
+      "technologies": ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      "metrics": {
+        "title": "Before / after",
+        "columns": ["Metric", "Before", "After"],
+        "rows": [
+          ["<html lang> on /en/", "es", "en"],
+          ["CSS, uncompressed", "880 kB", "35 kB"],
+          ["CSS, gzip", "180 kB", "7.3 kB"],
+          ["Heaviest project image", "1.10 MB", "79 kB"],
+          ["Total build size", "6.7 MB", "1.4 MB"],
+          ["Production dependencies", "21", "14"],
+          ["astro check hints", "85", "0"],
+          ["/en/ HTML", "115 kB", "129 kB"]
+        ]
+      }
     }
-  }
+  ]
 }

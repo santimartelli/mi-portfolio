@@ -1,30 +1,29 @@
 {
   "brand": {
     "name": "Santiago Martelli",
-    "description": "Modern web development focused on user experience, exceptional performance and clean code that makes a difference."
+    "description": "Hotel operations and web development. I understand hotel software from the operations side and I can build it from the code side."
   },
   "navigation": {
     "title": "Navigation",
     "links": {
       "home": "Home",
       "about": "About",
-      "projects": "Projects",
+      "experience": "Experience",
+      "skills": "Skills",
+      "projects": "Work",
       "contact": "Contact"
     }
   },
   "technologies": {
-    "title": "Technologies",
-    "moreText": "more technologies"
+    "title": "Stack"
   },
-  "copyright": "All rights reserved.",
-  "madeWith": {
-    "developedWith": "Developed with",
-    "and": "and",
-    "from": "from",
-    "location": "Spain"
+  "builtWith": {
+    "label": "Built with",
+    "items": ["Astro", "React", "TypeScript", "Tailwind CSS"]
   },
-  "cta": {
-    "question": "Have a project in mind?",
-    "button": "Let's talk!"
-  }
+  "location": {
+    "label": "Location",
+    "value": "Girona · Barcelona · Remote"
+  },
+  "copyright": "All rights reserved."
 }

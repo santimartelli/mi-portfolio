@@ -1,29 +1,151 @@
 ---
-// Importaciones de fuentes: Inter Variable (pesos 100-900) y Titillium Web
+// Layout principal: metadatos por idioma, SEO, accesibilidad y sistema de temas.
 import "@fontsource-variable/inter";
 import "@fontsource/titillium-web";
 
-// Interfaz que define las props del layout
+import type { Locale } from "../util/i18n";
+import { OG_IMAGE, SITE, SITE_URL, pathForLocale } from "../util/site";
+
 interface Props {
   title: string;
   description: string;
+  /** Locale resuelto en el servidor. Determina <html lang> y los metadatos. */
+  locale: Locale;
+  /** Ruta canónica de la página, por ejemplo "/" o "/en/". */
+  path: string;
 }
 
-// Declaración global de Window para Google Analytics
 declare global {
   interface Window {
-    dataLayer: any[];
+    dataLayer: unknown[];
   }
 }
 
-const { description, title } = Astro.props;
+const { description, title, locale, path } = Astro.props;
+
+// URL canónica de esta página y de su alternativa en el otro idioma.
+const canonical = new URL(path, SITE_URL).href;
+const esUrl = new URL(pathForLocale('es'), SITE_URL).href;
+const enUrl = new URL(pathForLocale('en'), SITE_URL).href;
+const ogImage = new URL(OG_IMAGE[locale], SITE_URL).href;
+const ogLocale = locale === 'es' ? 'es_ES' : 'en_GB';
+const ogLocaleAlternate = locale === 'es' ? 'en_GB' : 'es_ES';
+
+const skipLabel = locale === 'es' ? 'Saltar al contenido' : 'Skip to content';
+
+// Datos estructurados: una sola persona, descrita de forma verificable.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
+      name: SITE.name,
+      url: `${SITE_URL}/`,
+      email: `mailto:${SITE.email}`,
+      jobTitle:
+        locale === 'es'
+          ? 'Operaciones hoteleras y desarrollo web'
+          : 'Hotel operations and web development',
+      description,
+      sameAs: [SITE.linkedin, SITE.github],
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Girona',
+        addressRegion: 'Catalunya',
+        addressCountry: 'ES',
+      },
+      knowsLanguage: ['es', 'ca', 'en', 'it', 'fr'],
+      hasOccupation: {
+        '@type': 'Occupation',
+        name:
+          locale === 'es'
+            ? 'Operaciones hoteleras y tecnología'
+            : 'Hotel operations and technology',
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: SITE.name,
+      inLanguage: locale,
+      publisher: { '@id': `${SITE_URL}/#person` },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: locale,
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#person` },
+    },
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="author" content={SITE.name} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Canonical y alternativas por idioma -->
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={esUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <!-- x-default apunta a la versión inglesa: es la que se comparte desde LinkedIn -->
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlternate} />
+    <meta property="profile:first_name" content="Santiago" />
+    <meta property="profile:last_name" content="Martelli" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={title} />
+
+    <title>{title}</title>
+
+    <!--
+      Tema antes del primer pintado. Evita el destello: el HTML se sirve sin
+      clase y el CSS por defecto es oscuro, así que fijamos la clase aquí antes
+      de que el navegador pinte nada.
+    -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme = stored === "light" || stored === "dark" ? stored : "dark";
+          document.documentElement.classList.add(theme);
+        } catch (error) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
     <!-- Google Analytics (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SEW399N9F"></script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-4SEW399N9F"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -32,40 +154,43 @@ const { description, title } = Astro.props;
       gtag("js", new Date());
       gtag("config", "G-4SEW399N9F");
     </script>
-    <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
 
-    <!-- Script de restauración de posición de scroll -->
-    <script>
-      // Restaura la posición de scroll después del cambio de idioma
-      document.addEventListener('DOMContentLoaded', function() {
-        const storedPosition = sessionStorage.getItem('scrollPosition');
-        if (storedPosition) {
-          try {
-            const { x, y } = JSON.parse(storedPosition);
-            // Usa requestAnimationFrame para asegurar que la página esté completamente renderizada
-            requestAnimationFrame(() => {
-              window.scrollTo({
-                left: x,
-                top: y,
-                behavior: 'instant' // Usa 'instant' para evitar animación de scroll suave
-              });
-            });
-            // Limpia la posición guardada después de restaurarla
-            sessionStorage.removeItem('scrollPosition');
-          } catch (error) {
-            console.error('Error al restaurar posición de scroll:', error);
-            sessionStorage.removeItem('scrollPosition');
-          }
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Restaura la posición de scroll después de cambiar de idioma -->
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function () {
+        var storedPosition = sessionStorage.getItem("scrollPosition");
+        if (!storedPosition) return;
+        try {
+          var position = JSON.parse(storedPosition);
+          requestAnimationFrame(function () {
+            window.scrollTo({ left: position.x, top: position.y, behavior: "instant" });
+          });
+          sessionStorage.removeItem("scrollPosition");
+        } catch (error) {
+          sessionStorage.removeItem("scrollPosition");
         }
       });
     </script>
   </head>
   <body class="flex flex-col bg-darkbg-950 text-darktext-300">
+    <!-- Sin JavaScript las animaciones de aparición nunca se ejecutan: forzamos
+         la visibilidad para que el contenido siga siendo legible y rastreable. -->
+    <noscript>
+      <style>
+        [style*="opacity:0"],
+        [style*="opacity: 0"] {
+          opacity: 1 !important;
+        }
+        [style*="translateY"] {
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+
+    <a class="skip-link" href="#home">{skipLabel}</a>
+
     <slot />
   </body>
 
@@ -75,7 +200,7 @@ const { description, title } = Astro.props;
     }
 
     /* ========================================
-       🎨 SISTEMA DE DISEÑO PROFESIONAL 
+       🎨 SISTEMA DE DISEÑO PROFESIONAL
        ======================================== */
 
     /* Modo oscuro - Elegante y Profesional */
@@ -87,7 +212,7 @@ const { description, title } = Astro.props;
       --darkbg-800: #1f2937;           /* Fondo de tarjetas */
       --darkbg-700: #374151;           /* Fondo hover sutil */
       --darkbg-600: #4b5563;           /* Bordes suaves */
-      
+
       /* === TEXTOS === */
       --darktext-50: #f8fafc;          /* Texto principal - blanco puro */
       --darktext-100: #f1f5f9;         /* Texto enfático */
@@ -95,7 +220,7 @@ const { description, title } = Astro.props;
       --darktext-300: #cbd5e1;         /* Texto secundario */
       --darktext-400: #94a3b8;         /* Texto muted */
       --darktext-500: #64748b;         /* Texto disabled */
-      
+
       /* === ACCENTS === */
       --accent-primary: #3b82f6;       /* Azul profesional */
       --accent-primary-hover: #2563eb;
@@ -104,19 +229,19 @@ const { description, title } = Astro.props;
       --accent-success: #10b981;       /* Verde éxito */
       --accent-warning: #f59e0b;       /* Ámbar advertencia */
       --accent-error: #ef4444;         /* Rojo error */
-      
+
       /* === SISTEMA UNIFICADO === */
       --bg-primary: var(--darkbg-950);
       --bg-secondary: var(--darkbg-900);
       --bg-tertiary: var(--darkbg-800);
       --bg-quaternary: var(--darkbg-700);
       --bg-hover: var(--darkbg-700);
-      
+
       --text-primary: var(--darktext-50);
       --text-secondary: var(--darktext-200);
       --text-tertiary: var(--darktext-300);
       --text-muted: var(--darktext-400);
-      
+
       --accent: var(--accent-primary);
       --accent-hover: var(--accent-primary-hover);
       --border-primary: rgba(59, 130, 246, 0.2);
@@ -132,7 +257,7 @@ const { description, title } = Astro.props;
       --darkbg-800: #f1f5f9;           /* Fondo de tarjetas */
       --darkbg-700: #e2e8f0;           /* Fondo hover */
       --darkbg-600: #cbd5e1;           /* Bordes */
-      
+
       /* === TEXTOS === */
       --darktext-50: #0f172a;          /* Texto principal oscuro */
       --darktext-100: #1e293b;         /* Texto enfático */
@@ -140,7 +265,7 @@ const { description, title } = Astro.props;
       --darktext-300: #475569;         /* Texto secundario */
       --darktext-400: #64748b;         /* Texto muted */
       --darktext-500: #94a3b8;         /* Texto disabled */
-      
+
       /* === ACCENTS === */
       --accent-primary: #2563eb;       /* Azul más oscuro para contraste */
       --accent-primary-hover: #1d4ed8;
@@ -149,19 +274,19 @@ const { description, title } = Astro.props;
       --accent-success: #059669;       /* Verde más oscuro */
       --accent-warning: #d97706;       /* Ámbar más oscuro */
       --accent-error: #dc2626;         /* Rojo más oscuro */
-      
+
       /* === SISTEMA UNIFICADO === */
       --bg-primary: var(--darkbg-950);
       --bg-secondary: var(--darkbg-900);
       --bg-tertiary: var(--darkbg-800);
       --bg-quaternary: var(--darkbg-700);
       --bg-hover: var(--darkbg-700);
-      
+
       --text-primary: var(--darktext-50);
       --text-secondary: var(--darktext-200);
       --text-tertiary: var(--darktext-300);
       --text-muted: var(--darktext-400);
-      
+
       --accent: var(--accent-primary);
       --accent-hover: var(--accent-primary-hover);
       --border-primary: rgba(37, 99, 235, 0.2);
@@ -176,8 +301,36 @@ const { description, title } = Astro.props;
       box-sizing: border-box;
     }
 
-    :focus {
-      outline: 0.5px solid var(--text-accent);
+    /* Indicador de foco visible y consistente. `:focus-visible` evita el anillo
+       en clics de ratón y lo mantiene al navegar con teclado. */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* La barra de navegación es fija: evita que tape el título al saltar a una sección */
+    section[id] {
+      scroll-margin-top: 5.5rem;
+    }
+
+    /* Enlace de salto al contenido, visible solo al recibir foco */
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      z-index: 100;
+      padding: 0.75rem 1.25rem;
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 1px solid var(--accent);
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
     }
 
     html,
@@ -186,7 +339,7 @@ const { description, title } = Astro.props;
       font-family: "Titillium Web", "Inter variable", system-ui, sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-primary);
-      transition: all 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     main {
@@ -199,8 +352,24 @@ const { description, title } = Astro.props;
     }
 
     ::selection {
-      background-color: var(--text-accent);
+      background-color: var(--accent);
       color: var(--bg-primary);
+    }
+
+    /* Respeta la preferencia de movimiento reducido. */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
     }
 
     /* ========================================
@@ -211,11 +380,11 @@ const { description, title } = Astro.props;
     .bg-darkbg-950, .bg-\[0B0C10\], .bg-\[\#0B0C10\] {
       background-color: var(--bg-primary) !important;
     }
-    
+
     .bg-darkbg-900, .bg-\[1F2833\], .bg-\[\#1F2833\] {
       background-color: var(--bg-secondary) !important;
     }
-    
+
     .bg-darkbg-800 {
       background-color: var(--bg-tertiary) !important;
     }
@@ -223,7 +392,7 @@ const { description, title } = Astro.props;
     .bg-darkbg-700 {
       background-color: var(--bg-quaternary) !important;
     }
-    
+
     /* === TEXTOS === */
     .text-white {
       color: var(--text-primary) !important;
@@ -232,16 +401,16 @@ const { description, title } = Astro.props;
     .text-darktext-300 {
       color: var(--text-secondary) !important;
     }
-    
+
     .text-darktext-400 {
       color: var(--text-muted) !important;
     }
-    
+
     /* === ACCENTS === */
     .text-accent-400, .text-\[45A29E\], .text-\[\#45A29E\] {
       color: var(--accent) !important;
     }
-    
+
     .text-accent-500 {
       color: var(--accent-hover) !important;
     }
@@ -249,7 +418,7 @@ const { description, title } = Astro.props;
     .bg-accent-400, .bg-accent-500 {
       background-color: var(--accent) !important;
     }
-    
+
     /* === BORDES === */
     .border-accent-500, .border-\[45A29E\], .border-\[\#45A29E\] {
       border-color: var(--accent) !important;

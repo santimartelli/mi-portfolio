@@ -1,61 +1,50 @@
 {
-  "badge": "Networks & Resources",
   "title": "Let's connect",
-  "description": {
-    "line1": "Follow me on social media to stay updated with my latest projects,",
-    "line2": "or download my CV",
-    "line2_highlight": "to learn more about my experience."
-  },
-  "contact": {
-    "title": "Contact",
-    "subtitle": "Send me a message",
-    "methods": {
-      "email": {
-        "label": "Email",
-        "action": "Send message"
-      },
-      "whatsapp": {
-        "label": "WhatsApp",
-        "action": "Open chat"
-      }
-    }
-  },
-  "socialNetworks": {
-    "title": "Professional Networks",
-    "subtitle": "Connect with me",
-    "whyFollow": {
-      "title": "Why follow me?",
-      "reasons": [
-        "Development tutorials and tips",
-        "Behind the scenes of projects",
-        "Modern technology updates"
-      ]
+  "description": "I am looking for opportunities where hospitality, customer experience and technology meet.",
+  "statement": "I am particularly interested in roles in hotel tech, hotel operations, customer success, implementation and onboarding, product support and technical support, in teams where knowing the operation from the inside is an advantage.",
+  "channelsTitle": "Where to find me",
+  "channels": {
+    "email": {
+      "label": "Email",
+      "description": "The most direct way to reach me."
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "description": "My professional profile and track record."
+    },
+    "github": {
+      "label": "GitHub",
+      "description": "The code behind the projects I describe here."
     }
   },
   "cv": {
-    "title": "Curriculum Vitae",
-    "subtitle": "Download my updated CV",
-    "info": {
-      "title": "CV Information",
-      "highlights": [
-        "3+ years of experience",
-        "Full stack documented",
-        "Featured projects and achievements",
-        "References available"
-      ]
+    "title": "Resume",
+    "subtitle": "Download or review",
+    "download": "Download",
+    "summary": "My current resume is focused on web development. I am preparing a version specifically for hotel tech and hospitality.",
+    "hotelTech": {
+      "title": "Hotel Tech / Hospitality CV",
+      "description": "A version focused on hotel operations, management tools and guest service. Not published yet.",
+      "status": "In preparation"
     },
-    "spanish": {
-      "language": "Español",
-      "description": "Curriculum Vitae completo",
-      "size": "52.9 KB",
-      "lastUpdate": "Oct 2025"
-    },
-    "english": {
-      "language": "English",
-      "description": "Complete Resume",
-      "size": "59 KB",
-      "lastUpdate": "Oct 2025"
-    }
+    "files": [
+      {
+        "id": "en",
+        "language": "English",
+        "label": "Web development",
+        "description": "Resume focused on web development and product work."
+      },
+      {
+        "id": "es",
+        "language": "Español",
+        "label": "Desarrollo web",
+        "description": "CV orientado a desarrollo y producto web."
+      }
+    ]
   },
-  "availability": "Available for freelance projects and full-time opportunities"
+  "availability": {
+    "title": "Availability",
+    "text": "Open to full-time opportunities. Girona, Barcelona or remote."
+  },
+  "closing": "If you think my profile fits what you are looking for, get in touch and I will tell you more."
 }

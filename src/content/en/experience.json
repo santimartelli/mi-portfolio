@@ -1,0 +1,146 @@
+{
+  "title": "Experience",
+  "description": "One career with two facets: hotel operations and web development. You can filter to see either one on its own.",
+  "allLabel": "Full track record",
+  "trackLabels": {
+    "hospitality": "Hospitality & Operations",
+    "technology": "Technology"
+  },
+  "note": "Customer Success and Implementation are areas I want to move towards. My front office and operations experience transfers directly, but I do not present them as roles I have already held.",
+  "entries": [
+    {
+      "id": "els-quimics",
+      "track": "hospitality",
+      "company": "Apartaments Els Químics",
+      "role": "Operations & property management",
+      "period": "2026 – present",
+      "location": "Girona",
+      "summary": "An apart-hotel with around 30 apartments. I take part in daily operations and in the guest relationship, from booking to stay.",
+      "highlights": [
+        "Daily operations of the property",
+        "Reservations, availability and amendments",
+        "Guest support in person, by email and by phone, in several languages",
+        "Channel management: Booking.com, Expedia and direct sales",
+        "Incident handling and coordination of operational needs",
+        "Pricing and revenue-related operations"
+      ],
+      "tools": ["Booking.com", "Expedia", "Excel"]
+    },
+    {
+      "id": "hotel-marsol",
+      "track": "hospitality",
+      "company": "Hotel Marsol",
+      "role": "Front Office · Reception",
+      "period": "2025 – 2026",
+      "location": "Lloret de Mar",
+      "summary": "Front desk at a coastal hotel with a high volume of arrivals and departures.",
+      "highlights": [
+        "Guest support in person, by email and by phone",
+        "Reservations and amendments",
+        "Incident handling",
+        "Room allocation and coordination",
+        "Walk-ins and special requests",
+        "Group quotations and management",
+        "Switchboard"
+      ]
+    },
+    {
+      "id": "tanya-martelli",
+      "track": "technology",
+      "company": "Tanya Martelli Photography",
+      "role": "Development and maintenance of my own product",
+      "period": "2024 – present",
+      "summary": "Website and management system for a professional photographer. A real product in production that I build and maintain.",
+      "highlights": [
+        "A production product whose content the client manages herself",
+        "Architecture evolution: from Vue + Node/Express + MySQL to Next.js, React and Supabase",
+        "Media storage migrated from Cloudinary to Cloudflare R2",
+        "Multi-language site and a custom admin dashboard",
+        "Continuous maintenance and evolution since 2024"
+      ],
+      "tools": ["Next.js", "React", "TypeScript", "Supabase", "Cloudflare R2"]
+    },
+    {
+      "id": "gran-hotel-flamingo",
+      "track": "hospitality",
+      "company": "Gran Hotel Flamingo",
+      "role": "Front Office · Reception",
+      "period": "2024 – 2025",
+      "location": "Lloret de Mar",
+      "summary": "Front desk with individual guests and groups during high season.",
+      "highlights": [
+        "Multilingual support for individual guests and groups",
+        "Check-in and check-out",
+        "Payments, invoicing, POS and cash reconciliation",
+        "Incident handling",
+        "Coordination with other departments"
+      ]
+    },
+    {
+      "id": "acerko",
+      "track": "technology",
+      "company": "Acerko.com",
+      "role": "Freelance Web Developer",
+      "period": "2024 – 2025",
+      "summary": "Redesign and improvement of a live commercial site, working directly with the client.",
+      "highlights": [
+        "Redesign of a WordPress site in production, without taking it offline",
+        "Navigation and user experience improvements",
+        "Custom JavaScript and CSS",
+        "Responsive design",
+        "Performance optimisation",
+        "Testing, troubleshooting and improvements driven by real business needs"
+      ],
+      "tools": ["WordPress", "WPBakery", "JavaScript", "CSS"]
+    },
+    {
+      "id": "dorna-corporate",
+      "track": "hospitality",
+      "company": "Dorna Sports · MotoGP",
+      "role": "Corporate Reception & Administration",
+      "period": "2019 – 2024",
+      "summary": "Corporate reception in an international environment, across several MotoGP World Championship seasons.",
+      "highlights": [
+        "Support for executives, sponsors, suppliers and international press",
+        "Visit and international visitor management",
+        "Administrative and coordination tasks",
+        "Communication in several languages"
+      ]
+    },
+    {
+      "id": "dorna-webdev",
+      "track": "technology",
+      "company": "Dorna Sports",
+      "role": "Web Development Internship",
+      "period": "2023",
+      "summary": "Web development internship within the engineering team, alongside corporate reception.",
+      "highlights": [
+        "Development with HTML, CSS and JavaScript",
+        "Vue.js components",
+        "Consuming and integrating REST APIs",
+        "Frontend/backend integration",
+        "Debugging and QA/testing",
+        "Usability improvements"
+      ],
+      "tools": ["HTML", "CSS", "JavaScript", "Vue.js", "REST APIs"]
+    },
+    {
+      "id": "ac-palau",
+      "track": "hospitality",
+      "company": "AC Palau de Bellavista by Marriott",
+      "role": "Front Office",
+      "period": "2 years",
+      "location": "Girona",
+      "summary": "Front office at an urban Marriott-branded hotel.",
+      "highlights": [
+        "Front office and guest support",
+        "Reservations and invoicing",
+        "Incident handling",
+        "Support for VIP guests and professional sports teams",
+        "Special requests and privacy protocols",
+        "Daily use of PMS"
+      ],
+      "tools": ["PMS"]
+    }
+  ]
+}

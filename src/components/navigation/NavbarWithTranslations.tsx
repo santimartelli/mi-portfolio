@@ -1,27 +1,22 @@
-// Importaciones necesarias: providers de tema y traducciones, tipos y componente Navbar
-import { ThemeProvider } from "../../util/ThemeContext";
-import { I18nProvider, type Translations } from '../../util/i18n';
+// Isla de navegación: provee el tema y respeta la preferencia de movimiento reducido.
+import { MotionConfig } from 'framer-motion';
 import Navbar from './Navbar';
+import { ThemeProvider } from '../../util/ThemeContext';
+import type { Locale, NavbarTranslations } from '../../util/i18n';
 
-// Interfaz que define las props del componente
-interface NavbarWithTranslationsProps {
-  translations: Translations;
+interface NavbarIslandProps {
+  content: NavbarTranslations;
+  locale: Locale;
 }
 
-/**
- * Componente NavbarWithTranslations - Wrapper del componente Navbar
- * Propósito: Proveer los contextos de tema (ThemeProvider) y traducciones (I18nProvider) al componente Navbar
- * Este patrón permite que Navbar acceda al tema mediante useTheme() y a las traducciones mediante useTranslations()
- */
-const NavbarWithTranslations = ({ translations }: NavbarWithTranslationsProps) => {
+const NavbarIsland = ({ content, locale }: NavbarIslandProps) => {
   return (
     <ThemeProvider>
-      <I18nProvider translations={translations}>
-        <Navbar />
-      </I18nProvider>
+      <MotionConfig reducedMotion="user">
+        <Navbar content={content} locale={locale} />
+      </MotionConfig>
     </ThemeProvider>
   );
 };
 
-// Exporta el componente para ser usado en las páginas de Astro
-export default NavbarWithTranslations;
+export default NavbarIsland;

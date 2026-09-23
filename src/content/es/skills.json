@@ -1,0 +1,90 @@
+{
+  "title": "Skills",
+  "description": "Lo que sé hacer, agrupado por dónde lo he aprendido. Sin barras de progreso ni porcentajes: las herramientas hoteleras se listan por uso real en el puesto de trabajo, no por nivel certificado.",
+  "groups": [
+    {
+      "id": "hospitality",
+      "title": "Hospitality & Operations",
+      "items": [
+        { "label": "Operaciones hoteleras" },
+        { "label": "Front office" },
+        { "label": "Reservas y disponibilidad" },
+        { "label": "Experiencia de huésped" },
+        { "label": "PMS" },
+        { "label": "Opera" },
+        { "label": "Avalon" },
+        { "label": "OTAs" },
+        { "label": "Booking.com" },
+        { "label": "Expedia" },
+        { "label": "Venta directa" },
+        { "label": "Pricing y operaciones de revenue" }
+      ]
+    },
+    {
+      "id": "customer",
+      "title": "Customer & Product",
+      "note": "Áreas a las que quiero orientarme. Mi experiencia en front office y atención al cliente es directamente transferible, pero todavía no las he desempeñado como cargo formal.",
+      "items": [
+        { "label": "Atención al cliente" },
+        { "label": "Onboarding de clientes" },
+        { "label": "Apoyo a implantaciones" },
+        { "label": "Soporte técnico" },
+        { "label": "Troubleshooting" },
+        { "label": "Comunicación entre equipos" }
+      ]
+    },
+    {
+      "id": "technology",
+      "title": "Technology",
+      "note": "CFGS en Desarrollo de Aplicaciones Web y experiencia práctica construyendo y manteniendo productos en producción.",
+      "items": [
+        { "label": "JavaScript" },
+        { "label": "TypeScript" },
+        { "label": "React" },
+        { "label": "Vue" },
+        { "label": "Astro" },
+        { "label": "Node.js" },
+        { "label": "Express" },
+        { "label": "APIs REST" },
+        { "label": "MySQL" },
+        { "label": "Docker" },
+        { "label": "Git / GitHub" },
+        { "label": "Nginx" },
+        { "label": "WordPress" },
+        { "label": "Tailwind CSS" },
+        { "label": "HTML" },
+        { "label": "CSS" }
+      ]
+    },
+    {
+      "id": "business",
+      "title": "Business",
+      "items": [
+        { "label": "Excel", "level": "Avanzado" },
+        { "label": "Operaciones" },
+        { "label": "Resolución de problemas" },
+        { "label": "Comunicación" },
+        { "label": "Atención internacional" }
+      ]
+    }
+  ],
+  "languages": {
+    "title": "Idiomas",
+    "items": [
+      { "name": "Español", "level": "Nativo" },
+      { "name": "Catalán", "level": "Avanzado" },
+      { "name": "Inglés", "level": "Avanzado" },
+      { "name": "Italiano", "level": "Intermedio" },
+      { "name": "Francés", "level": "Intermedio" }
+    ]
+  },
+  "education": {
+    "title": "Formación",
+    "items": [
+      {
+        "title": "CFGS en Desarrollo de Aplicaciones Web (DAW)",
+        "meta": "Formación Profesional de Grado Superior"
+      }
+    ]
+  }
+}
