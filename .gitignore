@@ -36,5 +36,10 @@ CLAUDE.md
 src/agents/
 src/context/
 
+# Impeccable: binario del motor por plataforma (~16 MB). Es especifico de
+# linux-x64 y el lanzador lo vuelve a descargar solo en la primera ejecucion,
+# asi que no se versiona. El resto de la skill (SKILL.md y reference/) si.
+.agents/skills/impeccable/scripts/bin/
+
 
 
