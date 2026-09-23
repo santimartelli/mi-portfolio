@@ -487,18 +487,53 @@ const jsonLd = {
        lista dos veces.
 
        Se para con el puntero encima o con el foco dentro, que es lo minimo para
-       que se pueda leer algo que se mueve solo. Bajo prefers-reduced-motion el
-       bloque global la deja en una sola iteracion de 0.01ms, o sea quieta al
-       final del recorrido, donde se ve la segunda copia: el mismo contenido.
+       que se pueda leer algo que se mueve solo.
+
+       Los costados se difuminan con una mascara del propio lienzo (alpha), no
+       con un degradado de color: sobre el papel claro un color dejaria halo y
+       ademas ataria el efecto al fondo. La distancia es relativa al ancho, para
+       que el desvanecido crezca con la pantalla, con suelo para que en movil se
+       note y tope para que en pantallas anchas no se coma media fila: asi la
+       pieza nunca se corta a media palabra contra el borde. El negro del
+       degradado es opacidad de mascara, no un color de la paleta.
+
+       Bajo prefers-reduced-motion no hay recorrido: la pista se queda quieta al
+       principio y solo se difumina el costado derecho, que es el que sigue
+       teniendo contenido detras.
        ========================================== */
     .marquee {
       overflow: hidden;
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0,
+        black clamp(2.5rem, 8%, 10rem),
+        black calc(100% - clamp(2.5rem, 8%, 10rem)),
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent 0,
+        black clamp(2.5rem, 8%, 10rem),
+        black calc(100% - clamp(2.5rem, 8%, 10rem)),
+        transparent 100%
+      );
     }
 
     .marquee-track {
       display: flex;
       width: max-content;
-      animation: marquee 40s linear infinite;
+      animation: marquee 60s linear infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee {
+        -webkit-mask-image: linear-gradient(to right, black 0, black 85%, transparent 100%);
+        mask-image: linear-gradient(to right, black 0, black 85%, transparent 100%);
+      }
+
+      .marquee-track {
+        animation: none;
+      }
     }
 
     .marquee:hover .marquee-track,
