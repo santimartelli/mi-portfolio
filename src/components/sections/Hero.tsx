@@ -20,7 +20,9 @@ const Hero = ({ content: t }: HeroProps) => {
   ];
 
   return (
-    <section id="home" className="pt-32 pb-20 sm:pt-40 sm:pb-28">
+    // El hero arranca pegado al header: 4rem de barra (h-16) mas 1px de su
+    // border-b, asi que el bloque empieza justo debajo de esa linea.
+    <section id="home" className="pt-[65px] pb-20 sm:pb-28">
       <div className="shell grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
         <div className="lg:col-span-6">
           <h1 className="text-display font-light text-balance text-black dark:text-white">
