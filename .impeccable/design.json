@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-23T16:53:08Z",
+  "generatedAt": "2026-09-23T18:00:28Z",
   "title": "Design System: Santiago Martelli — portfolio",
   "extensions": {
     "themes": {
@@ -356,11 +356,11 @@
     "typographyMeta": {
       "display": {
         "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
-        "fontSize": "clamp(3.2rem, 6.2vw, 5.6rem)",
+        "fontSize": "var(--text-display)",
         "fontWeight": 300,
         "lineHeight": 0.98,
         "letterSpacing": "-0.02em",
-        "purpose": "Paso mayor de la escala. Lo usa el titular del hero: la frase de posicionamiento se reparte en tres lineas que text-balance equilibra."
+        "purpose": "Titular del hero. El valor vive en el token --text-display de Layout.astro (clamp 2.75rem-4.25rem, 44-68px) y la utilidad lo consume con var(), para poder ajustarlo sin reiniciar el servidor de desarrollo."
       },
       "headline": {
         "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",

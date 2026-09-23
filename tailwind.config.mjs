@@ -44,7 +44,12 @@ export default {
         subhead: ["1.25rem", { lineHeight: "1.45" }],
         "title-lg": ["1.5rem", { lineHeight: "1.3" }],
         headline: ["clamp(2.4rem, 3.6vw, 3.4rem)", { lineHeight: "1.06", letterSpacing: "-0.01em" }],
-        display: ["clamp(3.2rem, 6.2vw, 5.6rem)", { lineHeight: "0.98", letterSpacing: "-0.02em" }],
+        /*
+         * El valor de display vive en el token --text-display de Layout.astro,
+         * no aqui: la config no se recarga en caliente en desarrollo y este es
+         * el unico paso que se ajusta a ojo. Mismo patron que --accent.
+         */
+        display: ["var(--text-display)", { lineHeight: "0.98", letterSpacing: "-0.02em" }],
       },
       fontFamily: {
         // Fuente unica del sitio. Misma pila que el token --font-sans.

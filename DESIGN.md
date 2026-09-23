@@ -156,7 +156,7 @@ La escala es **fluida y única** para todo el sitio: diez pasos declarados como 
 
 | Token | Tamaño | Para qué |
 |---|---|---|
-| `display` | `clamp(3.2rem, 6.2vw, 5.6rem)` — 51 a 90px | El titular del hero |
+| `display` | `clamp(2.75rem, 4.6vw, 4.25rem)` — 44 a 68px | El titular del hero |
 | `headline` | `clamp(2.4rem, 3.6vw, 3.4rem)` — 38 a 54px | Titulares de sección |
 | `title-lg` | 1.5rem — 24px | Títulos de caso, empresas, grupos |
 | `subhead` | 1.25rem — 20px | El posicionamiento y los subtítulos |
@@ -167,9 +167,9 @@ La escala es **fluida y única** para todo el sitio: diez pasos declarados como 
 | `label` | 0.75rem — 12px | Rótulos en mayúsculas |
 | `micro` | 0.6875rem — 11px | Micro-etiquetas y datos |
 
-El hero usa `display`: el titular es la frase de posicionamiento y es lo primero que debe leerse, así que ocupa el escalón más alto de la escala. A 90px la frase se reparte en tres líneas que `text-balance` equilibra, que es el aspecto de titular buscado. El único paso reservado que queda es `ui`, que no genera CSS mientras no se use y por eso no cuesta nada.
+El hero usa `display`: el titular es la frase de posicionamiento y es lo primero que debe leerse, así que ocupa el escalón más alto de la escala. Su valor no está en el tema de Tailwind sino en el token `--text-display` de `Layout.astro`, y la utilidad lo consume con `var()`: la config de Tailwind no se recarga en caliente en desarrollo, y este es el único paso que se ajusta a ojo, así que tenerlo en la capa de tokens permite retocarlo sin reiniciar nada. Es el mismo patrón que `--accent`. El único paso reservado que queda es `ui`, que no genera CSS mientras no se use y por eso no cuesta nada.
 
-El techo es **90px**, por debajo del límite de 6rem del craft floor: antes el hero llegaba a 128px y era la causa de que todo se leyera grande y desordenado. La jerarquía se sostiene con nueve pasos claros, y el `<body>` se queda en los 16px por defecto del navegador, así que no hay dos reglas compitiendo por el tamaño base.
+El techo es **68px**, por debajo del límite de 6rem del craft floor: antes el hero llegaba a 128px y era la causa de que todo se leyera grande y desordenado, y un primer intento de arreglo en 90px seguía resultando excesivo. La jerarquía se sostiene con nueve pasos claros, y el `<body>` se queda en los 16px por defecto del navegador, así que no hay dos reglas compitiendo por el tamaño base.
 
 ## Layout
 
