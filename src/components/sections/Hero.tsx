@@ -112,19 +112,34 @@ const Hero = ({ content: t }: HeroProps) => {
           />
         </picture>
 
-        {/* Estado, al pie del hero. En movil es el sexto bloque del reparto y cae
-            abajo del todo; desde lg ocupa una fila propia a lo ancho de la
-            rejilla, debajo de las dos columnas, y queda centrado.
-            El punto va con aria-hidden porque no aporta nada que el texto no
-            diga, y si el latido no se ve, por movimiento reducido o porque no
-            carga, el texto sigue comunicando el estado. */}
-        <p className="flex items-center justify-center gap-3 text-small font-light text-gray-600 lg:col-span-12 dark:text-gray-400">
-          <span
-            aria-hidden="true"
-            className="h-1.5 w-1.5 animate-status-pulse rounded-full bg-[var(--accent-success)]"
-          />
-          {t.availability}
-        </p>
+        {/* Marquee de caracteristicas, al pie del hero. Son dos copias identicas
+            de la lista dentro de una pista que se desplaza la mitad de su ancho,
+            asi que el bucle no tiene costura; la segunda copia va con aria-hidden
+            para que quien use lector de pantalla no oiga la lista dos veces, y los
+            puntos que separan las piezas son decorativos por el mismo motivo.
+            En movil es el ultimo bloque del reparto; desde lg ocupa una fila
+            propia a lo ancho, debajo de las dos columnas. */}
+        <div className="marquee lg:col-span-12">
+          <div className="marquee-track">
+            {[false, true].map((duplicada) => (
+              <ul
+                key={String(duplicada)}
+                className="flex list-none items-center"
+                {...(duplicada ? { 'aria-hidden': true } : {})}>
+                {t.marquee.map((item) => (
+                  <li
+                    key={item}
+                    className="flex shrink-0 items-center whitespace-nowrap text-small font-light text-gray-600 dark:text-gray-400">
+                    {item}
+                    <span aria-hidden="true" className="px-4 text-gray-300 dark:text-gray-600">
+                      ·
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

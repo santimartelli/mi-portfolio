@@ -25,10 +25,11 @@ export interface HeroTranslations {
    */
   imageAlt: string;
   /**
-   * Estado de disponibilidad, al pie del hero. Va sin rotulo: lo precede un
-   * punto verde que late, asi que el color y el movimiento ya lo anuncian.
+   * Caracteristicas y logros, en piezas cortas, para el marquee al pie del hero.
+   * Cada una es una unidad suelta: se leen en diagonal y se separan con un punto
+   * en el marcado, no dentro del texto. El orden del array es el de lectura.
    */
-  availability: string;
+  marquee: string[];
 }
 
 export interface NavbarTranslations {

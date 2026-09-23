@@ -479,6 +479,40 @@ const jsonLd = {
     }
 
     /* ==========================================
+       MARQUEE DE CARACTERISTICAS
+       La lista va dos veces dentro de una pista que se desplaza la mitad de su
+       ancho, asi que el bucle no tiene costura: al llegar al final, la segunda
+       copia ocupa exactamente el sitio de la primera. La copia duplicada lleva
+       aria-hidden en el marcado para que quien use lector de pantalla no oiga la
+       lista dos veces.
+
+       Se para con el puntero encima o con el foco dentro, que es lo minimo para
+       que se pueda leer algo que se mueve solo. Bajo prefers-reduced-motion el
+       bloque global la deja en una sola iteracion de 0.01ms, o sea quieta al
+       final del recorrido, donde se ve la segunda copia: el mismo contenido.
+       ========================================== */
+    .marquee {
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 40s linear infinite;
+    }
+
+    .marquee:hover .marquee-track,
+    .marquee:focus-within .marquee-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ==========================================
        ANCHO Y LECTURA
        Las secciones cruzan la pantalla; el texto se queda en una
        columna legible. Ocupar todo el ancho no puede costar lectura.
