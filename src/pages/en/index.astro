@@ -2,13 +2,14 @@
 // English homepage (`/en/`). LinkedIn links here directly.
 import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/navigation/NavbarWithTranslations";
-import Hero from "../../components/sections/Hero";
-import About from "../../components/sections/About";
-import Experience from "../../components/sections/Experience";
-import Skills from "../../components/sections/Skills";
-import Projects from "../../components/sections/Projects";
-import Contact from "../../components/sections/Contact";
-import Footer from "../../components/sections/Footer";
+import Hero from "../../components/sections/HeroWithTranslations";
+import About from "../../components/sections/AboutWithTranslations";
+import Experience from "../../components/sections/ExperienceWithTranslations";
+import Skills from "../../components/sections/SkillsWithTranslations";
+import Projects from "../../components/sections/ProjectsWithTranslations";
+import Contact from "../../components/sections/ContactWithTranslations";
+import Footer from "../../components/sections/FooterWithTranslations";
+import Divider from "../../components/common/Divider";
 import { getTranslations } from "../../util/content";
 
 const locale = "en" as const;
@@ -20,15 +21,43 @@ const description =
 ---
 
 <Layout {title} {description} {locale} path="/en/">
-  <Navbar content={translations.navbar} {locale} client:load />
+  <Navbar content={translations.navbar} locale={locale} client:load />
 
   <main>
-    <Hero content={translations.hero} />
-    <About content={translations.about} />
-    <Experience content={translations.experience} client:visible />
-    <Skills content={translations.skills} />
-    <Projects content={translations.projects} />
-    <Contact content={translations.contact} />
-    <Footer content={translations.footer} />
+    <section id="home" class="relative">
+      <Hero content={translations.hero} client:visible />
+    </section>
+
+    <Divider />
+
+    <section id="about" class="relative">
+      <About content={translations.about} client:visible />
+    </section>
+
+    <Divider />
+
+    <section id="experience" class="relative">
+      <Experience content={translations.experience} client:visible />
+    </section>
+
+    <Divider />
+
+    <section id="skills" class="relative">
+      <Skills content={translations.skills} client:visible />
+    </section>
+
+    <Divider />
+
+    <section id="projects" class="relative">
+      <Projects content={translations.projects} client:visible />
+    </section>
+
+    <Divider />
+
+    <section id="contact" class="relative">
+      <Contact content={translations.contact} client:visible />
+    </section>
+
+    <Footer content={translations.footer} client:visible />
   </main>
 </Layout>

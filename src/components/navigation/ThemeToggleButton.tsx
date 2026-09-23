@@ -1,38 +1,66 @@
-// Conmutador de tema. Sin animacion de libreria: una transicion CSS basta.
+// Botón para alternar entre tema claro y oscuro.
+import { motion } from "framer-motion";
 import { useThemeContext } from "../../util/ThemeContext";
+import type { NavbarTranslations } from "../../util/i18n";
 
+const trackColors = {
+  light: "#f59e0b",
+  dark: "#374151",
+};
+
+/**
+ * ThemeToggleButton.
+ *
+ * El tema inicial lo fija el script inline del layout, así que aquí solo se
+ * cambia. Las etiquetas accesibles están traducidas.
+ */
 interface ThemeToggleButtonProps {
-  labels: { toLight: string; toDark: string };
+  labels: NavbarTranslations["themeLabels"];
 }
 
 const ThemeToggleButton = ({ labels }: ThemeToggleButtonProps) => {
   const { theme, changeTheme } = useThemeContext();
   const isLight = theme === "light";
+  const label = isLight ? labels.toDark : labels.toLight;
 
   return (
-    <button
+    <motion.button
       type="button"
       onClick={() => changeTheme(isLight ? "dark" : "light")}
-      className="flex h-9 w-9 items-center justify-center border border-rule text-muted transition-colors duration-200 ease-out hover:border-rule-strong hover:text-ink"
-      aria-label={isLight ? labels.toDark : labels.toLight}>
-      <svg
-        viewBox="0 0 24 24"
-        className="h-4 w-4"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
+      className="relative w-12 h-6 rounded-full p-0.5"
+      style={{ backgroundColor: trackColors[theme] }}
+      aria-label={label}>
+      <span className="sr-only">{label}</span>
+      <motion.span
+        className="block w-5 h-5 bg-white rounded-full shadow-md flex items-center justify-center"
+        initial={false}
+        animate={{ x: isLight ? 0 : 24 }}
+        transition={{ type: "spring", stiffness: 700, damping: 30 }}
         aria-hidden="true">
-        {isLight ? (
-          <path d="M20.5 14.5A8.5 8.5 0 019.5 3.5a8.5 8.5 0 1011 11z" />
-        ) : (
-          <>
-            <circle cx="12" cy="12" r="4" />
-            <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4m0-14.2l-1.4 1.4M6.3 17.7l-1.4 1.4" />
-          </>
-        )}
-      </svg>
-    </button>
+        <motion.svg
+          className="w-3 h-3 text-amber-500"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          initial={false}
+          animate={{ opacity: isLight ? 1 : 0, rotate: isLight ? 0 : 90 }}
+          transition={{ duration: 0.2 }}>
+          <path
+            fillRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            clipRule="evenodd"
+          />
+        </motion.svg>
+        <motion.svg
+          className="w-3 h-3 text-slate-600 absolute"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          initial={false}
+          animate={{ opacity: isLight ? 0 : 1, rotate: isLight ? -90 : 0 }}
+          transition={{ duration: 0.2 }}>
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+        </motion.svg>
+      </motion.span>
+    </motion.button>
   );
 };
 

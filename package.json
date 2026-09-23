@@ -15,19 +15,16 @@
     "@astrojs/check": "^0.7.0",
     "@astrojs/react": "^3.5.0",
     "@astrojs/tailwind": "^5.1.0",
-    "@fontsource-variable/albert-sans": "^5.3.0",
-    "@fontsource-variable/alumni-sans": "^5.3.0",
-    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/inter": "^5.0.18",
+    "@fontsource/titillium-web": "^5.0.20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.8.6",
+    "framer-motion": "^11.18.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5"
-  },
-  "devDependencies": {
-    "impeccable": "^4.1.0"
   }
 }

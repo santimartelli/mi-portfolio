@@ -28,13 +28,13 @@ export type Theme = 'light' | 'dark';
  * changeTheme('dark'); // Cambia al tema oscuro
  */
 
-/** Lee el tema que el script inline ya aplicó a <html>. Claro si no hay clase. */
+/** Lee el tema que el script inline ya aplicó a <html>. Oscuro si no hay clase. */
 const readThemeFromDom = (): Theme => {
-  if (typeof document === 'undefined') return 'light';
+  if (typeof document === 'undefined') return 'dark';
   const root = document.documentElement;
   if (root.classList.contains('light')) return 'light';
   if (root.classList.contains('dark')) return 'dark';
-  return 'light';
+  return 'dark';
 };
 
 export function useTheme() {

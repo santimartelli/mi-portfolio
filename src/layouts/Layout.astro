@@ -1,8 +1,7 @@
 ---
-// Layout principal: metadatos por idioma, SEO, accesibilidad y sistema de diseno.
-import "@fontsource-variable/albert-sans";
-import "@fontsource-variable/alumni-sans";
-import "@fontsource-variable/jetbrains-mono";
+// Layout principal: metadatos por idioma, SEO, accesibilidad y sistema de temas.
+import "@fontsource-variable/inter";
+import "@fontsource/titillium-web";
 
 import type { Locale } from "../util/i18n";
 import { OG_IMAGE, SITE, SITE_URL, pathForLocale } from "../util/site";
@@ -12,7 +11,7 @@ interface Props {
   description: string;
   /** Locale resuelto en el servidor. Determina <html lang> y los metadatos. */
   locale: Locale;
-  /** Ruta canonica de la pagina, por ejemplo "/" o "/en/". */
+  /** Ruta canónica de la página, por ejemplo "/" o "/en/". */
   path: string;
 }
 
@@ -24,7 +23,7 @@ declare global {
 
 const { description, title, locale, path } = Astro.props;
 
-// URL canonica de esta pagina y de su alternativa en el otro idioma.
+// URL canónica de esta página y de su alternativa en el otro idioma.
 const canonical = new URL(path, SITE_URL).href;
 const esUrl = new URL(pathForLocale('es'), SITE_URL).href;
 const enUrl = new URL(pathForLocale('en'), SITE_URL).href;
@@ -101,7 +100,7 @@ const jsonLd = {
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="es" href={esUrl} />
     <link rel="alternate" hreflang="en" href={enUrl} />
-    <!-- x-default apunta a la version inglesa: es la que se comparte desde LinkedIn -->
+    <!-- x-default apunta a la versión inglesa: es la que se comparte desde LinkedIn -->
     <link rel="alternate" hreflang="x-default" href={enUrl} />
 
     <!-- Open Graph -->
@@ -129,17 +128,18 @@ const jsonLd = {
     <title>{title}</title>
 
     <!--
-      Tema antes del primer pintado. El mundo por defecto es papel claro, asi que
-      la clase se fija aqui para que no haya destello al hidratar.
+      Tema antes del primer pintado. Evita el destello: el HTML se sirve sin
+      clase y el CSS por defecto es oscuro, así que fijamos la clase aquí antes
+      de que el navegador pinte nada.
     -->
     <script is:inline>
       (function () {
         try {
           var stored = localStorage.getItem("theme");
-          var theme = stored === "light" || stored === "dark" ? stored : "light";
+          var theme = stored === "light" || stored === "dark" ? stored : "dark";
           document.documentElement.classList.add(theme);
         } catch (error) {
-          document.documentElement.classList.add("light");
+          document.documentElement.classList.add("dark");
         }
       })();
     </script>
@@ -157,7 +157,7 @@ const jsonLd = {
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- Restaura la posicion de scroll despues de cambiar de idioma -->
+    <!-- Restaura la posición de scroll después de cambiar de idioma -->
     <script is:inline>
       document.addEventListener("DOMContentLoaded", function () {
         var storedPosition = sessionStorage.getItem("scrollPosition");
@@ -174,235 +174,389 @@ const jsonLd = {
       });
     </script>
   </head>
-  <body class="bg-paper text-body font-sans antialiased">
+  <body class="flex flex-col bg-darkbg-950 text-darktext-300">
+    <!-- Sin JavaScript las animaciones de aparición nunca se ejecutan: forzamos
+         la visibilidad para que el contenido siga siendo legible y rastreable. -->
+    <noscript>
+      <style>
+        [style*="opacity:0"],
+        [style*="opacity: 0"] {
+          opacity: 1 !important;
+        }
+        [style*="translateY"] {
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+
     <a class="skip-link" href="#home">{skipLabel}</a>
 
     <slot />
   </body>
 
   <style is:global>
-    /* ==========================================================
-       TOKENS
-       Dos temas del mismo mundo: papel calido de dia, tinta calida
-       de noche. El acento ambar solo aparece como bano o filete;
-       para texto sobre papel existe --accent-ink, que si contrasta.
-       ========================================================== */
+    :root {
+      color-scheme: light dark;
+    }
+
+    /* ========================================
+       🎨 SISTEMA DE DISEÑO PROFESIONAL
+       ======================================== */
+
+    /* Modo oscuro - Elegante y Profesional */
     :root,
-    .light {
-      --paper: #faf9f6;
-      --paper-raised: #ffffff;
-      --paper-sunk: #f1efe8;
-
-      --ink: #17160f;
-      --body: #2e2c26;
-      --muted: #635e54;
-      --faint: #6f6b5e;
-
-      --rule: rgba(23, 22, 15, 0.13);
-      --rule-strong: rgba(23, 22, 15, 0.28);
-
-      --accent: #e0a63a;
-      --accent-ink: #7d5102;
-      --accent-wash: rgba(224, 166, 58, 0.16);
-      --patina: #1c646d;
-
-      color-scheme: light;
-    }
-
     .dark {
-      --paper: #14130f;
-      --paper-raised: #1c1a15;
-      --paper-sunk: #100f0c;
+      /* === BACKGROUNDS === */
+      --darkbg-950: #0a0b0f;           /* Fondo principal profundo */
+      --darkbg-900: #151821;           /* Fondo secundario */
+      --darkbg-800: #1f2937;           /* Fondo de tarjetas */
+      --darkbg-700: #374151;           /* Fondo hover sutil */
+      --darkbg-600: #4b5563;           /* Bordes suaves */
 
-      --ink: #f6f3ec;
-      --body: #d9d4c8;
-      --muted: #a49e90;
-      --faint: #948e80;
+      /* === TEXTOS === */
+      --darktext-50: #f8fafc;          /* Texto principal - blanco puro */
+      --darktext-100: #f1f5f9;         /* Texto enfático */
+      --darktext-200: #e2e8f0;         /* Texto normal */
+      --darktext-300: #cbd5e1;         /* Texto secundario */
+      --darktext-400: #94a3b8;         /* Texto muted */
+      --darktext-500: #64748b;         /* Texto disabled */
 
-      --rule: rgba(246, 243, 236, 0.15);
-      --rule-strong: rgba(246, 243, 236, 0.3);
+      /* === ACCENTS === */
+      --accent-primary: #3b82f6;       /* Azul profesional */
+      --accent-primary-hover: #2563eb;
+      --accent-secondary: #06b6d4;     /* Cian moderno */
+      --accent-tertiary: #8b5cf6;      /* Púrpura elegante */
+      --accent-success: #10b981;       /* Verde éxito */
+      --accent-warning: #f59e0b;       /* Ámbar advertencia */
+      --accent-error: #ef4444;         /* Rojo error */
 
-      --accent: #e0a63a;
-      --accent-ink: #eab95e;
-      --accent-wash: rgba(224, 166, 58, 0.18);
-      --patina: #62b6bf;
+      /* === SISTEMA UNIFICADO === */
+      --bg-primary: var(--darkbg-950);
+      --bg-secondary: var(--darkbg-900);
+      --bg-tertiary: var(--darkbg-800);
+      --bg-quaternary: var(--darkbg-700);
+      --bg-hover: var(--darkbg-700);
 
-      color-scheme: dark;
+      --text-primary: var(--darktext-50);
+      --text-secondary: var(--darktext-200);
+      --text-tertiary: var(--darktext-300);
+      --text-muted: var(--darktext-400);
+
+      --accent: var(--accent-primary);
+      --accent-hover: var(--accent-primary-hover);
+      --border-primary: rgba(59, 130, 246, 0.2);
+      --border-secondary: rgba(59, 130, 246, 0.1);
+      --shadow-primary: rgba(59, 130, 246, 0.15);
     }
 
-    /* ==========================================================
-       BASE
-       ========================================================== */
-    *,
-    *::before,
-    *::after {
+    /* Modo claro - Limpio y Minimalista */
+    .light {
+      /* === BACKGROUNDS === */
+      --darkbg-950: #ffffff;           /* Fondo principal puro */
+      --darkbg-900: #f8fafc;           /* Fondo secundario */
+      --darkbg-800: #f1f5f9;           /* Fondo de tarjetas */
+      --darkbg-700: #e2e8f0;           /* Fondo hover */
+      --darkbg-600: #cbd5e1;           /* Bordes */
+
+      /* === TEXTOS === */
+      --darktext-50: #0f172a;          /* Texto principal oscuro */
+      --darktext-100: #1e293b;         /* Texto enfático */
+      --darktext-200: #334155;         /* Texto normal */
+      --darktext-300: #475569;         /* Texto secundario */
+      --darktext-400: #64748b;         /* Texto muted */
+      --darktext-500: #94a3b8;         /* Texto disabled */
+
+      /* === ACCENTS === */
+      --accent-primary: #2563eb;       /* Azul más oscuro para contraste */
+      --accent-primary-hover: #1d4ed8;
+      --accent-secondary: #0891b2;     /* Cian más oscuro */
+      --accent-tertiary: #7c3aed;      /* Púrpura más oscuro */
+      --accent-success: #059669;       /* Verde más oscuro */
+      --accent-warning: #d97706;       /* Ámbar más oscuro */
+      --accent-error: #dc2626;         /* Rojo más oscuro */
+
+      /* === SISTEMA UNIFICADO === */
+      --bg-primary: var(--darkbg-950);
+      --bg-secondary: var(--darkbg-900);
+      --bg-tertiary: var(--darkbg-800);
+      --bg-quaternary: var(--darkbg-700);
+      --bg-hover: var(--darkbg-700);
+
+      --text-primary: var(--darktext-50);
+      --text-secondary: var(--darktext-200);
+      --text-tertiary: var(--darktext-300);
+      --text-muted: var(--darktext-400);
+
+      --accent: var(--accent-primary);
+      --accent-hover: var(--accent-primary-hover);
+      --border-primary: rgba(37, 99, 235, 0.2);
+      --border-secondary: rgba(37, 99, 235, 0.1);
+      --shadow-primary: rgba(37, 99, 235, 0.1);
+    }
+
+    /* Reset de CSS base */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
-    html {
-      -webkit-text-size-adjust: 100%;
-      scroll-behavior: smooth;
+    /* Indicador de foco visible y consistente. `:focus-visible` evita el anillo
+       en clics de ratón y lo mantiene al navegar con teclado. */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
     }
 
-    body {
-      margin: 0;
-      min-height: 100%;
-      background-color: var(--paper);
-      color: var(--body);
-      font-family: "Albert Sans Variable", "Albert Sans", system-ui, sans-serif;
-      font-size: 1.0625rem;
-      line-height: 1.7;
-      font-synthesis-weight: none;
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-      transition: background-color 0.3s ease-out, color 0.3s ease-out;
-    }
-
-    h1, h2, h3, h4 {
-      margin: 0;
-      color: var(--ink);
-      font-weight: 500;
-      text-wrap: balance;
-    }
-
-    h1, h2 {
-      font-family: "Alumni Sans Variable", "Alumni Sans", sans-serif;
-    }
-
-    p {
-      margin: 0;
-      text-wrap: pretty;
-    }
-
-    ul, ol {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    /* El navbar es fijo: evita que tape el titular al saltar a una seccion. */
+    /* La barra de navegación es fija: evita que tape el título al saltar a una sección */
     section[id] {
       scroll-margin-top: 5.5rem;
     }
 
-    /* ==========================================================
-       SUPERFICIES DEL NAVEGADOR
-       Lo que no dibujamos tambien lleva el diseno: seleccion,
-       cursor, scrollbar, subrayados y cifras tabulares.
-       ========================================================== */
-    ::selection {
-      background-color: var(--accent-wash);
-      color: var(--ink);
-    }
-
-    :where(input, textarea) {
-      caret-color: var(--accent-ink);
-    }
-
-    :where(a) {
-      color: var(--accent-ink);
-      text-decoration-thickness: 1px;
-      text-underline-offset: 0.22em;
-      text-decoration-color: var(--rule-strong);
-      transition: text-decoration-color 0.2s ease-out, color 0.2s ease-out;
-    }
-
-    :where(a):hover {
-      text-decoration-color: currentColor;
-    }
-
-    :where(.font-mono, code, kbd, samp, time) {
-      font-variant-numeric: tabular-nums;
-    }
-
-    * {
-      scrollbar-width: thin;
-      scrollbar-color: var(--rule-strong) transparent;
-    }
-
-    ::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background-color: var(--rule-strong);
-      border: 3px solid var(--paper);
-      border-radius: 0;
-    }
-
-    :focus-visible {
-      outline: 2px solid var(--accent-ink);
-      outline-offset: 3px;
-      border-radius: 1px;
-    }
-
-    /* ==========================================================
-       ENLACE DE SALTO
-       ========================================================== */
+    /* Enlace de salto al contenido, visible solo al recibir foco */
     .skip-link {
       position: absolute;
       left: 1rem;
-      top: -5rem;
+      top: -4rem;
       z-index: 100;
-      padding: 0.7rem 1.1rem;
-      background-color: var(--paper-raised);
-      color: var(--ink);
-      border: 1px solid var(--rule-strong);
-      font-size: 0.8125rem;
+      padding: 0.75rem 1.25rem;
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 1px solid var(--accent);
+      font-size: 0.875rem;
       text-decoration: none;
-      transition: top 0.18s ease-out;
+      transition: top 0.2s ease;
     }
 
     .skip-link:focus {
       top: 1rem;
     }
 
-    /* ==========================================================
-       EL UNICO MOMENTO DE MOTION
-       El nombre se descubre con un barrido de mascara al cargar.
-       Arranca de un estado ya visible: si la animacion no corre
-       (sin CSS, con movimiento reducido o sin soporte), el texto
-       esta ahi igual. No hay animaciones de entrada por seccion.
-       ========================================================== */
-    @keyframes name-reveal {
-      from {
-        clip-path: inset(0 0 105% 0);
-      }
-      to {
-        clip-path: inset(0 0 -5% 0);
-      }
+    html,
+    body {
+      height: 100%;
+      font-family: "Titillium Web", "Inter variable", system-ui, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    .name-reveal {
-      animation: name-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    main {
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-primary);
     }
 
+    ::selection {
+      background-color: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    /* Respeta la preferencia de movimiento reducido. */
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
       *,
       *::before,
       *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
 
-      .name-reveal {
-        animation: none;
+      html {
+        scroll-behavior: auto;
       }
+    }
+
+    /* ========================================
+       🎯 MAPEO DINÁMICO DE CLASES EXISTENTES
+       ======================================== */
+
+    /* === BACKGROUNDS === */
+    .bg-darkbg-950, .bg-\[0B0C10\], .bg-\[\#0B0C10\] {
+      background-color: var(--bg-primary) !important;
+    }
+
+    .bg-darkbg-900, .bg-\[1F2833\], .bg-\[\#1F2833\] {
+      background-color: var(--bg-secondary) !important;
+    }
+
+    .bg-darkbg-800 {
+      background-color: var(--bg-tertiary) !important;
+    }
+
+    .bg-darkbg-700 {
+      background-color: var(--bg-quaternary) !important;
+    }
+
+    /* === TEXTOS === */
+    .text-white {
+      color: var(--text-primary) !important;
+    }
+
+    .text-darktext-300 {
+      color: var(--text-secondary) !important;
+    }
+
+    .text-darktext-400 {
+      color: var(--text-muted) !important;
+    }
+
+    /* === ACCENTS === */
+    .text-accent-400, .text-\[45A29E\], .text-\[\#45A29E\] {
+      color: var(--accent) !important;
+    }
+
+    .text-accent-500 {
+      color: var(--accent-hover) !important;
+    }
+
+    .bg-accent-400, .bg-accent-500 {
+      background-color: var(--accent) !important;
+    }
+
+    /* === BORDES === */
+    .border-accent-500, .border-\[45A29E\], .border-\[\#45A29E\] {
+      border-color: var(--accent) !important;
+    }
+
+    .border-accent-500\/30, .border-\[45A29E\]\/20 {
+      border-color: var(--border-primary) !important;
+    }
+
+    .border-accent-500\/20 {
+      border-color: var(--border-secondary) !important;
+    }
+
+    .border-accent-500\/10 {
+      border-color: color-mix(in srgb, var(--accent) 10%, transparent) !important;
+    }
+
+    /* === HOVERS Y ESTADOS === */
+    .hover\:bg-darkbg-900\/70:hover, .hover\:bg-darkbg-900\/50:hover {
+      background-color: var(--bg-hover) !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .hover\:text-white:hover {
+      color: var(--text-primary) !important;
+      transition: color 0.2s ease !important;
+    }
+
+    .hover\:text-accent-400:hover {
+      color: var(--accent-hover) !important;
+      transition: color 0.2s ease !important;
+    }
+
+    /* === GRADIENTS DINÁMICOS === */
+    .from-accent-400 {
+      --tw-gradient-from: var(--accent) var(--tw-gradient-from-position) !important;
+    }
+
+    .to-accent-500 {
+      --tw-gradient-to: var(--accent-hover) var(--tw-gradient-to-position) !important;
+    }
+
+    .from-darkbg-900 {
+      --tw-gradient-from: var(--bg-secondary) var(--tw-gradient-from-position) !important;
+    }
+
+    .to-darkbg-950 {
+      --tw-gradient-to: var(--bg-primary) var(--tw-gradient-to-position) !important;
+    }
+
+    /* === TRANSPARENCIAS === */
+    .bg-darkbg-950\/90 {
+      background-color: color-mix(in srgb, var(--bg-primary) 90%, transparent) !important;
+    }
+
+    .bg-darkbg-950\/70 {
+      background-color: color-mix(in srgb, var(--bg-primary) 70%, transparent) !important;
+    }
+
+    .bg-darkbg-900\/80 {
+      background-color: color-mix(in srgb, var(--bg-secondary) 80%, transparent) !important;
+    }
+
+    /* === DIVIDERS === */
+    .divide-accent-500\/10 > * + * {
+      border-color: color-mix(in srgb, var(--accent) 10%, transparent) !important;
+    }
+
+    /* ========================================
+       🚀 CLASES DE UTILIDAD MODERNAS
+       ======================================== */
+
+    .theme-card {
+      background-color: var(--bg-tertiary);
+      border: 1px solid var(--border-secondary);
+      transition: all 0.3s ease;
+    }
+
+    .theme-card:hover {
+      background-color: var(--bg-hover);
+      border-color: var(--border-primary);
+      box-shadow: 0 4px 6px -1px var(--shadow-primary);
+    }
+
+    .theme-button-primary {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .theme-button-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+    }
+
+    .theme-button-primary:active {
+      transform: translateY(0px);
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+    }
+
+    .theme-button-secondary {
+      background-color: transparent;
+      color: var(--text-secondary);
+      border: 1.5px solid color-mix(in srgb, var(--accent) 30%, transparent);
+      border-radius: 12px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .theme-button-secondary:hover {
+      background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .theme-button-secondary:active {
+      transform: translateY(0px);
+    }
+
+    .theme-text-gradient {
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .theme-border-gradient {
+      border: 1px solid transparent;
+      background: linear-gradient(var(--bg-tertiary), var(--bg-tertiary)) padding-box,
+                  linear-gradient(135deg, var(--accent), var(--accent-secondary)) border-box;
     }
   </style>
 </html>
