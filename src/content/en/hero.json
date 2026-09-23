@@ -1,5 +1,9 @@
 {
   "headline": "Hotel operations and technology, in one profile.",
   "description": "I work in accommodation operations and front office, and I also build web products. I know how PMS, OTAs and hotel digital tools are actually used because I work with them every day, and I can speak the same language as the teams who build them.",
+  "focus": {
+    "label": "Focus",
+    "value": "Hospitality + Operations + Technology"
+  },
   "availability": "Open to new opportunities"
 }

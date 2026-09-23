@@ -15,6 +15,13 @@ export type Locale = 'es' | 'en';
 export interface HeroTranslations {
   headline: string;
   description: string;
+  /**
+   * El enfoque: el posicionamiento resumido en una linea. Es la unica pieza
+   * etiquetada del hero, asi que el rotulo va en versalitas y el valor en texto
+   * corrido. Resume los tres ejes (hospitalidad, operaciones y tecnologia) que
+   * el titular enuncia como frase.
+   */
+  focus: { label: string; value: string };
   /** Estado de disponibilidad, sin rotulo: lo precede un punto de color. */
   availability: string;
 }
