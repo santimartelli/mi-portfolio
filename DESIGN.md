@@ -200,7 +200,9 @@ Framer Motion se limita a lo funcional, donde una transición explica un cambio 
 
 Queda un único momento de motion, y es funcional: la apertura del menú.
 
-No hay **ninguna animación en CSS**. Todo lo que pasó por aquí se retiró: el latido del punto de estado (`animate-status-pulse`) se fue con la línea de disponibilidad, y el brillo del CTA, que llegó a repetirse en bucle cada 5 segundos y que el detector marcaba como `[marquee]`, se acabó sustituyendo por el mismo recurso que usan los iconos de contacto: un cambio de color con transición. Lo que queda son **transiciones de estado** —el hover del CTA y el de los iconos—, que no son animaciones.
+Hay **una única animación en CSS**, y no es de entrada: el latido del punto de estado que precede a «Abierto a nuevas oportunidades», al pie del hero (`animate-status-pulse`). Su opacidad va de 1 a 0,45 en 2,8 s, así que se atenúa pero nunca desaparece, y no depende de JavaScript. Fuera de eso solo hay transiciones de estado —el hover del CTA y el de los iconos—, que no son animaciones.
+
+Por aquí pasaron otras y se retiraron: el mismo latido, cuando la línea de disponibilidad se quitó; y el brillo del CTA portado, que llegó a repetirse en bucle cada 5 segundos y que el detector marcaba como `[marquee]`.
 
 Bajo `prefers-reduced-motion` el bloque global de `Layout.astro` reduce toda animación a 0.01 ms y una sola iteración, así que el brillo no llega a verse, y desactiva el desplazamiento suave.
 

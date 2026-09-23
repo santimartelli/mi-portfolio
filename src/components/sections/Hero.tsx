@@ -111,6 +111,20 @@ const Hero = ({ content: t }: HeroProps) => {
             className="hero-media"
           />
         </picture>
+
+        {/* Estado, al pie del hero. En movil es el sexto bloque del reparto y cae
+            abajo del todo; desde lg ocupa una fila propia a lo ancho de la
+            rejilla, debajo de las dos columnas, y queda centrado.
+            El punto va con aria-hidden porque no aporta nada que el texto no
+            diga, y si el latido no se ve, por movimiento reducido o porque no
+            carga, el texto sigue comunicando el estado. */}
+        <p className="flex items-center justify-center gap-3 text-small font-light text-gray-600 lg:col-span-12 dark:text-gray-400">
+          <span
+            aria-hidden="true"
+            className="h-1.5 w-1.5 animate-status-pulse rounded-full bg-[var(--accent-success)]"
+          />
+          {t.availability}
+        </p>
       </div>
     </section>
   );

@@ -24,6 +24,11 @@ export interface HeroTranslations {
    * describe en cada idioma en vez de dejarla con alt vacio.
    */
   imageAlt: string;
+  /**
+   * Estado de disponibilidad, al pie del hero. Va sin rotulo: lo precede un
+   * punto verde que late, asi que el color y el movimiento ya lo anuncian.
+   */
+  availability: string;
 }
 
 export interface NavbarTranslations {
