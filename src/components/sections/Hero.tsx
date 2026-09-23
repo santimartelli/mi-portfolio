@@ -45,7 +45,9 @@ const Hero = ({ content: t }: HeroProps) => {
               {t.cta}
             </a>
 
-            <ul className="flex list-none items-center gap-1">
+            {/* gap-3 (12px) entre cajas de 48px: como el trazo ocupa 24px, la
+                separacion visible entre iconos es de 36px. */}
+            <ul className="flex list-none items-center gap-3">
               {contactLinks.map((link) => (
                 <li key={link.label}>
                   <a
