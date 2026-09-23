@@ -200,9 +200,11 @@ Framer Motion se limita a lo funcional, donde una transición explica un cambio 
 
 Queda un único momento de motion, y es funcional: la apertura del menú.
 
-Hay **una única animación en CSS**, y no es de entrada: el latido del punto de estado que precede a «Abierto a nuevas oportunidades», al pie del hero (`animate-status-pulse`). Su opacidad va de 1 a 0,45 en 2,8 s, así que se atenúa pero nunca desaparece, y no depende de JavaScript. Fuera de eso solo hay transiciones de estado —el hover del CTA y el de los iconos—, que no son animaciones.
+Hay **una única animación en CSS**, y no es de entrada: el marquee de características al pie del hero (`@keyframes marquee`), que desplaza su pista la mitad del ancho en 40 s lineales. La pista lleva la lista dos veces, así que el bucle no tiene costura, y la copia duplicada va con `aria-hidden` para que no se lea dos veces. Se para con el puntero encima o con el foco dentro, que es lo mínimo para poder leer algo que se mueve solo. Fuera de eso solo hay transiciones de estado —el hover del CTA y el de los iconos—, que no son animaciones.
 
-Por aquí pasaron otras y se retiraron: el mismo latido, cuando la línea de disponibilidad se quitó; y el brillo del CTA portado, que llegó a repetirse en bucle cada 5 segundos y que el detector marcaba como `[marquee]`.
+**Desviación registrada.** El detector marca el marquee como `[marquee]`: el contenido que se desplaza solo «exige una atención que no se ha ganado y esconde la mitad en cada momento». Es una petición explícita del usuario, y es la única desviación marcada del proyecto. Lo que la mitiga: que se pare con el puntero o el foco, que `prefers-reduced-motion` lo deje quieto, y que todo lo que cuenta está además en las secciones de experiencia y skills, así que no se pierde nada si no se llega a leer.
+
+Por aquí pasaron otras animaciones y se retiraron: el latido del punto de estado, que se fue con su línea de disponibilidad, y el brillo del CTA portado, que llegó a repetirse en bucle y que el detector también marcaba como `[marquee]`.
 
 Bajo `prefers-reduced-motion` el bloque global de `Layout.astro` reduce toda animación a 0.01 ms y una sola iteración, así que el brillo no llega a verse, y desactiva el desplazamiento suave.
 
