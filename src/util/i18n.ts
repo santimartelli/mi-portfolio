@@ -17,8 +17,6 @@ export interface HeroTranslations {
   description: string;
   /** Estado de disponibilidad, sin rotulo: lo precede un punto de color. */
   availability: string;
-  /** Rotulo que precede a los accesos de contacto directo. */
-  contactLabel: string;
 }
 
 export interface NavbarTranslations {

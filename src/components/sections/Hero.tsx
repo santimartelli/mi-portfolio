@@ -21,36 +21,31 @@ const Hero = ({ content: t }: HeroProps) => {
 
   return (
     <section id="home" className="pt-32 pb-20 sm:pt-40 sm:pb-28">
-      <div className="shell">
+      <div className="shell text-center sm:text-left">
         <h1 className="text-headline font-light text-balance text-black dark:text-white">
           {t.headline}
         </h1>
 
-        <p className="measure mt-6 text-pretty text-lead font-light text-gray-600 dark:text-gray-400">
+        <p className="measure mx-auto mt-6 text-pretty text-lead font-light text-gray-600 sm:mx-0 dark:text-gray-400">
           {t.description}
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3">
-          <span className="text-micro font-medium uppercase text-gray-500 dark:text-gray-400">
-            {t.contactLabel}
-          </span>
-          <ul className="flex list-none items-center gap-1">
-            {contactLinks.map((link) => (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  {...(link.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
-                  aria-label={link.label}
-                  className="flex h-11 w-11 items-center justify-center text-gray-500 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
-                  <link.icon className="h-4 w-4" aria-hidden="true" />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className="mt-10 flex list-none items-center justify-center gap-1 sm:justify-start">
+          {contactLinks.map((link) => (
+            <li key={link.label}>
+              <a
+                href={link.href}
+                {...(link.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
+                aria-label={link.label}
+                className="flex h-11 w-11 items-center justify-center text-gray-500 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
+                <link.icon className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
 
         {/* Estado al pie del hero: punto verde y el valor, sin rotulo. */}
-        <p className="mt-10 flex items-center gap-3 text-small font-light text-gray-600 dark:text-gray-400">
+        <p className="mt-10 flex items-center justify-center gap-3 text-small font-light text-gray-600 sm:justify-start dark:text-gray-400">
           <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[var(--accent-success)]" />
           {t.availability}
         </p>
