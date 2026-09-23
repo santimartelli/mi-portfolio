@@ -169,7 +169,7 @@ En el hero, cada una de las dos mitades (6/6) llega a su borde: el texto arranca
 
 En vertical, el contenedor del hero **se queda con todo el alto** que queda por debajo del header: la sección no lo centra ni reserva padding abajo, así que la caja va del borde inferior del header al borde inferior de la pantalla. Dentro, la rejilla reparte ese alto en dos filas, `1fr` para las dos columnas y `auto` para el marquee, y el `align-items: center` de la rejilla deja el bloque de texto y el de la imagen en el medio de la primera fila; el marquee queda como franja al pie, con el aire que reserva el propio contenedor (`2rem`). El alto de la ilustración sigue topado por `calc(100vh - 16rem)`, así que en pantallas bajas encoge antes que el texto.
 
-Cada sección respira `5rem` en móvil y `7rem` en escritorio, y abre con un filete de 1px (`border-t`). Entre secciones, además, va el `Divider` de gradiente, **menos bajo el hero**: ahí el marquee ya cierra el bloque y la línea se sumaba, a 32px, al filete con el que abre About, así que se retiró a petición del usuario. El contenido denso se organiza en **unidades repetibles** con la misma anatomía: metadatos a la izquierda, relato a la derecha, filete entre unidades. Las listas largas (hitos de un puesto, canales de contacto, métricas) se despliegan en dos columnas o cruzan toda la anchura en vez de apilarse en una columna estrecha.
+Cada sección respira `5rem` en móvil y `7rem` en escritorio, y **abre con un filete de 1px (`border-t`), que es el único separador**. El `Divider` de gradiente que iba entre secciones se retiró a petición del usuario: era una segunda regla a 32px del filete, y el primero en caer fue el de debajo del hero, donde el marquee ya cierra el bloque. El contenido denso se organiza en **unidades repetibles** con la misma anatomía: metadatos a la izquierda, relato a la derecha, filete entre unidades. Las listas largas (hitos de un puesto, canales de contacto, métricas) se despliegan en dos columnas o cruzan toda la anchura en vez de apilarse en una columna estrecha.
 
 Los casos de estudio usan una unidad de dos columnas: a la izquierda la prueba visual y los datos (imagen, canal, stack, enlaces) con la imagen fija al hacer scroll; a la derecha el relato. La tabla de métricas cruza la anchura completa porque es una comparación.
 
@@ -220,7 +220,7 @@ Bajo `prefers-reduced-motion` el bloque global de `Layout.astro` reduce toda ani
 
 - Usa `signal-blue` como única señal de acento; el resto del mundo es neutro.
 - Mantén el peso 300 en los titulares grandes: es lo que da el aire técnico.
-- Separa secciones con el `Divider` y deja respirar 8–10rem… **salvo bajo el hero**, donde el marquee ya cierra el bloque y la línea de gradiente se sumaba, a 32px, al filete con el que abre la sección siguiente.
+- Separa las secciones **solo con el filete de 1px** con el que cada una abre; no añadas una segunda regla. El `Divider` de gradiente que hacía eso se retiró a petición del usuario.
 - Etiqueta en mayúsculas con tracking amplio; reserva la monoespaciada para identificadores.
 
 **Don't**

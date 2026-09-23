@@ -9,7 +9,6 @@ import Skills from "../../components/sections/SkillsWithTranslations";
 import Projects from "../../components/sections/ProjectsWithTranslations";
 import Contact from "../../components/sections/ContactWithTranslations";
 import Footer from "../../components/sections/FooterWithTranslations";
-import Divider from "../../components/common/Divider";
 import { getTranslations } from "../../util/content";
 
 const locale = "en" as const;
@@ -28,32 +27,25 @@ const description =
       <Hero content={translations.hero} />
     </section>
 
-    {/* Bajo el hero no va el separador de gradiente: el marquee ya cierra el
-        bloque y esa linea se sumaba, a 32px, al filete con el que abre About.
-        Entre las demas secciones sigue. */}
+    {/* Las secciones se separan solo con el filete de 1px con el que cada una
+        abre (`border-t`). El `Divider` de gradiente que iba entre ellas se
+        retiro a peticion del usuario: era una segunda regla a 32px del filete.
+        El ultimo que quedaba, el de debajo del hero, se fue antes. */}
     <section>
       <About content={translations.about} />
     </section>
-
-    <Divider />
 
     <section>
       <Experience content={translations.experience} client:visible />
     </section>
 
-    <Divider />
-
     <section>
       <Skills content={translations.skills} />
     </section>
 
-    <Divider />
-
     <section>
       <Projects content={translations.projects} />
     </section>
-
-    <Divider />
 
     <section>
       <Contact content={translations.contact} />
