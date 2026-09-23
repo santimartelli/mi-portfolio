@@ -57,15 +57,13 @@ const Hero = ({ content: t }: HeroProps) => {
           {/* Misma idea: en movil la accion y los iconos son dos bloques sueltos,
               y desde lg vuelven a ser una fila centrada. */}
           <div className="contents lg:mt-10 lg:flex lg:flex-wrap lg:items-center lg:justify-center lg:gap-8">
-            {/* Boton portado de otro proyecto del usuario. De aquel solo queda el
-                brillo, que alli cruzaba al pasar el puntero y aqui se repite solo
-                cada 5 segundos. Se han quitado la sombra, el labio y la elevacion
-                al pasar por encima, porque en este mundo no hay sombras, y el
-                tamaño es el de antes del port: el grande del original dejaba el
+            {/* El CTA conserva del boton portado solo el ancho minimo y el radio
+                de 8px; el efecto es el de los iconos de contacto, un cambio de
+                color con transicion. El tamaño grande del original dejaba el
                 boton en 80px y se comia el reparto de los cinco bloques. */}
             <a
               href="#experience"
-              className="cta-primary mx-auto flex w-fit min-w-[10rem] items-center justify-center px-5 py-2.5 text-small font-semibold uppercase tracking-widest lg:mx-0">
+              className="cta-primary mx-auto flex w-fit min-w-[10rem] items-center justify-center px-4 py-2 text-small font-semibold uppercase tracking-widest lg:mx-0">
               {t.cta}
             </a>
 

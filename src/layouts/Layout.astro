@@ -454,59 +454,28 @@ const jsonLd = {
 
     /* ==========================================
        LLAMADA A LA ACCION
-       Del boton portado de otro proyecto del usuario solo queda el brillo: se
-       han quitado la sombra y el labio, porque aqui no hay sombras, la elevacion
-       al pasar el puntero, y el radio bajo de pastilla a 8px. Los colores son los
-       del mundo: tinta de fondo y papel en el texto.
+       Al final no queda nada del boton portado: se le fueron quitando la sombra,
+       el labio, la elevacion, el brillo y la forma de pastilla. Lo que hay es el
+       mismo recurso que usan los iconos de contacto: un cambio de color con
+       transicion al pasar el puntero, sin animacion ni movimiento. Los colores
+       son los del mundo: tinta de fondo, papel en el texto y tinta suave al
+       pasar por encima (9,7:1 con el texto blanco).
 
        Se define con los tokens y no con utilidades de acento porque la tabla de
        remapeo casa nombres exactos de clase, asi que cualquier variante
        (hover:, dark:) se le escapa y cae en la paleta antigua.
-
-       El brillo es la unica animacion en CSS del sitio. No es de entrada, es un
-       bucle, y bajo prefers-reduced-motion el bloque global lo neutraliza.
        ========================================== */
     .cta-primary {
-      position: relative;
-      overflow: hidden;
       border: 0;
       border-radius: 8px;
       background-color: var(--text-primary);
       color: var(--bg-primary);
+      /* Mismo tempo que los iconos: 200ms y la curva de salida de Tailwind. */
+      transition: background-color 0.2s cubic-bezier(0, 0, 0.2, 1);
     }
 
-    /*
-     * El brillo: una banda inclinada que espera fuera del boton por la izquierda
-     * y lo cruza al entrar el puntero. La transicion se deja en none a proposito
-     * y el movimiento lo hace la animacion, que se dispara en el hover; asi
-     * cruza una sola vez en lugar de quedarse quieta a medio camino.
-     *
-     * Se anima transform y no left, que es lo que hacia el boton original: el
-     * recorrido es el mismo, pero transform lo resuelve el compositor y no obliga
-     * a recalcular el layout en cada fotograma.
-     */
-    .cta-primary::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 75%;
-      height: 100%;
-      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
-      transform: skewX(45deg);
-      transition: none;
-    }
-
-    .cta-primary:hover::before {
-      animation: ctaShine 0.5s ease-in-out;
-    }
-
-    @keyframes ctaShine {
-      100% {
-        /* 400% del ancho de la banda, que es el 75% del boton: recorre tres
-           anchos de boton, de -100% a 200%, igual que el original. */
-        transform: skewX(45deg) translateX(400%);
-      }
+    .cta-primary:hover {
+      background-color: var(--text-secondary);
     }
 
     /* ==========================================
