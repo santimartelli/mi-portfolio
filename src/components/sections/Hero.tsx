@@ -1,5 +1,8 @@
 // Hero en dos columnas: a la izquierda el titular, el parrafo de presentacion y
 // el contacto directo; a la derecha la ilustracion del perfil.
+// En movil la columna se apila y el hero se reparte el alto de la ventana entre
+// sus cinco bloques (imagen, titular, texto, accion e iconos) con el mismo hueco,
+// de forma que todo entra en la pantalla sin scroll.
 // Sin estado, sin JavaScript y sin ninguna animacion: el hero se renderiza
 // entero en el servidor.
 import { FaEnvelope, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
@@ -20,13 +23,27 @@ const Hero = ({ content: t }: HeroProps) => {
   ];
 
   return (
-    // El hero ocupa el alto de la ventana y centra su contenido en el hueco que
-    // queda bajo el header: 4rem de barra (h-16) mas 1px de su border-b. Asi el
-    // texto y la imagen reparten el aire arriba y abajo en vez de colgar de la
-    // linea del header, y el conjunto no se sale por el borde inferior.
-    <section id="home" className="flex min-h-screen items-start pt-[65px] pb-4 sm:pb-28 lg:items-center">
-      <div className="shell grid gap-3 lg:grid-cols-12 lg:items-center lg:gap-16">
-        <div className="text-center lg:col-span-6 lg:text-left">
+    // En movil: columna que ocupa el alto de la ventana (100dvh, el alto visible
+    // real, no el de la ventana grande) y reparte sus cinco bloques. El padding
+    // de arriba es el header (4rem mas 1px de su border-b) y los 1rem de aire que
+    // se pidieron entre el header y la imagen; el de abajo, el margen bajo los
+    // iconos.
+    // Desde lg vuelve al hero de dos columnas centrado en vertical, con el
+    // padding de arriba justo en el header.
+    <section
+      id="home"
+      className="flex min-h-[100dvh] flex-col pt-[81px] pb-6 lg:min-h-screen lg:flex-row lg:items-center lg:pt-[65px] lg:pb-28">
+      <div className="shell flex flex-1 flex-col justify-between gap-1 lg:grid lg:flex-none lg:grid-cols-12 lg:items-center lg:gap-16">
+        {/*
+          En movil esta caja no genera caja propia (display: contents), asi que el
+          titular, el parrafo, la accion y los iconos pasan a ser hijos directos
+          del contenedor de arriba y entran en el reparto. Es la unica forma de
+          que los cinco bloques reciban el mismo hueco sin duplicar el marcado.
+          Los margenes verticales de cada bloque se anulan en movil por el mismo
+          motivo: si sumaran, los huecos dejarian de ser iguales. Desde lg vuelve
+          a ser una columna normal y recupera sus margenes.
+        */}
+        <div className="contents text-center lg:col-span-6 lg:block lg:text-left">
           <h1 className="text-display font-light text-balance text-black dark:text-white">
             {t.headline}
           </h1>
@@ -34,23 +51,22 @@ const Hero = ({ content: t }: HeroProps) => {
           {/* En movil la entradilla va a 1,5 de interlineado, que es el minimo
               comodo para texto corrido, en vez del 1,65 de la escala: con las
               nueve lineas que ocupa el parrafo son mas de 20px de alto. */}
-          <p className="measure mx-auto mt-3 text-pretty text-base font-light leading-normal text-gray-600 lg:mt-8 lg:text-lead lg:leading-[1.6] lg:mx-0 dark:text-gray-400">
+          <p className="measure mx-auto text-pretty text-base font-light leading-normal text-gray-600 lg:mt-8 lg:text-lead lg:leading-[1.6] lg:mx-0 dark:text-gray-400">
             {t.description}
           </p>
 
-          {/* La accion y el contacto van juntos y centrados como un solo grupo.
-              Los iconos van a 24px sobre objetivos de 48px, el minimo de area
-              tactil. */}
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-8 lg:mt-10">
+          {/* Misma idea: en movil la accion y los iconos son dos bloques sueltos,
+              y desde lg vuelven a ser una fila centrada. */}
+          <div className="contents lg:mt-10 lg:flex lg:flex-wrap lg:items-center lg:justify-center lg:gap-8">
             <a
               href="#experience"
-              className="cta-primary flex w-fit items-center px-6 py-3 text-small font-medium uppercase tracking-widest">
+              className="cta-primary mx-auto flex w-fit items-center px-6 py-3 text-small font-medium uppercase tracking-widest lg:mx-0">
               {t.cta}
             </a>
 
             {/* gap-3 (12px) entre cajas de 48px: como el trazo ocupa 24px, la
                 separacion visible entre iconos es de 36px. */}
-            <ul className="flex list-none items-center gap-3">
+            <ul className="flex list-none items-center justify-center gap-3">
               {contactLinks.map((link) => (
                 <li key={link.label}>
                   <a
@@ -80,7 +96,7 @@ const Hero = ({ content: t }: HeroProps) => {
             order del <picture> la sube. En el marcado sigue despues del texto a
             proposito, para que quien use lector de pantalla reciba el titular
             antes que la ilustracion; desde lg el order se resetea. */}
-        <picture className="order-first mt-4 lg:order-none lg:col-span-6 lg:mt-0">
+        <picture className="order-first lg:order-none lg:col-span-6">
           <source media="(max-width: 1023.98px)" srcSet="/images/hero-landscape.webp" />
           <img
             src="/images/hero-portrait.webp"
