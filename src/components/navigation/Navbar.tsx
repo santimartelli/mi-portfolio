@@ -59,10 +59,11 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
 
   return (
     <nav aria-label={t.menuLabel} className="nav-bar fixed inset-x-0 top-0 z-50 border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
-      {/* El header no usa .shell: aquel limita el contenido a 1400px y aqui se
-          quiere que la marca y los controles se separen casi hasta los bordes.
-          Se conserva un margen lateral pequeno para que no queden pegados. */}
-      <div className="flex h-16 w-full items-center justify-between gap-3 px-6 sm:gap-6 sm:px-10 lg:px-16">
+      {/* El header no usa .shell, porque necesita el ancho completo, pero desde
+          lg comparte sus escalones de margen lateral (4rem y sube con la
+          pantalla) para que la marca y el contenido de las secciones empiecen en
+          la misma vertical. Por debajo de lg cada uno lleva el suyo. */}
+      <div className="flex h-16 w-full items-center justify-between gap-3 px-6 sm:gap-6 sm:px-10 lg:px-16 xl:px-20 2xl:px-24">
         <a href={homeHref} className="shrink-0">
           <Logo />
         </a>

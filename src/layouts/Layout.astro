@@ -552,6 +552,15 @@ const jsonLd = {
        Las secciones cruzan la pantalla; el texto se queda en una
        columna legible. Ocupar todo el ancho no puede costar lectura.
        ========================================== */
+    /*
+     * Margen lateral de la pagina. Crece por escalones y en escritorio manda: el
+     * hero y las secciones dejan mucho aire en los bordes y poco en el centro,
+     * que es lo que hace que el contenido se lea como un bloque centrado y no
+     * como algo pegado a los lados. El escalon de 1024px ya es de 4rem, el mismo
+     * que el padding horizontal de la barra de navegacion, para que el logotipo
+     * y el contenido empiecen en la misma vertical; los dos suben juntos a 5rem
+     * y 6rem en los escalones siguientes.
+     */
     .shell {
       margin-inline: auto;
       width: 100%;
@@ -564,11 +573,15 @@ const jsonLd = {
     }
 
     @media (min-width: 1024px) {
-      .shell { padding-inline: 2.5rem; }
+      .shell { padding-inline: 4rem; }
     }
 
     @media (min-width: 1280px) {
-      .shell { padding-inline: 3rem; }
+      .shell { padding-inline: 5rem; }
+    }
+
+    @media (min-width: 1536px) {
+      .shell { padding-inline: 6rem; }
     }
 
     /* Medida de lectura: 64ch, dentro del rango 45-75ch. */
