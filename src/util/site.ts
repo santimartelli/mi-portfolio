@@ -17,8 +17,8 @@ export const CV_FILES = {
 
 export const SITE = {
   name: 'Santiago Martelli',
-  /** Línea corta de posicionamiento, válida en ambos idiomas. */
-  tagline: 'Hospitality + Technology',
+  /** Línea corta de posicionamiento del logo, válida en ambos idiomas. */
+  tagline: 'Hotel Tech & Operations',
   email: 'santimartelli@gmail.com',
   phone: '+34 628 434 434',
   location: 'Girona · Barcelona · Remoto',

@@ -5,22 +5,5 @@
     "label": "Status",
     "value": "Open to new opportunities"
   },
-  "buttons": {
-    "experience": "View experience",
-    "contact": "Contact"
-  },
-  "ariaLabels": {
-    "experienceButton": "Go to the professional experience section",
-    "contactButton": "Go to the contact section"
-  },
-  "facts": [
-    {
-      "label": "Track record",
-      "value": "Hotel operations and front office"
-    },
-    {
-      "label": "Tools",
-      "value": "Opera · Avalon · Booking.com · Expedia"
-    }
-  ]
+  "contactLabel": "Contact"
 }

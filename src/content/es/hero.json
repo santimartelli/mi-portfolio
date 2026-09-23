@@ -5,22 +5,5 @@
     "label": "Situación",
     "value": "Abierto a nuevas oportunidades"
   },
-  "buttons": {
-    "experience": "Ver experiencia",
-    "contact": "Contacto"
-  },
-  "ariaLabels": {
-    "experienceButton": "Ir a la sección de experiencia profesional",
-    "contactButton": "Ir a la sección de contacto"
-  },
-  "facts": [
-    {
-      "label": "Trayectoria",
-      "value": "Operaciones hoteleras y front office"
-    },
-    {
-      "label": "Herramientas",
-      "value": "Opera · Avalon · Booking.com · Expedia"
-    }
-  ]
+  "contactLabel": "Contacto"
 }
