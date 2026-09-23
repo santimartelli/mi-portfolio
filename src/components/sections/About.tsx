@@ -1,109 +1,76 @@
-// Sección "Sobre mí": la narrativa hospitality → operaciones → tecnología.
-import { motion, useInView } from 'framer-motion';
-import { useRef, memo } from 'react';
+// Sobre mi: la trayectoria como una sola historia, en unidades anchas y repetibles.
 import type { AboutTranslations } from '../../util/i18n';
 
-/**
- * About.
- *
- * Cuenta la trayectoria como una sola historia: de dónde vengo (hospitality),
- * qué aprendí por el camino (operaciones) y qué añadí después (tecnología).
- * Todo el texto vive en el contenido por idioma.
- */
 interface AboutProps {
   content: AboutTranslations;
 }
 
 const About = ({ content: t }: AboutProps) => {
-
-  const contentRef = useRef(null);
-  const contentInView = useInView(contentRef, { once: true, amount: 0.05 });
-
   return (
-    <section id="about" className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
-      <div ref={contentRef} className="w-full">
-        <div className="w-full max-w-7xl mx-auto px-6 sm:px-8">
-          {/* Encabezado */}
-          <motion.header
-            initial={{ opacity: 0, y: 30 }}
-            animate={contentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center mb-20">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-light text-black dark:text-white leading-tight mb-8 tracking-tight">
-              {t.title}
-            </h2>
-            <p className="max-w-3xl mx-auto text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light">
-              {t.lead}
-            </p>
-          </motion.header>
+    <section id="about" className="border-t border-gray-200 py-20 sm:py-28 dark:border-gray-700">
+      <div className="shell">
+        <h2 className="max-w-4xl text-4xl font-light leading-tight tracking-tight text-black sm:text-5xl dark:text-white">
+          {t.title}
+        </h2>
+        <p className="measure mt-6 text-lg font-light leading-relaxed text-gray-600 sm:text-xl dark:text-gray-400">
+          {t.lead}
+        </p>
 
-          {/* Trayectoria en tres bloques */}
-          <div className="grid md:grid-cols-3 gap-12 lg:gap-16 mb-24">
-            {t.story.map((block, index) => (
-              <motion.article
-                key={block.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.3 + index * 0.15 }}>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="w-2 h-2 bg-blue-400 dark:bg-blue-500 rounded-full" aria-hidden="true" />
-                  <h3 className="text-xl font-light text-black dark:text-white tracking-wide">
-                    {block.title}
-                  </h3>
-                </div>
-                <div className="space-y-4 text-gray-600 dark:text-gray-400 font-light leading-relaxed">
-                  {block.paragraphs.map((paragraph) => (
-                    <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-                  ))}
-                </div>
-              </motion.article>
+        {/* Cada etapa: etiqueta a la izquierda, prosa a la derecha. Filas, no cajas. */}
+        <div className="mt-16 border-t border-gray-200 dark:border-gray-700">
+          {t.story.map((block) => (
+            <article
+              key={block.id}
+              className="grid gap-4 border-b border-gray-200 py-10 lg:grid-cols-12 lg:gap-12 dark:border-gray-700">
+              <h3 className="text-2xl font-light tracking-wide text-black lg:col-span-4 dark:text-white">
+                {block.title}
+              </h3>
+              <div className="space-y-5 lg:col-span-8">
+                {block.paragraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 40)} className="measure font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* El puente entre los dos mundos, en una banda ancha */}
+        <div className="mt-16 grid gap-6 lg:grid-cols-12 lg:gap-12">
+          <h3 className="text-2xl font-light tracking-wide text-black lg:col-span-4 dark:text-white">
+            {t.bridge.title}
+          </h3>
+          <div className="space-y-5 lg:col-span-8">
+            {t.bridge.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)} className="measure text-lg font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                {paragraph}
+              </p>
             ))}
           </div>
+        </div>
 
-          {/* Por qué las dos partes encajan */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={contentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="max-w-3xl mx-auto mb-24 border-l-2 border-blue-400 dark:border-blue-500 pl-6 sm:pl-8">
-            <h3 className="text-2xl font-light text-black dark:text-white tracking-wide mb-6">
-              {t.bridge.title}
-            </h3>
-            <div className="space-y-4 text-lg text-gray-600 dark:text-gray-400 font-light leading-relaxed">
-              {t.bridge.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Lo que aporto */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={contentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.7 }}>
-            <div className="flex items-center justify-center gap-3 mb-12">
-              <span className="w-2 h-2 bg-green-400 dark:bg-green-500 rounded-full" aria-hidden="true" />
-              <h3 className="text-2xl font-light text-black dark:text-white tracking-wide">
-                {t.principles.title}
-              </h3>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {t.principles.items.map((item) => (
-                <div key={item.title} className="text-center sm:text-left">
-                  <h4 className="text-lg font-light text-black dark:text-white mb-3">
-                    {item.title}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed">
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+        {/* Lo que aporto: tres unidades en fila, separadas por filete */}
+        <div className="mt-20">
+          <h3 className="text-2xl font-light tracking-wide text-black dark:text-white">
+            {t.principles.title}
+          </h3>
+          <div className="mt-8 grid gap-10 border-t border-gray-200 pt-8 md:grid-cols-3 lg:gap-16 dark:border-gray-700">
+            {t.principles.items.map((item) => (
+              <div key={item.title}>
+                <h4 className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+                  {item.title}
+                </h4>
+                <p className="mt-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                  {item.text}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default memo(About);
+export default About;

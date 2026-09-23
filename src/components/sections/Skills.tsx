@@ -1,122 +1,89 @@
-// Sección de skills, idiomas y formación.
-import { motion, useInView } from 'framer-motion';
-import { useRef, memo } from 'react';
+// Skills: agrupadas por origen. Texto corrido en filas anchas, sin chips ni barras.
 import type { SkillsTranslations } from '../../util/i18n';
 
-/**
- * Skills.
- *
- * Agrupa las capacidades por origen (operaciones, cliente/producto, tecnología,
- * negocio) en lugar de por stack. Sin barras de progreso, porcentajes ni
- * estrellas: solo etiquetas, y un nivel únicamente donde está justificado.
- */
 interface SkillsProps {
   content: SkillsTranslations;
 }
 
 const Skills = ({ content: t }: SkillsProps) => {
-
-  const contentRef = useRef(null);
-  const contentInView = useInView(contentRef, { once: true, amount: 0.05 });
-
   return (
-    <section id="skills" className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
-      <div ref={contentRef} className="w-full">
-        <div className="w-full max-w-7xl mx-auto px-6 sm:px-8">
-          {/* Encabezado */}
-          <motion.header
-            initial={{ opacity: 0, y: 30 }}
-            animate={contentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center mb-20">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-light text-black dark:text-white leading-tight mb-8 tracking-tight">
-              {t.title}
-            </h2>
-            <p className="max-w-3xl mx-auto text-lg sm:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-light">
-              {t.description}
-            </p>
-          </motion.header>
+    <section id="skills" className="border-t border-gray-200 py-20 sm:py-28 dark:border-gray-700">
+      <div className="shell">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+          <h2 className="text-4xl font-light leading-tight tracking-tight text-black sm:text-5xl lg:col-span-5 dark:text-white">
+            {t.title}
+          </h2>
+          <p className="measure text-lg font-light leading-relaxed text-gray-600 lg:col-span-7 dark:text-gray-400">
+            {t.description}
+          </p>
+        </div>
 
-          {/* Grupos de capacidades */}
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-10 mb-20">
-            {t.groups.map((group, index) => (
-              <motion.article
-                key={group.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.3 + index * 0.1 }}
-                className="border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 p-6 sm:p-8">
-                <h3 className="text-lg font-light text-black dark:text-white tracking-wide mb-4 uppercase">
+        <dl className="mt-16 border-t border-gray-200 dark:border-gray-700">
+          {t.groups.map((group) => (
+            <div
+              key={group.id}
+              className="grid gap-4 border-b border-gray-200 py-8 lg:grid-cols-12 lg:gap-12 dark:border-gray-700">
+              <dt className="lg:col-span-4">
+                <span className="text-xl font-light tracking-wide text-black dark:text-white">
                   {group.title}
-                </h3>
-
+                </span>
                 {group.note && (
-                  <p className="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed mb-5 border-l-2 border-gray-300 dark:border-gray-600 pl-4">
+                  <span className="measure mt-3 block text-sm font-light leading-relaxed text-gray-500 dark:text-gray-500">
                     {group.note}
-                  </p>
+                  </span>
                 )}
-
-                <ul className="list-none flex flex-wrap gap-2">
+              </dt>
+              <dd className="lg:col-span-8">
+                <ul className="flex list-none flex-wrap gap-x-3 gap-y-2">
                   {group.items.map((item) => (
-                    <li
-                      key={item.label}
-                      className="text-sm px-3 py-1.5 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-light">
+                    <li key={item.label} className="font-light text-gray-700 dark:text-gray-300">
                       {item.label}
                       {item.level && (
-                        <span className="ml-2 text-xs text-gray-500 dark:text-gray-400">
-                          {item.level}
-                        </span>
+                        <span className="text-gray-500 dark:text-gray-500"> · {item.level}</span>
                       )}
+                      <span aria-hidden="true" className="px-2 text-gray-300 dark:text-gray-600">
+                        /
+                      </span>
                     </li>
                   ))}
                 </ul>
-              </motion.article>
-            ))}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-6">
+            <h3 className="text-xl font-light tracking-wide text-black dark:text-white">
+              {t.languages.title}
+            </h3>
+            <dl className="mt-6 border-t border-gray-200 dark:border-gray-700">
+              {t.languages.items.map((language) => (
+                <div
+                  key={language.name}
+                  className="flex items-baseline justify-between gap-4 border-b border-gray-200 py-3 dark:border-gray-700">
+                  <dt className="font-light text-gray-700 dark:text-gray-300">{language.name}</dt>
+                  <dd className="font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500">
+                    {language.level}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
-
-          {/* Idiomas y formación */}
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
-            <motion.section
-              initial={{ opacity: 0, y: 30 }}
-              animate={contentInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.7 }}
-              className="border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 p-6 sm:p-8">
-              <h3 className="text-lg font-light text-black dark:text-white tracking-wide mb-6 uppercase">
-                {t.languages.title}
-              </h3>
-              <dl className="space-y-3">
-                {t.languages.items.map((language) => (
-                  <div
-                    key={language.name}
-                    className="flex items-baseline justify-between gap-4 border-b border-gray-100 dark:border-gray-700/50 pb-2 last:border-b-0">
-                    <dt className="text-gray-700 dark:text-gray-300 font-light">{language.name}</dt>
-                    <dd className="text-sm text-gray-500 dark:text-gray-400 font-light">
-                      {language.level}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </motion.section>
-
-            <motion.section
-              initial={{ opacity: 0, y: 30 }}
-              animate={contentInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.8 }}
-              className="border border-gray-200 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-800/20 p-6 sm:p-8">
-              <h3 className="text-lg font-light text-black dark:text-white tracking-wide mb-6 uppercase">
-                {t.education.title}
-              </h3>
-              <ul className="list-none space-y-4">
-                {t.education.items.map((item) => (
-                  <li key={item.title}>
-                    <p className="text-gray-700 dark:text-gray-300 font-light">{item.title}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 font-light mt-1">
-                      {item.meta}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </motion.section>
+          <div className="lg:col-span-6">
+            <h3 className="text-xl font-light tracking-wide text-black dark:text-white">
+              {t.education.title}
+            </h3>
+            <ul className="mt-6 list-none border-t border-gray-200 dark:border-gray-700">
+              {t.education.items.map((item) => (
+                <li key={item.title} className="border-b border-gray-200 py-3 dark:border-gray-700">
+                  <p className="font-light text-gray-700 dark:text-gray-300">{item.title}</p>
+                  <p className="mt-1 font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500">
+                    {item.meta}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
@@ -124,4 +91,4 @@ const Skills = ({ content: t }: SkillsProps) => {
   );
 };
 
-export default memo(Skills);
+export default Skills;

@@ -175,20 +175,6 @@ const jsonLd = {
     </script>
   </head>
   <body class="flex flex-col bg-darkbg-950 text-darktext-300">
-    <!-- Sin JavaScript las animaciones de aparición nunca se ejecutan: forzamos
-         la visibilidad para que el contenido siga siendo legible y rastreable. -->
-    <noscript>
-      <style>
-        [style*="opacity:0"],
-        [style*="opacity: 0"] {
-          opacity: 1 !important;
-        }
-        [style*="translateY"] {
-          transform: none !important;
-        }
-      </style>
-    </noscript>
-
     <a class="skip-link" href="#home">{skipLabel}</a>
 
     <slot />
@@ -487,76 +473,72 @@ const jsonLd = {
       border-color: color-mix(in srgb, var(--accent) 10%, transparent) !important;
     }
 
-    /* ========================================
-       🚀 CLASES DE UTILIDAD MODERNAS
-       ======================================== */
-
-    .theme-card {
-      background-color: var(--bg-tertiary);
-      border: 1px solid var(--border-secondary);
-      transition: all 0.3s ease;
+    /* ==========================================
+       ANCHO Y LECTURA
+       Las secciones cruzan la pantalla; el texto se queda en una
+       columna legible. Ocupar todo el ancho no puede costar lectura.
+       ========================================== */
+    .shell {
+      margin-inline: auto;
+      width: 100%;
+      max-width: 1800px;
+      padding-inline: 1.5rem;
     }
 
-    .theme-card:hover {
-      background-color: var(--bg-hover);
-      border-color: var(--border-primary);
-      box-shadow: 0 4px 6px -1px var(--shadow-primary);
+    @media (min-width: 640px) {
+      .shell { padding-inline: 2rem; }
     }
 
-    .theme-button-primary {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
-      position: relative;
-      overflow: hidden;
+    @media (min-width: 1024px) {
+      .shell { padding-inline: 3rem; }
     }
 
-    .theme-button-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+    @media (min-width: 1280px) {
+      .shell { padding-inline: 4rem; }
     }
 
-    .theme-button-primary:active {
-      transform: translateY(0px);
-      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+    /* Medida de lectura: 68ch, dentro del rango 65-75ch. */
+    .measure {
+      max-width: 68ch;
     }
 
-    .theme-button-secondary {
-      background-color: transparent;
-      color: var(--text-secondary);
-      border: 1.5px solid color-mix(in srgb, var(--accent) 30%, transparent);
-      border-radius: 12px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
+    /* ==========================================
+       SUPERFICIES DEL NAVEGADOR
+       Lo que no dibujamos tambien lleva el diseno: cursor,
+       scrollbar, subrayados y cifras tabulares.
+       ========================================== */
+    :where(input, textarea) {
+      caret-color: var(--accent);
     }
 
-    .theme-button-secondary:hover {
-      background-color: color-mix(in srgb, var(--accent) 10%, transparent);
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-1px);
+    a {
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.22em;
     }
 
-    .theme-button-secondary:active {
-      transform: translateY(0px);
+    :where(code, kbd, samp, time, .tabular) {
+      font-variant-numeric: tabular-nums;
     }
 
-    .theme-text-gradient {
-      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--darkbg-600) transparent;
     }
 
-    .theme-border-gradient {
-      border: 1px solid transparent;
-      background: linear-gradient(var(--bg-tertiary), var(--bg-tertiary)) padding-box,
-                  linear-gradient(135deg, var(--accent), var(--accent-secondary)) border-box;
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
     }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--darkbg-600);
+      border: 3px solid var(--bg-primary);
+      border-radius: 999px;
+    }
+
   </style>
 </html>

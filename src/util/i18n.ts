@@ -13,7 +13,6 @@
 export type Locale = 'es' | 'en';
 
 export interface HeroTranslations {
-  badge: string;
   firstName: string;
   lastName: string;
   headline: string;
