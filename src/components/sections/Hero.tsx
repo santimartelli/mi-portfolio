@@ -25,14 +25,13 @@ const Hero = ({ content: t }: HeroProps) => {
   return (
     // En movil: columna que ocupa el alto de la ventana (100dvh, el alto visible
     // real, no el de la ventana grande) y reparte sus cinco bloques. El padding
-    // de arriba es el header (4rem mas 1px de su border-b) y los 1rem de aire que
-    // se pidieron entre el header y la imagen; el de abajo, el margen bajo los
-    // iconos.
-    // Desde lg vuelve al hero de dos columnas centrado en vertical, con el
-    // padding de arriba justo en el header.
+    // de arriba es el header (4rem mas 1px de su border-b); el aire entre el
+    // header y la imagen lo pone el margen del propio <picture>, para que se lea
+    // donde esta. El padding de abajo es el margen bajo los iconos.
+    // Desde lg vuelve al hero de dos columnas centrado en vertical.
     <section
       id="home"
-      className="flex min-h-[100dvh] flex-col pt-[81px] pb-6 lg:min-h-screen lg:flex-row lg:items-center lg:pt-[65px] lg:pb-28">
+      className="flex min-h-[100dvh] flex-col pt-[65px] pb-6 lg:min-h-screen lg:flex-row lg:items-center lg:pb-28">
       <div className="shell flex flex-1 flex-col justify-between gap-1 lg:grid lg:flex-none lg:grid-cols-12 lg:items-center lg:gap-16">
         {/*
           En movil esta caja no genera caja propia (display: contents), asi que el
@@ -96,7 +95,7 @@ const Hero = ({ content: t }: HeroProps) => {
             order del <picture> la sube. En el marcado sigue despues del texto a
             proposito, para que quien use lector de pantalla reciba el titular
             antes que la ilustracion; desde lg el order se resetea. */}
-        <picture className="order-first lg:order-none lg:col-span-6">
+        <picture className="order-first mt-6 lg:order-none lg:col-span-6 lg:mt-0">
           <source media="(max-width: 1023.98px)" srcSet="/images/hero-landscape.webp" />
           <img
             src="/images/hero-portrait.webp"
