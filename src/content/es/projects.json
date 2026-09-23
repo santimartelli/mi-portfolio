@@ -94,12 +94,12 @@
         "rows": [
           ["<html lang> en /en/", "es", "en"],
           ["CSS sin comprimir", "880 kB", "35 kB"],
-          ["CSS comprimido (gzip)", "180 kB", "7,3 kB"],
-          ["Imagen de proyecto más pesada", "1,10 MB", "79 kB"],
+          ["CSS comprimido (gzip)", "180 kB", "7,1 kB"],
+          ["Imagen de proyecto más pesada", "1,10 MB", "81 kB"],
           ["Peso total del build", "6,7 MB", "1,4 MB"],
           ["Dependencias de producción", "21", "14"],
           ["Avisos de astro check", "85", "0"],
-          ["HTML de /en/", "115 kB", "129 kB"]
+          ["HTML de /en/", "115 kB", "134 kB"]
         ]
       }
     }
