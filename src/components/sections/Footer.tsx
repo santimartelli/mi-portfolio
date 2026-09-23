@@ -35,7 +35,7 @@ const Footer = ({ content: t }: FooterProps) => {
       <div className="shell">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-16">
           <div>
-            <p className="text-lg font-light text-black dark:text-white">{t.brand.name}</p>
+            <p className="text-title font-medium text-black dark:text-white">{t.brand.name}</p>
             <p className="mt-4 max-w-[38ch] text-sm font-light leading-relaxed text-gray-500 dark:text-gray-500">
               {t.brand.description}
             </p>

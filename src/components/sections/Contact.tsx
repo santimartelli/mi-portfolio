@@ -20,12 +20,12 @@ const Contact = ({ content: t }: ContactProps) => {
       <div className="shell">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
-            <h2 className="text-4xl font-light leading-tight tracking-tight text-black sm:text-5xl dark:text-white">
+            <h2 className="text-headline font-light text-black dark:text-white">
               {t.title}
             </h2>
           </div>
           <div className="lg:col-span-7">
-            <p className="measure text-lg font-light leading-relaxed text-gray-600 dark:text-gray-400">
+            <p className="measure text-lead font-light text-gray-600 dark:text-gray-400">
               {t.description}
             </p>
             <p className="measure mt-5 font-light leading-relaxed text-gray-500 dark:text-gray-500">
@@ -114,7 +114,7 @@ const Contact = ({ content: t }: ContactProps) => {
 
         {/* Disponibilidad */}
         <div className="mt-16 border-t border-gray-200 pt-8 dark:border-gray-700">
-          <h3 className="text-xl font-light tracking-wide text-black dark:text-white">
+          <h3 className="text-subhead font-light text-black dark:text-white">
             {t.availability.title}
           </h3>
           <p className="measure mt-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">

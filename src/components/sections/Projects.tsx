@@ -16,10 +16,10 @@ const Projects = ({ content: t }: ProjectsProps) => {
     <section id="projects" className="border-t border-gray-200 py-20 sm:py-28 dark:border-gray-700">
       <div className="shell">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
-          <h2 className="text-4xl font-light leading-tight tracking-tight text-black sm:text-5xl lg:col-span-5 dark:text-white">
+          <h2 className="text-headline font-light text-black lg:col-span-5 dark:text-white">
             {t.title}
           </h2>
-          <p className="measure text-lg font-light leading-relaxed text-gray-600 lg:col-span-7 dark:text-gray-400">
+          <p className="measure text-lead font-light text-gray-600 lg:col-span-7 dark:text-gray-400">
             {t.description}
           </p>
         </div>
@@ -100,10 +100,10 @@ const Projects = ({ content: t }: ProjectsProps) => {
                 <div className="lg:col-span-7">
                   <h3
                     id={`project-${project.id}`}
-                    className="text-3xl font-light tracking-tight text-black sm:text-4xl dark:text-white">
+                    className="text-title-lg font-light text-black dark:text-white">
                     {project.title}
                   </h3>
-                  <p className="measure mt-3 text-lg font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                  <p className="measure mt-2 text-lead font-light text-gray-600 dark:text-gray-400">
                     {project.subtitle}
                   </p>
 
@@ -145,7 +145,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                   <h4 className="mt-10 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
                     {t.labels.result}
                   </h4>
-                  <p className="measure mt-5 border-t border-gray-300 pt-5 text-lg font-light leading-relaxed text-black dark:border-gray-600 dark:text-white">
+                  <p className="measure mt-4 border-t border-gray-300 pt-4 text-subhead font-light text-black dark:border-gray-600 dark:text-white">
                     {project.result}
                   </p>
                 </div>

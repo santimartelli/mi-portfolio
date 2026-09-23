@@ -10,10 +10,10 @@ const Skills = ({ content: t }: SkillsProps) => {
     <section id="skills" className="border-t border-gray-200 py-20 sm:py-28 dark:border-gray-700">
       <div className="shell">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
-          <h2 className="text-4xl font-light leading-tight tracking-tight text-black sm:text-5xl lg:col-span-5 dark:text-white">
+          <h2 className="text-headline font-light text-black lg:col-span-5 dark:text-white">
             {t.title}
           </h2>
-          <p className="measure text-lg font-light leading-relaxed text-gray-600 lg:col-span-7 dark:text-gray-400">
+          <p className="measure text-lead font-light text-gray-600 lg:col-span-7 dark:text-gray-400">
             {t.description}
           </p>
         </div>
@@ -24,7 +24,7 @@ const Skills = ({ content: t }: SkillsProps) => {
               key={group.id}
               className="grid gap-4 border-b border-gray-200 py-8 lg:grid-cols-12 lg:gap-12 dark:border-gray-700">
               <dt className="lg:col-span-4">
-                <span className="text-xl font-light tracking-wide text-black dark:text-white">
+                <span className="text-subhead font-light text-black dark:text-white">
                   {group.title}
                 </span>
                 {group.note && (
@@ -54,7 +54,7 @@ const Skills = ({ content: t }: SkillsProps) => {
 
         <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-6">
-            <h3 className="text-xl font-light tracking-wide text-black dark:text-white">
+            <h3 className="text-subhead font-light text-black dark:text-white">
               {t.languages.title}
             </h3>
             <dl className="mt-6 border-t border-gray-200 dark:border-gray-700">
@@ -71,7 +71,7 @@ const Skills = ({ content: t }: SkillsProps) => {
             </dl>
           </div>
           <div className="lg:col-span-6">
-            <h3 className="text-xl font-light tracking-wide text-black dark:text-white">
+            <h3 className="text-subhead font-light text-black dark:text-white">
               {t.education.title}
             </h3>
             <ul className="mt-6 list-none border-t border-gray-200 dark:border-gray-700">

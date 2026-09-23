@@ -28,13 +28,13 @@ colors:
 typography:
   display:
     fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
-    fontSize: "clamp(3.75rem, 2rem + 7vw, 8rem)"
+    fontSize: "clamp(3.2rem, 6.2vw, 5.6rem)"
     fontWeight: 300
-    lineHeight: 0.85
-    letterSpacing: "-0.025em"
+    lineHeight: 0.98
+    letterSpacing: "-0.02em"
   headline:
     fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
-    fontSize: "clamp(2.25rem, 1.5rem + 3vw, 3.75rem)"
+    fontSize: "clamp(2.4rem, 3.6vw, 3.4rem)"
     fontWeight: 300
     lineHeight: 1.1
     letterSpacing: "-0.02em"
@@ -152,11 +152,22 @@ Es una geométrica de trazo abierto y buena legibilidad, así que sirve igual pa
 
 La monoespaciada (`font-mono`) es la del sistema y se reserva para lo que es dato: periodos, versiones, correos y cifras. No se descarga ninguna fuente para eso.
 
-La escala es la de Tailwind, de `text-xs` a `text-9xl`. El display llega a **8rem** en el nombre del hero (por encima del techo de 6rem que marca el craft floor de Impeccable: es una desviación conocida y deliberada de este mundo). El tracking negativo llega a −0.025em.
+La escala es **fluida y única** para todo el sitio: diez pasos declarados como tokens en Tailwind, con los titulares en `clamp()` para escalar de forma continua en lugar de saltar por breakpoint.
 
-Los metadatos (etiquetas de sección, periodos, categorías) van en mayúsculas con tracking amplio, y los identificadores literales (correo, usuario) en monoespaciada.
+| Token | Tamaño | Para qué |
+|---|---|---|
+| `display` | `clamp(3.2rem, 6.2vw, 5.6rem)` — 51 a 90px | El nombre en el hero |
+| `headline` | `clamp(2.4rem, 3.6vw, 3.4rem)` — 38 a 54px | Titulares de sección |
+| `title-lg` | 1.5rem — 24px | Títulos de caso, empresas, grupos |
+| `subhead` | 1.25rem — 20px | El posicionamiento y los subtítulos |
+| `lead` | 1.125rem — 18px | Entradillas y texto destacado |
+| `base` | 1rem — 16px | Texto corrido |
+| `ui` | 0.8125rem — 13px | Interfaz |
+| `small` | 0.875rem — 14px | Texto secundario |
+| `label` | 0.75rem — 12px | Rótulos en mayúsculas |
+| `micro` | 0.6875rem — 11px | Micro-etiquetas y datos |
 
-> **Nota de peso.** El eje variable de Manrope va de 200 a 800, así que `font-light` (300) existe como instancia real y el texto no depende de un peso sintetizado.
+El techo del display son **90px**, por debajo del límite de 6rem del craft floor: antes llegaba a 128px y era la causa de que todo se leyera grande y desordenado. La jerarquía se sostiene con nueve pasos claros, y el `<body>` se queda en los 16px por defecto del navegador, así que no hay dos reglas compitiendo por el tamaño base.
 
 ## Layout
 
@@ -222,5 +233,4 @@ Resueltas en esta pasada: el kicker sobre el titular, el fade-up idéntico en ca
 
 Siguen abiertas:
 
-1. **Display a 8rem**, por encima del techo de 6rem del craft floor.
 3. **Peso del JS**: quedan dos islas hidratadas (navbar y filtro de experiencia) y Framer Motion viaja con el navbar para tres transiciones funcionales. Son ~89 kB comprimidos, casi todo el runtime de React. Sustituir esas dos islas por componentes de Astro con un script mínimo eliminaría React y Framer Motion enteros del envío.

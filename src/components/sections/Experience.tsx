@@ -32,11 +32,11 @@ const Experience = ({ content: t }: ExperienceProps) => {
       <div className="shell">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
-            <h2 className="text-4xl font-light leading-tight tracking-tight text-black sm:text-5xl dark:text-white">
+            <h2 className="text-headline font-light text-black dark:text-white">
               {t.title}
             </h2>
           </div>
-          <p className="measure text-lg font-light leading-relaxed text-gray-600 lg:col-span-7 dark:text-gray-400">
+          <p className="measure text-lead font-light text-gray-600 lg:col-span-7 dark:text-gray-400">
             {t.description}
           </p>
         </div>
@@ -82,7 +82,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
 
                 {/* Contenido */}
                 <div className="lg:col-span-9">
-                  <h3 className="text-2xl font-light tracking-tight text-black sm:text-3xl dark:text-white">
+                  <h3 className="text-title-lg font-light text-black dark:text-white">
                     {entry.company}
                   </h3>
                   <p className="mt-1 text-base font-light text-gray-700 dark:text-gray-300">

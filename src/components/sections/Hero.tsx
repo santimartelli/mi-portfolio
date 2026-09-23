@@ -17,12 +17,12 @@ const Hero = ({ content: t }: HeroProps) => {
   return (
     <section id="home" className="pt-32 pb-20 sm:pt-40 sm:pb-28">
       <div className="shell">
-        <h1 className="text-black dark:text-white font-light leading-[0.85] tracking-tight">
-          <span className="block text-6xl sm:hidden">
+        <h1 className="text-display text-black dark:text-white font-light">
+          <span className="block sm:hidden">
             {t.firstName}
             <span className="block text-gray-500 dark:text-gray-500">{t.lastName}</span>
           </span>
-          <span className="hidden text-7xl sm:block md:text-8xl lg:text-9xl">
+          <span className="hidden sm:block">
             {t.firstName}{' '}
             <span className="text-gray-500 dark:text-gray-500">{t.lastName}</span>
           </span>
@@ -31,10 +31,10 @@ const Hero = ({ content: t }: HeroProps) => {
         <div className="mt-12 grid gap-12 lg:mt-16 lg:grid-cols-12 lg:gap-16">
           {/* Que hago y como contactarme */}
           <div className="lg:col-span-5">
-            <p className="text-2xl font-light leading-snug tracking-tight text-black sm:text-3xl dark:text-white">
+            <p className="text-subhead font-normal text-black dark:text-white">
               {t.headline}
             </p>
-            <p className="measure mt-6 text-base font-light leading-relaxed text-gray-600 sm:text-lg dark:text-gray-400">
+            <p className="measure mt-5 text-lead font-light text-gray-600 dark:text-gray-400">
               {t.description}
             </p>
 
