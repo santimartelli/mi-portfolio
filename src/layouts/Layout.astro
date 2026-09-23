@@ -454,19 +454,17 @@ const jsonLd = {
 
     /* ==========================================
        LLAMADA A LA ACCION
-       Del boton portado de otro proyecto del usuario se conserva lo que no
-       choca con este mundo: la elevacion al pasar por encima y el brillo que
-       cruza una sola vez por hover. Se han quitado la sombra y el labio, porque
-       aqui no hay sombras, y el radio baja de pastilla a 8px. Los colores son
-       los del mundo: tinta de fondo y papel en el texto.
+       Del boton portado de otro proyecto del usuario solo queda el brillo: se
+       han quitado la sombra y el labio, porque aqui no hay sombras, la elevacion
+       al pasar el puntero, y el radio bajo de pastilla a 8px. Los colores son los
+       del mundo: tinta de fondo y papel en el texto.
 
        Se define con los tokens y no con utilidades de acento porque la tabla de
        remapeo casa nombres exactos de clase, asi que cualquier variante
        (hover:, dark:) se le escapa y cae en la paleta antigua.
 
        El brillo es la unica animacion en CSS del sitio. No es de entrada, es un
-       cambio de estado, y bajo prefers-reduced-motion el bloque global la
-       neutraliza.
+       bucle, y bajo prefers-reduced-motion el bloque global lo neutraliza.
        ========================================== */
     .cta-primary {
       position: relative;
@@ -475,22 +473,18 @@ const jsonLd = {
       border-radius: 8px;
       background-color: var(--text-primary);
       color: var(--bg-primary);
-      transition: transform 0.2s ease;
-    }
-
-    .cta-primary:hover {
-      transform: translateY(-2px);
-    }
-
-    .cta-primary:active {
-      transform: translateY(0);
     }
 
     /*
-     * El brillo: una banda inclinada que espera fuera del boton por la izquierda
-     * y lo cruza al entrar el puntero. La transicion se deja en none a proposito
-     * y el movimiento lo hace la animacion, que se dispara en el hover; asi
-     * cruza una sola vez en lugar de quedarse quieta a medio camino.
+     * El brillo: una banda inclinada que cruza el boton cada 3 segundos sola, sin
+     * depender del puntero. El recorrido dura medio segundo (el 17% de los 3s) y
+     * el resto del ciclo la banda espera fuera, a la derecha; como en los dos
+     * extremos queda fuera del recorte, el salto de vuelta al empezar el ciclo
+     * siguiente no se ve.
+     *
+     * Se anima transform y no left, que es lo que hacia el boton original: al
+     * repetirse sin parar, mover left obligaria a recalcular el layout en cada
+     * fotograma, y transform lo resuelve el compositor.
      */
     .cta-primary::before {
       content: "";
@@ -501,16 +495,18 @@ const jsonLd = {
       height: 100%;
       background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.7), transparent);
       transform: skewX(45deg);
-      transition: none;
-    }
-
-    .cta-primary:hover::before {
-      animation: ctaShine 0.5s ease-in-out;
+      animation: ctaShine 3s ease-in-out infinite;
     }
 
     @keyframes ctaShine {
+      0% {
+        transform: skewX(45deg) translateX(0);
+      }
+      17%,
       100% {
-        left: 200%;
+        /* 400% del ancho de la banda, que es el 75% del boton: recorre tres
+           anchos de boton, de -100% a 200%, igual que el original. */
+        transform: skewX(45deg) translateX(400%);
       }
     }
 
