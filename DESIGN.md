@@ -182,15 +182,12 @@ La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo se
 
 ## Components
 
-- **Botón primario** (`.theme-button-primary`): gradiente de `signal-blue` a `signal-blue-deep`, texto en blanco, sin radio, con elevación en hover.
-- **Botón secundario** (`.theme-button-secondary`): transparente con borde de acento al 30%, texto en `mist`; en hover se rellena de acento al 10%.
-- **Tarjeta** (`.theme-card`): fondo `slate`, borde de acento al 10%, hover con `slate-raised` y sombra de acento.
-- **Filtros** (experiencia): botones con borde; el activo usa fondo `gray-100`/`gray-800` y texto de máximo contraste.
-- **Enlaces de sección**: mayúsculas, tracking amplio, sin subrayado; el color cambia en hover.
-- **Navbar**: fijo, con filete inferior. Las seis secciones viven en un **menú desplegable** que se abre con el botón de hamburguesa en todos los tamaños, con la sección activa resaltada. La barra no se anima a sí misma, así que es visible aunque no haya JavaScript.
+- **Marca** (`Logo`): el nombre en mayúsculas con la pila de display y, a continuación y separado por dos puntos, el posicionamiento. Una sola línea, sin caja de iniciales: el nombre se sostiene solo. En pantallas estrechas la segunda parte se oculta porque no cabe junto a los controles.
+- **Navbar**: fijo, con filete inferior. Las seis secciones viven en un menú desplegable que se abre con el botón de hamburguesa en todos los tamaños. La barra no se anima a sí misma, así que es visible aunque no haya JavaScript.
+- **Desplegables** (menú y selector de idioma): el mismo panel estrecho alineado a la derecha (`w-56`), con borde completo, `p-3` y items compactos cuyo estado activo se marca con fondo y un punto a la derecha. Comparten variantes de motion y clases en `dropdownMotion.ts`, así que no pueden divergir.
 - **Filtros** (experiencia): rectángulos con filete; el activo se invierte a tinta sólida. Llevan `aria-pressed`.
-- **Filas enlazadas** (contacto, CV): rejilla de 12 columnas con etiqueta, valor y descripción; el fondo se aclara en hover.
-- **Tabla de métricas**: cruza el ancho, con cifras monoespaciadas y `font-variant-numeric: tabular-nums`.
+- **Filas enlazadas** (contacto y CV): rejilla de 12 columnas con etiqueta, valor y descripción; el fondo se aclara en hover. Nunca son tarjetas.
+- **Tabla de métricas**: cruza la anchura completa, con cabecera en versalitas y cifras monoespaciadas con `font-variant-numeric: tabular-nums`.
 
 ## Motion
 

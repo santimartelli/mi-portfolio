@@ -492,44 +492,52 @@
   },
   "components": [
     {
-      "name": "Boton primario",
-      "kind": "button",
-      "refersTo": "button-primary",
-      "description": "Gradiente de acento, texto blanco, esquinas rectas, elevacion en hover.",
-      "html": "<a class=\"theme-button-primary\" href=\"#projects\">Ver portfolio</a>",
-      "css": ".theme-button-primary{background:linear-gradient(135deg,var(--accent) 0%,var(--accent-hover) 100%);color:#fff;border:0;border-radius:0;font-weight:600;box-shadow:0 2px 8px rgba(59,130,246,.2)}.theme-button-primary:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(59,130,246,.3)}"
-    },
-    {
-      "name": "Boton secundario",
-      "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "Transparente con borde de acento al 30%; se rellena al 10% en hover.",
-      "html": "<button class=\"theme-button-secondary\">Colaboremos</button>",
-      "css": ".theme-button-secondary{background:transparent;color:var(--text-secondary);border:1.5px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:0;font-weight:500}.theme-button-secondary:hover{background:color-mix(in srgb,var(--accent) 10%,transparent);border-color:var(--accent);color:var(--accent)}"
-    },
-    {
-      "name": "Tarjeta",
-      "kind": "card",
-      "refersTo": "card",
-      "description": "Superficie slate con borde de acento al 10% y sombra de acento en hover.",
-      "html": "<div class=\"theme-card\">…</div>",
-      "css": ".theme-card{background-color:var(--bg-tertiary);border:1px solid var(--border-secondary);border-radius:0;transition:all .3s ease}.theme-card:hover{background-color:var(--bg-hover);border-color:var(--border-primary);box-shadow:0 4px 6px -1px var(--shadow-primary)}"
-    },
-    {
-      "name": "Filtro de experiencia",
-      "kind": "button",
-      "refersTo": "filter",
-      "description": "Conmutador con aria-pressed; el activo invierte a fondo claro/oscuro.",
-      "html": "<button aria-pressed=\"true\">Toda la trayectoria</button>",
-      "css": "button{border:1px solid;padding:.5rem 1rem;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;border-radius:0}button[aria-pressed=\"true\"]{background:#f3f4f6;color:#000}"
+      "name": "Marca",
+      "kind": "logo",
+      "refersTo": "logo",
+      "description": "Nombre en mayusculas con la pila de display y el posicionamiento tras dos puntos, en una linea. Sin caja de iniciales.",
+      "html": "<a href=\"/\"><span class=\"font-display text-lg font-semibold uppercase tracking-wide\">Santiago Martelli</span><span class=\"hidden text-sm text-gray-500 sm:inline\">: Hospitality + Technology</span></a>",
+      "css": ".font-display{font-family:var(--font-display)}"
     },
     {
       "name": "Navbar",
       "kind": "nav",
       "refersTo": "navbar",
-      "description": "Fijo, con filete inferior. Menu desplegable con boton de hamburguesa en todos los tamanos; la seccion activa se resalta.",
-      "html": "<nav class=\"fixed inset-x-0 top-0 z-50\"><!-- logo, tema, idioma, boton de menu --></nav>",
-      "css": "nav{position:fixed;inset-inline:0;top:0;z-index:50;background-color:var(--bg-primary);border-bottom:1px solid transparent;transition:border-color .3s}"
+      "description": "Fijo con filete inferior. Menu desplegable con boton de hamburguesa en todos los tamanos; la barra no se anima a si misma.",
+      "html": "<nav class=\"fixed inset-x-0 top-0 z-50\"><!-- marca, tema, idioma, boton de menu --></nav>",
+      "css": "nav{position:fixed;inset-inline:0;top:0;z-index:50;background-color:var(--bg-primary);border-bottom:1px solid var(--bg-quaternary)}"
+    },
+    {
+      "name": "Desplegable",
+      "kind": "dropdown",
+      "refersTo": "dropdown",
+      "description": "Panel estrecho alineado a la derecha, compartido por el menu y el selector de idioma a traves de dropdownMotion.ts.",
+      "html": "<div class=\"absolute right-0 top-[72px] w-56 border border-black bg-white p-3\"><a class=\"flex items-center gap-3 px-3 py-2 text-sm\">Llegadas</a></div>",
+      "css": ".dropdown{position:absolute;right:0;top:72px;width:14rem;border:1px solid #000;background:#fff;overflow:hidden;z-index:30}"
+    },
+    {
+      "name": "Filtro de experiencia",
+      "kind": "button",
+      "refersTo": "filter",
+      "description": "Conmutador con aria-pressed; el activo se invierte a tinta solida.",
+      "html": "<button aria-pressed=\"true\">Toda la trayectoria</button>",
+      "css": "button{border:1px solid;padding:.5rem 1rem;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}button[aria-pressed=\"true\"]{background:#000;color:#fff}"
+    },
+    {
+      "name": "Fila enlazada",
+      "kind": "link",
+      "refersTo": "row-link",
+      "description": "Rejilla de 12 columnas con etiqueta, valor y descripcion. Nunca una tarjeta.",
+      "html": "<a class=\"row\" href=\"#\"><span class=\"row-label\">Email</span><span class=\"row-value\">santimartelli@gmail.com</span></a>",
+      "css": ".row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3rem;padding:1.25rem 0;border-bottom:1px solid #e5e7eb}.row:hover{background:#f9fafb}"
+    },
+    {
+      "name": "Tabla de metricas",
+      "kind": "table",
+      "refersTo": "table-metrics",
+      "description": "Cruza la anchura completa. Cabecera en versalitas y cifras con font-variant-numeric tabular.",
+      "html": "<table class=\"metrics\"><thead><tr><th scope=\"col\">Metrica</th><th scope=\"col\">Antes</th></tr></thead><tbody><tr><td>CSS gzip</td><td>180 kB</td></tr></tbody></table>",
+      "css": ".metrics{width:100%;border-collapse:collapse}.metrics td+td{font-family:monospace;font-variant-numeric:tabular-nums}"
     }
   ],
   "narrative": {
@@ -541,7 +549,8 @@
       "Esquinas rectas en todo el sistema.",
       "Secciones a todo el ancho (.shell, techo 1800px) con la prosa limitada a 68ch.",
       "Unidades repetibles con la misma anatomia en lugar de tarjetas.",
-      "Sin animaciones de entrada: el contenido es visible en el HTML y no depende de JavaScript."
+      "Sin animaciones de entrada: el contenido es visible en el HTML y no depende de JavaScript.",
+      "La marca es el nombre en una linea con el posicionamiento tras dos puntos, sin caja de iniciales."
     ],
     "rules": [
       {
