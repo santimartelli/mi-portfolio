@@ -492,6 +492,14 @@
   },
   "components": [
     {
+      "name": "Banda de trabajo",
+      "kind": "grid",
+      "refersTo": "featured-work",
+      "description": "Cuatro tarjetas con anatomia fija (etiqueta corta, imagen, titulo) en rejilla de 4 columnas y 2 en movil, cada una enlazada a su caso de estudio. Cierra el primer viewport.",
+      "html": "<ul class=\"grid grid-cols-2 gap-4 md:grid-cols-4\"><li><a href=\"#project-x\"><span class=\"label\">Categoria</span><img src=\"...\" alt=\"\"><span>Titulo</span></a></li></ul>",
+      "css": ".grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.5rem}@media(max-width:768px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}"
+    },
+    {
       "name": "Marca",
       "kind": "logo",
       "refersTo": "logo",
@@ -550,7 +558,8 @@
       "Secciones a todo el ancho (.shell, techo 1800px) con la prosa limitada a 68ch.",
       "Unidades repetibles con la misma anatomia en lugar de tarjetas.",
       "Sin animaciones de entrada: el contenido es visible en el HTML y no depende de JavaScript.",
-      "La marca es el nombre en una linea con el posicionamiento tras dos puntos, sin caja de iniciales."
+      "La marca es el nombre en una linea con el posicionamiento tras dos puntos, sin caja de iniciales.",
+      "Layout de bandas anchas: hero, banda de trabajo en rejilla, secciones a 12 columnas, casos alternando lado y rejillas de celdas."
     ],
     "rules": [
       {

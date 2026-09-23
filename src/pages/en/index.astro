@@ -3,6 +3,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/navigation/NavbarWithTranslations";
 import Hero from "../../components/sections/HeroWithTranslations";
+import FeaturedWork from "../../components/sections/FeaturedWork";
 import About from "../../components/sections/AboutWithTranslations";
 import Experience from "../../components/sections/ExperienceWithTranslations";
 import Skills from "../../components/sections/SkillsWithTranslations";
@@ -27,6 +28,8 @@ const description =
     <section id="home" class="relative">
       <Hero content={translations.hero} />
     </section>
+
+    <FeaturedWork content={translations.projects} />
 
     <Divider />
 

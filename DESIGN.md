@@ -160,11 +160,18 @@ Los metadatos (etiquetas de sección, periodos, categorías) van en mayúsculas 
 
 ## Layout
 
-Las secciones **cruzan la pantalla** y el contenido se ordena con una única clase, `.shell`: ancho completo con un techo de `1800px` y márgenes laterales que crecen de `1.5rem` a `4rem` según el viewport. Ocupar todo el ancho no puede costar lectura, así que la prosa se limita aparte con `.measure` (68ch) y las cabeceras de sección van a `12` columnas: título a la izquierda, entradilla a la derecha.
+Las secciones **cruzan la pantalla** y el contenido se ordena con una única clase, `.shell`: ancho completo con un techo de `1800px` y márgenes laterales que crecen de `1.5rem` a `4rem` según el viewport. Ocupar todo el ancho no puede costar lectura, así que la prosa se limita aparte con `.measure` (68ch).
 
-Cada sección respira `5rem` en móvil y `7rem` en escritorio, y abre con un filete de 1px (`border-t`). El contenido denso se organiza en **unidades repetibles** con la misma anatomía: metadatos a la izquierda, relato a la derecha, filete entre unidades. Las listas largas (hitos de un puesto, canales de contacto, métricas) se despliegan en dos columnas o cruzan toda la anchura en vez de apilarse en una columna estrecha.
+El esqueleto de bloques sigue un patrón de banda ancha:
 
-Los casos de estudio usan una unidad de dos columnas: a la izquierda la prueba visual y los datos (imagen, canal, stack, enlaces) con la imagen fija al hacer scroll; a la derecha el relato. La tabla de métricas cruza la anchura completa porque es una comparación.
+1. **Hero** con el posicionamiento y los accesos.
+2. **Banda de trabajo destacado**: cuatro tarjetas con la misma anatomía —etiqueta corta en mayúsculas arriba, imagen debajo, título debajo—, en rejilla de 4 columnas (2 en móvil), cada una enlazada a su caso de estudio. Cierra el primer viewport con la prueba visual.
+3. Secciones con **cabecera a 12 columnas**: el titular a la izquierda y la entradilla a la derecha.
+4. **Casos de estudio en dos columnas alternas**: la imagen cambia de lado en cada caso (`lg:order-*`), con la prueba visual y los datos fijos al hacer scroll a un lado y el relato al otro. La tabla de métricas cruza la anchura completa porque es una comparación.
+5. **Rejillas de celdas** para el contenido agrupado: los cuatro grupos de skills en `md:grid-cols-2` y los canales de contacto en `md:grid-cols-3`, cada celda con filete superior, rótulo y contenido.
+6. **Footer agrupado** en cuatro columnas.
+
+Cada sección respira `5rem` en móvil y `7rem` en escritorio, y abre con un filete de 1px. Las listas largas se despliegan en columnas en vez de apilarse en una columna estrecha.
 
 ## Elevation & Depth
 
@@ -185,6 +192,7 @@ La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo se
 - **Marca** (`Logo`): dos líneas apiladas —el nombre arriba y el posicionamiento debajo—, sin caja de iniciales y sin separador. La jerarquía la hacen el peso y el color: nombre en semibold y tinta, posicionamiento en light y gris. Dos renglones ocupan menos a lo ancho que uno solo con las dos cosas, así que el posicionamiento se ve también en móvil; el hueco del header se reduce en pantallas estrechas para dejarle sitio.
 - **Navbar**: fijo, con filete inferior: la marca, el botón de idioma y los items de los desplegables usan la fuente del sitio, heredada del `body`. Las seis secciones viven en un menú desplegable que se abre con el botón de hamburguesa en todos los tamaños. La barra no se anima a sí misma, así que es visible aunque no haya JavaScript.
 - **Desplegables** (menú y selector de idioma): el mismo panel estrecho alineado a la derecha (`w-56`), con borde completo, `p-3` y items compactos cuyo estado activo se marca con fondo y un punto a la derecha. Comparten variantes de motion y clases en `dropdownMotion.ts`, así que no pueden divergir.
+- **Banda de trabajo destacado**: rejilla de cuatro tarjetas con anatomía fija (etiqueta, imagen, título), cada una enlazada a su caso de estudio. Sin estado, así que se renderiza en el servidor.
 - **Filtros** (experiencia): rectángulos con filete; el activo se invierte a tinta sólida. Llevan `aria-pressed`.
 - **Filas enlazadas** (contacto y CV): rejilla de 12 columnas con etiqueta, valor y descripción; el fondo se aclara en hover. Nunca son tarjetas.
 - **Tabla de métricas**: cruza la anchura completa, con cabecera en versalitas y cifras monoespaciadas con `font-variant-numeric: tabular-nums`.
