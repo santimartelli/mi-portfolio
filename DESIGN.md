@@ -27,19 +27,19 @@ colors:
   ink-muted: "#475569"
 typography:
   display:
-    fontFamily: "'Titillium Web', 'Inter variable', system-ui, sans-serif"
+    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
     fontSize: "clamp(3.75rem, 2rem + 7vw, 8rem)"
     fontWeight: 300
     lineHeight: 0.85
     letterSpacing: "-0.025em"
   headline:
-    fontFamily: "'Titillium Web', 'Inter variable', system-ui, sans-serif"
+    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
     fontSize: "clamp(2.25rem, 1.5rem + 3vw, 3.75rem)"
     fontWeight: 300
     lineHeight: 1.1
     letterSpacing: "-0.02em"
   title:
-    fontFamily: "'Titillium Web', 'Inter variable', system-ui, sans-serif"
+    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
     fontSize: "1.5rem"
     fontWeight: 300
     lineHeight: 1.3
@@ -146,11 +146,17 @@ Tema **claro**: los mismos papeles invertidos (`paper`, `paper-soft`, `paper-sun
 
 ## Typography
 
-Una sola familia con dos pesos de trabajo: **Titillium Web** como voz principal, con **Inter variable** como respaldo. Titillium aporta el carácter ligeramente técnico y cuadrado que el mundo pide; el peso 300 sostiene los titulares grandes sin engordar.
+Dos familias con trabajos separados.
+
+**Alumni Sans** es la voz de display: el nombre, los titulares de sección y los títulos de los casos de estudio. Es una condensada, y eso le da al titular un perfil editorial y vertical que la sans ancha no tiene. La pila se declara con `"Alumni Sans Hero"` delante —una fuente del sistema, no un archivo que sirvamos— y cae en `Alumni Sans Variable`, que sí viaja con el sitio.
+
+**Titillium Web** se queda con todo el texto corrido, con **Inter variable** de respaldo. Titillium aporta el carácter ligeramente técnico y cuadrado del mundo, y se lee mucho mejor que una condensada en párrafos largos. El reparto es deliberado: Alumni Sans nunca se usa para leer, solo para titular.
 
 La escala es la de Tailwind, de `text-xs` a `text-9xl`. El display llega a **8rem** en el nombre del hero (por encima del techo de 6rem que marca el craft floor de Impeccable: es una desviación conocida y deliberada de este mundo). El tracking negativo llega a −0.025em.
 
 Los metadatos (etiquetas de sección, periodos, categorías) van en mayúsculas con tracking amplio, y los identificadores literales (correo, usuario) en monoespaciada.
+
+> **Aviso de peso.** Los titulares usan `font-light` (300) y Alumni Sans es una condensada: a 300 y tamaño grande puede leerse demasiado fina. Si al verlo resulta anémica, el ajuste es subir el peso de los titulares a 400–500, no cambiar el tamaño.
 
 ## Layout
 

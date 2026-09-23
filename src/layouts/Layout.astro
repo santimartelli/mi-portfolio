@@ -1,5 +1,6 @@
 ---
 // Layout principal: metadatos por idioma, SEO, accesibilidad y sistema de temas.
+import "@fontsource-variable/alumni-sans";
 import "@fontsource-variable/inter";
 import "@fontsource/titillium-web";
 
@@ -183,6 +184,14 @@ const jsonLd = {
   <style is:global>
     :root {
       color-scheme: light dark;
+
+      /*
+       * Pila de display. "Alumni Sans Hero" va primero: es una fuente del
+       * sistema, no un archivo que distribuyamos, asi que si esta instalada se
+       * usa y si no cae en Alumni Sans, que si se sirve con el sitio.
+       */
+      --font-display: "Alumni Sans Hero", "Alumni Sans Variable", "Alumni Sans",
+        system-ui, sans-serif;
     }
 
     /* ========================================
@@ -317,6 +326,14 @@ const jsonLd = {
 
     .skip-link:focus {
       top: 1rem;
+    }
+
+    /* Titulares y display en Alumni Sans. El texto corrido se queda en
+       Titillium Web: una condensada en parrafos largos cansa la lectura. */
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-display);
     }
 
     html,

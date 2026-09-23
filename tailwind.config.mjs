@@ -19,6 +19,14 @@ export default {
       },
       fontFamily: {
         "titillium-web": ["Titillium Web", "sans-serif"],
+        // Titulares y display. Misma pila que el token --font-display.
+        display: [
+          "Alumni Sans Hero",
+          "Alumni Sans Variable",
+          "Alumni Sans",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       animation: {
         fadeIn: "fadeIn .5s ease-in forwards",
