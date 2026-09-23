@@ -476,15 +476,14 @@ const jsonLd = {
     }
 
     /*
-     * El brillo: una banda inclinada que cruza el boton cada 5 segundos sola, sin
-     * depender del puntero. El recorrido dura medio segundo (el 10% de los 5s) y
-     * el resto del ciclo la banda espera fuera, a la derecha; como en los dos
-     * extremos queda fuera del recorte, el salto de vuelta al empezar el ciclo
-     * siguiente no se ve.
+     * El brillo: una banda inclinada que espera fuera del boton por la izquierda
+     * y lo cruza al entrar el puntero. La transicion se deja en none a proposito
+     * y el movimiento lo hace la animacion, que se dispara en el hover; asi
+     * cruza una sola vez en lugar de quedarse quieta a medio camino.
      *
-     * Se anima transform y no left, que es lo que hacia el boton original: al
-     * repetirse sin parar, mover left obligaria a recalcular el layout en cada
-     * fotograma, y transform lo resuelve el compositor.
+     * Se anima transform y no left, que es lo que hacia el boton original: el
+     * recorrido es el mismo, pero transform lo resuelve el compositor y no obliga
+     * a recalcular el layout en cada fotograma.
      */
     .cta-primary::before {
       content: "";
@@ -495,14 +494,14 @@ const jsonLd = {
       height: 100%;
       background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.7), transparent);
       transform: skewX(45deg);
-      animation: ctaShine 5s ease-in-out infinite;
+      transition: none;
+    }
+
+    .cta-primary:hover::before {
+      animation: ctaShine 0.5s ease-in-out;
     }
 
     @keyframes ctaShine {
-      0% {
-        transform: skewX(45deg) translateX(0);
-      }
-      10%,
       100% {
         /* 400% del ancho de la banda, que es el 75% del boton: recorre tres
            anchos de boton, de -100% a 200%, igual que el original. */
