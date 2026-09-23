@@ -14,14 +14,14 @@ export type Locale = 'es' | 'en';
 
 export interface HeroTranslations {
   headline: string;
-  description: string;
+  /** Parrafos de presentacion, en orden. */
+  description: string[];
   /**
-   * El enfoque: el posicionamiento resumido en una linea. Es la unica pieza
-   * etiquetada del hero, asi que el rotulo va en versalitas y el valor en texto
-   * corrido. Resume los tres ejes (hospitalidad, operaciones y tecnologia) que
-   * el titular enuncia como frase.
+   * Datos de contexto del hero, con rotulo y valor: el enfoque y la experiencia
+   * practica. Son los dos unicos bloques etiquetados, asi que el rotulo va en
+   * versalitas y el valor en texto corrido. El orden del array es el de lectura.
    */
-  focus: { label: string; value: string };
+  facts: Array<{ label: string; value: string }>;
   /** Estado de disponibilidad, sin rotulo: lo precede un punto de color. */
   availability: string;
 }

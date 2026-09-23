@@ -1,9 +1,18 @@
 {
-  "headline": "Hotel operations and technology, in one profile.",
-  "description": "I work in accommodation operations and front office, and I also build web products. I know how PMS, OTAs and hotel digital tools are actually used because I work with them every day, and I can speak the same language as the teams who build them.",
-  "focus": {
-    "label": "Focus",
-    "value": "Hospitality + Operations + Technology"
-  },
+  "headline": "Hospitality Operations + Hotel Tech",
+  "description": [
+    "Hands-on experience in hotel operations, front office and customer service, combined with technical training in web development.",
+    "I know PMS, OTAs, reservations, pricing and the day-to-day running of a property first-hand. I'm looking to take the next step into Hotel Tech, Customer Success and Implementation teams, bringing the perspective of someone who understands both the hotel user and the technology they use."
+  ],
+  "facts": [
+    {
+      "label": "Focus",
+      "value": "Hospitality Operations · Hotel Tech · Customer Success · Implementation"
+    },
+    {
+      "label": "Practical experience",
+      "value": "Front Office · PMS · OTAs · Reservations · Pricing & Revenue Operations"
+    }
+  ],
   "availability": "Open to new opportunities"
 }
