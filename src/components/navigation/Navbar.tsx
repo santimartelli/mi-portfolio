@@ -1,8 +1,6 @@
-// Barra de navegacion.
-// En escritorio las secciones son enlaces visibles: en una pagina larga, un menu
-// escondido obliga a abrir para saber donde estas. El menu queda para movil.
-// Framer Motion se limita a los desplegables; la barra en si no se anima, para
-// que sea visible aunque no haya JavaScript.
+// Barra de navegacion con menu desplegable en todos los tamanos.
+// Framer Motion se limita al desplegable; la barra en si no se anima, para que
+// sea visible aunque no haya JavaScript.
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useActiveSection } from "../../util/useActiveSection";
@@ -72,26 +70,6 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
           <Logo />
         </a>
 
-        {/* Enlaces en linea: solo escritorio */}
-        <ul className="hidden list-none items-center gap-1 lg:flex">
-          {sections.map((section) => {
-            const isActive = activeSection === section.key;
-            return (
-              <li key={section.key}>
-                <a
-                  href={`${prefix}/#${section.key}`}
-                  aria-current={isActive ? "true" : undefined}
-                  className={`block px-3 py-2 text-xs font-medium uppercase tracking-widest transition-colors duration-200 ${
-                    isActive
-                      ? "text-black dark:text-white"
-                      : "text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white"
-                  }`}>
-                  {section.label}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
 
         <div className="flex shrink-0 items-center gap-2">
           <ThemeToggleButton labels={t.themeLabels} />
@@ -115,7 +93,7 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
             aria-label={t.menuLabel}
             aria-expanded={menuOpen}
             aria-controls="primary-menu"
-            className="menu-button flex h-14 w-14 flex-col items-center justify-center text-black lg:hidden dark:text-white">
+            className="menu-button flex h-14 w-14 flex-col items-center justify-center text-black dark:text-white">
             <motion.span
               animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }}
               transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
@@ -143,7 +121,7 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="mobile-menu absolute inset-x-0 top-16 overflow-hidden border-b border-gray-200 bg-white lg:hidden dark:border-gray-800 dark:bg-gray-950">
+            className="mobile-menu absolute inset-x-0 top-16 overflow-hidden border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
             <ul className="shell list-none py-3">
               {sections.map((section) => {
                 const isActive = activeSection === section.key;

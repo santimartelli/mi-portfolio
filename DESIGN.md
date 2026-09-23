@@ -181,7 +181,7 @@ La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo se
 - **Tarjeta** (`.theme-card`): fondo `slate`, borde de acento al 10%, hover con `slate-raised` y sombra de acento.
 - **Filtros** (experiencia): botones con borde; el activo usa fondo `gray-100`/`gray-800` y texto de máximo contraste.
 - **Enlaces de sección**: mayúsculas, tracking amplio, sin subrayado; el color cambia en hover.
-- **Navbar**: fijo, con filete inferior. En escritorio (≥1024px) las seis secciones son **enlaces visibles** con la activa resaltada: en una página larga, un menú escondido obliga a abrir para saber dónde estás. El menú desplegable queda para móvil y tablet.
+- **Navbar**: fijo, con filete inferior. Las seis secciones viven en un **menú desplegable** que se abre con el botón de hamburguesa en todos los tamaños, con la sección activa resaltada. La barra no se anima a sí misma, así que es visible aunque no haya JavaScript.
 - **Filtros** (experiencia): rectángulos con filete; el activo se invierte a tinta sólida. Llevan `aria-pressed`.
 - **Filas enlazadas** (contacto, CV): rejilla de 12 columnas con etiqueta, valor y descripción; el fondo se aclara en hover.
 - **Tabla de métricas**: cruza el ancho, con cifras monoespaciadas y `font-variant-numeric: tabular-nums`.

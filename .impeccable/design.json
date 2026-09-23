@@ -527,8 +527,8 @@
       "name": "Navbar",
       "kind": "nav",
       "refersTo": "navbar",
-      "description": "Fijo, con borde inferior que aparece al pasar 20px de scroll; menu desplegable animado.",
-      "html": "<nav class=\"fixed inset-x-0 top-0 z-50\"><!-- logo, tema, idioma, menu --></nav>",
+      "description": "Fijo, con filete inferior. Menu desplegable con boton de hamburguesa en todos los tamanos; la seccion activa se resalta.",
+      "html": "<nav class=\"fixed inset-x-0 top-0 z-50\"><!-- logo, tema, idioma, boton de menu --></nav>",
       "css": "nav{position:fixed;inset-inline:0;top:0;z-index:50;background-color:var(--bg-primary);border-bottom:1px solid transparent;transition:border-color .3s}"
     }
   ],
