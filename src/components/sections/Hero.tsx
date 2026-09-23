@@ -32,7 +32,7 @@ const Hero = ({ content: t }: HeroProps) => {
     <section
       id="home"
       className="flex min-h-[100dvh] flex-col pt-[65px] pb-6 lg:min-h-screen lg:flex-row lg:items-center lg:pb-28">
-      <div className="shell flex flex-1 flex-col justify-between gap-1 lg:grid lg:flex-none lg:grid-cols-12 lg:items-center lg:gap-16">
+      <div className="shell flex flex-1 flex-col justify-between gap-1 lg:grid lg:flex-none lg:grid-cols-12 lg:items-center lg:gap-x-16 lg:gap-y-6">
         {/*
           En movil esta caja no genera caja propia (display: contents), asi que el
           titular, el parrafo, la accion y los iconos pasan a ser hijos directos
