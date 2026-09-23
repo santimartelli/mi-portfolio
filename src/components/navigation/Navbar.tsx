@@ -106,7 +106,7 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
             onClose={() => setLanguageOpen(false)}
           />
           {/* Menu: mismo panel y mismos items que el selector de idioma.
-              La caja es de 48x56 y el dibujo se empuja 4px hacia la izquierda con
+              La caja es de 48x56 y el dibujo se empuja 2px hacia la izquierda con
               el padding de la derecha (las barras van centradas en la caja de
               contenido, asi que recortarla por un lado las mueve). Es la mitad
               del trabajo de acercar los dos iconos: el selector de idioma hace lo
@@ -122,7 +122,7 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
             aria-label={t.menuLabel}
             aria-expanded={menuOpen}
             aria-controls="primary-menu"
-            className="menu-button flex h-14 w-12 flex-col items-center justify-center pr-2 text-black dark:text-white">
+            className="menu-button flex h-14 w-12 flex-col items-center justify-center pr-1 text-black dark:text-white">
             <motion.span
               animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }}
               transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
