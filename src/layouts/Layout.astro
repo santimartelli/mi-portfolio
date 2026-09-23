@@ -137,23 +137,6 @@ const jsonLd = {
 
     <title>{title}</title>
 
-    <!--
-      Tema antes del primer pintado. Evita el destello: el HTML se sirve sin
-      clase y el CSS por defecto es oscuro, así que fijamos la clase aquí antes
-      de que el navegador pinte nada.
-    -->
-    <script is:inline>
-      (function () {
-        try {
-          var stored = localStorage.getItem("theme");
-          var theme = stored === "light" || stored === "dark" ? stored : "dark";
-          document.documentElement.classList.add(theme);
-        } catch (error) {
-          document.documentElement.classList.add("dark");
-        }
-      })();
-    </script>
-
     <!-- Google Analytics (gtag.js) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-4SEW399N9F"></script>
     <script is:inline>
@@ -191,8 +174,16 @@ const jsonLd = {
   </body>
 
   <style is:global>
+    /*
+     * Tokens del sitio. El tema es unico y claro: el selector de tema se retiro
+     * a peticion del usuario, asi que no hay dos juegos de valores ni reglas que
+     * compitan por ellos. Los nombres --darkbg-* y --darktext-* se conservan
+     * porque de ellos dependen las utilidades de Tailwind (bg-darkbg-950,
+     * text-darktext-300) y la tabla de remapeo: lo que cambio es su valor, no su
+     * nombre.
+     */
     :root {
-      color-scheme: light dark;
+      color-scheme: light;
 
       /*
        * Fuente unica del sitio. Manrope es una geometrica con buena
@@ -208,61 +199,7 @@ const jsonLd = {
        * sin reiniciar nada. La utilidad .text-display lo consume con var().
        */
       --text-display: clamp(2.75rem, 4.6vw, 4.25rem);
-    }
 
-    /* ========================================
-       🎨 SISTEMA DE DISEÑO PROFESIONAL
-       ======================================== */
-
-    /* Modo oscuro - Elegante y Profesional */
-    :root,
-    .dark {
-      /* === BACKGROUNDS === */
-      --darkbg-950: #0a0b0f;           /* Fondo principal profundo */
-      --darkbg-900: #151821;           /* Fondo secundario */
-      --darkbg-800: #1f2937;           /* Fondo de tarjetas */
-      --darkbg-700: #374151;           /* Fondo hover sutil */
-      --darkbg-600: #4b5563;           /* Bordes suaves */
-
-      /* === TEXTOS === */
-      --darktext-50: #f8fafc;          /* Texto principal - blanco puro */
-      --darktext-100: #f1f5f9;         /* Texto enfático */
-      --darktext-200: #e2e8f0;         /* Texto normal */
-      --darktext-300: #cbd5e1;         /* Texto secundario */
-      --darktext-400: #94a3b8;         /* Texto muted */
-      --darktext-500: #64748b;         /* Texto disabled */
-
-      /* === ACCENTS === */
-      --accent-primary: #3b82f6;       /* Azul profesional */
-      --on-accent: #0a0b0f;            /* Texto sobre el acento: 5.35:1 */
-      --accent-primary-hover: #2563eb;
-      --accent-secondary: #06b6d4;     /* Cian moderno */
-      --accent-tertiary: #8b5cf6;      /* Púrpura elegante */
-      --accent-success: #10b981;       /* Verde éxito */
-      --accent-warning: #f59e0b;       /* Ámbar advertencia */
-      --accent-error: #ef4444;         /* Rojo error */
-
-      /* === SISTEMA UNIFICADO === */
-      --bg-primary: var(--darkbg-950);
-      --bg-secondary: var(--darkbg-900);
-      --bg-tertiary: var(--darkbg-800);
-      --bg-quaternary: var(--darkbg-700);
-      --bg-hover: var(--darkbg-700);
-
-      --text-primary: var(--darktext-50);
-      --text-secondary: var(--darktext-200);
-      --text-tertiary: var(--darktext-300);
-      --text-muted: var(--darktext-400);
-
-      --accent: var(--accent-primary);
-      --accent-hover: var(--accent-primary-hover);
-      --border-primary: rgba(59, 130, 246, 0.2);
-      --border-secondary: rgba(59, 130, 246, 0.1);
-      --shadow-primary: rgba(59, 130, 246, 0.15);
-    }
-
-    /* Modo claro - Limpio y Minimalista */
-    .light {
       /* === BACKGROUNDS === */
       --darkbg-950: #ffffff;           /* Fondo principal puro */
       --darkbg-900: #f8fafc;           /* Fondo secundario */

@@ -8,9 +8,5 @@
     "contact": "Contact"
   },
   "menuLabel": "Navigation menu",
-  "languageLabel": "Select language",
-  "themeLabels": {
-    "toLight": "Switch to light theme",
-    "toDark": "Switch to dark theme"
-  }
+  "languageLabel": "Select language"
 }

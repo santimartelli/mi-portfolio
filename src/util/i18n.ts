@@ -37,11 +37,6 @@ export interface NavbarTranslations {
   menuLabel: string;
   /** Etiqueta accesible del selector de idioma. */
   languageLabel: string;
-  /** Etiquetas accesibles del conmutador de tema. */
-  themeLabels: {
-    toLight: string;
-    toDark: string;
-  };
 }
 
 export interface AboutTranslations {

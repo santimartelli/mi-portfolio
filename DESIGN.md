@@ -1,30 +1,23 @@
 ---
 name: Santiago Martelli — portfolio
-description: Portfolio oscuro y técnico: hospitalidad, operaciones y tecnología contadas como una sola trayectoria.
+description: Portfolio claro y técnico: hospitalidad, operaciones y tecnología contadas como una sola trayectoria.
 colors:
-  void: "#0a0b0f"
-  slate-deep: "#151821"
-  slate: "#1f2937"
-  slate-raised: "#374151"
-  slate-line: "#4b5563"
-  chalk: "#f8fafc"
-  mist: "#e2e8f0"
-  silver: "#cbd5e1"
-  ash: "#94a3b8"
-  ash-deep: "#64748b"
-  signal-blue: "#3b82f6"
-  signal-blue-deep: "#2563eb"
-  cyan: "#06b6d4"
-  violet: "#8b5cf6"
-  success: "#10b981"
-  warning: "#f59e0b"
-  error: "#ef4444"
   paper: "#ffffff"
   paper-soft: "#f8fafc"
   paper-sunk: "#f1f5f9"
+  paper-line: "#e2e8f0"
+  paper-edge: "#cbd5e1"
   ink: "#0f172a"
-  ink-soft: "#1e293b"
+  ink-soft: "#334155"
   ink-muted: "#475569"
+  ink-faint: "#64748b"
+  signal-blue: "#2563eb"
+  signal-blue-deep: "#1d4ed8"
+  cyan: "#0891b2"
+  violet: "#7c3aed"
+  success: "#059669"
+  warning: "#d97706"
+  error: "#dc2626"
 typography:
   display:
     fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
@@ -92,23 +85,23 @@ spacing:
 components:
   button-primary:
     backgroundColor: "{colors.signal-blue}"
-    textColor: "{colors.chalk}"
+    textColor: "{colors.paper}"
     typography: "{typography.meta}"
     rounded: "{rounded.none}"
     padding: "0.75rem 1.5rem"
   button-secondary:
-    backgroundColor: "{colors.void}"
-    textColor: "{colors.mist}"
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink-soft}"
     rounded: "{rounded.none}"
     padding: "0.75rem 1.5rem"
   card:
-    backgroundColor: "{colors.slate}"
-    textColor: "{colors.mist}"
+    backgroundColor: "{colors.paper-sunk}"
+    textColor: "{colors.ink-soft}"
     rounded: "{rounded.none}"
     padding: "1.5rem"
   nav-link:
-    backgroundColor: "{colors.void}"
-    textColor: "{colors.ash}"
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink-faint}"
     typography: "{typography.meta}"
     rounded: "{rounded.none}"
     padding: "0.5rem 0.75rem"
@@ -116,33 +109,30 @@ components:
 
 # Santiago Martelli — Design System
 
-> **Estado:** este documento describe el mundo **oscuro y técnico**, que es el que se sirve. Un rediseño hacia un mundo de papel cálido se construyó y se revirtió por decisión del usuario (ver `## Do's and Don'ts` y el final de este archivo). El contrato de dirección de la home vive en `.impeccable/surfaces/`.
+> **Estado:** este documento describe el mundo **claro y técnico**, que es el único que se sirve: el selector de tema se retiró a petición del usuario. Antes hubo dos temas y, más atrás, un rediseño hacia un mundo de papel cálido que se construyó y se revirtió (ver `## Do's and Don'ts` y el final de este archivo). El contrato de dirección de la home vive en `.impeccable/surfaces/`.
 
 ## Overview
 
 Portfolio profesional de una sola página, bilingüe, que cuenta una sola trayectoria: hospitalidad + operaciones + cliente + tecnología, con la tecnología como evidencia verificable en lugar de como titular.
 
-El mundo es **oscuro y técnico**: fondo casi negro con tinte azulado, tipografía ligera de gran tamaño y un azul de señal como único acento saturado. La estética busca parecer la de alguien que construye software: minimalista, geométrica, sin adornos, con el código (Astro, React, TypeScript) como argumento.
+El mundo es **claro y técnico**: papel blanco, tipografía ligera de gran tamaño y un azul de señal como único acento saturado. La estética busca parecer la de alguien que construye software: minimalista, geométrica, sin adornos, con el código (Astro, React, TypeScript) como argumento.
 
 Modo del visitante: **Persuade**. La página tiene que sostener una decisión y una acción: contactar.
 
 ## Colors
 
-Dos temas con los mismos nombres de variable, así que los componentes no cambian de clase entre uno y otro.
+Un solo tema. Hubo dos, con los mismos nombres de variable para que los componentes no cambiaran de clase; al retirarse el selector quedó el claro, y sus valores viven en `:root` de `Layout.astro`. Los nombres de variable siguen siendo `--darkbg-*` y `--darktext-*` por herencia: de ellos dependen las utilidades de Tailwind y la tabla de remapeo, así que se conservó el nombre y se cambió el valor.
 
-Tema **oscuro** (por defecto):
-- `void` — el suelo. Casi negro con tinte azulado.
-- `slate-deep` / `slate` / `slate-raised` — superficies secundarias, tarjetas y hover.
-- `slate-line` — bordes suaves.
-- `chalk` — titulares y texto de máximo contraste.
-- `mist` / `silver` — texto normal y secundario.
-- `ash` / `ash-deep` — metadatos y texto apagado.
-- `signal-blue` — el acento. Azul de señal, usado en enlaces, estados activos y el botón primario.
+- `paper` (`--darkbg-950`) — el suelo. Blanco puro.
+- `paper-soft` / `paper-sunk` / `paper-line` — superficies secundarias, tarjetas y hover.
+- `paper-edge` — bordes.
+- `ink` (`--darktext-50`) — titulares y texto de máximo contraste.
+- `ink-soft` / `ink-muted` — texto normal y secundario.
+- `ink-faint` — metadatos y texto apagado.
+- `signal-blue` — el acento. `#2563eb`, oscurecido respecto al del tema retirado para mantener el contraste sobre blanco.
 - `signal-blue-deep` — hover del acento.
-- `cyan` / `violet` — acentos secundarios para gradientes.
-- `success` / `warning` / `error` — estados.
-
-Tema **claro**: los mismos papeles invertidos (`paper`, `paper-soft`, `paper-sunk`, `ink`, `ink-soft`, `ink-muted`) con el azul oscurecido a `#2563eb` para mantener el contraste sobre blanco.
+- `cyan` / `violet` — acentos secundarios, sin uso actual.
+- `success` / `warning` / `error` — estados, sin uso actual.
 
 ## Typography
 
@@ -181,7 +171,7 @@ Los casos de estudio usan una unidad de dos columnas: a la izquierda la prueba v
 
 ## Elevation & Depth
 
-La profundidad se declara **una sola vez y con borde de 1px** (`border-gray-200` en claro, `border-gray-700` en oscuro). No hay sombras: las utilidades `.theme-card` y `.theme-button-primary` que llevaban sombras teñidas de azul eran código muerto y se retiraron junto con `.theme-text-gradient`. Esto elimina las dos únicas desviaciones que el detector marcaba como anti-patrón (texto con degradado y halo de color sin offset).
+La profundidad se declara **una sola vez y con borde de 1px** (`border-gray-200`). No hay sombras: las utilidades `.theme-card` y `.theme-button-primary` que llevaban sombras teñidas de azul eran código muerto y se retiraron junto con `.theme-text-gradient`. Esto elimina las dos únicas desviaciones que el detector marcaba como anti-patrón (texto con degradado y halo de color sin offset).
 
 ## Shapes
 
@@ -189,7 +179,7 @@ Predominan las **esquinas rectas**: `border-radius` es 0 en contenedores, tarjet
 
 - `focus` = 2px — el contorno de foco, para que no se vea roto en esquinas rectas.
 - `button` = 12px — los botones de utilidad `.theme-button-primary` y `.theme-button-secondary`.
-- `pill` = 999px — el raíl del conmutador de tema y los puntos de estado.
+- `pill` = 999px — los puntos de estado.
 
 La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo sería llevar los botones a 0 o 2px.
 
@@ -206,7 +196,7 @@ La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo se
 
 Sin animaciones de entrada. Cada sección aparecía antes con el mismo fade-up, y ese patrón repetido es lo que resta sensación de solidez: el contenido ahora está visible de entrada en el HTML, sin depender de JavaScript.
 
-Framer Motion se limita a lo funcional, donde una transición explica un cambio de estado: el desplegable del menú, el del selector de idioma y el botón de tema. La barra de navegación **no** se anima a sí misma, para que sea visible aunque no haya JavaScript.
+Framer Motion se limita a lo funcional, donde una transición explica un cambio de estado: el desplegable del menú y el del selector de idioma. La barra de navegación **no** se anima a sí misma, para que sea visible aunque no haya JavaScript.
 
 Queda un único momento de motion, y es funcional: la apertura del menú.
 
@@ -237,13 +227,13 @@ Registradas por el detector y el craft floor de Impeccable, **no corregidas** po
 
 Resueltas en esta pasada: el fade-up idéntico en cada sección, los `border-left` de color >1px, el halo de color sin offset, el tematizado de las superficies del navegador y el `<noscript>`.
 
-**Desviaciones aceptadas a petición del usuario.** El mundo se había comprometido con la columna única, las esquinas rectas y el acento como única señal. El hero volvió a introducir lo contrario tras una referencia visual aportada por el usuario, que pidió reproducirla «exactamente igual». Lo único que queda en pie de aquella maqueta es la rejilla 7/5 desde `lg`; el resto se ha ido retirando después a petición del usuario: el antetítulo sobre el titular, los chips del enfoque con su rótulo, el bloque de experiencia práctica, los dos botones («Ver experiencia» y el de LinkedIn), la línea de disponibilidad y, por último, el panel lateral con sus dibujos y sus lemas, sustituido por la ilustración del ecosistema. El titular vuelve a ser lo primero de la columna, así que la desviación del craft floor que suponía el antetítulo ya no existe. El acento sigue siendo el azul del mundo y no el ámbar de la maqueta, por decisión previa del usuario; cambiarlo es una línea en el token `--accent`.
+**Desviaciones aceptadas a petición del usuario.** El mundo se había comprometido con la columna única, las esquinas rectas y el acento como única señal. El hero volvió a introducir lo contrario tras una referencia visual aportada por el usuario, que pidió reproducirla «exactamente igual». Lo único que queda en pie de aquella maqueta es la rejilla de dos columnas desde `lg`, hoy 6/6; el resto se ha ido retirando después a petición del usuario: el antetítulo sobre el titular, los chips del enfoque con su rótulo, el bloque de experiencia práctica, los dos botones («Ver experiencia» y el de LinkedIn), la línea de disponibilidad y, por último, el panel lateral con sus dibujos y sus lemas, sustituido por la ilustración del perfil. El titular vuelve a ser lo primero de la columna, así que la desviación del craft floor que suponía el antetítulo ya no existe. El acento sigue siendo el azul del mundo y no el ámbar de la maqueta, por decisión previa del usuario; cambiarlo es una línea en el token `--accent`.
 
 **Procedencia de la ilustración del hero.** `public/images/hero-portrait.webp` (1000×1250, WebP q88, 109 kB) procede de un PNG de 1122×1402 que el usuario aportó como archivo adjunto. **Su origen y su licencia no están verificados**: no consta autoría, ni cesión de derechos, ni si viene de un banco de imágenes. Hay que acreditarlo antes de dar por buena la publicación, porque el resto de imágenes del sitio son propias o de clientes. Si no se puede acreditar, hay que sustituirla.
 
 Sobre su fondo: no necesita ningún recorte. Medido sobre los píxeles del original, el fondo ya es blanco puro y neutro (254-255 en los tres canales, sin perfil ICC incrustado), así que integra sin costura sobre el `#ffffff` del tema claro. Conviene no repetir aquí la impresión de que tenía un tinte crema: era un error de lectura de una versión anterior, y el dato medido lo desmiente.
 
-**La imagen se invierte con el tema.** Lleva `dark:invert`, un filtro CSS, así que no se carga ninguna segunda versión: cero bytes de más. La imagen es escala de grises (saturación máxima 21, y solo en el 0,16 % de los píxeles), que es lo que hace que invertirla sea limpio en vez de un desastre de tonos. Medido sobre la distribución de luminancia del archivo: el 85,1 % de los píxeles es fondo blanco, que al invertir pasa a casi negro (`#010101`) y se funde con el `#0a0b0f` de la página —la diferencia da 1,06:1, imperceptible—; el 6,0 % son las líneas oscuras, que pasan a claras y son las que dibujan. El precio es que el 4,2 % de grises muy claros (sombreados y rellenos) se vuelve gris oscuro y pierde presencia: en tema oscuro la ilustración se lee como dibujo de línea pura, con menos volumen. Si alguna vez molesta, la alternativa es generar una segunda versión del archivo ya adaptada, pero eso duplica el peso y no se hace por ahora.
+**La imagen ya no se invierte.** Tuvo `dark:invert` mientras hubo tema oscuro: la imagen es escala de grises, así que el filtro daba un resultado limpio sin cargar una segunda versión. Al retirarse el selector de tema el filtro se quedó sin efecto posible —el variante `dark:` no llega a activarse nunca— y se retiró con él. Un dato que sigue siendo útil si algún día vuelve a hacer falta: el 85,1 % de sus píxeles es fondo blanco y solo el 6,0 % son líneas oscuras, así que invertirla funciona; el precio sería que el 4,2 % de grises muy claros (sombreados y rellenos) se vuelve gris oscuro y pierde presencia.
 
 **Trampa registrada — la escala tipográfica.** El commit `a311201` borró sin querer el bloque `theme.extend.fontSize` mientras corregía los colores de acento. Como Tailwind descarta las clases que no puede resolver en vez de avisar, durante ese tramo los 32 usos de `text-headline`, `text-lead`, `text-subhead`, `text-title`, `text-title-lg`, `text-label` y `text-small` no generaban ninguna regla y los titulares caían al tamaño por defecto del navegador. Si los titulares se ven pequeños o todos del mismo tamaño, lo primero que hay que comprobar es que `theme.extend.fontSize` sigue en `tailwind.config.mjs`, y confirmarlo sobre el CSS construido, no sobre el código fuente.
 

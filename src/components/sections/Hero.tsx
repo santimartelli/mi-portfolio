@@ -22,7 +22,7 @@ const Hero = ({ content: t }: HeroProps) => {
   return (
     <section id="home" className="pt-32 pb-20 sm:pt-40 sm:pb-28">
       <div className="shell grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-6">
           <h1 className="text-display font-light text-balance text-black dark:text-white">
             {t.headline}
           </h1>
@@ -50,11 +50,7 @@ const Hero = ({ content: t }: HeroProps) => {
             el navegador reserve el espacio y no haya salto de layout. Va en
             eager y sin lazy porque esta en el primer viewport. El texto se
             centra en vertical contra ella, porque el retrato es bastante mas
-            alto que el discurso. En movil baja debajo del texto.
-            En tema oscuro se invierte con un filtro CSS, sin cargar una segunda
-            version: la imagen es escala de grises, asi que el fondo blanco pasa
-            a casi negro y se funde con la pagina, y las lineas oscuras pasan a
-            claras. Cero bytes de mas. */}
+            alto que el discurso. En movil baja debajo del texto. */}
         <img
           src="/images/hero-portrait.webp"
           alt={t.imageAlt}
@@ -62,7 +58,7 @@ const Hero = ({ content: t }: HeroProps) => {
           height="1250"
           loading="eager"
           decoding="async"
-          className="h-auto w-full lg:col-span-5 dark:invert"
+          className="h-auto w-full lg:col-span-6"
         />
       </div>
     </section>

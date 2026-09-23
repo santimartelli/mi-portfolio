@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { useActiveSection } from "../../util/useActiveSection";
 import type { Locale, NavbarTranslations } from "../../util/i18n";
 import Logo from "../common/Logo";
-import ThemeToggleButton from "./ThemeToggleButton";
 import LanguageSelector from "./LanguageSelector";
 import { dropdownVariants, dropdownItemClass, dropdownPanelClass, menuItemVariants } from "./dropdownMotion";
 
@@ -70,7 +69,6 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
 
 
         <div className="flex shrink-0 items-center gap-2">
-          <ThemeToggleButton labels={t.themeLabels} />
           <LanguageSelector
             content={t}
             locale={locale}
