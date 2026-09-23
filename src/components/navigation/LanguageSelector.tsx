@@ -3,9 +3,12 @@
 // Los idiomas son enlaces reales (`/` y `/en/`), no navegación por JavaScript:
 // así funcionan sin JS, son rastreables y respetan los hreflang del documento.
 // Se eliminó `flag-icons`, que aportaba ~420 KB de CSS para dos banderas. El
-// icono de diccionario se retiró y volvió a petición del usuario. El código del
-// idioma se queda en el tamaño de siempre del control (text-sm) con el peso fino
-// de la marca (font-light): se probó a subirlo de tamaño y ganaba peso visual.
+// icono de diccionario se retiró y volvió a petición del usuario, y acabó siendo
+// lo único que queda del botón: primero se probó a subir el código del idioma de
+// tamaño, después a dejarlo en su tamaño de siempre con el peso fino de la
+// marca, y la petición final fue quitarlo. Sin texto visible, el nombre
+// accesible lo pone el aria-label y el idioma activo se marca dentro del
+// desplegable, con el punto y el fondo del item.
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
@@ -60,17 +63,19 @@ const LanguageSelector = ({ content, locale, isOpen, onToggle, onClose }: Langua
 
   return (
     <div className="relative language-selector" ref={containerRef}>
+      {/* Boton de solo icono. El codigo del idioma (ES / EN) se retiro a
+          peticion del usuario, asi que el nombre accesible lo pone el
+          aria-label y el idioma activo se ve marcado dentro del desplegable.
+          La caja es cuadrada y del mismo tamano que el boton del menu, para que
+          los dos controles de la barra midan lo mismo. */}
       <button
         type="button"
         onClick={onToggle}
-        className="relative z-40 flex items-center justify-center gap-2 h-14 px-3 text-black dark:text-white rounded-sm"
+        className="relative z-40 flex h-14 w-14 items-center justify-center text-black dark:text-white rounded-sm"
         aria-haspopup="true"
         aria-expanded={isOpen}
         aria-label={t.languageLabel}>
         <MdOutlineTranslate className="w-5 h-5" aria-hidden="true" />
-        <span className="text-sm font-light uppercase tracking-wide">
-          {locale === 'en' ? 'EN' : 'ES'}
-        </span>
       </button>
 
       <AnimatePresence>
