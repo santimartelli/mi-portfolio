@@ -156,18 +156,20 @@ La escala es **fluida y única** para todo el sitio: diez pasos declarados como 
 
 | Token | Tamaño | Para qué |
 |---|---|---|
-| `display` | `clamp(3.2rem, 6.2vw, 5.6rem)` — 51 a 90px | El nombre en el hero |
+| `display` | `clamp(3.2rem, 6.2vw, 5.6rem)` — 51 a 90px | *Reservado*: sin uso desde que el hero es la frase de posicionamiento |
 | `headline` | `clamp(2.4rem, 3.6vw, 3.4rem)` — 38 a 54px | Titulares de sección |
 | `title-lg` | 1.5rem — 24px | Títulos de caso, empresas, grupos |
 | `subhead` | 1.25rem — 20px | El posicionamiento y los subtítulos |
 | `lead` | 1.125rem — 18px | Entradillas y texto destacado |
 | `base` | 1rem — 16px | Texto corrido |
-| `ui` | 0.8125rem — 13px | Interfaz |
+| `ui` | 0.8125rem — 13px | *Reservado* para interfaz |
 | `small` | 0.875rem — 14px | Texto secundario |
 | `label` | 0.75rem — 12px | Rótulos en mayúsculas |
 | `micro` | 0.6875rem — 11px | Micro-etiquetas y datos |
 
-El techo del display son **90px**, por debajo del límite de 6rem del craft floor: antes llegaba a 128px y era la causa de que todo se leyera grande y desordenado. La jerarquía se sostiene con nueve pasos claros, y el `<body>` se queda en los 16px por defecto del navegador, así que no hay dos reglas compitiendo por el tamaño base.
+El hero usa `headline`, no `display`: el titular es la frase de posicionamiento, que con 58 caracteres no cabe a 90px sin romperse en demasiadas líneas. El paso `display` queda disponible para un texto corto. Los dos pasos reservados no generan CSS mientras no se usen, así que no cuestan nada.
+
+El techo es **90px**, por debajo del límite de 6rem del craft floor: antes el hero llegaba a 128px y era la causa de que todo se leyera grande y desordenado. La jerarquía se sostiene con nueve pasos claros, y el `<body>` se queda en los 16px por defecto del navegador, así que no hay dos reglas compitiendo por el tamaño base.
 
 ## Layout
 

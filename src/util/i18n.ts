@@ -13,8 +13,6 @@
 export type Locale = 'es' | 'en';
 
 export interface HeroTranslations {
-  firstName: string;
-  lastName: string;
   headline: string;
   description: string;
   cards: Array<{ label: string; value: string }>;

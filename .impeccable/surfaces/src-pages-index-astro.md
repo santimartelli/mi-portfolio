@@ -23,8 +23,7 @@ OWN-WORLD: Fondo `#0a0b0f` con superficies `#151821` y `#1f2937`; texto de `#f8f
 
 STORY: El visitante entiende en cinco segundos que el perfil combina operaciones hoteleras y tecnología, comprueba que hay producto real detrás, y escribe.
 
-FIRST VIEWPORT: Fondo casi negro. Badge de posicionamiento, después el nombre en Titillium Web a 8rem en peso 300, el titular de posicionamiento debajo, una descripción breve, tres tarjetas de contexto, la disponibilidad y los dos accesos. Las secciones aparecen con un fade-up escalonado.
-
+FIRST VIEWPORT: Una sola columna. El titular en `headline` (38–54px) es la frase de posicionamiento, que pasa a ser el `h1`; debajo la descripción en `lead`, los dos accesos (experiencia y contacto) y los iconos sociales, y cerrando una fila suelta con los datos de contexto —enfoque, experiencia, herramientas— sin filetes que los separen, más la disponibilidad. Sin nombre propio y sin rejilla de columnas.
 FORM: Pieza técnica oscura con acento único. Roll de dirección `98d9d5d1` (modo persuade, index 3).
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
