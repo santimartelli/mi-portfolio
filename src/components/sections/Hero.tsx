@@ -75,10 +75,12 @@ const Hero = ({ content: t }: HeroProps) => {
             El tope de alto es lo que impide que el retrato desborde por abajo:
             se calcula sobre el alto de la ventana descontando el header (65px),
             el margen inferior del hero (5rem) y un resto de aire, y con ancho
-            automatico mas max-w-full la imagen se encoge manteniendo su
-            proporcion en vez de deformarse. mx-auto la centra en su columna.
-            El max-w de 32rem es el que la hace algo mas pequeña en pantallas
-            altas, donde el tope de alto no llega a apretar. */}
+            automatico la imagen se encoge manteniendo su proporcion en vez de
+            deformarse. mx-auto la centra en su columna.
+            En movil el ancho se limita al 70% de la columna, en porcentaje y no
+            en rem a proposito: un tope en rem mayor que la columna no encoge
+            nada y ademas la desborda, que es lo que pasaba con los 32rem
+            anteriores. En escritorio vuelve al 100% de su columna. */}
         <img
           src="/images/hero-portrait.webp"
           alt={t.imageAlt}
@@ -86,7 +88,7 @@ const Hero = ({ content: t }: HeroProps) => {
           height="1250"
           loading="eager"
           decoding="async"
-          className="order-first mx-auto h-auto max-h-[calc(100vh_-_20rem)] w-auto max-w-[32rem] lg:order-none lg:col-span-6 lg:max-h-[calc(100vh_-_16rem)] lg:max-w-full"
+          className="order-first mx-auto h-auto max-h-[calc(100vh_-_20rem)] w-auto max-w-[70%] lg:order-none lg:col-span-6 lg:max-h-[calc(100vh_-_16rem)] lg:max-w-full"
         />
       </div>
     </section>
