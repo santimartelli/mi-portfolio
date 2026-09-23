@@ -146,7 +146,7 @@ La escala es **fluida y única** para todo el sitio: diez pasos declarados como 
 
 | Token | Tamaño | Para qué |
 |---|---|---|
-| `display` | `clamp(2.75rem, 4.6vw, 4.25rem)` — 44 a 68px; en pantallas de menos de 1024px baja a `clamp(2.5rem, 4.1vw, 3.75rem)` — 40 a 60px | El titular del hero |
+| `display` | `clamp(2.75rem, 4.6vw, 4.25rem)` — 44 a 68px; en pantallas de menos de 1024px baja a `clamp(2rem, 3.6vw, 3rem)` — 32 a 48px | El titular del hero |
 | `headline` | `clamp(2.4rem, 3.6vw, 3.4rem)` — 38 a 54px | Titulares de sección |
 | `title-lg` | 1.5rem — 24px | Títulos de caso, empresas, grupos |
 | `subhead` | 1.25rem — 20px | El posicionamiento y los subtítulos |
