@@ -1,6 +1,10 @@
 ---
 // Layout principal: metadatos por idioma, SEO, accesibilidad y sistema de temas.
-import "@fontsource-variable/manrope";
+import "../styles/fonts.css";
+// La URL con hash del subset latino, para precargarla. Es el mismo archivo que
+// referencia fonts.css, asi que Vite emite una sola copia y el preload apunta a
+// la que realmente se descarga.
+import manropeLatinUrl from "@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url";
 
 import type { Locale } from "../util/i18n";
 import { OG_IMAGE, SITE, SITE_URL, pathForLocale } from "../util/site";
@@ -94,6 +98,13 @@ const jsonLd = {
     <meta name="description" content={description} />
     <meta name="author" content={SITE.name} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Tipografia: se precarga el subset latino para que Manrope este lista
+         cuando la pagina pinta. Sin esto el navegador solo descubre la fuente
+         despues de analizar el CSS, llega tarde y la pagina cambiaba de
+         tipografia a la vista. El crossorigin es obligatorio en fuentes, incluso
+         siendo del mismo origen. -->
+    <link rel="preload" as="font" type="font/woff2" href={manropeLatinUrl} crossorigin />
 
     <!-- Canonical y alternativas por idioma -->
     <link rel="canonical" href={canonical} />
