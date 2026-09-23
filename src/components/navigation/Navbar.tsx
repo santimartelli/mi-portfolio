@@ -8,17 +8,12 @@ import type { Locale, NavbarTranslations } from "../../util/i18n";
 import Logo from "../common/Logo";
 import ThemeToggleButton from "./ThemeToggleButton";
 import LanguageSelector from "./LanguageSelector";
+import { dropdownVariants, dropdownItemClass, dropdownPanelClass, menuItemVariants } from "./dropdownMotion";
 
 interface NavbarProps {
   content: NavbarTranslations;
   locale: Locale;
 }
-
-const dropdownVariants = {
-  hidden: { height: 0, opacity: 0 },
-  visible: { height: "auto", opacity: 1, transition: { duration: 0.18, ease: "easeOut" } },
-  exit: { height: 0, opacity: 0, transition: { duration: 0.14, ease: "easeIn" } },
-};
 
 const Navbar = ({ content: t, locale }: NavbarProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -83,7 +78,8 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
             }}
             onClose={() => setLanguageOpen(false)}
           />
-          {/* Menu: solo movil y tablet */}
+          {/* Menu: mismo panel y mismos items que el selector de idioma */}
+          <div className="relative">
           <button
             type="button"
             onClick={() => {
@@ -110,42 +106,50 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
               className="block h-0.5 w-6 bg-current"
             />
           </button>
+
+          <AnimatePresence>
+            {menuOpen && (
+              <motion.div
+                id="primary-menu"
+                key="primary-menu"
+                variants={dropdownVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className={dropdownPanelClass}>
+                <motion.div variants={menuItemVariants} className="p-3">
+                  <ul className="list-none space-y-1">
+                    {sections.map((section) => {
+                      const isActive = activeSection === section.key;
+                      return (
+                        <li key={section.key}>
+                          <motion.a
+                            href={`${prefix}/#${section.key}`}
+                            onClick={() => setMenuOpen(false)}
+                            aria-current={isActive ? "true" : undefined}
+                            whileTap={{ scale: 0.98 }}
+                            className={dropdownItemClass(isActive)}>
+                            {section.label}
+                            {isActive && (
+                              <motion.span
+                                initial={{ scale: 0, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                className="ml-auto h-1.5 w-1.5 rounded-full bg-black dark:bg-white"
+                                aria-hidden="true"
+                              />
+                            )}
+                          </motion.a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          </div>
         </div>
       </div>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            id="primary-menu"
-            variants={dropdownVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="mobile-menu absolute inset-x-0 top-16 overflow-hidden border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
-            <ul className="shell list-none py-3">
-              {sections.map((section) => {
-                const isActive = activeSection === section.key;
-                return (
-                  <li key={section.key}>
-                    <a
-                      href={`${prefix}/#${section.key}`}
-                      onClick={() => setMenuOpen(false)}
-                      aria-current={isActive ? "true" : undefined}
-                      className={`flex items-center justify-between border-b border-gray-100 py-4 text-base last:border-b-0 dark:border-gray-800 ${
-                        isActive ? "text-black dark:text-white" : "text-gray-600 dark:text-gray-400"
-                      }`}>
-                      {section.label}
-                      {isActive && (
-                        <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent-400" />
-                      )}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
   );
 };
