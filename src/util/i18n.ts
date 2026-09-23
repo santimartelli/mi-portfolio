@@ -28,8 +28,6 @@ export interface HeroTranslations {
     axis: { above: string[]; below: string[] };
     footer: string[];
   };
-  /** Estado de disponibilidad, sin rotulo: lo precede un punto de color. */
-  availability: string;
 }
 
 export interface NavbarTranslations {

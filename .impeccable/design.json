@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-23T18:00:28Z",
+  "generatedAt": "2026-09-23T19:17:04Z",
   "title": "Design System: Santiago Martelli — portfolio",
   "extensions": {
     "themes": {
@@ -488,11 +488,6 @@
         "name": "reduced-motion",
         "value": "prefers-reduced-motion: reduce",
         "purpose": "Anula animacion y transiciones. El contenido no depende de ninguna."
-      },
-      {
-        "name": "status-pulse",
-        "value": "statusPulse 2.8s ease-in-out infinite",
-        "purpose": "Latido del punto de estado del hero en CSS puro: la opacidad va de 1 a 0.45, asi que se atenua pero nunca desaparece. Bajo prefers-reduced-motion el bloque global lo deja fijo y visible."
       }
     ],
     "breakpoints": [

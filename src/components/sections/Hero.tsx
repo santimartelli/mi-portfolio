@@ -38,29 +38,19 @@ const Hero = ({ content: t }: HeroProps) => {
             </p>
           ))}
 
-          <div className="mt-10 flex flex-wrap items-center justify-between gap-6">
-            <p className="flex items-center gap-3 text-small font-light text-gray-600 dark:text-gray-400">
-              <span
-                aria-hidden="true"
-                className="h-1.5 w-1.5 animate-status-pulse rounded-full bg-[var(--accent-success)]"
-              />
-              {t.availability}
-            </p>
-
-            <ul className="flex list-none items-center gap-1">
-              {contactLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    {...(link.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
-                    aria-label={link.label}
-                    className="flex h-11 w-11 items-center justify-center text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
-                    <link.icon className="h-4 w-4" aria-hidden="true" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="mt-10 flex list-none items-center gap-1">
+            {contactLinks.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  {...(link.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
+                  aria-label={link.label}
+                  className="flex h-11 w-11 items-center justify-center text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
+                  <link.icon className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Panel. Los dos circulos son decorativos y sangran por los bordes: de

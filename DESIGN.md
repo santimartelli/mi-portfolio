@@ -210,9 +210,9 @@ Framer Motion se limita a lo funcional, donde una transición explica un cambio 
 
 Queda un único momento de motion, y es funcional: la apertura del menú.
 
-Fuera de Framer Motion hay un solo movimiento, en CSS puro: el latido del punto de estado del hero (`animate-status-pulse`). Su opacidad va de 1 a 0.45 en 2.8 s, así que se atenúa pero nunca llega a desaparecer. Es la única animación en bucle del sitio y no necesita JavaScript.
+No hay ninguna animación en CSS. Hubo una, el latido del punto de estado del hero (`animate-status-pulse`), y se retiró con la línea de disponibilidad; su sitio lo ocupaba un punto verde que se atenuaba de 1 a 0.45 sin llegar a desaparecer. Si vuelve a hacer falta una señal de estado, hay que recuperar también la animación en `tailwind.config.mjs`, que ya no está declarada.
 
-Bajo `prefers-reduced-motion` el bloque global de `Layout.astro` reduce toda animación a 0.01 ms y una sola iteración, así que el punto queda fijo y visible. El movimiento no es la única señal de estado: el texto «Abierto a nuevas oportunidades» comunica lo mismo sin él.
+Bajo `prefers-reduced-motion` el bloque global de `Layout.astro` reduce toda animación a 0.01 ms y una sola iteración, y desactiva el desplazamiento suave.
 
 ## Do's and Don'ts
 

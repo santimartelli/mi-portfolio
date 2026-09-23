@@ -56,26 +56,13 @@ export default {
         sans: ["Manrope Variable", "Manrope", "system-ui", "sans-serif"],
       },
       /*
-       * Un solo movimiento en todo el sitio: el latido del punto de estado del
-       * hero. El resto de animaciones que vivian aqui (fadeIn, imageHover,
-       * enterUp, blink) no tenian ningun uso y ademas eran animaciones de
-       * entrada, que la politica de movimiento prohibe. pulseSlow se ha
-       * sustituido porque animaba el color hacia el teal #45A29E del mundo
-       * abandonado.
-       *
-       * El suelo de opacidad es 0.45: el punto baja de intensidad pero nunca
-       * llega a desaparecer. Bajo prefers-reduced-motion el bloque global de
-       * Layout.astro neutraliza la animacion y el punto queda fijo a opacidad 1.
+       * Sin animaciones declaradas. Aqui vivieron fadeIn, imageHover, enterUp y
+       * blink, que eran animaciones de entrada y la politica de movimiento
+       * prohibe, y despues statusPulse, el latido del punto de estado del hero.
+       * El punto se retiro con la linea de disponibilidad, asi que no queda
+       * ninguna. Todo el movimiento del sitio es el de Framer Motion en los dos
+       * desplegables y el boton de tema.
        */
-      animation: {
-        "status-pulse": "statusPulse 2.8s ease-in-out infinite",
-      },
-      keyframes: {
-        statusPulse: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.45" },
-        },
-      },
       boxShadow: {
         white: "0px 15px 50px -40px rgba(0, 0, 0, 0.5)",
       },
