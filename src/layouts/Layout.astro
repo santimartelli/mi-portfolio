@@ -507,6 +507,38 @@ const jsonLd = {
       max-width: 64ch;
     }
 
+    /*
+     * Recorte de la ilustracion del hero. Hay dos versiones de la misma escena y
+     * el <picture> elige una: la apaisada en pantallas estrechas y la vertical
+     * desde lg. Aqui se fija el tamaño de cada una.
+     *
+     * En movil ocupa el ancho completo con su proporcion apaisada (1,78), que es
+     * lo que la deja ancha y baja a la vez. Desde lg vuelve a proporcion
+     * automatica, para que el tope de alto pueda encogerla conservando la suya
+     * sin deformarla: con una proporcion fija y el ancho al 100%, cualquier tope
+     * de alto la aplasta.
+     *
+     * Va en el CSS global y no con utilidades de Tailwind a proposito. Con
+     * `lg:aspect-auto` Tailwind emitia ademas un `.aspect-auto` suelto y global,
+     * que por orden de fuente ganaba al aspect-ratio de movil y dejaba la imagen
+     * con la proporcion del retrato.
+     */
+    .hero-media {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1400 / 788;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-media {
+        width: auto;
+        max-width: 100%;
+        aspect-ratio: auto;
+        max-height: calc(100vh - 16rem);
+        margin-inline: auto;
+      }
+    }
+
     /* ==========================================
        SUPERFICIES DEL NAVEGADOR
        Lo que no dibujamos tambien lleva el diseno: cursor,

@@ -63,33 +63,32 @@ const Hero = ({ content: t }: HeroProps) => {
           </div>
         </div>
 
-        {/* Ilustracion del perfil. Se declaran sus dimensiones reales para que
-            el navegador reserve el espacio y no haya salto de layout. Va en
-            eager y sin lazy porque esta en el primer viewport. El texto se
-            centra en vertical contra ella, porque el retrato es bastante mas
-            alto que el discurso.
+        {/* Ilustracion del perfil. Hay dos recortes de la misma escena y el
+            navegador elige uno: el apaisado en pantallas estrechas y el vertical
+            desde lg, donde tiene columna propia. Va en un <picture> para que
+            solo se descargue el que se usa, no los dos.
+            El tamaño de cada recorte lo fija la clase .hero-media del layout, no
+            utilidades de Tailwind: ahi el tope de alto y la proporcion por
+            breakpoint conviven en el orden correcto, que con utilidades no
+            ocurria. En movil ocupa el ancho completo, y al ser apaisada eso la
+            deja ancha y baja a la vez, que es lo que permite ver el titular y el
+            texto en el mismo viewport.
             En movil va primero, antes del titular: la columna se apila y el
-            order la sube. En el marcado sigue despues del texto a proposito,
-            para que quien use lector de pantalla reciba el titular antes que la
-            ilustracion; a partir de lg el order se resetea y vuelve a su sitio.
-            El tope de alto es lo que impide que el retrato desborde por abajo:
-            se calcula sobre el alto de la ventana descontando el header (65px),
-            el margen inferior del hero (5rem) y un resto de aire, y con ancho
-            automatico la imagen se encoge manteniendo su proporcion en vez de
-            deformarse. mx-auto la centra en su columna.
-            En movil el ancho se limita al 70% de la columna, en porcentaje y no
-            en rem a proposito: un tope en rem mayor que la columna no encoge
-            nada y ademas la desborda, que es lo que pasaba con los 32rem
-            anteriores. En escritorio vuelve al 100% de su columna. */}
-        <img
-          src="/images/hero-portrait.webp"
-          alt={t.imageAlt}
-          width="1000"
-          height="1250"
-          loading="eager"
-          decoding="async"
-          className="order-first mx-auto h-auto max-h-[calc(100vh_-_20rem)] w-auto max-w-[70%] lg:order-none lg:col-span-6 lg:max-h-[calc(100vh_-_16rem)] lg:max-w-full"
-        />
+            order del <picture> la sube. En el marcado sigue despues del texto a
+            proposito, para que quien use lector de pantalla reciba el titular
+            antes que la ilustracion; desde lg el order se resetea. */}
+        <picture className="order-first lg:order-none lg:col-span-6">
+          <source media="(max-width: 1023.98px)" srcSet="/images/hero-landscape.webp" />
+          <img
+            src="/images/hero-portrait.webp"
+            alt={t.imageAlt}
+            width="1000"
+            height="1250"
+            loading="eager"
+            decoding="async"
+            className="hero-media"
+          />
+        </picture>
       </div>
     </section>
   );
