@@ -476,8 +476,8 @@ const jsonLd = {
     }
 
     /*
-     * El brillo: una banda inclinada que cruza el boton cada 3 segundos sola, sin
-     * depender del puntero. El recorrido dura medio segundo (el 17% de los 3s) y
+     * El brillo: una banda inclinada que cruza el boton cada 5 segundos sola, sin
+     * depender del puntero. El recorrido dura medio segundo (el 10% de los 5s) y
      * el resto del ciclo la banda espera fuera, a la derecha; como en los dos
      * extremos queda fuera del recorte, el salto de vuelta al empezar el ciclo
      * siguiente no se ve.
@@ -495,14 +495,14 @@ const jsonLd = {
       height: 100%;
       background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.7), transparent);
       transform: skewX(45deg);
-      animation: ctaShine 3s ease-in-out infinite;
+      animation: ctaShine 5s ease-in-out infinite;
     }
 
     @keyframes ctaShine {
       0% {
         transform: skewX(45deg) translateX(0);
       }
-      17%,
+      10%,
       100% {
         /* 400% del ancho de la banda, que es el 75% del boton: recorre tres
            anchos de boton, de -100% a 200%, igual que el original. */

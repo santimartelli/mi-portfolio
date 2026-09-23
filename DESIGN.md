@@ -200,7 +200,7 @@ Framer Motion se limita a lo funcional, donde una transición explica un cambio 
 
 Queda un único momento de motion, y es funcional: la apertura del menú.
 
-Hay **una única animación en CSS**, y no es de entrada: el brillo del CTA del hero, que cruza el botón **cada 3 segundos** en bucle (`@keyframes ctaShine`). El recorrido dura medio segundo —el 17 % del ciclo— y el resto la banda espera fuera, así que el salto de vuelta no se ve. Se anima `transform` y no `left`, que es lo que hacía el botón original: al repetirse sin parar, mover `left` obligaría a recalcular el layout en cada fotograma. Antes el brillo se disparaba al pasar el puntero, y antes aún hubo un latido del punto de estado (`animate-status-pulse`), retirado con la línea de disponibilidad.
+Hay **una única animación en CSS**, y no es de entrada: el brillo del CTA del hero, que cruza el botón **cada 5 segundos** en bucle (`@keyframes ctaShine`). El recorrido dura medio segundo —el 10 % del ciclo— y el resto la banda espera fuera, así que el salto de vuelta no se ve. Se anima `transform` y no `left`, que es lo que hacía el botón original: al repetirse sin parar, mover `left` obligaría a recalcular el layout en cada fotograma. Antes el brillo se disparaba al pasar el puntero, y antes aún hubo un latido del punto de estado (`animate-status-pulse`), retirado con la línea de disponibilidad.
 
 **Desviación registrada.** El detector marca esta animación como `[marquee]`: un bucle horizontal infinito «exige una atención que no se ha ganado». Es una decisión explícita del usuario, no un descuido, y es la única que queda marcada. Si en el futuro se quiere rebajar, las salidas son alargar el ciclo (6 s en vez de 3), dispararlo solo cuando el hero entra en pantalla, o volver a atarlo al puntero.
 
