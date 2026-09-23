@@ -197,8 +197,11 @@ const jsonLd = {
        * Tailwind no se recarga en caliente en el servidor de desarrollo, y este
        * es el unico paso que se ajusta a ojo. Aqui el cambio se ve al instante,
        * sin reiniciar nada. La utilidad .text-display lo consume con var().
+       *
+       * El valor de escritorio es el original; en pantallas estrechas baja un
+       * escalon mas abajo, en el media query de despues del bloque.
        */
-      --text-display: clamp(2.5rem, 4.1vw, 3.75rem);
+      --text-display: clamp(2.75rem, 4.6vw, 4.25rem);
 
       /* === BACKGROUNDS === */
       --darkbg-950: #ffffff;           /* Fondo principal puro */
@@ -242,6 +245,17 @@ const jsonLd = {
       --border-primary: rgba(37, 99, 235, 0.2);
       --border-secondary: rgba(37, 99, 235, 0.1);
       --shadow-primary: rgba(37, 99, 235, 0.1);
+    }
+
+    /*
+     * En pantallas estrechas el titular baja un escalon: 40 a 60px en vez de 44
+     * a 68px. El corte es el mismo que usa la rejilla del hero para pasar a dos
+     * columnas, asi que el tamaño pequeño acompaña a la version apilada.
+     */
+    @media (max-width: 1023.98px) {
+      :root {
+        --text-display: clamp(2.5rem, 4.1vw, 3.75rem);
+      }
     }
 
     /* Reset de CSS base */

@@ -86,7 +86,7 @@ const Hero = ({ content: t }: HeroProps) => {
           height="1250"
           loading="eager"
           decoding="async"
-          className="order-first mx-auto h-auto max-h-[calc(100vh_-_20rem)] w-auto max-w-[32rem] lg:order-none lg:col-span-6"
+          className="order-first mx-auto h-auto max-h-[calc(100vh_-_20rem)] w-auto max-w-[32rem] lg:order-none lg:col-span-6 lg:max-h-[calc(100vh_-_16rem)] lg:max-w-full"
         />
       </div>
     </section>
