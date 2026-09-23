@@ -1,5 +1,5 @@
 // Hero en dos columnas: a la izquierda el titular, el parrafo de presentacion y
-// el contacto directo; a la derecha la ilustracion del ecosistema del hotel.
+// el contacto directo; a la derecha la ilustracion del perfil.
 // Sin estado, sin JavaScript y sin ninguna animacion: el hero se renderiza
 // entero en el servidor.
 import { FaEnvelope, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
@@ -21,7 +21,7 @@ const Hero = ({ content: t }: HeroProps) => {
 
   return (
     <section id="home" className="pt-32 pb-20 sm:pt-40 sm:pb-28">
-      <div className="shell grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-16">
+      <div className="shell grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
         <div className="lg:col-span-7">
           <h1 className="text-display font-light text-balance text-black dark:text-white">
             {t.headline}
@@ -46,15 +46,16 @@ const Hero = ({ content: t }: HeroProps) => {
           </ul>
         </div>
 
-        {/* Ilustracion del ecosistema, que sustituye al panel de dibujos. Se
-            declaran sus dimensiones reales para que el navegador reserve el
-            espacio y no haya salto de layout. Va en eager y sin lazy porque
-            esta en el primer viewport. En movil baja debajo del discurso. */}
+        {/* Ilustracion del perfil. Se declaran sus dimensiones reales para que
+            el navegador reserve el espacio y no haya salto de layout. Va en
+            eager y sin lazy porque esta en el primer viewport. El texto se
+            centra en vertical contra ella, porque el retrato es bastante mas
+            alto que el discurso. En movil baja debajo del texto. */}
         <img
-          src="/images/hero-ecosystem.webp"
+          src="/images/hero-portrait.webp"
           alt={t.imageAlt}
-          width="1200"
-          height="900"
+          width="1000"
+          height="1250"
           loading="eager"
           decoding="async"
           className="h-auto w-full lg:col-span-5"
