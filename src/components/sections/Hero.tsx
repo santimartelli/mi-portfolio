@@ -20,9 +20,11 @@ const Hero = ({ content: t }: HeroProps) => {
   ];
 
   return (
-    // El hero arranca pegado al header: 4rem de barra (h-16) mas 1px de su
-    // border-b, asi que el bloque empieza justo debajo de esa linea.
-    <section id="home" className="pt-[65px] pb-20 sm:pb-28">
+    // El hero ocupa el alto de la ventana y centra su contenido en el hueco que
+    // queda bajo el header: 4rem de barra (h-16) mas 1px de su border-b. Asi el
+    // texto y la imagen reparten el aire arriba y abajo en vez de colgar de la
+    // linea del header, y el conjunto no se sale por el borde inferior.
+    <section id="home" className="flex min-h-screen items-center pt-[65px] pb-20 sm:pb-28">
       <div className="shell grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
         <div className="lg:col-span-6">
           <h1 className="text-display font-light text-balance text-black dark:text-white">
