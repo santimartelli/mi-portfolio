@@ -80,7 +80,7 @@ const Hero = ({ content: t }: HeroProps) => {
             order del <picture> la sube. En el marcado sigue despues del texto a
             proposito, para que quien use lector de pantalla reciba el titular
             antes que la ilustracion; desde lg el order se resetea. */}
-        <picture className="order-first lg:order-none lg:col-span-6">
+        <picture className="order-first mt-4 lg:order-none lg:col-span-6 lg:mt-0">
           <source media="(max-width: 1023.98px)" srcSet="/images/hero-landscape.webp" />
           <img
             src="/images/hero-portrait.webp"
