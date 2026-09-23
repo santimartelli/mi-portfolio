@@ -63,7 +63,7 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
       {/* El header no usa .shell: aquel limita el contenido a 1400px y aqui se
           quiere que la marca y los controles se separen casi hasta los bordes.
           Se conserva un margen lateral pequeno para que no queden pegados. */}
-      <div className="flex h-16 w-full items-center justify-between gap-3 px-4 sm:gap-6 sm:px-6 lg:px-8">
+      <div className="flex h-16 w-full items-center justify-between gap-3 px-6 sm:gap-6 sm:px-10 lg:px-16">
         <a href={homeHref} className="shrink-0">
           <Logo />
         </a>
