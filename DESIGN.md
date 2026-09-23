@@ -18,6 +18,7 @@ colors:
   success: "#059669"
   warning: "#d97706"
   error: "#dc2626"
+  ink-max: "#000000"
 typography:
   display:
     fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
@@ -172,6 +173,8 @@ Los casos de estudio usan una unidad de dos columnas: a la izquierda la prueba v
 ## Elevation & Depth
 
 La profundidad se declara **una sola vez y con borde de 1px** (`border-gray-200`). Hay **una sola sombra** en todo el sitio: la del CTA del hero, que llega con el botón portado de otro proyecto del usuario (`0 14px 30px -10px` en reposo y `0 18px 36px -12px` al pasar por encima). Las utilidades `.theme-card` y `.theme-button-primary`, que llevaban sombras teñidas de azul, eran código muerto y se retiraron junto con `.theme-text-gradient`.
+
+El labio inferior del CTA (los 4px de `ink-max` que le dan volumen) va como **sombra interior** (`inset 0 -4px 0`), no como `border-bottom`. El resultado en pantalla es el mismo, pero un borde grueso sobre esquinas de pastilla está marcado como anti-patrón por el detector, y una sombra interior sigue mejor el radio. Como comparte declaración con la sombra exterior, el `:hover` tiene que repetir las dos.
 
 ## Shapes
 
