@@ -31,14 +31,14 @@ const Hero = ({ content: t }: HeroProps) => {
             {t.headline}
           </h1>
 
-          <p className="measure mt-6 text-pretty text-lead font-light text-gray-600 dark:text-gray-400">
+          <p className="measure mt-8 text-pretty text-lead font-light text-gray-600 dark:text-gray-400">
             {t.description}
           </p>
 
           {/* La accion y el contacto van juntos y centrados como un solo grupo.
               Los iconos van a 24px sobre objetivos de 48px, el minimo de area
               tactil. */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-8">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-8">
             <a
               href="#experience"
               className="cta-primary flex w-fit items-center px-6 py-3 text-small font-medium uppercase tracking-widest">
