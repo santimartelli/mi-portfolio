@@ -1,17 +1,13 @@
-// Selector de idioma.
-//
-// Los idiomas son enlaces reales (`/` y `/en/`), no navegación por JavaScript:
-// así funcionan sin JS, son rastreables y respetan los hreflang del documento.
-// Se eliminó `flag-icons`, que aportaba ~420 KB de CSS para dos banderas.
+// Selector de idioma. Los idiomas son enlaces reales, no navegacion por JS:
+// funcionan sin JavaScript, son rastreables y respetan los hreflang.
 import { useEffect, useRef } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { MdOutlineTranslate } from 'react-icons/md';
-import type { Locale, NavbarTranslations } from '../../util/i18n';
+import type { Locale } from '../../util/i18n';
 import { pathForLocale } from '../../util/site';
 
 interface LanguageSelectorProps {
-  content: NavbarTranslations;
   locale: Locale;
+  /** Etiqueta accesible del boton. */
+  label: string;
   isOpen: boolean;
   onToggle: () => void;
   onClose: () => void;
@@ -22,125 +18,67 @@ const LANGUAGE_OPTIONS: Array<{ code: Locale; label: string; short: string }> = 
   { code: 'es', label: 'Español', short: 'ES' },
 ];
 
-const dropdownVariants = {
-  hidden: { height: 0, opacity: 1, transformOrigin: 'top' },
-  visible: {
-    height: 'auto',
-    opacity: 1,
-    transition: { height: { duration: 0.3, ease: 'easeOut' }, staggerChildren: 0.1, delayChildren: 0.1 },
-  },
-  exit: {
-    height: 0,
-    opacity: 1,
-    transition: { height: { duration: 0.2, ease: 'easeIn' }, staggerChildren: 0.05, staggerDirection: -1 },
-  },
-};
-
-const menuItemVariants = {
-  hidden: { opacity: 0, y: -10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.2, ease: 'easeOut' } },
-  exit: { opacity: 0, y: -10, transition: { duration: 0.15, ease: 'easeIn' } },
-};
-
-const LanguageSelector = ({ content, locale, isOpen, onToggle, onClose }: LanguageSelectorProps) => {
-  const t = content;
+const LanguageSelector = ({ locale, label, isOpen, onToggle, onClose }: LanguageSelectorProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Cierra el dropdown al hacer clic fuera
   useEffect(() => {
     if (!isOpen) return;
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      if (containerRef.current && !containerRef.current.contains(target)) {
-        onClose();
-      }
+      if (containerRef.current && !containerRef.current.contains(target)) onClose();
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen, onClose]);
 
-  /**
-   * Guarda la posición de scroll antes de navegar para que el layout la
-   * restaure al cargar el otro idioma.
-   */
+  // Guarda la posicion de scroll para que el layout la restaure al cambiar.
   const rememberScrollPosition = () => {
     try {
-      sessionStorage.setItem(
-        'scrollPosition',
-        JSON.stringify({ x: window.scrollX, y: window.scrollY })
-      );
+      sessionStorage.setItem('scrollPosition', JSON.stringify({ x: window.scrollX, y: window.scrollY }));
     } catch {
-      // sessionStorage puede no estar disponible; no es crítico.
+      // sessionStorage puede no estar disponible; no es critico.
     }
   };
 
   return (
-    <div className="relative language-selector" ref={containerRef}>
+    <div className="relative" ref={containerRef}>
       <button
         type="button"
         onClick={onToggle}
-        className="relative z-40 flex items-center justify-center gap-2 h-14 px-3 text-sm font-medium text-black dark:text-white rounded-sm"
+        className="flex h-9 items-center gap-2 border border-rule px-2.5 font-mono text-micro uppercase tracking-[0.16em] text-muted transition-colors duration-200 ease-out hover:border-rule-strong hover:text-ink"
         aria-haspopup="true"
         aria-expanded={isOpen}
-        aria-label={t.languageLabel}>
-        <MdOutlineTranslate className="w-5 h-5" aria-hidden="true" />
-        <span className="text-sm font-semibold uppercase tracking-wide">
-          {locale === 'en' ? 'EN' : 'ES'}
-        </span>
+        aria-label={label}>
+        {locale === 'en' ? 'EN' : 'ES'}
+        <svg viewBox="0 0 10 6" className="h-1.5 w-2.5" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+          <path d="M1 1l4 4 4-4" />
+        </svg>
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            key="language-menu"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={dropdownVariants}
-            className="absolute right-0 top-[72px] w-56 bg-white dark:bg-gray-950 border border-black dark:border-gray-800 mobile-menu overflow-hidden z-30">
-            <motion.div variants={menuItemVariants} className="p-3">
-              <ul className="list-none space-y-1">
-                {LANGUAGE_OPTIONS.map((option) => {
-                  const isActive = option.code === locale;
-                  return (
-                    <li key={option.code}>
-                      <motion.a
-                        href={pathForLocale(option.code)}
-                        hrefLang={option.code}
-                        onClick={() => {
-                          rememberScrollPosition();
-                          onClose();
-                        }}
-                        whileTap={{ scale: 0.98 }}
-                        aria-current={isActive ? 'true' : undefined}
-                        className={`flex w-full items-center gap-3 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-sm ${
-                          isActive
-                            ? 'text-black dark:text-white bg-gray-100 dark:bg-gray-800'
-                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white'
-                        }`}>
-                        <span
-                          aria-hidden="true"
-                          className="inline-flex items-center justify-center w-6 h-4 border border-gray-300 dark:border-gray-600 text-[0.6rem] font-semibold tracking-wider">
-                          {option.short}
-                        </span>
-                        <span className="font-medium">{option.label}</span>
-                        {isActive && (
-                          <motion.span
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            className="ml-auto w-1.5 h-1.5 rounded-full bg-black dark:bg-white"
-                            aria-hidden="true"
-                          />
-                        )}
-                      </motion.a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* El desplegable se monta siempre y se muestra por opacidad: sin animacion de libreria. */}
+      <ul
+        className={`absolute right-0 top-full z-30 mt-2 w-44 list-none border border-rule bg-paper-raised py-1 transition-opacity duration-150 ease-out ${
+          isOpen ? 'visible opacity-100' : 'invisible opacity-0'
+        }`}>
+        {LANGUAGE_OPTIONS.map((option) => {
+          const isActive = option.code === locale;
+          return (
+            <li key={option.code}>
+              <a
+                href={pathForLocale(option.code)}
+                hrefLang={option.code}
+                onClick={rememberScrollPosition}
+                aria-current={isActive ? 'true' : undefined}
+                className={`flex items-center gap-3 px-3 py-2 text-sm no-underline transition-colors duration-150 ease-out hover:bg-accent-wash ${
+                  isActive ? 'text-ink' : 'text-muted'
+                }`}>
+                <span className="font-mono text-micro tracking-[0.16em]">{option.short}</span>
+                {option.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

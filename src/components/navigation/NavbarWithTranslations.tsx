@@ -1,5 +1,4 @@
-// Isla de navegación: provee el tema y respeta la preferencia de movimiento reducido.
-import { MotionConfig } from 'framer-motion';
+// Isla del navbar: es el unico bloque que necesita tema, menu y estado.
 import Navbar from './Navbar';
 import { ThemeProvider } from '../../util/ThemeContext';
 import type { Locale, NavbarTranslations } from '../../util/i18n';
@@ -12,9 +11,7 @@ interface NavbarIslandProps {
 const NavbarIsland = ({ content, locale }: NavbarIslandProps) => {
   return (
     <ThemeProvider>
-      <MotionConfig reducedMotion="user">
-        <Navbar content={content} locale={locale} />
-      </MotionConfig>
+      <Navbar content={content} locale={locale} />
     </ThemeProvider>
   );
 };

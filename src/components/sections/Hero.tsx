@@ -1,176 +1,78 @@
-// Sección Hero: posicionamiento profesional en cinco segundos.
-import { motion, useInView } from 'framer-motion';
+// Hero: el posicionamiento en el primer viewport. Sin kicker sobre el titular.
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { useMemo, memo, useRef } from 'react';
 import type { HeroTranslations } from '../../util/i18n';
 import { SITE } from '../../util/site';
 
-interface SocialLink {
-  readonly icon: React.ComponentType<{ className?: string }>;
-  readonly href: string;
-  readonly label: string;
-}
-
-/**
- * Hero del portfolio.
- *
- * El objetivo es que alguien que llega desde LinkedIn entienda en cinco segundos
- * que el perfil combina operaciones hoteleras y tecnología. Todo el texto sale
- * del contenido por idioma: nada está escrito aquí dentro.
- */
 interface HeroProps {
   content: HeroTranslations;
 }
 
+const socialLinks = [
+  { icon: FaGithub, href: SITE.github, label: 'GitHub' },
+  { icon: FaLinkedin, href: SITE.linkedin, label: 'LinkedIn' },
+];
+
 const Hero = ({ content: t }: HeroProps) => {
-
-  const contentRef = useRef(null);
-  const contentInView = useInView(contentRef, { once: true, amount: 0.05 });
-
-  const socialLinks: readonly SocialLink[] = useMemo(
-    () => [
-      { icon: FaGithub, href: SITE.github, label: 'GitHub' },
-      { icon: FaLinkedin, href: SITE.linkedin, label: 'LinkedIn' },
-    ],
-    []
-  );
-
   return (
-    <section id="home" className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
-      <div ref={contentRef} className="w-full flex flex-col justify-center items-center">
-        <div className="w-full max-w-4xl mx-auto px-6 sm:px-8 flex items-start justify-center">
-          <div className="w-full text-center">
-            <div className="flex flex-col items-center justify-center space-y-8 sm:space-y-12">
-              {/* Posicionamiento: hospitality + technology */}
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-xs sm:text-sm uppercase tracking-[0.25em] font-medium text-gray-500 dark:text-gray-400">
-                {t.badge}
-              </motion.p>
+    <section id="home" className="pt-28 pb-20 sm:pt-32 sm:pb-28">
+      <div className="mx-auto max-w-6xl px-6 sm:px-8">
+        {/* El unico momento de motion del sitio: el nombre se descubre con un barrido. */}
+        <h1 className="name-reveal font-display text-h1 font-medium text-ink">
+          {t.firstName} {t.lastName}
+        </h1>
 
-              {/* Nombre */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-center space-y-2">
-                <h1 className="text-black dark:text-white font-light leading-[0.85] tracking-tight">
-                  <span className="block sm:hidden">
-                    <span className="block text-6xl">{t.firstName}</span>
-                    <span className="block text-6xl text-gray-500 dark:text-gray-500">
-                      {t.lastName}
-                    </span>
-                  </span>
-                  <span className="hidden sm:block text-7xl md:text-8xl lg:text-9xl">
-                    {t.firstName}{' '}
-                    <span className="text-gray-500 dark:text-gray-500">{t.lastName}</span>
-                  </span>
-                </h1>
-              </motion.div>
+        <p className="mt-8 max-w-[22ch] font-display text-display font-medium text-ink sm:max-w-[24ch]">
+          {t.headline}
+        </p>
 
-              {/* Titular: la frase que debe quedar clara */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="max-w-2xl mx-auto text-xl sm:text-2xl md:text-3xl font-light text-black dark:text-white leading-snug tracking-tight">
-                {t.headline}
-              </motion.p>
+        <p className="mt-8 max-w-measure text-lead text-body">{t.description}</p>
 
-              {/* Descripción */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="max-w-2xl mx-auto">
-                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-light">
-                  {t.description}
-                </p>
-              </motion.div>
-
-              {/* Tarjetas de contexto */}
-              <motion.dl
-                initial={{ opacity: 0, y: 20 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.9 }}
-                className="w-full max-w-3xl grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                {t.cards.map((card) => (
-                  <div
-                    key={card.label}
-                    className="p-4 sm:p-5 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200 bg-gray-50/30 dark:bg-gray-800/20">
-                    <dt className="text-xs uppercase tracking-widest font-medium text-gray-500 dark:text-gray-400 mb-2">
-                      {card.label}
-                    </dt>
-                    <dd className="text-sm font-light text-gray-700 dark:text-gray-300">
-                      {card.value}
-                    </dd>
-                  </div>
-                ))}
-              </motion.dl>
-
-              {/* Disponibilidad */}
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.0 }}
-                className="flex items-center gap-3 text-sm font-light text-gray-600 dark:text-gray-400">
-                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" aria-hidden="true" />
-                <span>
-                  <span className="uppercase tracking-widest text-xs text-gray-500 dark:text-gray-400 mr-2">
-                    {t.availability.label}
-                  </span>
-                  {t.availability.value}
-                </span>
-              </motion.p>
-
-              {/* Llamada a la acción */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.1 }}
-                className="flex flex-col gap-8 items-center justify-center">
-                <div className="flex flex-wrap gap-x-10 gap-y-4 items-center justify-center">
-                  <a
-                    href="#experience"
-                    aria-label={t.ariaLabels.experienceButton}
-                    className="text-base font-light text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-300 uppercase tracking-widest">
-                    {t.buttons.experience}
-                  </a>
-                  <a
-                    href="#contact"
-                    aria-label={t.ariaLabels.contactButton}
-                    className="text-base font-light text-gray-900 dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-400 transition-colors duration-300 uppercase tracking-widest">
-                    {t.buttons.contact}
-                  </a>
-                </div>
-
-                <ul className="flex gap-6 sm:gap-8 list-none">
-                  {socialLinks.map((social, index) => (
-                    <motion.li
-                      key={social.label}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 1.2 + index * 0.1 }}>
-                      <a
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer me"
-                        className="block p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-300 hover:bg-gray-50 dark:hover:bg-gray-800/30 rounded-sm"
-                        aria-label={social.label}>
-                        <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </a>
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
+        {/* Contexto operativo en una fila editorial, no en tarjetas. */}
+        <dl className="mt-14 grid gap-8 border-t border-rule pt-8 sm:grid-cols-3 sm:gap-12">
+          {t.cards.map((card) => (
+            <div key={card.label}>
+              <dt className="font-mono text-micro uppercase text-muted">{card.label}</dt>
+              <dd className="mt-3 text-ink">{card.value}</dd>
             </div>
-          </div>
+          ))}
+        </dl>
+
+        <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-5">
+          <a
+            href="#experience"
+            aria-label={t.ariaLabels.experienceButton}
+            className="bg-ink px-6 py-3 text-sm font-medium uppercase tracking-[0.14em] text-paper no-underline transition-colors duration-200 ease-out hover:bg-accent-ink">
+            {t.buttons.experience}
+          </a>
+          <a
+            href="#contact"
+            aria-label={t.ariaLabels.contactButton}
+            className="text-sm font-medium uppercase tracking-[0.14em]">
+            {t.buttons.contact}
+          </a>
+          <ul className="ml-auto flex list-none items-center gap-5">
+            {socialLinks.map((social) => (
+              <li key={social.label}>
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer me"
+                  aria-label={social.label}
+                  className="block text-muted no-underline transition-colors duration-200 ease-out hover:text-ink">
+                  <social.icon className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
+
+        <p className="mt-10 flex items-center gap-3 font-mono text-micro uppercase text-muted">
+          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
+          {t.availability.label} — {t.availability.value}
+        </p>
       </div>
     </section>
   );
 };
 
-export default memo(Hero);
+export default Hero;
