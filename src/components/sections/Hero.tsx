@@ -30,16 +30,6 @@ const Hero = ({ content: t }: HeroProps) => {
           {t.description}
         </p>
 
-        <p className="mt-10 flex items-center gap-3 text-small font-light text-gray-600 dark:text-gray-400">
-          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[var(--accent-success)]" />
-          <span>
-            <span className="mr-2 text-micro font-medium uppercase text-gray-500 dark:text-gray-400">
-              {t.availability.label}
-            </span>
-            {t.availability.value}
-          </span>
-        </p>
-
         <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3">
           <span className="text-micro font-medium uppercase text-gray-500 dark:text-gray-400">
             {t.contactLabel}
@@ -58,6 +48,12 @@ const Hero = ({ content: t }: HeroProps) => {
             ))}
           </ul>
         </div>
+
+        {/* Estado al pie del hero: punto verde y el valor, sin rotulo. */}
+        <p className="mt-10 flex items-center gap-3 text-small font-light text-gray-600 dark:text-gray-400">
+          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[var(--accent-success)]" />
+          {t.availability}
+        </p>
       </div>
     </section>
   );

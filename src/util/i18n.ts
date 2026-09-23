@@ -15,7 +15,8 @@ export type Locale = 'es' | 'en';
 export interface HeroTranslations {
   headline: string;
   description: string;
-  availability: { label: string; value: string };
+  /** Estado de disponibilidad, sin rotulo: lo precede un punto de color. */
+  availability: string;
   /** Rotulo que precede a los accesos de contacto directo. */
   contactLabel: string;
 }
