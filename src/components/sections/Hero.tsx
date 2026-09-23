@@ -35,7 +35,13 @@ const Hero = ({ content: t }: HeroProps) => {
             {t.description}
           </p>
 
-          <ul className="mt-10 flex list-none items-center gap-1">
+          {/* La accion principal del hero. Reutiliza .cta-primary, que ya estaba
+              definida y verificada en el sistema, en vez de un estilo suelto. */}
+          <a href="#experience" className="cta-primary mt-8 inline-flex items-center px-6 py-3 text-small font-medium">
+            {t.cta}
+          </a>
+
+          <ul className="mt-8 flex list-none items-center gap-1">
             {contactLinks.map((link) => (
               <li key={link.label}>
                 <a
