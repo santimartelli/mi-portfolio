@@ -45,13 +45,13 @@ typography:
     lineHeight: 1.3
     letterSpacing: "normal"
   body:
-    fontFamily: "'Titillium Web', 'Inter variable', system-ui, sans-serif"
+    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 300
     lineHeight: 1.625
     letterSpacing: "normal"
   meta:
-    fontFamily: "'Titillium Web', 'Inter variable', system-ui, sans-serif"
+    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
     fontSize: "0.75rem"
     fontWeight: 500
     lineHeight: 1.4
@@ -63,19 +63,19 @@ typography:
     lineHeight: 1.5
     letterSpacing: "normal"
   micro:
-    fontFamily: "'Titillium Web', 'Inter variable', system-ui, sans-serif"
+    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
     fontSize: "0.6rem"
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: "0.16em"
   micro-lg:
-    fontFamily: "'Titillium Web', 'Inter variable', system-ui, sans-serif"
+    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
     fontSize: "0.65rem"
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: "0.1em"
   small:
-    fontFamily: "'Titillium Web', 'Inter variable', system-ui, sans-serif"
+    fontFamily: "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 300
     lineHeight: 1.5
@@ -146,17 +146,19 @@ Tema **claro**: los mismos papeles invertidos (`paper`, `paper-soft`, `paper-sun
 
 ## Typography
 
-Dos familias con trabajos separados.
+Una sola familia para todo el sitio: **Alumni Sans**, en todos los tamaños.
 
-**Alumni Sans** es la voz de display: **todo el header** (la marca, el botón de idioma y los desplegables), los titulares de sección y los títulos de los casos de estudio. Es una condensada, y eso le da al titular un perfil editorial y vertical que la sans ancha no tiene. La pila se declara con `"Alumni Sans Hero"` delante —una fuente del sistema, no un archivo que sirvamos— y cae en `Alumni Sans Variable`, que sí viaja con el sitio.
+La pila se declara una vez, en el token `--font-sans`, con `"Alumni Sans Hero"` delante: esa es una fuente del sistema, no un archivo que sirvamos, así que si está instalada se usa, y si no cae en `Alumni Sans Variable`, que sí viaja con el sitio. El `<body>` la aplica y todo lo demás la hereda, así que no hay reglas de fuente repartidas por los componentes.
 
-**Titillium Web** se queda con todo el texto corrido, con **Inter variable** de respaldo. Titillium aporta el carácter ligeramente técnico y cuadrado del mundo, y se lee mucho mejor que una condensada en párrafos largos. El reparto es deliberado: Alumni Sans nunca se usa para leer, solo para titular.
+**Alumni Sans es una condensada**, y eso tiene una consecuencia real: a igual tamaño de fuente se lee más estrecha y más pequeña que una sans ancha. Si el texto corrido pide más presencia, el ajuste es subir el tamaño base o el peso, no cambiar de familia.
+
+La monoespaciada (`font-mono`) es la del sistema y se reserva para lo que es dato: periodos, versiones, correos y cifras. No se descarga ninguna fuente para eso.
 
 La escala es la de Tailwind, de `text-xs` a `text-9xl`. El display llega a **8rem** en el nombre del hero (por encima del techo de 6rem que marca el craft floor de Impeccable: es una desviación conocida y deliberada de este mundo). El tracking negativo llega a −0.025em.
 
 Los metadatos (etiquetas de sección, periodos, categorías) van en mayúsculas con tracking amplio, y los identificadores literales (correo, usuario) en monoespaciada.
 
-> **Aviso de peso.** Los titulares usan `font-light` (300) y Alumni Sans es una condensada: a 300 y tamaño grande puede leerse demasiado fina. Si al verlo resulta anémica, el ajuste es subir el peso de los titulares a 400–500, no cambiar el tamaño.
+> **Aviso de peso.** Casi todo el texto va en `font-light` (300) y Alumni Sans es una condensada. A 300 puede leerse fina, sobre todo en tamaños pequeños. Si al verlo ocurre, el ajuste es subir el peso a 400 en el cuerpo y en los titulares, o subir un punto el tamaño base.
 
 ## Layout
 
@@ -183,7 +185,7 @@ La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo se
 ## Components
 
 - **Marca** (`Logo`): el nombre y, a continuación, el posicionamiento, en una sola línea y sin separador. La jerarquía la hacen el peso y el color —nombre en semibold y tinta, posicionamiento en light y gris—, no un signo. Sin caja de iniciales: el nombre se sostiene solo. En pantallas estrechas la segunda parte se oculta porque no cabe junto a los controles.
-- **Navbar**: fijo, con filete inferior, y **toda la barra en la pila de display**: la marca, el botón de idioma y los items de los desplegables la heredan del propio `nav`. Las seis secciones viven en un menú desplegable que se abre con el botón de hamburguesa en todos los tamaños. La barra no se anima a sí misma, así que es visible aunque no haya JavaScript.
+- **Navbar**: fijo, con filete inferior: la marca, el botón de idioma y los items de los desplegables usan la fuente del sitio, heredada del `body`. Las seis secciones viven en un menú desplegable que se abre con el botón de hamburguesa en todos los tamaños. La barra no se anima a sí misma, así que es visible aunque no haya JavaScript.
 - **Desplegables** (menú y selector de idioma): el mismo panel estrecho alineado a la derecha (`w-56`), con borde completo, `p-3` y items compactos cuyo estado activo se marca con fondo y un punto a la derecha. Comparten variantes de motion y clases en `dropdownMotion.ts`, así que no pueden divergir.
 - **Filtros** (experiencia): rectángulos con filete; el activo se invierte a tinta sólida. Llevan `aria-pressed`.
 - **Filas enlazadas** (contacto y CV): rejilla de 12 columnas con etiqueta, valor y descripción; el fondo se aclara en hover. Nunca son tarjetas.
@@ -223,5 +225,4 @@ Resueltas en esta pasada: el kicker sobre el titular, el fade-up idéntico en ca
 Siguen abiertas:
 
 1. **Display a 8rem**, por encima del techo de 6rem del craft floor.
-2. **`Inter` como respaldo**: el detector la marca como fuente sobreusada.
 3. **Peso del JS**: quedan dos islas hidratadas (navbar y filtro de experiencia) y Framer Motion viaja con el navbar para tres transiciones funcionales. Son ~89 kB comprimidos, casi todo el runtime de React. Sustituir esas dos islas por componentes de Astro con un script mínimo eliminaría React y Framer Motion enteros del envío.

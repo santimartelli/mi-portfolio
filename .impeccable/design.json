@@ -379,15 +379,15 @@
         "purpose": "Empresas y subtitulos. En Alumni Sans (display)."
       },
       "body": {
-        "fontFamily": "'Titillium Web', 'Inter variable', system-ui, sans-serif",
+        "fontFamily": "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif",
         "fontSize": "1rem",
         "fontWeight": 300,
         "lineHeight": 1.625,
         "letterSpacing": "normal",
-        "purpose": "Texto corrido en Titillium Web. Una condensada cansaria aqui."
+        "purpose": "Texto corrido. Toda la web usa una sola familia (condensada)."
       },
       "meta": {
-        "fontFamily": "'Titillium Web', 'Inter variable', system-ui, sans-serif",
+        "fontFamily": "'Alumni Sans Hero', 'Alumni Sans Variable', 'Alumni Sans', system-ui, sans-serif",
         "fontSize": "0.75rem",
         "fontWeight": 500,
         "lineHeight": 1.4,
@@ -545,7 +545,7 @@
     "overview": "Un mundo casi negro con tinte azulado, tipografia ligera de gran tamano y un unico azul de senal. La estetica quiere parecer la de alguien que construye software: minimalista, geometrica, sin adornos, con el propio codigo como argumento. El contenido cuenta una sola trayectoria (hospitalidad + operaciones + tecnologia) y la tecnologia aparece como evidencia verificable, no como titular.",
     "keyCharacteristics": [
       "Fondo casi negro con tinte azulado y un unico acento saturado.",
-      "Dos familias con trabajos separados: Alumni Sans (condensada) en titulares, Titillium Web en el texto.",
+      "Una sola familia para todo el sitio: Alumni Sans (condensada), con la monoespaciada del sistema solo para datos.",
       "Esquinas rectas en todo el sistema.",
       "Secciones a todo el ancho (.shell, techo 1800px) con la prosa limitada a 68ch.",
       "Unidades repetibles con la misma anatomia en lugar de tarjetas.",
@@ -584,8 +584,8 @@
         "section": "motion"
       },
       {
-        "name": "La condensada no lee",
-        "body": "Alumni Sans solo en titulares. Todo el texto corrido va en Titillium Web.",
+        "name": "Una sola familia",
+        "body": "Alumni Sans en toda la web, declarada una vez en --font-sans. La monoespaciada del sistema solo para datos.",
         "section": "typography"
       }
     ],
@@ -599,12 +599,10 @@
       "No introduzcas una segunda familia tipografica.",
       "No anadas animaciones de entrada ni apariciones al hacer scroll.",
       "No estires la prosa a todo el ancho.",
-      "No uses el acento en superficies grandes.",
-      "No uses Alumni Sans para parrafos: es una fuente de display."
+      "No uses el acento en superficies grandes."
     ],
     "knownDeviations": [
       "Display a 8rem, por encima del techo de 6rem.",
-      "Inter como respaldo, que el detector marca como fuente sobreusada.",
       "Dos islas hidratadas (navbar y filtro) y ~89 kB de JS comprimido, casi todo el runtime de React."
     ]
   }

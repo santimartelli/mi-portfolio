@@ -18,9 +18,8 @@ export default {
         },
       },
       fontFamily: {
-        "titillium-web": ["Titillium Web", "sans-serif"],
-        // Titulares y display. Misma pila que el token --font-display.
-        display: [
+        // Fuente unica del sitio. Misma pila que el token --font-sans.
+        sans: [
           "Alumni Sans Hero",
           "Alumni Sans Variable",
           "Alumni Sans",
