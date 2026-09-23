@@ -239,7 +239,13 @@ Resueltas en esta pasada: el kicker sobre el titular, el fade-up idéntico en ca
 
 **Trampa registrada — la escala tipográfica.** El commit `a311201` borró sin querer el bloque `theme.extend.fontSize` mientras corregía los colores de acento. Como Tailwind descarta las clases que no puede resolver en vez de avisar, durante ese tramo los 32 usos de `text-headline`, `text-lead`, `text-subhead`, `text-title`, `text-title-lg`, `text-label` y `text-small` no generaban ninguna regla y los titulares caían al tamaño por defecto del navegador. Si los titulares se ven pequeños o todos del mismo tamaño, lo primero que hay que comprobar es que `theme.extend.fontSize` sigue en `tailwind.config.mjs`, y confirmarlo sobre el CSS construido, no sobre el código fuente.
 
-**Recarga en desarrollo.** El servidor de desarrollo no recargaba `tailwind.config.mjs`: la integración lee la config una sola vez al arrancar, así que un cambio de tema se quedaba invisible hasta reiniciar el servicio a mano, incluso en un servidor recién arrancado. Se comprobó tocando el archivo y sirviendo todavía el valor viejo. `astro.config.mjs` registra ahora un plugin de desarrollo (`watch-tailwind-config`, solo `apply: 'serve'`) que vigila ese archivo y reinicia el servidor el solo, con la misma API (`server.restart()`) que usa Astro internamente. El resto del proyecto —componentes, CSS, contenido, páginas— ya se recargaba en caliente y sigue igual.
+**Recarga en desarrollo.** Hay dos ritmos distintos y conviene no confundirlos.
+
+Todo el código de la web —componentes `.astro` y `.tsx`, CSS, JSON de contenido, páginas y `src/util`— usa el **HMR normal de Astro/Vite**: se guarda y el navegador se actualiza solo, sin reiniciar el proceso. Verificado con un cambio real en `src/content/es/hero.json`.
+
+Los archivos de configuración no pueden seguir ese camino, porque Vite los lee una sola vez al arrancar. `tailwind.config.mjs` y `astro.config.mjs` requieren un reinicio completo del proceso, y **de esa supervisión se encarga systemd, no la aplicación**: el unit `mi-portfolio-config-watch.path` vigila los dos archivos y, al cambiar cualquiera de ellos, activa `mi-portfolio-config-restart.service`, que hace `systemctl try-restart dev-project@mi-portfolio.service`. Los cambios de configuración se aplican solos, sin ningún comando manual.
+
+La decisión es deliberada: **nada dentro de la aplicación implementa su propio supervisor**. Hubo un plugin de Vite (`watch-tailwind-config`) que llamaba a `server.restart()`, y se retiró: con systemd supervisando el proceso, un reinicio desde dentro competía con el de systemd y dejaba dos mecanismos haciendo lo mismo. Si en el futuro hace falta reaccionar a un archivo nuevo, la respuesta es añadirlo al `.path`, no volver a meterlo en el código.
 
 Siguen abiertas:
 
