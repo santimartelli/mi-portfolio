@@ -18,10 +18,12 @@ const Skills = ({ content: t }: SkillsProps) => {
           </p>
         </div>
 
-        <dl className="mt-16 grid gap-x-12 gap-y-12 md:grid-cols-2">
+        <dl className="mt-16 border-t border-gray-200 dark:border-gray-700">
           {t.groups.map((group) => (
-            <div key={group.id} className="border-t border-gray-200 pt-6 dark:border-gray-700">
-              <dt>
+            <div
+              key={group.id}
+              className="grid gap-4 border-b border-gray-200 py-8 lg:grid-cols-12 lg:gap-12 dark:border-gray-700">
+              <dt className="lg:col-span-4">
                 <span className="text-xl font-light tracking-wide text-black dark:text-white">
                   {group.title}
                 </span>
@@ -31,7 +33,7 @@ const Skills = ({ content: t }: SkillsProps) => {
                   </span>
                 )}
               </dt>
-              <dd className="mt-4">
+              <dd className="lg:col-span-8">
                 <ul className="flex list-none flex-wrap gap-x-3 gap-y-2">
                   {group.items.map((item) => (
                     <li key={item.label} className="font-light text-gray-700 dark:text-gray-300">

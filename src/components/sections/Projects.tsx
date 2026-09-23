@@ -25,14 +25,14 @@ const Projects = ({ content: t }: ProjectsProps) => {
         </div>
 
         <div className="mt-16 border-t border-gray-200 dark:border-gray-700">
-          {t.projects.map((project, index) => (
+          {t.projects.map((project) => (
             <article
               key={project.id}
               aria-labelledby={`project-${project.id}`}
               className="border-b border-gray-200 py-14 dark:border-gray-700">
               <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
                 {/* Prueba y datos */}
-                <div className={`lg:col-span-5 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                <div className="lg:col-span-5">
                   <div className="lg:sticky lg:top-24">
                     <div className="relative aspect-video overflow-hidden border border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-gray-800">
                       <img
@@ -97,7 +97,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                 </div>
 
                 {/* El relato */}
-                <div className={`lg:col-span-7 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                <div className="lg:col-span-7">
                   <h3
                     id={`project-${project.id}`}
                     className="text-3xl font-light tracking-tight text-black sm:text-4xl dark:text-white">

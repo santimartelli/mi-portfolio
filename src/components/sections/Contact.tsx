@@ -38,23 +38,23 @@ const Contact = ({ content: t }: ContactProps) => {
         <h3 className="mt-16 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
           {t.channelsTitle}
         </h3>
-        <ul className="mt-8 grid list-none gap-x-12 gap-y-10 md:grid-cols-3">
+        <ul className="mt-6 list-none border-t border-gray-200 dark:border-gray-700">
           {channels.map((channel) => (
-            <li key={channel.id} className="border-t border-gray-200 pt-6 dark:border-gray-700">
+            <li key={channel.id} className="border-b border-gray-200 dark:border-gray-700">
               <a
                 href={channel.href}
                 {...(channel.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
-                className="block">
-                <span className="flex items-center gap-3">
+                className="grid items-baseline gap-2 py-5 transition-colors duration-200 hover:bg-gray-50 lg:grid-cols-12 lg:gap-12 dark:hover:bg-gray-900/40">
+                <span className="flex items-center gap-3 lg:col-span-3">
                   <channel.icon className="h-4 w-4 text-gray-500 dark:text-gray-500" aria-hidden="true" />
                   <span className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
                     {channel.label}
                   </span>
                 </span>
-                <span className="mt-4 block font-light text-gray-900 dark:text-gray-100">
+                <span className="font-light text-gray-900 lg:col-span-4 dark:text-gray-100">
                   {channel.value}
                 </span>
-                <span className="mt-1 block text-sm font-light text-gray-500 dark:text-gray-500">
+                <span className="text-sm font-light text-gray-500 lg:col-span-5 dark:text-gray-500">
                   {channel.description}
                 </span>
               </a>
