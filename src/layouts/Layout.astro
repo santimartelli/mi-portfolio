@@ -454,11 +454,11 @@ const jsonLd = {
 
     /* ==========================================
        LLAMADA A LA ACCION
-       Portada de otro proyecto del usuario: pastilla con labio inferior de 4px,
-       sombra tenida y elevacion al pasar por encima, mas un brillo que cruza el
-       boton una sola vez por hover. Los colores son los del mundo (tinta de
-       fondo, papel en el texto, negro puro en el labio), no los ambar del
-       original.
+       Del boton portado de otro proyecto del usuario se conserva lo que no
+       choca con este mundo: la elevacion al pasar por encima y el brillo que
+       cruza una sola vez por hover. Se han quitado la sombra y el labio, porque
+       aqui no hay sombras, y el radio baja de pastilla a 8px. Los colores son
+       los del mundo: tinta de fondo y papel en el texto.
 
        Se define con los tokens y no con utilidades de acento porque la tabla de
        remapeo casa nombres exactos de clase, asi que cualquier variante
@@ -472,26 +472,14 @@ const jsonLd = {
       position: relative;
       overflow: hidden;
       border: 0;
-      border-radius: 9999px;
+      border-radius: 8px;
       background-color: var(--text-primary);
       color: var(--bg-primary);
-      /*
-       * El labio inferior de 4px del boton original no va como border-bottom:
-       * con las esquinas de pastilla el detector lo marca como anti-patron, y
-       * ademas un inset sigue mejor el radio. Va compuesto con la sombra en la
-       * misma declaracion, asi que el hover tiene que repetirlo.
-       */
-      box-shadow:
-        0 14px 30px -10px rgba(15, 23, 42, 0.5),
-        inset 0 -4px 0 #000000;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease;
     }
 
     .cta-primary:hover {
       transform: translateY(-2px);
-      box-shadow:
-        0 18px 36px -12px rgba(15, 23, 42, 0.55),
-        inset 0 -4px 0 #000000;
     }
 
     .cta-primary:active {

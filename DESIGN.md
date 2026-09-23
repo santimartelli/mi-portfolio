@@ -18,7 +18,6 @@ colors:
   success: "#059669"
   warning: "#d97706"
   error: "#dc2626"
-  ink-max: "#000000"
 typography:
   display:
     fontFamily: "'Manrope Variable', 'Manrope', system-ui, sans-serif"
@@ -77,7 +76,7 @@ typography:
 rounded:
   none: "0px"
   focus: "2px"
-  button: "12px"
+  button: "8px"
   pill: "999px"
 spacing:
   section: "8rem"
@@ -172,18 +171,17 @@ Los casos de estudio usan una unidad de dos columnas: a la izquierda la prueba v
 
 ## Elevation & Depth
 
-La profundidad se declara **una sola vez y con borde de 1px** (`border-gray-200`). Hay **una sola sombra** en todo el sitio: la del CTA del hero, que llega con el botón portado de otro proyecto del usuario (`0 14px 30px -10px` en reposo y `0 18px 36px -12px` al pasar por encima). Las utilidades `.theme-card` y `.theme-button-primary`, que llevaban sombras teñidas de azul, eran código muerto y se retiraron junto con `.theme-text-gradient`.
-
-El labio inferior del CTA (los 4px de `ink-max` que le dan volumen) va como **sombra interior** (`inset 0 -4px 0`), no como `border-bottom`. El resultado en pantalla es el mismo, pero un borde grueso sobre esquinas de pastilla está marcado como anti-patrón por el detector, y una sombra interior sigue mejor el radio. Como comparte declaración con la sombra exterior, el `:hover` tiene que repetir las dos.
+La profundidad se declara **una sola vez y con borde de 1px** (`border-gray-200`). **No hay sombras**: las utilidades `.theme-card` y `.theme-button-primary`, que llevaban sombras teñidas de azul, eran código muerto y se retiraron junto con `.theme-text-gradient`. El CTA que se copió de otro proyecto traía una sombra tenida y un labio inferior de 4px; los dos se han quitado, porque este mundo no tiene sombras. Esto elimina las dos únicas desviaciones que el detector marcaba como anti-patrón (texto con degradado y halo de color sin offset).
 
 ## Shapes
 
 Predominan las **esquinas rectas**: `border-radius` es 0 en contenedores, tarjetas, campos y enlaces. Hay dos excepciones documentadas:
 
 - `focus` = 2px — el contorno de foco, para que no se vea roto en esquinas rectas.
-- `pill` = 9999px — el CTA del hero, que llega en forma de pastilla con el botón portado, y los puntos de estado.
+- `button` = 8px — el CTA del hero, que conserva un radio pequeño del botón portado. Empezó siendo una pastilla y se rebajó a petición del usuario.
+- `pill` = 9999px — los puntos de estado.
 
-La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo sería llevar el CTA a 0 o 2px, pero el usuario pidió copiar el botón tal cual. El radio de 12px que figuraba aquí era de `.theme-button-primary` y `.theme-button-secondary`, utilidades muertas que ya no existen.
+La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo sería llevar el CTA a 0 o 2px. El radio de 12px que figuraba aquí era de `.theme-button-primary` y `.theme-button-secondary`, utilidades muertas que ya no existen.
 
 ## Components
 
@@ -231,7 +229,7 @@ Resueltas en esta pasada: el fade-up idéntico en cada sección, los `border-lef
 
 **Desviaciones aceptadas a petición del usuario.** El mundo se había comprometido con la columna única, las esquinas rectas y el acento como única señal. El hero volvió a introducir lo contrario tras una referencia visual aportada por el usuario, que pidió reproducirla «exactamente igual». Lo único que queda en pie de aquella maqueta es la rejilla de dos columnas desde `lg`, hoy 6/6; el resto se ha ido retirando después a petición del usuario: el antetítulo sobre el titular, los chips del enfoque con su rótulo, el bloque de experiencia práctica, los dos botones («Ver experiencia» y el de LinkedIn), la línea de disponibilidad y, por último, el panel lateral con sus dibujos y sus lemas, sustituido por la ilustración del perfil. El titular vuelve a ser lo primero de la columna, así que la desviación del craft floor que suponía el antetítulo ya no existe. El acento sigue siendo el azul del mundo y no el ámbar de la maqueta, por decisión previa del usuario; cambiarlo es una línea en el token `--accent`.
 
-**El CTA está portado de otro proyecto.** El usuario lo copió tal cual desde otro repositorio suyo, y con él llegan tres cosas que este mundo tenía descartadas: forma de pastilla, sombra tenida y una animación en CSS. Los colores sí son los del mundo (tinta, papel y negro puro en el labio inferior de 4px) en vez de los ámbar del original. Dos adaptaciones deliberadas: el tamaño grande del original (`px-8 py-6 text-xl`) se reserva para escritorio, porque en móvil dejaría el botón en unos 80px y se comería el reparto de los cinco bloques; y **no** se ha traído la animación de entrada `.hero-in` que acompaña al botón en su repositorio de origen, porque las animaciones de entrada están prohibidas aquí por decisión previa del propio usuario.
+**El CTA está portado de otro proyecto.** El usuario lo copió desde otro repositorio suyo, pero de aquel botón solo sobrevive lo que no choca con este mundo: la elevación de 2px al pasar por encima y **el brillo** (`@keyframes ctaShine`), que es la única animación en CSS del sitio. La sombra tenida y el labio inferior de 4px se quitaron a petición del usuario, porque aquí no hay sombras; el radio bajó de pastilla a 8px; y el tamaño volvió al que tenía antes del port, porque el grande del original (`px-8 py-6 text-xl`) dejaba el botón en unos 80px y se comía el reparto de los cinco bloques en móvil. Los colores ya eran los del mundo. Tampoco se ha traído la animación de entrada `.hero-in` que acompaña al botón en su repositorio de origen, porque las animaciones de entrada están prohibidas aquí por decisión previa del propio usuario.
 
 **Procedencia de la ilustración del hero.** Hay dos recortes de la misma escena, y `<picture>` sirve uno u otro según el ancho: `public/images/hero-landscape.webp` (1400×611, WebP q88, 88 kB, de un PNG de 1672×941) por debajo de 1024px, y `public/images/hero-portrait.webp` (1000×1102, WebP q88, 109 kB, de un PNG de 1122×1402) desde 1024px. A los dos se les ha recortado el aire en blanco que traian de origen: 131px arriba en el apaisado, que a tamaño de movil se veian como un hueco de casi 30px entre el header y el dibujo, y 113px en el vertical. Se deja un margen de 8px para que el trazo no toque el borde. El emparejamiento con el tamaño de cada uno vive en la clase `.hero-media` de `Layout.astro`. Ambos PNG los aportó el usuario como archivo adjunto. **Su origen y su licencia no están verificados**: no consta autoría, ni cesión de derechos, ni si viene de un banco de imágenes. Hay que acreditarlo antes de dar por buena la publicación, porque el resto de imágenes del sitio son propias o de clientes. Si no se puede acreditar, hay que sustituirla.
 

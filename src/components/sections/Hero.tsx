@@ -57,16 +57,15 @@ const Hero = ({ content: t }: HeroProps) => {
           {/* Misma idea: en movil la accion y los iconos son dos bloques sueltos,
               y desde lg vuelven a ser una fila centrada. */}
           <div className="contents lg:mt-10 lg:flex lg:flex-wrap lg:items-center lg:justify-center lg:gap-8">
-            {/* Boton portado de otro proyecto del usuario: pastilla, labio
-                inferior de 4px, sombra, elevacion al pasar y el brillo que cruza
-                una vez. La forma y la animacion son las del original; los
-                colores, los del mundo.
-                El tamaño grande del original (px-8 py-6 text-xl) se reserva para
-                escritorio: en movil dejaria el boton en unos 80px de alto y se
-                comeria el reparto de los cinco bloques. */}
+            {/* Boton portado de otro proyecto del usuario. De aquel se conservan
+                la elevacion al pasar por encima y el brillo que cruza una vez;
+                se han quitado la sombra y el labio, porque en este mundo no hay
+                sombras, y el tamaño vuelve al de antes del port: el grande del
+                original dejaba el boton en 80px y se comia el reparto de los
+                cinco bloques en movil. */}
             <a
               href="#experience"
-              className="cta-primary mx-auto flex w-fit min-w-[10rem] items-center justify-center px-6 py-4 text-base font-semibold uppercase tracking-widest lg:mx-0 lg:px-8 lg:py-6 lg:text-xl">
+              className="cta-primary mx-auto flex w-fit min-w-[10rem] items-center justify-center px-6 py-3 text-small font-semibold uppercase tracking-widest lg:mx-0">
               {t.cta}
             </a>
 
