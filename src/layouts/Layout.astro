@@ -214,6 +214,7 @@ const jsonLd = {
 
       /* === ACCENTS === */
       --accent-primary: #3b82f6;       /* Azul profesional */
+      --on-accent: #0a0b0f;            /* Texto sobre el acento: 5.35:1 */
       --accent-primary-hover: #2563eb;
       --accent-secondary: #06b6d4;     /* Cian moderno */
       --accent-tertiary: #8b5cf6;      /* Púrpura elegante */
@@ -259,6 +260,7 @@ const jsonLd = {
 
       /* === ACCENTS === */
       --accent-primary: #2563eb;       /* Azul más oscuro para contraste */
+      --on-accent: #ffffff;            /* Texto sobre el acento: 5.17:1 */
       --accent-primary-hover: #1d4ed8;
       --accent-secondary: #0891b2;     /* Cian más oscuro */
       --accent-tertiary: #7c3aed;      /* Púrpura más oscuro */
@@ -327,6 +329,8 @@ const jsonLd = {
     html,
     body {
       height: 100%;
+      /* El contenedor de scroll es <html>, no <main>: tenerlo en main no hacia nada. */
+      scroll-behavior: smooth;
       font-family: var(--font-sans);
       background-color: var(--bg-primary);
       color: var(--text-primary);
@@ -336,7 +340,6 @@ const jsonLd = {
     main {
       display: flex;
       flex-direction: column;
-      scroll-behavior: smooth;
       margin: 0;
       padding: 0;
       background-color: var(--bg-primary);
@@ -476,6 +479,31 @@ const jsonLd = {
     /* === DIVIDERS === */
     .divide-accent-500\/10 > * + * {
       border-color: color-mix(in srgb, var(--accent) 10%, transparent) !important;
+    }
+
+    /* ==========================================
+       LLAMADA A LA ACCION
+       Se define con los tokens del mundo y no con utilidades de acento: la tabla
+       de remapeo casa nombres exactos de clase, asi que cualquier variante
+       (hover:, dark:) se le escapa y cae en la paleta antigua. El borde tenue
+       anterior componia 1.25:1, practicamente invisible.
+       ========================================== */
+    .cta-primary {
+      border: 1px solid var(--accent);
+      color: var(--text-primary);
+      background-color: transparent;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .cta-primary:hover {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--on-accent);
+    }
+
+    .cta-primary:active {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
     }
 
     /* ==========================================

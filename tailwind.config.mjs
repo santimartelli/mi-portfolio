@@ -12,29 +12,15 @@ export default {
         darktext: {
           300: "#C5C6C7", // Light gray text
         },
+        /*
+         * La escala apunta a los tokens reales. Antes guardaba la paleta teal
+         * abandonada (#66FCF1 / #45A29E), asi que cualquier utilidad de acento
+         * que no cubriera la tabla de remapeo pintaba el color viejo.
+         */
         accent: {
-          400: "#66FCF1", // Bright teal/mint
-          500: "#45A29E", // Darker teal
+          400: "var(--accent)",
+          500: "var(--accent)",
         },
-      },
-      /*
-       * Escala tipografica fluida. Un solo juego de pasos para todo el sitio:
-       * display -> headline -> title-lg -> subhead -> lead -> base -> ui -> small
-       * -> label -> micro. Los titulares usan clamp() para escalar de forma
-       * continua en vez de saltar por breakpoint.
-       */
-      fontSize: {
-        micro: ["0.6875rem", { lineHeight: "1.4", letterSpacing: "0.14em" }],
-        label: ["0.75rem", { lineHeight: "1.4", letterSpacing: "0.1em" }],
-        ui: ["0.8125rem", { lineHeight: "1.5" }],
-        small: ["0.875rem", { lineHeight: "1.6" }],
-        base: ["1rem", { lineHeight: "1.65" }],
-        title: ["1.0625rem", { lineHeight: "1.4" }],
-        lead: ["1.125rem", { lineHeight: "1.6" }],
-        subhead: ["1.25rem", { lineHeight: "1.45" }],
-        "title-lg": ["1.5rem", { lineHeight: "1.3" }],
-        headline: ["clamp(2.4rem, 3.6vw, 3.4rem)", { lineHeight: "1.06", letterSpacing: "-0.01em" }],
-        display: ["clamp(3.2rem, 6.2vw, 5.6rem)", { lineHeight: "0.98", letterSpacing: "-0.02em" }],
       },
       fontFamily: {
         // Fuente unica del sitio. Misma pila que el token --font-sans.

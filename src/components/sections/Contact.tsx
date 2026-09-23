@@ -28,14 +28,14 @@ const Contact = ({ content: t }: ContactProps) => {
             <p className="measure text-lead font-light text-gray-600 dark:text-gray-400">
               {t.description}
             </p>
-            <p className="measure mt-5 font-light leading-relaxed text-gray-500 dark:text-gray-500">
+            <p className="measure mt-5 font-light leading-relaxed text-gray-500 dark:text-gray-400">
               {t.statement}
             </p>
           </div>
         </div>
 
         {/* Canales */}
-        <h3 className="mt-16 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+        <h3 className="mt-16 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
           {t.channelsTitle}
         </h3>
         <ul className="mt-6 list-none border-t border-gray-200 dark:border-gray-700">
@@ -46,15 +46,15 @@ const Contact = ({ content: t }: ContactProps) => {
                 {...(channel.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
                 className="grid items-baseline gap-2 py-5 transition-colors duration-200 hover:bg-gray-50 lg:grid-cols-12 lg:gap-12 dark:hover:bg-gray-900/40">
                 <span className="flex items-center gap-3 lg:col-span-3">
-                  <channel.icon className="h-4 w-4 text-gray-500 dark:text-gray-500" aria-hidden="true" />
-                  <span className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+                  <channel.icon className="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true" />
+                  <span className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
                     {channel.label}
                   </span>
                 </span>
                 <span className="font-light text-gray-900 lg:col-span-4 dark:text-gray-100">
                   {channel.value}
                 </span>
-                <span className="text-sm font-light text-gray-500 lg:col-span-5 dark:text-gray-500">
+                <span className="text-sm font-light text-gray-500 lg:col-span-5 dark:text-gray-400">
                   {channel.description}
                 </span>
               </a>
@@ -63,10 +63,10 @@ const Contact = ({ content: t }: ContactProps) => {
         </ul>
 
         {/* CV */}
-        <h3 className="mt-16 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+        <h3 className="mt-16 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
           {t.cv.title}
         </h3>
-        <p className="measure mt-4 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-500">
+        <p className="measure mt-4 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
           {t.cv.summary}
         </p>
         <ul className="mt-6 list-none border-t border-gray-200 dark:border-gray-700">
@@ -79,15 +79,15 @@ const Contact = ({ content: t }: ContactProps) => {
                   download={CV_FILES[file.id as CvLocale]}
                   className="grid items-baseline gap-2 py-5 transition-colors duration-200 hover:bg-gray-50 lg:grid-cols-12 lg:gap-12 dark:hover:bg-gray-900/40">
                   <span className="flex items-center gap-3 lg:col-span-3">
-                    <FaDownload className="h-4 w-4 text-gray-500 dark:text-gray-500" aria-hidden="true" />
-                    <span className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+                    <FaDownload className="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true" />
+                    <span className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
                       {file.language} · {file.label}
                     </span>
                   </span>
                   <span className="font-light text-gray-900 lg:col-span-4 dark:text-gray-100">
                     {file.description}
                   </span>
-                  <span className="font-mono text-xs text-gray-500 tabular lg:col-span-5 dark:text-gray-500">
+                  <span className="font-mono text-xs text-gray-500 tabular lg:col-span-5 dark:text-gray-400">
                     PDF · {meta.size} · {meta.lastUpdate}
                   </span>
                 </a>
@@ -99,11 +99,11 @@ const Contact = ({ content: t }: ContactProps) => {
           <li className="grid items-baseline gap-2 border-b border-gray-200 py-5 lg:grid-cols-12 lg:gap-12 dark:border-gray-700">
             <span className="flex items-center gap-3 lg:col-span-3">
               <FaClock className="h-4 w-4 text-gray-400 dark:text-gray-600" aria-hidden="true" />
-              <span className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+              <span className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
                 {t.cv.hotelTech.title}
               </span>
             </span>
-            <span className="font-light text-gray-500 lg:col-span-4 dark:text-gray-500">
+            <span className="font-light text-gray-500 lg:col-span-4 dark:text-gray-400">
               {t.cv.hotelTech.description}
             </span>
             <span className="text-xs uppercase tracking-widest text-gray-400 lg:col-span-5 dark:text-gray-600">
@@ -120,7 +120,7 @@ const Contact = ({ content: t }: ContactProps) => {
           <p className="measure mt-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
             {t.availability.text}
           </p>
-          <p className="measure mt-3 font-light leading-relaxed text-gray-500 dark:text-gray-500">
+          <p className="measure mt-3 font-light leading-relaxed text-gray-500 dark:text-gray-400">
             {t.closing}
           </p>
         </div>

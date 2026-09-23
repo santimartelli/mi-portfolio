@@ -46,7 +46,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                       />
                     </div>
 
-                    <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+                    <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
                       <span>{project.category}</span>
                       <span aria-hidden="true" className="text-gray-300 dark:text-gray-600">/</span>
                       <span className="tabular">{project.period}</span>
@@ -61,7 +61,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                       {project.technologies.join(' · ')}
                     </p>
                     {project.previousStack && (
-                      <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-500">
+                      <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
                         <span className="text-gray-400 dark:text-gray-600">
                           {t.labels.previousStack}:{' '}
                         </span>
@@ -118,7 +118,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                       <div
                         key={key}
                         className="grid gap-2 border-b border-gray-200 py-6 sm:grid-cols-12 sm:gap-8 dark:border-gray-700">
-                        <dt className="text-xs font-medium uppercase tracking-widest text-gray-500 sm:col-span-3 dark:text-gray-500">
+                        <dt className="text-xs font-medium uppercase tracking-widest text-gray-500 sm:col-span-3 dark:text-gray-400">
                           {t.labels[key]}
                         </dt>
                         <dd className="measure font-light leading-relaxed text-gray-600 sm:col-span-9 dark:text-gray-400">
@@ -128,7 +128,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                     ))}
                   </dl>
 
-                  <h4 className="mt-10 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+                  <h4 className="mt-10 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
                     {t.labels.implementation}
                   </h4>
                   <ul className="mt-5 list-none">
@@ -142,7 +142,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                     ))}
                   </ul>
 
-                  <h4 className="mt-10 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+                  <h4 className="mt-10 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
                     {t.labels.result}
                   </h4>
                   <p className="measure mt-4 border-t border-gray-300 pt-4 text-subhead font-light text-black dark:border-gray-600 dark:text-white">
@@ -154,7 +154,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
               {/* Metricas medidas: cruzan toda la anchura */}
               {project.metrics && (
                 <div className="mt-14">
-                  <h4 className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+                  <h4 className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
                     {project.metrics.title}
                   </h4>
                   <table className="mt-5 w-full border-collapse">
@@ -164,7 +164,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                           <th
                             key={column}
                             scope="col"
-                            className="border-b border-gray-300 pb-3 pr-6 text-left text-xs font-medium uppercase tracking-widest text-gray-500 dark:border-gray-600 dark:text-gray-500">
+                            className="border-b border-gray-300 pb-3 pr-6 text-left text-xs font-medium uppercase tracking-widest text-gray-500 dark:border-gray-600 dark:text-gray-400">
                             {column}
                           </th>
                         ))}
@@ -179,7 +179,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                               className={`border-b border-gray-200 py-3 pr-6 dark:border-gray-700 ${
                                 cellIndex === 0
                                   ? 'font-light text-gray-700 dark:text-gray-300'
-                                  : 'font-mono text-sm tabular text-gray-500 dark:text-gray-500'
+                                  : 'font-mono text-sm tabular text-gray-500 dark:text-gray-400'
                               }`}>
                               {cell}
                             </td>

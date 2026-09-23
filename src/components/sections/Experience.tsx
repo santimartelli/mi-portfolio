@@ -67,14 +67,14 @@ const Experience = ({ content: t }: ExperienceProps) => {
               <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
                 {/* Metadatos */}
                 <div className="lg:col-span-3">
-                  <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-500">
+                  <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
                     {entry.period}
                   </p>
                   <p className="mt-3 inline-block border border-gray-300 px-2 py-1 text-[0.65rem] font-medium uppercase tracking-widest text-gray-600 dark:border-gray-600 dark:text-gray-400">
                     {t.trackLabels[entry.track]}
                   </p>
                   {entry.location && (
-                    <p className="mt-3 text-sm font-light text-gray-500 dark:text-gray-500">
+                    <p className="mt-3 text-sm font-light text-gray-500 dark:text-gray-400">
                       {entry.location}
                     </p>
                   )}
@@ -104,7 +104,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
                   </ul>
 
                   {entry.tools && entry.tools.length > 0 && (
-                    <p className="mt-6 font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500">
+                    <p className="mt-6 font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
                       {entry.tools.join(' · ')}
                     </p>
                   )}
@@ -114,7 +114,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
           ))}
         </ol>
 
-        <p className="measure mt-10 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-500">
+        <p className="measure mt-10 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
           {t.note}
         </p>
       </div>

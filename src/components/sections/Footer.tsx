@@ -36,7 +36,7 @@ const Footer = ({ content: t }: FooterProps) => {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-16">
           <div>
             <p className="text-title font-medium text-black dark:text-white">{t.brand.name}</p>
-            <p className="mt-4 max-w-[38ch] text-sm font-light leading-relaxed text-gray-500 dark:text-gray-500">
+            <p className="mt-4 max-w-[38ch] text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
               {t.brand.description}
             </p>
             <ul className="mt-6 flex list-none items-center gap-5">
@@ -56,7 +56,7 @@ const Footer = ({ content: t }: FooterProps) => {
           </div>
 
           <nav aria-label={t.navigation.title}>
-            <h2 className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+            <h2 className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
               {t.navigation.title}
             </h2>
             <ul className="mt-5 list-none space-y-2">
@@ -73,7 +73,7 @@ const Footer = ({ content: t }: FooterProps) => {
           </nav>
 
           <div>
-            <h2 className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+            <h2 className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
               {t.navigation.links.contact}
             </h2>
             <ul className="mt-5 list-none space-y-2">
@@ -90,7 +90,7 @@ const Footer = ({ content: t }: FooterProps) => {
               ))}
             </ul>
 
-            <h2 className="mt-8 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+            <h2 className="mt-8 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
               {t.location.label}
             </h2>
             <p className="mt-5 flex items-center gap-2 font-light text-gray-600 dark:text-gray-400">
@@ -100,22 +100,22 @@ const Footer = ({ content: t }: FooterProps) => {
           </div>
 
           <div>
-            <h2 className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+            <h2 className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
               {t.technologies.title}
             </h2>
-            <p className="mt-5 font-light leading-relaxed text-gray-500 dark:text-gray-500">
+            <p className="mt-5 font-light leading-relaxed text-gray-500 dark:text-gray-400">
               {t.builtWith.items.join(' · ')}
             </p>
-            <h2 className="mt-8 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-500">
+            <h2 className="mt-8 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
               {t.builtWith.label}
             </h2>
-            <p className="mt-5 font-light leading-relaxed text-gray-500 dark:text-gray-500">
+            <p className="mt-5 font-light leading-relaxed text-gray-500 dark:text-gray-400">
               {t.brand.name}
             </p>
           </div>
         </div>
 
-        <p className="mt-14 border-t border-gray-200 pt-6 text-xs font-light text-gray-500 dark:border-gray-700 dark:text-gray-500">
+        <p className="mt-14 border-t border-gray-200 pt-6 text-xs font-light text-gray-500 dark:border-gray-700 dark:text-gray-400">
           © {currentYear} {t.brand.name}. {t.copyright}
         </p>
       </div>

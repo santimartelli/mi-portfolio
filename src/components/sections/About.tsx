@@ -58,7 +58,7 @@ const About = ({ content: t }: AboutProps) => {
           <div className="mt-8 grid gap-10 border-t border-gray-200 pt-8 md:grid-cols-3 lg:gap-16 dark:border-gray-700">
             {t.principles.items.map((item) => (
               <div key={item.title}>
-                <h4 className="text-label font-medium uppercase text-gray-500 dark:text-gray-500">
+                <h4 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
                   {item.title}
                 </h4>
                 <p className="mt-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">

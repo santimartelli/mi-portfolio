@@ -28,7 +28,7 @@ const Skills = ({ content: t }: SkillsProps) => {
                   {group.title}
                 </span>
                 {group.note && (
-                  <span className="measure mt-3 block text-sm font-light leading-relaxed text-gray-500 dark:text-gray-500">
+                  <span className="measure mt-3 block text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
                     {group.note}
                   </span>
                 )}
@@ -39,7 +39,7 @@ const Skills = ({ content: t }: SkillsProps) => {
                     <li key={item.label} className="font-light text-gray-700 dark:text-gray-300">
                       {item.label}
                       {item.level && (
-                        <span className="text-gray-500 dark:text-gray-500"> · {item.level}</span>
+                        <span className="text-gray-500 dark:text-gray-400"> · {item.level}</span>
                       )}
                       <span aria-hidden="true" className="px-2 text-gray-300 dark:text-gray-600">
                         /
@@ -63,7 +63,7 @@ const Skills = ({ content: t }: SkillsProps) => {
                   key={language.name}
                   className="flex items-baseline justify-between gap-4 border-b border-gray-200 py-3 dark:border-gray-700">
                   <dt className="font-light text-gray-700 dark:text-gray-300">{language.name}</dt>
-                  <dd className="font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500">
+                  <dd className="font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
                     {language.level}
                   </dd>
                 </div>
@@ -78,7 +78,7 @@ const Skills = ({ content: t }: SkillsProps) => {
               {t.education.items.map((item) => (
                 <li key={item.title} className="border-b border-gray-200 py-3 dark:border-gray-700">
                   <p className="font-light text-gray-700 dark:text-gray-300">{item.title}</p>
-                  <p className="mt-1 font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-500">
+                  <p className="mt-1 font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
                     {item.meta}
                   </p>
                 </li>
