@@ -1,0 +1,451 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-23T14:29:40Z",
+  "title": "Design System: Santiago Martelli — portfolio",
+  "extensions": {
+    "themes": {
+      "light": {
+        "label": "Papel",
+        "paper": "#faf9f6",
+        "ink": "#17160f"
+      },
+      "dark": {
+        "label": "Tinta",
+        "paper": "#14130f",
+        "ink": "#f6f3ec"
+      }
+    },
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "purpose": "El suelo del tema claro.",
+        "canonical": "#faf9f6",
+        "tonalRamp": [
+          "#3e3e3e",
+          "#515150",
+          "#646462",
+          "#777675",
+          "#8a8987",
+          "#faf9f6",
+          "#fbfaf7",
+          "#fbfaf8",
+          "#fcfbf9",
+          "#fcfcfa",
+          "#fdfdfb"
+        ],
+        "darkVariant": "#14130f"
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Warm Ink",
+        "purpose": "Titulares y relleno del boton primario.",
+        "canonical": "#17160f",
+        "tonalRamp": [
+          "#060604",
+          "#070705",
+          "#090906",
+          "#0b0a07",
+          "#0d0c08",
+          "#17160f",
+          "#33322c",
+          "#4f4e49",
+          "#6b6a65",
+          "#868682",
+          "#a2a29f"
+        ],
+        "darkVariant": "#f6f3ec"
+      },
+      "body": {
+        "role": "neutral",
+        "displayName": "Body Ink",
+        "purpose": "Texto corrido.",
+        "canonical": "#2e2c26",
+        "tonalRamp": [
+          "#0c0b0a",
+          "#0f0e0c",
+          "#12120f",
+          "#161512",
+          "#191815",
+          "#2e2c26",
+          "#474540",
+          "#605f5a",
+          "#797874",
+          "#92918e",
+          "#ababa8"
+        ],
+        "darkVariant": "#d9d4c8"
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "purpose": "Etiquetas y metadatos.",
+        "canonical": "#635e54",
+        "tonalRamp": [
+          "#191815",
+          "#201f1b",
+          "#282622",
+          "#2f2d28",
+          "#36342e",
+          "#635e54",
+          "#767169",
+          "#88857d",
+          "#9b9892",
+          "#aeaba6",
+          "#c1bfbb"
+        ],
+        "darkVariant": "#a49e90"
+      },
+      "faint": {
+        "role": "neutral",
+        "displayName": "Faint Ink",
+        "purpose": "Micro-etiquetas; el neutro mas claro que cumple AA.",
+        "canonical": "#6f6b5e",
+        "tonalRamp": [
+          "#1c1b18",
+          "#24231f",
+          "#2c2b26",
+          "#35332d",
+          "#3d3b34",
+          "#6f6b5e",
+          "#807d71",
+          "#928f85",
+          "#a3a098",
+          "#b4b2ab",
+          "#c5c4bf"
+        ],
+        "darkVariant": "#948e80"
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Signal Amber",
+        "purpose": "Solo relleno, bano o punto. Nunca texto sobre papel.",
+        "canonical": "#e0a63a",
+        "tonalRamp": [
+          "#382a0e",
+          "#493613",
+          "#5a4217",
+          "#6a4f1c",
+          "#7b5b20",
+          "#e0a63a",
+          "#e4b152",
+          "#e7bb69",
+          "#ebc681",
+          "#efd199",
+          "#f3dbb0"
+        ],
+        "darkVariant": "#e0a63a"
+      },
+      "accent-ink": {
+        "role": "secondary",
+        "displayName": "Amber Ink",
+        "purpose": "El ambar legible: enlaces y hover del boton.",
+        "canonical": "#7d5102",
+        "tonalRamp": [
+          "#1f1400",
+          "#291a01",
+          "#322001",
+          "#3b2601",
+          "#452d01",
+          "#7d5102",
+          "#8d6620",
+          "#9c7b3f",
+          "#ac905d",
+          "#bba57b",
+          "#cbb99a"
+        ],
+        "darkVariant": "#eab95e"
+      },
+      "patina": {
+        "role": "tertiary",
+        "displayName": "Patina",
+        "purpose": "Verde azulado secundario.",
+        "canonical": "#1c646d",
+        "tonalRamp": [
+          "#07191b",
+          "#092023",
+          "#0b282c",
+          "#0d3034",
+          "#0f373c",
+          "#1c646d",
+          "#37777f",
+          "#528990",
+          "#6e9ca2",
+          "#89aeb3",
+          "#a4c1c5"
+        ],
+        "darkVariant": "#62b6bf"
+      },
+      "paper-sunk": {
+        "role": "neutral",
+        "displayName": "Sunken Paper",
+        "purpose": "Hueco bajo las imagenes.",
+        "canonical": "#f1efe8",
+        "tonalRamp": [
+          "#3c3c3a",
+          "#4e4e4b",
+          "#60605d",
+          "#72726e",
+          "#858380",
+          "#f1efe8",
+          "#f3f1eb",
+          "#f4f3ee",
+          "#f6f5f0",
+          "#f8f7f3",
+          "#f9f9f6"
+        ],
+        "darkVariant": "#100f0c"
+      },
+      "paper-raised": {
+        "role": "neutral",
+        "displayName": "Raised Paper",
+        "purpose": "Superficies despegadas.",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#404040",
+          "#535353",
+          "#666666",
+          "#797979",
+          "#8c8c8c",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff"
+        ],
+        "darkVariant": "#1c1a15"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "fontFamily": "'Alumni Sans Variable', 'Alumni Sans', sans-serif",
+        "fontSize": "clamp(2.75rem, 1.6rem + 4.6vw, 6rem)",
+        "fontWeight": 500,
+        "lineHeight": 0.92,
+        "letterSpacing": "-0.03em",
+        "purpose": "Nombre en el hero. Techo 6rem."
+      },
+      "display-sub": {
+        "fontFamily": "'Alumni Sans Variable', 'Alumni Sans', sans-serif",
+        "fontSize": "clamp(2rem, 1.4rem + 2.6vw, 3.5rem)",
+        "fontWeight": 500,
+        "lineHeight": 1.02,
+        "letterSpacing": "-0.025em",
+        "purpose": "Titular de posicionamiento y titulos de caso."
+      },
+      "headline": {
+        "fontFamily": "'Alumni Sans Variable', 'Alumni Sans', sans-serif",
+        "fontSize": "clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem)",
+        "fontWeight": 500,
+        "lineHeight": 1.12,
+        "letterSpacing": "-0.02em",
+        "purpose": "Titulares de seccion."
+      },
+      "title": {
+        "fontFamily": "'Alumni Sans Variable', 'Alumni Sans', sans-serif",
+        "fontSize": "1.375rem",
+        "fontWeight": 500,
+        "lineHeight": 1.3,
+        "letterSpacing": "normal",
+        "purpose": "Empresas, grupos y subsecciones."
+      },
+      "lead": {
+        "fontFamily": "'Albert Sans Variable', 'Albert Sans', sans-serif",
+        "fontSize": "1.25rem",
+        "fontWeight": 400,
+        "lineHeight": 1.6,
+        "letterSpacing": "normal",
+        "purpose": "Entradillas y texto destacado."
+      },
+      "body": {
+        "fontFamily": "'Albert Sans Variable', 'Albert Sans', sans-serif",
+        "fontSize": "1.0625rem",
+        "fontWeight": 400,
+        "lineHeight": 1.7,
+        "letterSpacing": "normal",
+        "purpose": "Texto corrido. Medida 68ch."
+      },
+      "meta": {
+        "fontFamily": "'Albert Sans Variable', 'Albert Sans', sans-serif",
+        "fontSize": "0.8125rem",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": "normal",
+        "purpose": "Descripciones secundarias."
+      },
+      "micro": {
+        "fontFamily": "'JetBrains Mono Variable', ui-monospace, monospace",
+        "fontSize": "0.6875rem",
+        "fontWeight": 400,
+        "lineHeight": 1.35,
+        "letterSpacing": "0.14em",
+        "purpose": "Etiquetas, periodos, correos y cifras."
+      }
+    },
+    "shadows": [
+      {
+        "name": "none",
+        "value": "none",
+        "purpose": "El sistema no tiene elevacion: separa con filetes de 1px y espacio."
+      }
+    ],
+    "motion": [
+      {
+        "name": "name-reveal",
+        "value": "0.9s cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "El unico momento de motion: barrido de mascara sobre el nombre al cargar."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "La unica curva del sitio, para hover y transiciones de estado."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Anula animacion y transiciones; el contenido nunca depende de ellas."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px",
+        "purpose": "Pasa a rejilla de columnas."
+      },
+      {
+        "name": "md",
+        "value": "768px",
+        "purpose": "Rejillas de dos y tres columnas."
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "purpose": "Rejilla de cuatro columnas en el pie."
+      }
+    ],
+    "accessibility": {
+      "standard": "WCAG 2.1 AA",
+      "contrast": {
+        "light": {
+          "ink": 17.22,
+          "body": 13.26,
+          "muted": 6.12,
+          "faint": 5.06,
+          "accent-ink": 6.54,
+          "patina": 6.45,
+          "paper-on-ink": 17.22
+        },
+        "dark": {
+          "ink": 16.77,
+          "body": 12.57,
+          "muted": 6.97,
+          "faint": 5.7,
+          "accent-ink": 10.27,
+          "patina": 7.93,
+          "paper-on-ink": 16.77
+        }
+      },
+      "notes": [
+        "Todos los pares de texto pequeno superan 4.5:1 en ambos temas.",
+        "El acento ambar no se usa como color de texto sobre papel (1.9:1); para eso existe accent-ink.",
+        "El contenido es visible por defecto: sin JavaScript no hay ningun elemento oculto."
+      ]
+    }
+  },
+  "components": [
+    {
+      "name": "Boton primario",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Accion principal. Bloque solido de tinta, esquinas rectas.",
+      "html": "<a class=\"btn\" href=\"#experience\">Ver experiencia</a>",
+      "css": ".btn{display:inline-block;background:var(--ink);color:var(--paper);padding:.75rem 1.5rem;font-size:.6875rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:0;transition:background-color .2s cubic-bezier(.16,1,.3,1)}.btn:hover{background:var(--accent-ink)}"
+    },
+    {
+      "name": "Enlace de texto",
+      "kind": "link",
+      "refersTo": "link-inline",
+      "description": "Enlace con subrayado de 1px y offset; el subrayado se intensifica en hover.",
+      "html": "<a href=\"mailto:santimartelli@gmail.com\">santimartelli@gmail.com</a>",
+      "css": "a{color:var(--accent-ink);text-decoration-thickness:1px;text-underline-offset:.22em;text-decoration-color:var(--rule-strong)}a:hover{text-decoration-color:currentColor}"
+    },
+    {
+      "name": "Filtro",
+      "kind": "button",
+      "refersTo": "button-filter",
+      "description": "Conmutador con aria-pressed; el activo se invierte a tinta solida.",
+      "html": "<button class=\"filter\" aria-pressed=\"true\">Toda la trayectoria</button>",
+      "css": ".filter{border:1px solid var(--rule);background:transparent;color:var(--muted);padding:.5rem .875rem;font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;border-radius:0}.filter[aria-pressed=\"true\"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}"
+    },
+    {
+      "name": "Fila enlazada",
+      "kind": "link",
+      "refersTo": "row-link",
+      "description": "Rejilla de 12 columnas con etiqueta mono, valor y descripcion. Nunca una tarjeta.",
+      "html": "<a class=\"row\" href=\"#\"><span class=\"row-label\">Email</span><span class=\"row-value\">santimartelli@gmail.com</span></a>",
+      "css": ".row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem;padding:1.25rem 0;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink)}.row:hover{background:var(--accent-wash)}.row-label{grid-column:span 3;font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}.row-value{grid-column:span 4}"
+    },
+    {
+      "name": "Tabla de metricas",
+      "kind": "table",
+      "refersTo": "table-metrics",
+      "description": "Cabecera micro mono y cifras con font-variant-numeric tabular.",
+      "html": "<table class=\"metrics\"><thead><tr><th scope=\"col\">Metrica</th><th scope=\"col\">Antes</th></tr></thead><tbody><tr><td>CSS gzip</td><td>180 kB</td></tr></tbody></table>",
+      "css": ".metrics{width:100%;border-collapse:collapse}.metrics th{text-align:left;font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--rule-strong);padding-bottom:.75rem}.metrics td{border-bottom:1px solid var(--rule);padding:.75rem 1.5rem .75rem 0}.metrics td+td{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--muted)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Publicación profesional sobre papel cálido",
+    "overview": "El portfolio se lee como una publicación, no como una landing de tarjetas. La jerarquía la hacen la escala tipográfica, el espacio y los filetes de un píxel. Dos temas del mismo mundo: papel cálido de día, tinta cálida de noche. El acento ámbar es una señal escasa, nunca un tema.",
+    "keyCharacteristics": [
+      "Cero elevación: ni una sombra en todo el sitio. Separan el filete de 1px y el espacio.",
+      "Esquinas rectas en todo el sistema; el foco visible es lo único con radio (1px).",
+      "Tres familias con trabajos disjuntos: condensada para display, sans para texto, mono solo para datos.",
+      "Un solo momento de motion: el barrido del nombre. Ninguna sección tiene animación de entrada.",
+      "Contenido visible por defecto: sin JavaScript no hay nada oculto y la página se lee entera."
+    ],
+    "rules": [
+      {
+        "name": "El ámbar no escribe",
+        "body": "accent solo aparece como relleno, baño o punto. Cualquier texto ámbar legible usa accent-ink (6.54:1 en claro).",
+        "section": "colors"
+      },
+      {
+        "name": "Ningún kicker sobre un titular",
+        "body": "Ningún titular lleva etiqueta encima. El titular se sostiene por escala y peso.",
+        "section": "typography"
+      },
+      {
+        "name": "Sin elevación",
+        "body": "No se introducen sombras, halos ni desenfoques decorativos. La profundidad se declara una sola vez y con filetes.",
+        "section": "elevation"
+      },
+      {
+        "name": "El filete es la estructura",
+        "body": "Las secciones y las filas se separan con border-top o border-bottom de 1px en color rule. No hay contenedores con caja.",
+        "section": "layout"
+      },
+      {
+        "name": "Techo de display",
+        "body": "Ningún texto pasa de 6rem ni de -0.03em de tracking.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Construye jerarquía con escala, peso y espacio antes que con color.",
+      "Usa accent-ink para texto ámbar legible.",
+      "Separa con filetes de 1px y deja que el espacio haga el resto.",
+      "Etiqueta con mono solo lo que es dato: fecha, versión, correo, cifra.",
+      "Mantén una sola curva de easing en todo el sitio."
+    ],
+    "donts": [
+      "No pongas kicker ni etiqueta encima de un titular.",
+      "No uses accent como color de texto sobre papel.",
+      "No introduzcas sombras, halos ni desenfoques decorativos.",
+      "No metas tarjetas dentro de tarjetas ni rejillas de contenedores iguales.",
+      "No uses border-left de color de más de 1px en tarjetas, filas ni avisos.",
+      "No añadas animaciones de entrada por sección."
+    ]
+  }
+}
