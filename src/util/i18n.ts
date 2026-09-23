@@ -14,8 +14,8 @@ export type Locale = 'es' | 'en';
 
 export interface HeroTranslations {
   headline: string;
-  /** Parrafos de presentacion, en orden. */
-  description: string[];
+  /** Parrafo de presentacion. Va en un solo bloque, sin cortes. */
+  description: string;
   /**
    * Texto alternativo de la ilustracion del hero. Es contenido, no decoracion:
    * la imagen ocupa una columna entera y aporta significado, asi que se

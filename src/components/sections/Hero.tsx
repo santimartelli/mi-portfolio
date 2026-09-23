@@ -1,5 +1,5 @@
-// Hero en dos columnas: a la izquierda el titular, los parrafos de presentacion
-// y el contacto directo; a la derecha la ilustracion del ecosistema del hotel.
+// Hero en dos columnas: a la izquierda el titular, el parrafo de presentacion y
+// el contacto directo; a la derecha la ilustracion del ecosistema del hotel.
 // Sin estado, sin JavaScript y sin ninguna animacion: el hero se renderiza
 // entero en el servidor.
 import { FaEnvelope, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
@@ -27,13 +27,9 @@ const Hero = ({ content: t }: HeroProps) => {
             {t.headline}
           </h1>
 
-          {t.description.map((paragraph) => (
-            <p
-              key={paragraph}
-              className="measure mt-6 text-pretty text-lead font-light text-gray-600 dark:text-gray-400">
-              {paragraph}
-            </p>
-          ))}
+          <p className="measure mt-6 text-pretty text-lead font-light text-gray-600 dark:text-gray-400">
+            {t.description}
+          </p>
 
           <ul className="mt-10 flex list-none items-center gap-1">
             {contactLinks.map((link) => (
