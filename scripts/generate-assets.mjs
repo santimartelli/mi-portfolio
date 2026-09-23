@@ -154,6 +154,48 @@ const repositioningSvg = ({ brand, beforeLabel, afterLabel, before, after }) => 
 </svg>
 `;
 
+/**
+ * Imagen del caso de estudio de recep-app: mapa de módulos reales.
+ *
+ * Es un diagrama, no una captura de pantalla: la aplicación es privada y no
+ * publico su interfaz. Los módulos que aparecen son los que existen de verdad.
+ */
+const recepAppSvg = ({ title, subtitle, modules, footer }) => {
+  const COLS = 4;
+  const CELL_W = 240;
+  const CELL_H = 150;
+  const GAP_X = 20;
+  const GAP_Y = 20;
+  const ORIGIN_X = 80;
+  const ORIGIN_Y = 208;
+
+  const cells = modules
+    .map((mod, index) => {
+      const col = index % COLS;
+      const row = Math.floor(index / COLS);
+      const x = ORIGIN_X + col * (CELL_W + GAP_X);
+      const y = ORIGIN_Y + row * (CELL_H + GAP_Y);
+      return `
+  <rect x="${x}" y="${y}" width="${CELL_W}" height="${CELL_H}" fill="${COLORS.surface}" fill-opacity="0.8" stroke="${COLORS.border}" stroke-width="1"/>
+  <rect x="${x}" y="${y}" width="4" height="${CELL_H}" fill="${COLORS.accent}"/>
+  <text x="${x + 24}" y="${y + 58}" font-family="${FONT_STACK}" font-size="22" font-weight="600" fill="${COLORS.text}">${escapeXml(mod.name)}</text>
+  <text x="${x + 24}" y="${y + 92}" font-family="${FONT_STACK}" font-size="15" font-weight="400" fill="${COLORS.muted}">${escapeXml(mod.detail)}</text>`;
+    })
+    .join('\n');
+
+  return `
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  ${background(1200, 675)}
+  <rect x="80" y="64" width="56" height="4" fill="${COLORS.accent}"/>
+  <text x="80" y="128" font-family="${FONT_STACK}" font-size="46" font-weight="700" letter-spacing="-0.5" fill="${COLORS.text}">${escapeXml(title)}</text>
+  <text x="80" y="168" font-family="${FONT_STACK}" font-size="20" font-weight="400" fill="${COLORS.muted}">${escapeXml(subtitle)}</text>
+${cells}
+  <line x1="80" y1="572" x2="1120" y2="572" stroke="${COLORS.border}" stroke-width="1"/>
+  <text x="80" y="612" font-family="${FONT_STACK}" font-size="16" font-weight="500" letter-spacing="1" fill="${COLORS.muted}">${escapeXml(footer)}</text>
+</svg>
+`;
+};
+
 // ---------------------------------------------------------------------------
 // Ejecución
 // ---------------------------------------------------------------------------
@@ -231,6 +273,31 @@ await sharp(
   .webp({ quality: 88, effort: 5 })
   .toFile(repositioningOut);
 await report(repositioningOut);
+
+// recep-app: diagrama de módulos (no es una captura: la app es privada).
+const recepAppOut = join(PUBLIC, 'images', 'recep-app.webp');
+await sharp(
+  Buffer.from(
+    recepAppSvg({
+      title: 'recep-app',
+      subtitle: 'Operaciones diarias de un aparthotel de 33 apartamentos',
+      modules: [
+        { name: 'Arrivals', detail: 'in/out-of-hours checklist' },
+        { name: 'Templates', detail: 'multilingual messages' },
+        { name: 'Quotes', detail: 'deterministic pricing' },
+        { name: 'Departures', detail: 'deposits and inspection' },
+        { name: 'Housekeeping', detail: 'weekly cleaning schedule' },
+        { name: 'Maintenance', detail: 'pending jobs' },
+        { name: 'Reviews', detail: 'AI-assisted drafts' },
+        { name: 'PMS import', detail: 'reconciles the export' },
+      ],
+      footer: 'React 19 · Fastify · PostgreSQL · pure domain package · Docker',
+    })
+  )
+)
+  .webp({ quality: 88, effort: 5 })
+  .toFile(recepAppOut);
+await report(recepAppOut);
 
 console.log('Imágenes sociales:');
 
