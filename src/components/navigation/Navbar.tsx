@@ -60,7 +60,7 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
 
   return (
     <nav aria-label={t.menuLabel} className="nav-bar fixed inset-x-0 top-0 z-50 border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950">
-      <div className="shell flex h-16 items-center justify-between gap-6">
+      <div className="shell flex h-16 items-center justify-between gap-3 sm:gap-6">
         <a href={homeHref} className="shrink-0">
           <Logo />
         </a>

@@ -182,7 +182,7 @@ La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo se
 
 ## Components
 
-- **Marca** (`Logo`): el nombre y, a continuación, el posicionamiento, en una sola línea y sin separador. La jerarquía la hacen el peso y el color —nombre en semibold y tinta, posicionamiento en light y gris—, no un signo. Sin caja de iniciales: el nombre se sostiene solo. En pantallas estrechas la segunda parte se oculta porque no cabe junto a los controles.
+- **Marca** (`Logo`): dos líneas apiladas —el nombre arriba y el posicionamiento debajo—, sin caja de iniciales y sin separador. La jerarquía la hacen el peso y el color: nombre en semibold y tinta, posicionamiento en light y gris. Dos renglones ocupan menos a lo ancho que uno solo con las dos cosas, así que el posicionamiento se ve también en móvil; el hueco del header se reduce en pantallas estrechas para dejarle sitio.
 - **Navbar**: fijo, con filete inferior: la marca, el botón de idioma y los items de los desplegables usan la fuente del sitio, heredada del `body`. Las seis secciones viven en un menú desplegable que se abre con el botón de hamburguesa en todos los tamaños. La barra no se anima a sí misma, así que es visible aunque no haya JavaScript.
 - **Desplegables** (menú y selector de idioma): el mismo panel estrecho alineado a la derecha (`w-56`), con borde completo, `p-3` y items compactos cuyo estado activo se marca con fondo y un punto a la derecha. Comparten variantes de motion y clases en `dropdownMotion.ts`, así que no pueden divergir.
 - **Filtros** (experiencia): rectángulos con filete; el activo se invierte a tinta sólida. Llevan `aria-pressed`.

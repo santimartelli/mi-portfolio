@@ -495,8 +495,8 @@
       "name": "Marca",
       "kind": "logo",
       "refersTo": "logo",
-      "description": "Nombre y posicionamiento seguidos, en una linea y sin separador: la jerarquia la hacen el peso y el color. Hereda la pila de display del header.",
-      "html": "<a href=\"/\"><span class=\"text-lg font-semibold\">Santiago Martelli</span><span class=\"hidden text-sm text-gray-500 sm:inline\">Hospitality + Technology</span></a>",
+      "description": "Dos lineas apiladas: el nombre arriba y el posicionamiento debajo, sin caja de iniciales ni separador. La jerarquia la hacen el peso y el color.",
+      "html": "<a href=\"/\"><span class=\"flex flex-col leading-tight\"><span class=\"text-sm font-semibold sm:text-lg\">Santiago Martelli</span><span class=\"text-[0.65rem] font-light text-gray-500 sm:text-sm\">Hospitality + Technology</span></span></a>",
       "css": ".font-display{font-family:var(--font-display)}"
     },
     {
