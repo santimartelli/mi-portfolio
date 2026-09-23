@@ -509,7 +509,7 @@
       },
       {
         "name": "contenedor",
-        "value": "1400px",
+        "value": "1600px",
         "purpose": "Techo de .shell. Medida de lectura 64ch."
       }
     ],
