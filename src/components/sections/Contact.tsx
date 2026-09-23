@@ -38,7 +38,7 @@ const Contact = ({ content: t }: ContactProps) => {
         <h3 className="mt-16 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
           {t.channelsTitle}
         </h3>
-        <ul className="mt-6 list-none border-t border-gray-200 dark:border-gray-700">
+        <ul className="mt-6 list-none">
           {channels.map((channel) => (
             <li key={channel.id} className="border-b border-gray-200 dark:border-gray-700">
               <a

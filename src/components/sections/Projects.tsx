@@ -24,7 +24,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
           </p>
         </div>
 
-        <div className="mt-16 border-t border-gray-200 dark:border-gray-700">
+        <div className="mt-16">
           {t.projects.map((project) => (
             <article
               key={project.id}

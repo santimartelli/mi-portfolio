@@ -17,7 +17,7 @@ const About = ({ content: t }: AboutProps) => {
         </p>
 
         {/* Cada etapa: etiqueta a la izquierda, prosa a la derecha. Filas, no cajas. */}
-        <div className="mt-16 border-t border-gray-200 dark:border-gray-700">
+        <div className="mt-16">
           {t.story.map((block) => (
             <article
               key={block.id}

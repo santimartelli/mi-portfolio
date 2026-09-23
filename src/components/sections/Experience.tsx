@@ -61,7 +61,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
           })}
         </div>
 
-        <ol className="mt-14 list-none border-t border-gray-200 dark:border-gray-700">
+        <ol className="mt-14 list-none">
           {entries.map((entry) => (
             <li key={entry.id} className="border-b border-gray-200 py-10 dark:border-gray-700">
               <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">

@@ -18,7 +18,7 @@ const Skills = ({ content: t }: SkillsProps) => {
           </p>
         </div>
 
-        <dl className="mt-16 border-t border-gray-200 dark:border-gray-700">
+        <dl className="mt-16">
           {t.groups.map((group) => (
             <div
               key={group.id}
