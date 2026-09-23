@@ -587,6 +587,16 @@ const jsonLd = {
      * sin deformarla: con una proporcion fija y el ancho al 100%, cualquier tope
      * de alto la aplasta.
      *
+     * Desde lg la imagen se pega al borde derecho de su columna, no se centra en
+     * ella. El bloque de texto arranca en el borde izquierdo del contenedor, asi
+     * que con la imagen en el derecho las dos mitades quedan a la misma
+     * distancia del borde de la pagina, que es lo que hace que el hero se lea
+     * centrado y alineado con la rejilla del resto de secciones. Centrada en su
+     * columna, la imagen solo llegaba a su borde cuando el tope de alto no
+     * encogia lo bastante: el aire que le sobraba a la derecha era justo lo que
+     * descentraba la composicion. Ese es el unico eje que cambia; el vertical
+     * sigue centrado por el propio grid.
+     *
      * Va en el CSS global y no con utilidades de Tailwind a proposito. Con
      * `lg:aspect-auto` Tailwind emitia ademas un `.aspect-auto` suelto y global,
      * que por orden de fuente ganaba al aspect-ratio de movil y dejaba la imagen
@@ -604,7 +614,8 @@ const jsonLd = {
         max-width: 100%;
         aspect-ratio: auto;
         max-height: calc(100vh - 16rem);
-        margin-inline: auto;
+        margin-inline-start: auto;
+        margin-inline-end: 0;
       }
     }
 
