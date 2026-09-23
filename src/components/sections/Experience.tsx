@@ -28,7 +28,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
   );
 
   return (
-    <section id="experience" className="border-t border-gray-200 py-20 sm:py-28 dark:border-gray-700">
+    <section id="experience" className="section-rule py-20 sm:py-28">
       <div className="shell">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">

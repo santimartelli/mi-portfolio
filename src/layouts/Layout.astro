@@ -548,6 +548,30 @@ const jsonLd = {
     }
 
     /* ==========================================
+       FILETE QUE ABRE CADA SECCION
+       Cada seccion se separa de la anterior con una sola regla de 1px: la
+       misma que dibujaba el Divider que se retiro, un gris que se desvanece en
+       los dos costados para que la linea no toque los bordes de la pantalla.
+       Va como fondo del propio elemento (1px de alto, pegado arriba) y no con
+       border-top, porque un borde no admite degradado; asi no hay que meter un
+       elemento extra ni posicionar nada. El gris es gray-300 al 60%, que es el
+       color exacto que tenia aquel separador.
+       Los filetes de dentro de cada seccion, los que separan unidades, siguen
+       siendo solidos (border-t border-gray-200).
+       ========================================== */
+    .section-rule {
+      background-image: linear-gradient(
+        to right,
+        transparent,
+        rgb(209 213 219 / 0.6),
+        transparent
+      );
+      background-size: 100% 1px;
+      background-position: top;
+      background-repeat: no-repeat;
+    }
+
+    /* ==========================================
        ANCHO Y LECTURA
        Las secciones cruzan la pantalla; el texto se queda en una
        columna legible. Ocupar todo el ancho no puede costar lectura.

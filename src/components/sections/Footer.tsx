@@ -31,7 +31,7 @@ const Footer = ({ content: t }: FooterProps) => {
   ];
 
   return (
-    <footer className="border-t border-gray-200 py-16 dark:border-gray-700">
+    <footer className="section-rule py-16">
       <div className="shell">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-16">
           <div>

@@ -7,7 +7,7 @@ interface AboutProps {
 
 const About = ({ content: t }: AboutProps) => {
   return (
-    <section id="about" className="border-t border-gray-200 py-20 sm:py-28 dark:border-gray-700">
+    <section id="about" className="section-rule py-20 sm:py-28">
       <div className="shell">
         <h2 className="text-headline font-light text-black dark:text-white">
           {t.title}

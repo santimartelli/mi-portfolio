@@ -13,7 +13,7 @@ interface ProjectsProps {
 
 const Projects = ({ content: t }: ProjectsProps) => {
   return (
-    <section id="projects" className="border-t border-gray-200 py-20 sm:py-28 dark:border-gray-700">
+    <section id="projects" className="section-rule py-20 sm:py-28">
       <div className="shell">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
           <h2 className="text-headline font-light text-black lg:col-span-5 dark:text-white">
