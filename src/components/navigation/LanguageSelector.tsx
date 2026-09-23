@@ -66,12 +66,14 @@ const LanguageSelector = ({ content, locale, isOpen, onToggle, onClose }: Langua
       {/* Boton de solo icono. El codigo del idioma (ES / EN) se retiro a
           peticion del usuario, asi que el nombre accesible lo pone el
           aria-label y el idioma activo se ve marcado dentro del desplegable.
-          La caja es cuadrada y del mismo tamano que el boton del menu, para que
-          los dos controles de la barra midan lo mismo. */}
+          La caja es de 48x56, como la del boton del menu, y el padding de la
+          izquierda empuja el simbolo 4px hacia la derecha: es la mitad del
+          trabajo de acercar los dos iconos de la barra (el boton del menu hace
+          lo simetrico), sin mover las cajas ni solapar sus areas de toque. */}
       <button
         type="button"
         onClick={onToggle}
-        className="relative z-40 flex h-14 w-14 items-center justify-center text-black dark:text-white rounded-sm"
+        className="relative z-40 flex h-14 w-12 items-center justify-center pl-2 text-black dark:text-white rounded-sm"
         aria-haspopup="true"
         aria-expanded={isOpen}
         aria-label={t.languageLabel}>
