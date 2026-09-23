@@ -26,12 +26,12 @@ const Hero = ({ content: t }: HeroProps) => {
     // linea del header, y el conjunto no se sale por el borde inferior.
     <section id="home" className="flex min-h-screen items-center pt-[65px] pb-20 sm:pb-28">
       <div className="shell grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
-        <div className="lg:col-span-6">
+        <div className="text-center lg:col-span-6 lg:text-left">
           <h1 className="text-display font-light text-balance text-black dark:text-white">
             {t.headline}
           </h1>
 
-          <p className="measure mt-8 text-pretty text-lead font-light text-gray-600 dark:text-gray-400">
+          <p className="measure mx-auto mt-8 text-pretty text-lead font-light text-gray-600 lg:mx-0 dark:text-gray-400">
             {t.description}
           </p>
 
@@ -76,7 +76,9 @@ const Hero = ({ content: t }: HeroProps) => {
             se calcula sobre el alto de la ventana descontando el header (65px),
             el margen inferior del hero (5rem) y un resto de aire, y con ancho
             automatico mas max-w-full la imagen se encoge manteniendo su
-            proporcion en vez de deformarse. mx-auto la centra en su columna. */}
+            proporcion en vez de deformarse. mx-auto la centra en su columna.
+            El max-w de 32rem es el que la hace algo mas pequeña en pantallas
+            altas, donde el tope de alto no llega a apretar. */}
         <img
           src="/images/hero-portrait.webp"
           alt={t.imageAlt}
@@ -84,7 +86,7 @@ const Hero = ({ content: t }: HeroProps) => {
           height="1250"
           loading="eager"
           decoding="async"
-          className="order-first mx-auto h-auto max-h-[calc(100vh_-_16rem)] w-auto max-w-full lg:order-none lg:col-span-6"
+          className="order-first mx-auto h-auto max-h-[calc(100vh_-_20rem)] w-auto max-w-[32rem] lg:order-none lg:col-span-6"
         />
       </div>
     </section>
