@@ -495,15 +495,15 @@
       "name": "Marca",
       "kind": "logo",
       "refersTo": "logo",
-      "description": "Nombre en mayusculas con la pila de display y el posicionamiento tras dos puntos, en una linea. Sin caja de iniciales.",
-      "html": "<a href=\"/\"><span class=\"font-display text-lg font-semibold uppercase tracking-wide\">Santiago Martelli</span><span class=\"hidden text-sm text-gray-500 sm:inline\">: Hospitality + Technology</span></a>",
+      "description": "Nombre y posicionamiento seguidos, en una linea y sin separador: la jerarquia la hacen el peso y el color. Hereda la pila de display del header.",
+      "html": "<a href=\"/\"><span class=\"text-lg font-semibold\">Santiago Martelli</span><span class=\"hidden text-sm text-gray-500 sm:inline\">Hospitality + Technology</span></a>",
       "css": ".font-display{font-family:var(--font-display)}"
     },
     {
       "name": "Navbar",
       "kind": "nav",
       "refersTo": "navbar",
-      "description": "Fijo con filete inferior. Menu desplegable con boton de hamburguesa en todos los tamanos; la barra no se anima a si misma.",
+      "description": "Fijo con filete inferior, y toda la barra en la pila de display (marca, idioma y desplegables la heredan). Menu desplegable con boton de hamburguesa en todos los tamanos.",
       "html": "<nav class=\"fixed inset-x-0 top-0 z-50\"><!-- marca, tema, idioma, boton de menu --></nav>",
       "css": "nav{position:fixed;inset-inline:0;top:0;z-index:50;background-color:var(--bg-primary);border-bottom:1px solid var(--bg-quaternary)}"
     },

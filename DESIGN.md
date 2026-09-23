@@ -148,7 +148,7 @@ Tema **claro**: los mismos papeles invertidos (`paper`, `paper-soft`, `paper-sun
 
 Dos familias con trabajos separados.
 
-**Alumni Sans** es la voz de display: el nombre, los titulares de sección y los títulos de los casos de estudio. Es una condensada, y eso le da al titular un perfil editorial y vertical que la sans ancha no tiene. La pila se declara con `"Alumni Sans Hero"` delante —una fuente del sistema, no un archivo que sirvamos— y cae en `Alumni Sans Variable`, que sí viaja con el sitio.
+**Alumni Sans** es la voz de display: **todo el header** (la marca, el botón de idioma y los desplegables), los titulares de sección y los títulos de los casos de estudio. Es una condensada, y eso le da al titular un perfil editorial y vertical que la sans ancha no tiene. La pila se declara con `"Alumni Sans Hero"` delante —una fuente del sistema, no un archivo que sirvamos— y cae en `Alumni Sans Variable`, que sí viaja con el sitio.
 
 **Titillium Web** se queda con todo el texto corrido, con **Inter variable** de respaldo. Titillium aporta el carácter ligeramente técnico y cuadrado del mundo, y se lee mucho mejor que una condensada en párrafos largos. El reparto es deliberado: Alumni Sans nunca se usa para leer, solo para titular.
 
@@ -182,8 +182,8 @@ La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo se
 
 ## Components
 
-- **Marca** (`Logo`): el nombre en mayúsculas con la pila de display y, a continuación y separado por dos puntos, el posicionamiento. Una sola línea, sin caja de iniciales: el nombre se sostiene solo. En pantallas estrechas la segunda parte se oculta porque no cabe junto a los controles.
-- **Navbar**: fijo, con filete inferior. Las seis secciones viven en un menú desplegable que se abre con el botón de hamburguesa en todos los tamaños. La barra no se anima a sí misma, así que es visible aunque no haya JavaScript.
+- **Marca** (`Logo`): el nombre y, a continuación, el posicionamiento, en una sola línea y sin separador. La jerarquía la hacen el peso y el color —nombre en semibold y tinta, posicionamiento en light y gris—, no un signo. Sin caja de iniciales: el nombre se sostiene solo. En pantallas estrechas la segunda parte se oculta porque no cabe junto a los controles.
+- **Navbar**: fijo, con filete inferior, y **toda la barra en la pila de display**: la marca, el botón de idioma y los items de los desplegables la heredan del propio `nav`. Las seis secciones viven en un menú desplegable que se abre con el botón de hamburguesa en todos los tamaños. La barra no se anima a sí misma, así que es visible aunque no haya JavaScript.
 - **Desplegables** (menú y selector de idioma): el mismo panel estrecho alineado a la derecha (`w-56`), con borde completo, `p-3` y items compactos cuyo estado activo se marca con fondo y un punto a la derecha. Comparten variantes de motion y clases en `dropdownMotion.ts`, así que no pueden divergir.
 - **Filtros** (experiencia): rectángulos con filete; el activo se invierte a tinta sólida. Llevan `aria-pressed`.
 - **Filas enlazadas** (contacto y CV): rejilla de 12 columnas con etiqueta, valor y descripción; el fondo se aclara en hover. Nunca son tarjetas.
