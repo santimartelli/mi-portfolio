@@ -17,17 +17,11 @@ export interface HeroTranslations {
   /** Parrafos de presentacion, en orden. */
   description: string[];
   /**
-   * El panel lateral. Cada texto va como lista de lineas para fijar los cortes
-   * exactos: en mayusculas y con tracking amplio, el corte automatico no es
-   * predecible y el dibujo depende de donde rompe cada frase.
+   * Texto alternativo de la ilustracion del hero. Es contenido, no decoracion:
+   * la imagen ocupa una columna entera y aporta significado, asi que se
+   * describe en cada idioma en vez de dejarla con alt vacio.
    */
-  panel: {
-    heading: string[];
-    subline: string[];
-    /** El eje: las palabras de arriba y las de abajo de la linea del punto. */
-    axis: { above: string[]; below: string[] };
-    footer: string[];
-  };
+  imageAlt: string;
 }
 
 export interface NavbarTranslations {

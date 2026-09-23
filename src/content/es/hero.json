@@ -4,13 +4,5 @@
     "Experiencia real en front office, reservas y operaciones de alojamiento, combinada con formación técnica en desarrollo web.",
     "Conozco PMS, OTAs, pricing y la operativa diaria de un hotel desde dentro. Ahora busco aportar esa visión en equipos de Hotel Tech, Customer Success e Implementation."
   ],
-  "panel": {
-    "heading": ["Hospitality", "Meets Technology"],
-    "subline": ["Personas, procesos y tecnología", "para mejores experiencias."],
-    "axis": {
-      "above": ["Operations", "Tech"],
-      "below": ["People", "Better Stays"]
-    },
-    "footer": ["Same hospitality.", "A brighter tomorrow."]
-  }
+  "imageAlt": "Ilustración del ecosistema de un hotel: recepción, canales de reserva, analítica, atención al cliente y acceso digital, conectados entre sí."
 }
