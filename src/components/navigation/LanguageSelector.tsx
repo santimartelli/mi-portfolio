@@ -4,9 +4,8 @@
 // así funcionan sin JS, son rastreables y respetan los hreflang del documento.
 // Se eliminó `flag-icons`, que aportaba ~420 KB de CSS para dos banderas. El
 // icono de diccionario se retiró y volvió a petición del usuario. El código del
-// idioma va mas grande y mas fino que el resto de controles (text-lg +
-// font-light), con el peso del posicionamiento de la marca: asi es lo que mas se
-// lee del boton sin ganar peso visual.
+// idioma se queda en el tamaño de siempre del control (text-sm) con el peso fino
+// de la marca (font-light): se probó a subirlo de tamaño y ganaba peso visual.
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
@@ -69,7 +68,7 @@ const LanguageSelector = ({ content, locale, isOpen, onToggle, onClose }: Langua
         aria-expanded={isOpen}
         aria-label={t.languageLabel}>
         <MdOutlineTranslate className="w-5 h-5" aria-hidden="true" />
-        <span className="text-lg font-light uppercase tracking-wide">
+        <span className="text-sm font-light uppercase tracking-wide">
           {locale === 'en' ? 'EN' : 'ES'}
         </span>
       </button>
