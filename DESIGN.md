@@ -156,7 +156,7 @@ La escala es **fluida y única** para todo el sitio: diez pasos declarados como 
 
 | Token | Tamaño | Para qué |
 |---|---|---|
-| `display` | `clamp(3.2rem, 6.2vw, 5.6rem)` — 51 a 90px | *Reservado*: sin uso desde que el hero es la frase de posicionamiento |
+| `display` | `clamp(3.2rem, 6.2vw, 5.6rem)` — 51 a 90px | El titular del hero |
 | `headline` | `clamp(2.4rem, 3.6vw, 3.4rem)` — 38 a 54px | Titulares de sección |
 | `title-lg` | 1.5rem — 24px | Títulos de caso, empresas, grupos |
 | `subhead` | 1.25rem — 20px | El posicionamiento y los subtítulos |
@@ -167,13 +167,13 @@ La escala es **fluida y única** para todo el sitio: diez pasos declarados como 
 | `label` | 0.75rem — 12px | Rótulos en mayúsculas |
 | `micro` | 0.6875rem — 11px | Micro-etiquetas y datos |
 
-El hero usa `headline`, no `display`: el titular es la frase de posicionamiento, que con 58 caracteres no cabe a 90px sin romperse en demasiadas líneas. El paso `display` queda disponible para un texto corto. Los dos pasos reservados no generan CSS mientras no se usen, así que no cuestan nada.
+El hero usa `display`: el titular es la frase de posicionamiento y es lo primero que debe leerse, así que ocupa el escalón más alto de la escala. A 90px la frase se reparte en tres líneas que `text-balance` equilibra, que es el aspecto de titular buscado. El único paso reservado que queda es `ui`, que no genera CSS mientras no se use y por eso no cuesta nada.
 
 El techo es **90px**, por debajo del límite de 6rem del craft floor: antes el hero llegaba a 128px y era la causa de que todo se leyera grande y desordenado. La jerarquía se sostiene con nueve pasos claros, y el `<body>` se queda en los 16px por defecto del navegador, así que no hay dos reglas compitiendo por el tamaño base.
 
 ## Layout
 
-Las secciones **cruzan la pantalla** y el contenido se ordena con una única clase, `.shell`: ancho completo con un techo de `1800px` y márgenes laterales que crecen de `1.5rem` a `4rem` según el viewport. Ocupar todo el ancho no puede costar lectura, así que la prosa se limita aparte con `.measure` (68ch) y las cabeceras de sección van a `12` columnas: título a la izquierda, entradilla a la derecha.
+Las secciones **cruzan la pantalla** y el contenido se ordena con una única clase, `.shell`: ancho completo con un techo de `1400px` y márgenes laterales que crecen de `1.25rem` a `3rem` según el viewport. Ocupar todo el ancho no puede costar lectura, así que la prosa se limita aparte con `.measure` (64ch) y las cabeceras de sección van a `12` columnas: título a la izquierda, entradilla a la derecha.
 
 Cada sección respira `5rem` en móvil y `7rem` en escritorio, y abre con un filete de 1px (`border-t`). El contenido denso se organiza en **unidades repetibles** con la misma anatomía: metadatos a la izquierda, relato a la derecha, filete entre unidades. Las listas largas (hitos de un puesto, canales de contacto, métricas) se despliegan en dos columnas o cruzan toda la anchura en vez de apilarse en una columna estrecha.
 
@@ -210,6 +210,10 @@ Framer Motion se limita a lo funcional, donde una transición explica un cambio 
 
 Queda un único momento de motion, y es funcional: la apertura del menú.
 
+Fuera de Framer Motion hay un solo movimiento, en CSS puro: el latido del punto de estado del hero (`animate-status-pulse`). Su opacidad va de 1 a 0.45 en 2.8 s, así que se atenúa pero nunca llega a desaparecer. Es la única animación en bucle del sitio y no necesita JavaScript.
+
+Bajo `prefers-reduced-motion` el bloque global de `Layout.astro` reduce toda animación a 0.01 ms y una sola iteración, así que el punto queda fijo y visible. El movimiento no es la única señal de estado: el texto «Abierto a nuevas oportunidades» comunica lo mismo sin él.
+
 ## Do's and Don'ts
 
 **Do**
@@ -221,7 +225,7 @@ Queda un único momento de motion, y es funcional: la apertura del menú.
 
 **Don't**
 
-- No introduzcas una segunda familia tipográfica: Titillium Web con Inter de respaldo es todo el sistema.
+- No introduzcas una segunda familia tipográfica: Manrope es todo el sistema.
 - No añadas radios: el mundo es de esquinas rectas.
 - No uses el acento en superficies grandes; es una señal, no un fondo.
 - No añadas animaciones de entrada ni hagas aparecer secciones al hacer scroll.
@@ -232,6 +236,8 @@ Queda un único momento de motion, y es funcional: la apertura del menú.
 Registradas por el detector y el craft floor de Impeccable, **no corregidas** porque el usuario pidió volver a este mundo tal cual estaba. Si en el futuro se retoma el pulido, este es el orden de valor:
 
 Resueltas en esta pasada: el kicker sobre el titular, el fade-up idéntico en cada sección, los `border-left` de color >1px, el halo de color sin offset, el tematizado de las superficies del navegador y el `<noscript>`.
+
+**Trampa registrada — la escala tipográfica.** El commit `a311201` borró sin querer el bloque `theme.extend.fontSize` mientras corregía los colores de acento. Como Tailwind descarta las clases que no puede resolver en vez de avisar, durante ese tramo los 32 usos de `text-headline`, `text-lead`, `text-subhead`, `text-title`, `text-title-lg`, `text-label` y `text-small` no generaban ninguna regla y los titulares caían al tamaño por defecto del navegador. Si los titulares se ven pequeños o todos del mismo tamaño, lo primero que hay que comprobar es que `theme.extend.fontSize` sigue en `tailwind.config.mjs`, y confirmarlo sobre el CSS construido, no sobre el código fuente.
 
 Siguen abiertas:
 

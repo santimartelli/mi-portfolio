@@ -1,7 +1,8 @@
 // Hero: el titular es la frase de posicionamiento, que es el enfoque.
 // Una sola columna, sin nombre propio y sin fila de datos: la accion unica es
-// el contacto directo. Sin estado y sin animaciones, asi que se renderiza en el
-// servidor y se lee entero sin JavaScript.
+// el contacto directo. Sin estado y sin JavaScript: el unico movimiento es el
+// latido del punto de estado, que es CSS y no necesita hidratacion, asi que el
+// hero se renderiza entero en el servidor.
 import { FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 import type { HeroTranslations } from '../../util/i18n';
 import { SITE } from '../../util/site';
@@ -22,7 +23,7 @@ const Hero = ({ content: t }: HeroProps) => {
   return (
     <section id="home" className="pt-32 pb-20 sm:pt-40 sm:pb-28">
       <div className="shell text-center sm:text-left">
-        <h1 className="text-headline font-light text-balance text-black dark:text-white">
+        <h1 className="text-display font-light text-balance text-black dark:text-white">
           {t.headline}
         </h1>
 
@@ -44,9 +45,14 @@ const Hero = ({ content: t }: HeroProps) => {
           ))}
         </ul>
 
-        {/* Estado al pie del hero: punto verde y el valor, sin rotulo. */}
+        {/* Estado al pie del hero: punto verde y el valor, sin rotulo. El punto
+            late con una opacidad de 1 a 0.45, asi que se atenua pero nunca
+            llega a desaparecer. */}
         <p className="mt-10 flex items-center justify-center gap-3 text-small font-light text-gray-600 sm:justify-start dark:text-gray-400">
-          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[var(--accent-success)]" />
+          <span
+            aria-hidden="true"
+            className="h-1.5 w-1.5 animate-status-pulse rounded-full bg-[var(--accent-success)]"
+          />
           {t.availability}
         </p>
       </div>

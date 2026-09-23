@@ -22,39 +22,53 @@ export default {
           500: "var(--accent)",
         },
       },
+      /*
+       * Escala tipografica fluida. Un solo juego de pasos para todo el sitio:
+       * display -> headline -> title-lg -> subhead -> lead -> base -> ui -> small
+       * -> label -> micro. Los titulares usan clamp() para escalar de forma
+       * continua en vez de saltar por breakpoint.
+       *
+       * Restaurada: el commit a311201 la borro sin querer al corregir los colores
+       * de acento, asi que durante ese tramo los 32 usos de estos pasos
+       * (text-headline, text-lead, text-subhead, text-title, ...) no generaban
+       * ninguna regla y los titulares caian al tamano por defecto del navegador.
+       */
+      fontSize: {
+        micro: ["0.6875rem", { lineHeight: "1.4", letterSpacing: "0.14em" }],
+        label: ["0.75rem", { lineHeight: "1.4", letterSpacing: "0.1em" }],
+        ui: ["0.8125rem", { lineHeight: "1.5" }],
+        small: ["0.875rem", { lineHeight: "1.6" }],
+        base: ["1rem", { lineHeight: "1.65" }],
+        title: ["1.0625rem", { lineHeight: "1.4" }],
+        lead: ["1.125rem", { lineHeight: "1.6" }],
+        subhead: ["1.25rem", { lineHeight: "1.45" }],
+        "title-lg": ["1.5rem", { lineHeight: "1.3" }],
+        headline: ["clamp(2.4rem, 3.6vw, 3.4rem)", { lineHeight: "1.06", letterSpacing: "-0.01em" }],
+        display: ["clamp(3.2rem, 6.2vw, 5.6rem)", { lineHeight: "0.98", letterSpacing: "-0.02em" }],
+      },
       fontFamily: {
         // Fuente unica del sitio. Misma pila que el token --font-sans.
         sans: ["Manrope Variable", "Manrope", "system-ui", "sans-serif"],
       },
+      /*
+       * Un solo movimiento en todo el sitio: el latido del punto de estado del
+       * hero. El resto de animaciones que vivian aqui (fadeIn, imageHover,
+       * enterUp, blink) no tenian ningun uso y ademas eran animaciones de
+       * entrada, que la politica de movimiento prohibe. pulseSlow se ha
+       * sustituido porque animaba el color hacia el teal #45A29E del mundo
+       * abandonado.
+       *
+       * El suelo de opacidad es 0.45: el punto baja de intensidad pero nunca
+       * llega a desaparecer. Bajo prefers-reduced-motion el bloque global de
+       * Layout.astro neutraliza la animacion y el punto queda fijo a opacidad 1.
+       */
       animation: {
-        fadeIn: "fadeIn .5s ease-in forwards",
-        imageHover: "imageHover .8s ease-in-out forwards",
-        blink: "blink 2s infinite",
-        enterUp: "enterUp 2.2s forwards",
-        "pulse-slow": "pulseSlow 4s ease-in-out infinite",
+        "status-pulse": "statusPulse 2.8s ease-in-out infinite",
       },
       keyframes: {
-        fadeIn: {
-          "0%": { opacity: 0 },
-          "100%": { opacity: 1 },
-        },
-        imageHover: {
-          "0%": { transform: "scale(1)", filter: "blur(4px)", opacity: "0.5" },
-          "100%": { transform: "scale(1.1)", filter: "blur(0)", opacity: "1" },
-        },
-        blink: {
-          "0%": { opacity: "0.4", transform: "rotate(0deg)" },
-          "50%": { opacity: "1", transform: "rotate(20deg)" },
-          "100%": { opacity: "0.4", transform: "rotate(0deg)" },
-        },
-        enterUp: {
-          "0%": { transform: "translateY(80%)", opacity: 0 },
-          "50%": { transform: "translateY(40%)", opacity: 0 },
-          "100%": { transform: "translateY(0)", opacity: 1 },
-        },
-        pulseSlow: {
-          "0%, 100%": { opacity: 1, color: "#444950" },
-          "50%": { opacity: 0.9, color: "#45A29E" },
+        statusPulse: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.45" },
         },
       },
       boxShadow: {
