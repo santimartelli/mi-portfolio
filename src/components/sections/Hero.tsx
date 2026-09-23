@@ -67,7 +67,11 @@ const Hero = ({ content: t }: HeroProps) => {
             el navegador reserve el espacio y no haya salto de layout. Va en
             eager y sin lazy porque esta en el primer viewport. El texto se
             centra en vertical contra ella, porque el retrato es bastante mas
-            alto que el discurso. En movil baja debajo del texto.
+            alto que el discurso.
+            En movil va primero, antes del titular: la columna se apila y el
+            order la sube. En el marcado sigue despues del texto a proposito,
+            para que quien use lector de pantalla reciba el titular antes que la
+            ilustracion; a partir de lg el order se resetea y vuelve a su sitio.
             El tope de alto es lo que impide que el retrato desborde por abajo:
             se calcula sobre el alto de la ventana descontando el header (65px),
             el margen inferior del hero (5rem) y un resto de aire, y con ancho
@@ -80,7 +84,7 @@ const Hero = ({ content: t }: HeroProps) => {
           height="1250"
           loading="eager"
           decoding="async"
-          className="mx-auto h-auto max-h-[calc(100vh_-_16rem)] w-auto max-w-full lg:col-span-6"
+          className="order-first mx-auto h-auto max-h-[calc(100vh_-_16rem)] w-auto max-w-full lg:order-none lg:col-span-6"
         />
       </div>
     </section>
