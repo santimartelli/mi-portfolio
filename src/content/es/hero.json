@@ -1,18 +1,21 @@
 {
-  "headline": "Hospitality Operations + Hotel Tech",
+  "kicker": "Hospitality · Hotel Tech",
+  "headline": "Operaciones hoteleras + tecnología",
   "description": [
-    "Experiencia real en operaciones hoteleras, front office y atención al cliente, combinada con formación técnica en desarrollo web.",
-    "Conozco de primera mano PMS, OTAs, reservas, pricing y la operativa diaria de un alojamiento. Busco dar el siguiente paso hacia equipos de Hotel Tech, Customer Success e Implementation, aportando la visión de quien conoce tanto al usuario hotelero como la tecnología que utiliza."
+    "Experiencia real en front office, reservas y operaciones de alojamiento, combinada con formación técnica en desarrollo web.",
+    "Conozco PMS, OTAs, pricing y la operativa diaria de un hotel desde dentro. Ahora busco aportar esa visión en equipos de Hotel Tech, Customer Success e Implementation."
   ],
-  "facts": [
-    {
-      "label": "Enfoque",
-      "value": "Hospitality Operations · Hotel Tech · Customer Success · Implementation"
-    },
-    {
-      "label": "Experiencia práctica",
-      "value": "Front Office · PMS · OTAs · Reservations · Pricing & Revenue Operations"
-    }
-  ],
+  "focus": {
+    "label": "Enfoque",
+    "items": ["Hotel Tech", "Customer Success", "Implementation"]
+  },
+  "practice": {
+    "label": "Experiencia práctica",
+    "value": "Opera · Avalon · Booking.com · Expedia"
+  },
+  "buttons": {
+    "experience": "Ver experiencia",
+    "linkedin": "LinkedIn"
+  },
   "availability": "Abierto a nuevas oportunidades"
 }

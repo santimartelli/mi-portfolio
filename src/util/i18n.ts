@@ -13,15 +13,20 @@
 export type Locale = 'es' | 'en';
 
 export interface HeroTranslations {
+  /** Antetitulo sobre el titular. Desviacion deliberada del craft floor. */
+  kicker: string;
   headline: string;
   /** Parrafos de presentacion, en orden. */
   description: string[];
   /**
-   * Datos de contexto del hero, con rotulo y valor: el enfoque y la experiencia
-   * practica. Son los dos unicos bloques etiquetados, asi que el rotulo va en
-   * versalitas y el valor en texto corrido. El orden del array es el de lectura.
+   * El enfoque en piezas sueltas. Se muestra en el panel, en vertical, una por
+   * linea: son las areas hacia las que apunta el perfil.
    */
-  facts: Array<{ label: string; value: string }>;
+  focus: { label: string; items: string[] };
+  /** La experiencia practica, en una sola linea de rotulo y valor. */
+  practice: { label: string; value: string };
+  /** Las dos acciones del hero: ir a la experiencia y abrir LinkedIn. */
+  buttons: { experience: string; linkedin: string };
   /** Estado de disponibilidad, sin rotulo: lo precede un punto de color. */
   availability: string;
 }
