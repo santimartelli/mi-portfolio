@@ -1,7 +1,7 @@
-// Hero en dos columnas. A la izquierda el discurso: antetitulo, titular, los
-// dos parrafos de presentacion, la experiencia practica y las dos acciones, con
-// la disponibilidad y el contacto cerrando la columna. A la derecha, un panel
-// con el enfoque en vertical.
+// Hero en dos columnas, calcado de la referencia visual aportada por el
+// usuario: a la izquierda el discurso con los chips del enfoque y las dos
+// acciones; a la derecha un panel con los dibujos (dos circulos suaves que
+// sangran por los bordes) y el eje con el punto de acento.
 // Sin estado y sin JavaScript: el unico movimiento es el latido del punto de
 // estado, que es CSS y no necesita hidratacion, asi que el hero se renderiza
 // entero en el servidor.
@@ -24,7 +24,7 @@ const Hero = ({ content: t }: HeroProps) => {
 
   return (
     <section id="home" className="pt-32 pb-20 sm:pt-40 sm:pb-28">
-      <div className="shell grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-16">
+      <div className="shell grid gap-12 lg:grid-cols-12 lg:items-stretch lg:gap-16">
         <div className="lg:col-span-7">
           <p className="text-micro font-medium uppercase text-gray-500 dark:text-gray-400">
             {t.kicker}
@@ -44,6 +44,21 @@ const Hero = ({ content: t }: HeroProps) => {
 
           <div className="mt-10">
             <p className="text-micro font-medium uppercase text-gray-500 dark:text-gray-400">
+              {t.focus.label}
+            </p>
+            <ul className="mt-4 flex list-none flex-wrap gap-2">
+              {t.focus.items.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-md bg-gray-100 px-3.5 py-1.5 text-small text-gray-800 dark:bg-gray-800 dark:text-gray-200">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-8">
+            <p className="text-micro font-medium uppercase text-gray-500 dark:text-gray-400">
               {t.practice.label}
             </p>
             <p className="mt-2 text-base font-light text-gray-700 dark:text-gray-300">
@@ -51,10 +66,12 @@ const Hero = ({ content: t }: HeroProps) => {
             </p>
           </div>
 
-          <div className="mt-10 flex flex-wrap items-center gap-3">
+          {/* Las dos acciones: la principal solida y la secundaria con filete,
+              como en la referencia. */}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href="#experience"
-              className="cta-primary inline-flex items-center gap-2 px-5 py-3 text-small font-medium">
+              className="inline-flex items-center gap-2 rounded-lg bg-[var(--text-primary)] px-5 py-3 text-small font-medium text-[var(--bg-primary)] transition-opacity duration-200 ease-out hover:opacity-85">
               {t.buttons.experience}
               <FaArrowRight className="h-3 w-3" aria-hidden="true" />
             </a>
@@ -62,7 +79,7 @@ const Hero = ({ content: t }: HeroProps) => {
               href={SITE.linkedin}
               target="_blank"
               rel="noopener noreferrer me"
-              className="inline-flex items-center gap-2 border border-gray-500 px-5 py-3 text-small font-medium text-gray-700 transition-colors duration-200 ease-out hover:border-black hover:text-black dark:text-gray-300 dark:hover:border-white dark:hover:text-white">
+              className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-5 py-3 text-small font-medium text-gray-900 transition-colors duration-200 ease-out hover:border-gray-400 dark:border-gray-700 dark:bg-transparent dark:text-gray-100 dark:hover:border-gray-600">
               <FaLinkedin className="h-4 w-4" aria-hidden="true" />
               {t.buttons.linkedin}
             </a>
@@ -84,7 +101,7 @@ const Hero = ({ content: t }: HeroProps) => {
                     href={link.href}
                     {...(link.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
                     aria-label={link.label}
-                    className="flex h-11 w-11 items-center justify-center text-gray-500 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
+                    className="flex h-11 w-11 items-center justify-center text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
                     <link.icon className="h-4 w-4" aria-hidden="true" />
                   </a>
                 </li>
@@ -93,30 +110,73 @@ const Hero = ({ content: t }: HeroProps) => {
           </div>
         </div>
 
-        {/* Panel del enfoque: superficie con filete, sin radios, que ocupa la
-            columna derecha. El punto de acento marca donde arranca la lista.
-            En movil baja debajo del discurso. */}
-        <div className="border border-gray-200 bg-[var(--bg-secondary)] p-8 sm:p-10 lg:col-span-5 lg:p-12 dark:border-gray-800">
-          <span aria-hidden="true" className="block h-px w-16 bg-gray-300 dark:bg-gray-700" />
+        {/* Panel. Los dos circulos son decorativos y sangran por los bordes: de
+            ahi el overflow-hidden. En movil baja debajo del discurso. */}
+        <div className="relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-gradient-to-br from-white to-[#eef1f4] p-8 sm:p-10 lg:col-span-5 lg:h-full lg:p-12 dark:border-gray-800 dark:from-[#151821] dark:to-[#1b2029]">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-28 top-16 h-[26rem] w-[26rem] rounded-full bg-black/[0.035] dark:bg-white/[0.04]"
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-36 left-0 h-[22rem] w-[22rem] rounded-full bg-black/[0.025] dark:bg-white/[0.03]"
+          />
 
-          <p className="mt-10 text-micro font-medium uppercase text-gray-500 dark:text-gray-400">
-            {t.focus.label}
-          </p>
+          <div className="relative flex h-full flex-col">
+            <span aria-hidden="true" className="block h-px w-8 bg-gray-400/70 dark:bg-gray-600" />
 
-          <div className="relative mt-6 border-l border-gray-300 pl-6 dark:border-gray-700">
-            <span
-              aria-hidden="true"
-              className="absolute -left-[3px] top-0 h-1.5 w-1.5 rounded-full bg-[var(--accent)]"
-            />
-            <ul className="list-none space-y-4">
-              {t.focus.items.map((item) => (
-                <li
-                  key={item}
-                  className="text-label font-medium uppercase text-gray-700 dark:text-gray-300">
-                  {item}
-                </li>
+            <p className="mt-14 text-label font-medium uppercase leading-relaxed text-gray-600 dark:text-gray-300">
+              {t.panel.heading.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
               ))}
-            </ul>
+            </p>
+
+            <p className="mt-5 text-small font-light text-gray-600 dark:text-gray-400">
+              {t.panel.subline.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </p>
+
+            {/* El eje: las palabras arriba, la linea con el punto de acento en
+                medio y las de abajo. */}
+            <div className="ml-auto mt-auto w-40 pt-16">
+              <ul className="list-none space-y-2">
+                {t.panel.axis.above.map((line) => (
+                  <li
+                    key={line}
+                    className="text-micro font-medium uppercase text-gray-600 dark:text-gray-400">
+                    {line}
+                  </li>
+                ))}
+              </ul>
+
+              <span aria-hidden="true" className="my-3 flex items-center">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
+                <span className="h-px flex-1 bg-gray-300 dark:bg-gray-700" />
+              </span>
+
+              <ul className="list-none space-y-2">
+                {t.panel.axis.below.map((line) => (
+                  <li
+                    key={line}
+                    className="text-micro font-medium uppercase text-gray-600 dark:text-gray-400">
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <p className="mt-20 text-micro font-medium uppercase leading-relaxed text-gray-600 dark:text-gray-400">
+              {t.panel.footer.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </p>
           </div>
         </div>
       </div>

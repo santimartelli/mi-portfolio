@@ -17,5 +17,14 @@
     "experience": "Ver experiencia",
     "linkedin": "LinkedIn"
   },
+  "panel": {
+    "heading": ["Hospitality", "Meets Technology"],
+    "subline": ["Personas, procesos y tecnología", "para mejores experiencias."],
+    "axis": {
+      "above": ["Operations", "Tech"],
+      "below": ["People", "Better Stays"]
+    },
+    "footer": ["Same hospitality.", "A brighter tomorrow."]
+  },
   "availability": "Abierto a nuevas oportunidades"
 }
