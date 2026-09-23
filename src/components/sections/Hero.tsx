@@ -26,11 +26,7 @@ const Hero = ({ content: t }: HeroProps) => {
     <section id="home" className="pt-32 pb-20 sm:pt-40 sm:pb-28">
       <div className="shell grid gap-12 lg:grid-cols-12 lg:items-stretch lg:gap-16">
         <div className="lg:col-span-7">
-          <p className="text-micro font-medium uppercase text-gray-500 dark:text-gray-400">
-            {t.kicker}
-          </p>
-
-          <h1 className="mt-4 text-display font-light text-balance text-black dark:text-white">
+          <h1 className="text-display font-light text-balance text-black dark:text-white">
             {t.headline}
           </h1>
 
@@ -42,20 +38,15 @@ const Hero = ({ content: t }: HeroProps) => {
             </p>
           ))}
 
-          <div className="mt-10">
-            <p className="text-micro font-medium uppercase text-gray-500 dark:text-gray-400">
-              {t.focus.label}
-            </p>
-            <ul className="mt-4 flex list-none flex-wrap gap-2">
-              {t.focus.items.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-md bg-gray-100 px-3.5 py-1.5 text-small text-gray-800 dark:bg-gray-800 dark:text-gray-200">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="mt-10 flex list-none flex-wrap gap-2">
+            {t.focus.map((item) => (
+              <li
+                key={item}
+                className="rounded-md bg-gray-100 px-3.5 py-1.5 text-small text-gray-800 dark:bg-gray-800 dark:text-gray-200">
+                {item}
+              </li>
+            ))}
+          </ul>
 
           <div className="mt-8">
             <p className="text-micro font-medium uppercase text-gray-500 dark:text-gray-400">

@@ -1,14 +1,10 @@
 {
-  "kicker": "Hospitality · Hotel Tech",
   "headline": "Hotel operations + technology",
   "description": [
     "Hands-on experience in front office, reservations and accommodation operations, combined with technical training in web development.",
     "I know PMS, OTAs, pricing and the day-to-day running of a hotel from the inside. Now I want to bring that perspective to Hotel Tech, Customer Success and Implementation teams."
   ],
-  "focus": {
-    "label": "Focus",
-    "items": ["Hotel Tech", "Customer Success", "Implementation"]
-  },
+  "focus": ["Hotel Tech", "Customer Success", "Implementation"],
   "practice": {
     "label": "Practical experience",
     "value": "Opera · Avalon · Booking.com · Expedia"

@@ -13,13 +13,11 @@
 export type Locale = 'es' | 'en';
 
 export interface HeroTranslations {
-  /** Antetitulo sobre el titular. Desviacion deliberada del craft floor. */
-  kicker: string;
   headline: string;
   /** Parrafos de presentacion, en orden. */
   description: string[];
-  /** El enfoque, que se muestra como chips bajo su rotulo. */
-  focus: { label: string; items: string[] };
+  /** El enfoque: las areas hacia las que apunta el perfil, como chips. */
+  focus: string[];
   /** La experiencia practica, en una sola linea de rotulo y valor. */
   practice: { label: string; value: string };
   /** Las dos acciones del hero: ir a la experiencia y abrir LinkedIn. */
