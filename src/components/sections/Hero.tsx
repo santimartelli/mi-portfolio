@@ -24,14 +24,14 @@ const Hero = ({ content: t }: HeroProps) => {
     // queda bajo el header: 4rem de barra (h-16) mas 1px de su border-b. Asi el
     // texto y la imagen reparten el aire arriba y abajo en vez de colgar de la
     // linea del header, y el conjunto no se sale por el borde inferior.
-    <section id="home" className="flex min-h-screen items-center pt-[65px] pb-12 sm:pb-28">
-      <div className="shell grid gap-6 lg:grid-cols-12 lg:items-center lg:gap-16">
+    <section id="home" className="flex min-h-screen items-center pt-[65px] pb-8 sm:pb-28">
+      <div className="shell grid gap-5 lg:grid-cols-12 lg:items-center lg:gap-16">
         <div className="text-center lg:col-span-6 lg:text-left">
           <h1 className="text-display font-light text-balance text-black dark:text-white">
             {t.headline}
           </h1>
 
-          <p className="measure mx-auto mt-5 text-pretty text-lead font-light text-gray-600 lg:mt-8 lg:mx-0 dark:text-gray-400">
+          <p className="measure mx-auto mt-5 text-pretty text-base font-light text-gray-600 lg:mt-8 lg:text-lead lg:mx-0 dark:text-gray-400">
             {t.description}
           </p>
 
