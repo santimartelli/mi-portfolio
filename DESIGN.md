@@ -171,17 +171,16 @@ Los casos de estudio usan una unidad de dos columnas: a la izquierda la prueba v
 
 ## Elevation & Depth
 
-La profundidad se declara **una sola vez y con borde de 1px** (`border-gray-200`). No hay sombras: las utilidades `.theme-card` y `.theme-button-primary` que llevaban sombras teñidas de azul eran código muerto y se retiraron junto con `.theme-text-gradient`. Esto elimina las dos únicas desviaciones que el detector marcaba como anti-patrón (texto con degradado y halo de color sin offset).
+La profundidad se declara **una sola vez y con borde de 1px** (`border-gray-200`). Hay **una sola sombra** en todo el sitio: la del CTA del hero, que llega con el botón portado de otro proyecto del usuario (`0 14px 30px -10px` en reposo y `0 18px 36px -12px` al pasar por encima). Las utilidades `.theme-card` y `.theme-button-primary`, que llevaban sombras teñidas de azul, eran código muerto y se retiraron junto con `.theme-text-gradient`.
 
 ## Shapes
 
-Predominan las **esquinas rectas**: `border-radius` es 0 en contenedores, tarjetas, campos y enlaces. Hay tres excepciones documentadas:
+Predominan las **esquinas rectas**: `border-radius` es 0 en contenedores, tarjetas, campos y enlaces. Hay dos excepciones documentadas:
 
 - `focus` = 2px — el contorno de foco, para que no se vea roto en esquinas rectas.
-- `button` = 12px — los botones de utilidad `.theme-button-primary` y `.theme-button-secondary`.
-- `pill` = 999px — los puntos de estado.
+- `pill` = 9999px — el CTA del hero, que llega en forma de pastilla con el botón portado, y los puntos de estado.
 
-La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo sería llevar los botones a 0 o 2px.
+La mezcla es una inconsistencia conocida: lo coherente con el resto del mundo sería llevar el CTA a 0 o 2px, pero el usuario pidió copiar el botón tal cual. El radio de 12px que figuraba aquí era de `.theme-button-primary` y `.theme-button-secondary`, utilidades muertas que ya no existen.
 
 ## Components
 
@@ -200,9 +199,9 @@ Framer Motion se limita a lo funcional, donde una transición explica un cambio 
 
 Queda un único momento de motion, y es funcional: la apertura del menú.
 
-No hay ninguna animación en CSS. Hubo una, el latido del punto de estado del hero (`animate-status-pulse`), y se retiró con la línea de disponibilidad; su sitio lo ocupaba un punto verde que se atenuaba de 1 a 0.45 sin llegar a desaparecer. Si vuelve a hacer falta una señal de estado, hay que recuperar también la animación en `tailwind.config.mjs`, que ya no está declarada.
+Hay **una única animación en CSS**, y no es de entrada: el brillo del CTA del hero, que cruza el botón una sola vez al pasar el puntero (`@keyframes ctaShine`, 0,5 s). La transición del `::before` se deja a propósito en `none` para que el movimiento lo haga la animación y el brillo atraviese entero en lugar de quedarse a medio camino. La acompaña una elevación de 2px con la sombra, que son transiciones de estado. Antes hubo otra, el latido del punto de estado (`animate-status-pulse`), y se retiró con la línea de disponibilidad.
 
-Bajo `prefers-reduced-motion` el bloque global de `Layout.astro` reduce toda animación a 0.01 ms y una sola iteración, y desactiva el desplazamiento suave.
+Bajo `prefers-reduced-motion` el bloque global de `Layout.astro` reduce toda animación a 0.01 ms y una sola iteración, así que el brillo no llega a verse, y desactiva el desplazamiento suave.
 
 ## Do's and Don'ts
 
@@ -228,6 +227,8 @@ Registradas por el detector y el craft floor de Impeccable, **no corregidas** po
 Resueltas en esta pasada: el fade-up idéntico en cada sección, los `border-left` de color >1px, el halo de color sin offset, el tematizado de las superficies del navegador y el `<noscript>`.
 
 **Desviaciones aceptadas a petición del usuario.** El mundo se había comprometido con la columna única, las esquinas rectas y el acento como única señal. El hero volvió a introducir lo contrario tras una referencia visual aportada por el usuario, que pidió reproducirla «exactamente igual». Lo único que queda en pie de aquella maqueta es la rejilla de dos columnas desde `lg`, hoy 6/6; el resto se ha ido retirando después a petición del usuario: el antetítulo sobre el titular, los chips del enfoque con su rótulo, el bloque de experiencia práctica, los dos botones («Ver experiencia» y el de LinkedIn), la línea de disponibilidad y, por último, el panel lateral con sus dibujos y sus lemas, sustituido por la ilustración del perfil. El titular vuelve a ser lo primero de la columna, así que la desviación del craft floor que suponía el antetítulo ya no existe. El acento sigue siendo el azul del mundo y no el ámbar de la maqueta, por decisión previa del usuario; cambiarlo es una línea en el token `--accent`.
+
+**El CTA está portado de otro proyecto.** El usuario lo copió tal cual desde otro repositorio suyo, y con él llegan tres cosas que este mundo tenía descartadas: forma de pastilla, sombra tenida y una animación en CSS. Los colores sí son los del mundo (tinta, papel y negro puro en el labio inferior de 4px) en vez de los ámbar del original. Dos adaptaciones deliberadas: el tamaño grande del original (`px-8 py-6 text-xl`) se reserva para escritorio, porque en móvil dejaría el botón en unos 80px y se comería el reparto de los cinco bloques; y **no** se ha traído la animación de entrada `.hero-in` que acompaña al botón en su repositorio de origen, porque las animaciones de entrada están prohibidas aquí por decisión previa del propio usuario.
 
 **Procedencia de la ilustración del hero.** Hay dos recortes de la misma escena, y `<picture>` sirve uno u otro según el ancho: `public/images/hero-landscape.webp` (1400×611, WebP q88, 88 kB, de un PNG de 1672×941) por debajo de 1024px, y `public/images/hero-portrait.webp` (1000×1102, WebP q88, 109 kB, de un PNG de 1122×1402) desde 1024px. A los dos se les ha recortado el aire en blanco que traian de origen: 131px arriba en el apaisado, que a tamaño de movil se veian como un hueco de casi 30px entre el header y el dibujo, y 113px en el vertical. Se deja un margen de 8px para que el trazo no toque el borde. El emparejamiento con el tamaño de cada uno vive en la clase `.hero-media` de `Layout.astro`. Ambos PNG los aportó el usuario como archivo adjunto. **Su origen y su licencia no están verificados**: no consta autoría, ni cesión de derechos, ni si viene de un banco de imágenes. Hay que acreditarlo antes de dar por buena la publicación, porque el resto de imágenes del sitio son propias o de clientes. Si no se puede acreditar, hay que sustituirla.
 
