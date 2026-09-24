@@ -74,15 +74,30 @@ const Hero = ({ content: t }: HeroProps) => {
           {/* Misma idea: en movil la accion y los iconos son dos bloques sueltos,
               y desde lg vuelven a ser una fila centrada. */}
           <div className="contents lg:mt-10 lg:flex lg:flex-wrap lg:items-center lg:justify-center lg:gap-8">
-            {/* El CTA conserva del boton portado solo el ancho minimo y el radio
-                de 8px; el efecto es el de los iconos de contacto, un cambio de
-                color con transicion. El tamaño grande del original dejaba el
-                boton en 80px y se comia el reparto de los cinco bloques. */}
-            <a
-              href="#experience"
-              className="cta-primary mx-auto flex w-fit min-w-[10rem] items-center justify-center px-4 py-2 text-small font-semibold uppercase tracking-widest lg:mx-0">
-              {t.cta}
-            </a>
+            {/* Los dos botones comparten bloque en movil: el reparto vertical del
+                hero esta ajustado al pixel y un septimo bloque no cabe. Desde lg
+                forman fila, y el de proyectos solo se muestra ahi, que es donde
+                hay ancho para los dos. */}
+            <div className="mx-auto flex w-fit items-center justify-center gap-2 lg:mx-0 lg:gap-3">
+              {/* El CTA conserva del boton portado solo el ancho minimo y el radio
+                  de 8px; el efecto es el de los iconos de contacto, un cambio de
+                  color con transicion. El tamaño grande del original dejaba el
+                  boton en 80px y se comia el reparto de los cinco bloques. */}
+              <a
+                href="#experience"
+                className="cta-primary flex min-w-[10rem] items-center justify-center px-4 py-2 text-small font-semibold uppercase tracking-widest">
+                {t.cta}
+              </a>
+
+              {/* Segunda accion, con el mismo cuerpo que la primera pero sin
+                  relleno: el filete de 1px es la forma de declarar profundidad de
+                  este mundo, y asi las dos no compiten. */}
+              <a
+                href="#projects"
+                className="cta-secondary hidden min-w-[10rem] items-center justify-center px-4 py-2 text-small font-semibold uppercase tracking-widest lg:flex">
+                {t.ctaProjects}
+              </a>
+            </div>
 
             {/* gap-3 (12px) entre cajas de 48px: como el trazo ocupa 24px, la
                 separacion visible entre iconos es de 36px. */}

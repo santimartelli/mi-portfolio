@@ -478,6 +478,25 @@ const jsonLd = {
       background-color: var(--text-secondary);
     }
 
+    /*
+     * Boton secundario del hero, para la segunda accion (proyectos). Mismo
+     * cuerpo, mismo radio y mismo tempo que el primario, porque son la misma
+     * familia, pero sin relleno: se declara con el filete de 1px, que es como se
+     * declara la profundidad en este mundo, y al pasar el puntero solo cambia el
+     * gris del filete a tinta. Asi la accion principal sigue siendo una sola y
+     * las dos no compiten.
+     */
+    .cta-secondary {
+      border: 1px solid var(--darkbg-600);
+      border-radius: 8px;
+      color: var(--text-primary);
+      transition: border-color 0.2s cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    .cta-secondary:hover {
+      border-color: var(--text-primary);
+    }
+
     /* ==========================================
        MARQUEE DE CARACTERISTICAS
        La lista va dos veces dentro de una pista que se desplaza la mitad de su

@@ -18,6 +18,8 @@ export interface HeroTranslations {
   description: string;
   /** Accion principal del hero. Enlaza a la seccion de experiencia. */
   cta: string;
+  /** Segunda accion del hero, junto a la principal. Enlaza a proyectos. */
+  ctaProjects: string;
   /**
    * Texto alternativo de la ilustracion del hero. Es contenido, no decoracion:
    * la imagen ocupa una columna entera y aporta significado, asi que se
