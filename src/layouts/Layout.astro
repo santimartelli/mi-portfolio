@@ -552,16 +552,21 @@ const jsonLd = {
        Cada seccion se separa de la anterior con una sola regla de 1px: la
        misma que dibujaba el Divider que se retiro, un gris que se desvanece en
        los dos costados para que la linea no toque los bordes de la pantalla.
-       Va como fondo del propio elemento (1px de alto, pegado arriba) y no con
-       border-top, porque un borde no admite degradado; asi no hay que meter un
-       elemento extra ni posicionar nada. El gris es gray-300 al 60%, que es el
-       color exacto que tenia aquel separador.
+       Va como fondo del propio elemento (1px de alto) y no con border-top,
+       porque un borde no admite degradado; asi no hay que meter un elemento
+       extra ni posicionar nada. El gris es gray-300 al 60%, que es el color
+       exacto que tenia aquel separador.
 
        La regla cae en el borde superior de la seccion, asi que para que quede
-       centrada el aire de arriba y el de abajo tienen que ser el mismo: cada
-       seccion reserva abajo lo que la siguiente reserva arriba (py-20 sm:py-28,
-       o sea 5rem y 7rem), y el hero reserva abajo ese mismo 7rem desde lg. Si se
-       cambia el padding de una seccion o el del hero, hay que cambiar el otro.
+       centrada entre el contenido de arriba y el de abajo el aire tiene que ser
+       el mismo a los dos lados. Casi siempre lo es, porque cada seccion reserva
+       abajo lo mismo que la siguiente arriba (py-20 sm:py-28, o sea 5rem y
+       7rem). La excepcion es el hero: reserva abajo 1.5rem (2rem desde lg)
+       porque su contenido tiene que caber en la pantalla, y ahi la regla se mete
+       hacia dentro de About la mitad de la diferencia (--rule-offset), de modo
+       que aparece un poco por debajo del pliegue en vez de en el borde. Si se
+       cambia el aire de abajo del hero o el de arriba de About, hay que rehacer
+       esas cuentas.
        Los filetes de dentro de cada seccion, los que separan unidades, siguen
        siendo solidos (border-t border-gray-200).
        ========================================== */
@@ -573,8 +578,27 @@ const jsonLd = {
         transparent
       );
       background-size: 100% 1px;
-      background-position: top;
+      background-position: 0 var(--rule-offset, 0);
       background-repeat: no-repeat;
+    }
+
+    /*
+     * Desplazamiento de la regla cuando el bloque de arriba reserva abajo menos
+     * aire que el de abajo arriba: la mitad de la diferencia, medida desde el
+     * borde superior de la seccion. Solo pasa entre el hero y About. Las cuentas,
+     * con el aire de abajo del hero y el de arriba de About en cada escalon:
+     * (5rem - 1.5rem) / 2, (7rem - 1.5rem) / 2 y (7rem - 2rem) / 2.
+     */
+    .section-rule-hero {
+      --rule-offset: 1.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .section-rule-hero { --rule-offset: 2.75rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .section-rule-hero { --rule-offset: 2.5rem; }
     }
 
     /* ==========================================

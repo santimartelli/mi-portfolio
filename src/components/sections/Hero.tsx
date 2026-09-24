@@ -36,14 +36,16 @@ const Hero = ({ content: t }: HeroProps) => {
     // pie (auto). El centrado vertical de la rejilla coloca entonces el bloque
     // de texto y el de la imagen en el medio de la primera fila, y el aire de
     // abajo lo pone el propio contenedor, no la seccion.
-    // Ese aire es de 7rem (pb-28) a proposito: es el mismo padding con el que
-    // abre la seccion siguiente (sm:py-28), de modo que la regla que las separa
-    // queda a la misma distancia del marquee que del titular de About. Si se
-    // cambia uno de los dos, hay que cambiar el otro.
+    // Ese aire de abajo es de 2rem, que es lo que deja el marquee cerca del
+    // pliegue, como estaba. Para que la regla que separa del hero quede a la
+    // misma distancia del marquee que del titular de About, la regla se mete
+    // hacia dentro de About la mitad de la diferencia entre este aire y el que
+    // About reserva arriba: eso vive en .section-rule-hero, en el layout. Si se
+    // cambia este padding, hay que rehacer esas cuentas.
     <section
       id="home"
       className="flex min-h-[100dvh] flex-col pt-[65px] pb-6 lg:min-h-screen lg:flex-row lg:pb-0">
-      <div className="shell flex flex-1 flex-col justify-between gap-1 lg:grid lg:flex-none lg:grid-cols-12 lg:grid-rows-[1fr_auto] lg:items-center lg:gap-x-12 lg:gap-y-6 lg:pb-28">
+      <div className="shell flex flex-1 flex-col justify-between gap-1 lg:grid lg:flex-none lg:grid-cols-12 lg:grid-rows-[1fr_auto] lg:items-center lg:gap-x-12 lg:gap-y-6 lg:pb-8">
         {/*
           En movil esta caja no genera caja propia (display: contents), asi que el
           titular, el parrafo, la accion y los iconos pasan a ser hijos directos
