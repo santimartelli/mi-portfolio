@@ -37,14 +37,14 @@ const About = ({ content: t }: AboutProps) => {
         </ol>
 
         {/* Lo que aporto: el titulo de la banda a la izquierda y las tres piezas
-            como filas, cada una con su rotulo en versalitas, un filete entre
-            ellas. Forma distinta a la fila de paradas, para que las dos bandas no
-            se lean igual. */}
+            como filas, cada una con su rotulo en versalitas. Las separa el aire,
+            sin filetes: la banda de paradas ya lleva bordes y no hace falta otra
+            regla. */}
         <div className="mt-20 grid gap-8 lg:grid-cols-12 lg:gap-12">
           <h3 className="text-subhead font-light text-black lg:col-span-3 dark:text-white">
             {t.principles.title}
           </h3>
-          <dl className="divide-y divide-gray-200 lg:col-span-9 dark:divide-gray-700">
+          <dl className="lg:col-span-9">
             {t.principles.items.map((item) => (
               <div key={item.title} className="py-6 first:pt-0 last:pb-0">
                 <dt className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
