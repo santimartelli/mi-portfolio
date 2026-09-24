@@ -51,9 +51,15 @@ export interface NavbarTranslations {
 
 export interface AboutTranslations {
   title: string;
+  /** Entradilla: el porque de la seccion, en dos o tres lineas. */
   lead: string;
-  story: Array<{ id: string; title: string; paragraphs: string[] }>;
-  bridge: { title: string; paragraphs: string[] };
+  /**
+   * Las tres etapas de la trayectoria, en orden cronologico. Una linea cada una:
+   * el detalle vive en las secciones de experiencia, skills y proyectos, aqui
+   * solo el arco.
+   */
+  steps: Array<{ id: string; title: string; line: string }>;
+  /** Lo que aporto: tres piezas cortas, con su rotulo. */
   principles: { title: string; items: Array<{ title: string; text: string }> };
 }
 

@@ -1,45 +1,29 @@
 {
   "title": "Cómo llegué aquí",
-  "lead": "Mi carrera profesional empezó delante del mostrador, no delante de un editor de código. La tecnología llegó después, y llegó por lo que veía desde ahí.",
-  "story": [
+  "lead": "Empecé en el mostrador de un hotel, no delante de un editor de código. La tecnología llegó después, por lo que veía desde ahí: hoy es lo que me deja traducir entre lo que necesita la operación y lo que puede hacer el producto.",
+  "steps": [
     {
       "id": "hospitality",
       "title": "Hospitality",
-      "paragraphs": [
-        "Llevo años trabajando de cara al cliente en alojamiento: hoteles, un aparthotel y, antes, la recepción corporativa de Dorna Sports durante las temporadas del Mundial de MotoGP. He hecho check-in y check-out, he gestionado reservas y modificaciones y he atendido a clientes individuales, grupos, equipos deportivos profesionales y patrocinadores internacionales.",
-        "Ese trabajo me ha enseñado a moverme en varios idiomas, a resolver incidencias con calma y a entender que detrás de cada reserva hay una persona con expectativas concretas."
-      ]
+      "line": "Años de cara al cliente en hoteles y un aparthotel, y antes la recepción corporativa de Dorna Sports durante las temporadas de MotoGP."
     },
     {
       "id": "operations",
       "title": "Operaciones",
-      "paragraphs": [
-        "Con el tiempo pasé de atender el mostrador a participar en cómo funciona el establecimiento por dentro: disponibilidad, asignación de habitaciones, gestión de canales, facturación, coordinación entre departamentos y operaciones de pricing.",
-        "Trabajar con Booking.com, Expedia, venta directa y PMS como Opera o Avalon me dio una perspectiva muy concreta: sé qué se rompe en la operación cuando una herramienta falla y sé qué necesita recepción para poder hacer su trabajo."
-      ]
+      "line": "Del mostrador a la operación por dentro: disponibilidad, asignación de habitaciones, canales, facturación y pricing, con PMS como Opera o Avalon y OTAs como Booking.com o Expedia."
     },
     {
       "id": "technology",
       "title": "Tecnología",
-      "paragraphs": [
-        "En paralelo estudié el CFGS en Desarrollo de Aplicaciones Web y empecé a construir software de verdad: primero en Dorna Sports como becario de desarrollo web, después como freelance para Acerko.com y, sobre todo, con Tanya Martelli Photography, un producto propio que desarrollo y mantengo desde 2024.",
-        "No me presento como ingeniero senior. Me presento como alguien con formación técnica y experiencia real construyendo y manteniendo productos web en producción."
-      ]
+      "line": "CFGS en Desarrollo de Aplicaciones Web; prácticas en Dorna Sports, freelance para Acerko.com y un producto propio, Tanya Martelli Photography, que mantengo desde 2024."
     }
   ],
-  "bridge": {
-    "title": "Por qué las dos partes tienen sentido juntas",
-    "paragraphs": [
-      "Entiendo los problemas de quien usa software hotelero porque he trabajado en los procesos y con las herramientas que se usan a diario en recepción. Y tengo base técnica suficiente para hablar con un equipo de producto o de desarrollo sobre qué se puede construir, cómo se integra y por qué algo falla.",
-      "Eso es útil donde hay que traducir entre lo que necesita la operación y lo que el producto puede hacer: implantación, onboarding, soporte técnico, customer success o producto en hotel tech."
-    ]
-  },
   "principles": {
     "title": "Lo que aporto",
     "items": [
       {
         "title": "Contexto operativo real",
-        "text": "He trabajado en recepción y en operaciones, así que entiendo el día a día de quien usa el software, no solo la demo."
+        "text": "He usado el software hotelero desde recepción, no solo en la demo."
       },
       {
         "title": "Puente entre cliente y equipo técnico",
@@ -47,7 +31,7 @@
       },
       {
         "title": "Capacidad de construir",
-        "text": "No solo detecto el problema: puedo montar un prototipo, integrar una API o mantener un producto en producción."
+        "text": "Puedo montar un prototipo, integrar una API o mantener un producto en producción."
       }
     ]
   }

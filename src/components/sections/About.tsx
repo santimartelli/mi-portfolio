@@ -1,4 +1,8 @@
-// Sobre mi: la trayectoria como una sola historia, en unidades anchas y repetibles.
+// Sobre mi. La seccion va en dos columnas, como el hero: a la izquierda el
+// titular, la entradilla y las tres etapas de la historia, en orden; a la
+// derecha, en piezas cortas, lo que aporto. Sin cajas y sin prosa larga: cada
+// etapa y cada pieza se leen de un vistazo, y el detalle vive donde toca
+// (experiencia, skills y proyectos), asi que aqui solo esta el arco.
 import type { AboutTranslations } from '../../util/i18n';
 
 interface AboutProps {
@@ -9,63 +13,49 @@ const About = ({ content: t }: AboutProps) => {
   return (
     <section id="about" className="section-rule section-rule-hero py-20 sm:py-28">
       <div className="shell">
-        <h2 className="text-headline font-light text-black dark:text-white">
-          {t.title}
-        </h2>
-        <p className="measure mt-5 text-lead font-light text-gray-600 dark:text-gray-400">
-          {t.lead}
-        </p>
+        <div className="grid gap-16 lg:grid-cols-12 lg:items-start lg:gap-x-12">
+          <div className="lg:col-span-6">
+            <h2 className="text-headline font-light text-black dark:text-white">
+              {t.title}
+            </h2>
+            <p className="measure mt-5 text-lead font-light leading-[1.6] text-gray-600 dark:text-gray-400">
+              {t.lead}
+            </p>
 
-        {/* Cada etapa: etiqueta a la izquierda, prosa a la derecha. Filas, no cajas. */}
-        <div className="mt-16">
-          {t.story.map((block) => (
-            <article
-              key={block.id}
-              className="grid gap-4 border-b border-gray-200 py-10 lg:grid-cols-12 lg:gap-12 dark:border-gray-700">
-              <h3 className="text-title-lg font-light text-black lg:col-span-4 dark:text-white">
-                {block.title}
-              </h3>
-              <div className="space-y-5 lg:col-span-8">
-                {block.paragraphs.map((paragraph) => (
-                  <p key={paragraph.slice(0, 40)} className="measure font-light leading-relaxed text-gray-600 dark:text-gray-400">
-                    {paragraph}
+            {/* Las tres etapas, en orden. Un filete entre unidades, sin cajas. */}
+            <ol className="mt-12 list-none">
+              {t.steps.map((step) => (
+                <li
+                  key={step.id}
+                  className="border-t border-gray-200 pt-6 pb-6 first:border-t-0 first:pt-0 last:pb-0 dark:border-gray-700">
+                  <h3 className="text-title-lg font-light text-black dark:text-white">
+                    {step.title}
+                  </h3>
+                  <p className="measure mt-3 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                    {step.line}
                   </p>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {/* El puente entre los dos mundos, en una banda ancha */}
-        <div className="mt-16 grid gap-6 lg:grid-cols-12 lg:gap-12">
-          <h3 className="text-title-lg font-light text-black lg:col-span-4 dark:text-white">
-            {t.bridge.title}
-          </h3>
-          <div className="space-y-5 lg:col-span-8">
-            {t.bridge.paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 40)} className="measure text-lead font-light text-gray-600 dark:text-gray-400">
-                {paragraph}
-              </p>
-            ))}
+                </li>
+              ))}
+            </ol>
           </div>
-        </div>
 
-        {/* Lo que aporto: tres unidades en fila, separadas por filete */}
-        <div className="mt-20">
-          <h3 className="text-title-lg font-light text-black dark:text-white">
-            {t.principles.title}
-          </h3>
-          <div className="mt-8 grid gap-10 border-t border-gray-200 pt-8 md:grid-cols-3 lg:gap-16 dark:border-gray-700">
-            {t.principles.items.map((item) => (
-              <div key={item.title}>
-                <h4 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
-                  {item.title}
-                </h4>
-                <p className="mt-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
-                  {item.text}
-                </p>
-              </div>
-            ))}
+          {/* Lo que aporto: tres piezas cortas. Sin filetes; las separa el aire. */}
+          <div className="lg:col-span-6">
+            <h3 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
+              {t.principles.title}
+            </h3>
+            <div className="mt-8 space-y-8">
+              {t.principles.items.map((item) => (
+                <div key={item.title}>
+                  <h4 className="text-subhead font-light text-black dark:text-white">
+                    {item.title}
+                  </h4>
+                  <p className="measure mt-2 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

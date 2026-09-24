@@ -1,45 +1,29 @@
 {
   "title": "How I got here",
-  "lead": "My career started behind a front desk, not behind a code editor. Technology came later, and it came because of what I saw from there.",
-  "story": [
+  "lead": "I started behind a hotel front desk, not behind a code editor. Technology came later, from what I saw there: today it is what lets me translate between what operations needs and what the product can do.",
+  "steps": [
     {
       "id": "hospitality",
       "title": "Hospitality",
-      "paragraphs": [
-        "I have spent years working face to face with guests in accommodation: hotels, an apart-hotel and, earlier, corporate reception at Dorna Sports during MotoGP World Championship seasons. I have handled check-ins and check-outs, managed reservations and amendments, and looked after individual guests, groups, professional sports teams and international sponsors.",
-        "That work taught me to move between languages, to handle incidents calmly, and to understand that behind every booking there is a person with specific expectations."
-      ]
+      "line": "Years working face to face with guests in hotels and an apart-hotel, and before that corporate reception at Dorna Sports during the MotoGP seasons."
     },
     {
       "id": "operations",
       "title": "Operations",
-      "paragraphs": [
-        "Over time I moved from the front desk into how the property works behind the scenes: availability, room allocation, channel management, invoicing, coordination between departments and pricing operations.",
-        "Working with Booking.com, Expedia, direct sales and PMS such as Opera or Avalon gave me a very concrete perspective: I know what breaks in the operation when a tool fails, and I know what the front desk needs to be able to do its job."
-      ]
+      "line": "From the front desk into the operation itself: availability, room allocation, channels, billing and pricing, with PMS such as Opera or Avalon and OTAs such as Booking.com or Expedia."
     },
     {
       "id": "technology",
       "title": "Technology",
-      "paragraphs": [
-        "In parallel I studied a Higher Vocational Qualification in Web Application Development and started building real software: first at Dorna Sports as a web development intern, then as a freelancer for Acerko.com and, above all, with Tanya Martelli Photography, a product I have been developing and maintaining since 2024.",
-        "I do not present myself as a senior engineer. I present myself as someone with technical training and real experience building and maintaining web products in production."
-      ]
+      "line": "Higher Vocational Qualification in Web Application Development; an internship at Dorna Sports, freelance work for Acerko.com and my own product, Tanya Martelli Photography, which I have maintained since 2024."
     }
   ],
-  "bridge": {
-    "title": "Why both halves belong together",
-    "paragraphs": [
-      "I understand the problems of people who use hotel software because I have worked in the processes and with the tools used at the front desk every day. And I have enough technical grounding to talk to a product or engineering team about what can be built, how it integrates and why something fails.",
-      "That is useful wherever someone has to translate between what operations needs and what the product can do: implementation, onboarding, technical support, customer success or product in hotel tech."
-    ]
-  },
   "principles": {
     "title": "What I bring",
     "items": [
       {
         "title": "Real operational context",
-        "text": "I have worked in reception and in operations, so I understand the daily reality of the people who use the software, not just the demo."
+        "text": "I have used hotel software from the front desk, not just in a demo."
       },
       {
         "title": "A bridge between client and engineering",
@@ -47,7 +31,7 @@
       },
       {
         "title": "Ability to build",
-        "text": "I do not just spot the problem: I can put together a prototype, integrate an API or maintain a product in production."
+        "text": "I can put together a prototype, integrate an API or maintain a product in production."
       }
     ]
   }
