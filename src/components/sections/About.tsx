@@ -36,25 +36,28 @@ const About = ({ content: t }: AboutProps) => {
           ))}
         </ol>
 
-        {/* Lo que puedo aportar: titulo de banda y, debajo, una sola columna con
-            tres filas, cada una con su rotulo en versalitas y su linea. Sin
-            imagenes y sin filetes: las filas las separa el aire. */}
+        {/* Lo que puedo aportar: titulo de banda y, debajo, una lista de tres
+            piezas, cada una con su guion. El rotulo va en negrita y engarzado con
+            la linea, asi que cada pieza cae en una sola linea en escritorio. El
+            guion es el mismo recurso que usan las listas de experiencia y
+            proyectos: un filete corto, sin puntos ni vinetas. */}
         <div className="mt-20">
           <h3 className="text-subhead font-light text-black dark:text-white">
             {t.principles.title}
           </h3>
-          <div className="mt-8 space-y-10">
+          <ul className="mt-8 list-none space-y-4">
             {t.principles.items.map((item) => (
-              <div key={item.title}>
-                <h4 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
-                  {item.title}
-                </h4>
-                <p className="measure mt-3 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+              <li
+                key={item.title}
+                className="flex gap-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                <span aria-hidden="true" className="mt-[0.6em] h-px w-3 shrink-0 bg-gray-400 dark:bg-gray-600" />
+                <span>
+                  <strong className="font-semibold text-black dark:text-white">{item.title}:</strong>{' '}
                   {item.text}
-                </p>
-              </div>
+                </span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </section>
