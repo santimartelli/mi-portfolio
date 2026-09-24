@@ -31,7 +31,11 @@ const Footer = ({ content: t }: FooterProps) => {
   ];
 
   return (
-    <footer className="section-rule py-16">
+    // pt-20 sm:pt-28 y no py-16: el aire de arriba tiene que ser el mismo que
+    // Contact deja abajo (su py-20 sm:py-28) para que la regla que los separa
+    // quede centrada entre las dos. El de abajo se queda en 4rem, que es el
+    // ritmo del pie.
+    <footer className="section-rule pt-20 pb-16 sm:pt-28">
       <div className="shell">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-16">
           <div>

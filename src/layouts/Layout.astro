@@ -556,6 +556,12 @@ const jsonLd = {
        border-top, porque un borde no admite degradado; asi no hay que meter un
        elemento extra ni posicionar nada. El gris es gray-300 al 60%, que es el
        color exacto que tenia aquel separador.
+
+       La regla cae en el borde superior de la seccion, asi que para que quede
+       centrada el aire de arriba y el de abajo tienen que ser el mismo: cada
+       seccion reserva abajo lo que la siguiente reserva arriba (py-20 sm:py-28,
+       o sea 5rem y 7rem), y el hero reserva abajo ese mismo 7rem desde lg. Si se
+       cambia el padding de una seccion o el del hero, hay que cambiar el otro.
        Los filetes de dentro de cada seccion, los que separan unidades, siguen
        siendo solidos (border-t border-gray-200).
        ========================================== */
