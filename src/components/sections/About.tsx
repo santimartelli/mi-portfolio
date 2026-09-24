@@ -36,31 +36,27 @@ const About = ({ content: t }: AboutProps) => {
           ))}
         </ol>
 
-        {/* Lo que puedo aportar: titulo de banda a la izquierda, como el resto de
-            titulares de seccion, y debajo la lista de tres piezas con guion,
-            centrada como bloque pero con el texto alineado a la izquierda
-            dentro: se centra la lista, no las lineas. El rotulo va en negrita y
+        {/* Lo que puedo aportar: titulo de banda y lista de tres piezas con
+            guion, todo alineado a la izquierda. El rotulo va en negrita y
             engarzado con la linea, asi que cada pieza cae en una sola linea en
             escritorio. El guion es el mismo filete corto que usan experiencia y
             proyectos. */}
         <h3 className="mt-20 text-subhead font-light text-black dark:text-white">
           {t.principles.title}
         </h3>
-        <div className="mt-8 mx-auto w-fit text-left">
-          <ul className="list-none space-y-4">
-            {t.principles.items.map((item) => (
-              <li
-                key={item.title}
-                className="flex gap-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
-                <span aria-hidden="true" className="mt-[0.6em] h-px w-3 shrink-0 bg-gray-400 dark:bg-gray-600" />
-                <span>
-                  <strong className="font-semibold text-black dark:text-white">{item.title}:</strong>{' '}
-                  {item.text}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className="mt-8 list-none space-y-4">
+          {t.principles.items.map((item) => (
+            <li
+              key={item.title}
+              className="flex gap-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
+              <span aria-hidden="true" className="mt-[0.6em] h-px w-3 shrink-0 bg-gray-400 dark:bg-gray-600" />
+              <span>
+                <strong className="font-semibold text-black dark:text-white">{item.title}:</strong>{' '}
+                {item.text}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
