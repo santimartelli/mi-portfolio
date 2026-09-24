@@ -36,16 +36,20 @@ const Hero = ({ content: t }: HeroProps) => {
     // pie (auto). El centrado vertical de la rejilla coloca entonces el bloque
     // de texto y el de la imagen en el medio de la primera fila, y el aire de
     // abajo lo pone el propio contenedor, no la seccion.
-    // Ese aire de abajo es de 2rem, que es lo que deja el marquee cerca del
-    // pliegue, como estaba. Para que la regla que separa del hero quede a la
-    // misma distancia del marquee que del titular de About, la regla se mete
-    // hacia dentro de About la mitad de la diferencia entre este aire y el que
-    // About reserva arriba: eso vive en .section-rule-hero, en el layout. Si se
-    // cambia este padding, hay que rehacer esas cuentas.
+    // Ese aire de abajo es de 4rem y no es un numero al azar: es el que deja el
+    // marquee centrado en la franja blanca que queda entre el borde inferior de
+    // la ilustracion y el borde inferior de la pantalla. Con el tope de alto de
+    // la ilustracion puesto (el caso normal en un portatil), el aire que sobra
+    // por debajo de la imagen dentro de su fila es (145 - pb) / 2, asi que
+    // igualarlo a este padding da 4rem. Para que la regla que separa del hero
+    // quede tambien centrada, se mete hacia dentro de About la mitad de la
+    // diferencia entre este aire y el que About reserva arriba: eso vive en
+    // .section-rule-hero, en el layout. Si se cambia este padding, hay que
+    // rehacer las dos cuentas.
     <section
       id="home"
       className="flex min-h-[100dvh] flex-col pt-[65px] pb-6 lg:min-h-screen lg:flex-row lg:pb-0">
-      <div className="shell flex flex-1 flex-col justify-between gap-1 lg:grid lg:flex-none lg:grid-cols-12 lg:grid-rows-[1fr_auto] lg:items-center lg:gap-x-12 lg:gap-y-6 lg:pb-8">
+      <div className="shell flex flex-1 flex-col justify-between gap-1 lg:grid lg:flex-none lg:grid-cols-12 lg:grid-rows-[1fr_auto] lg:items-center lg:gap-x-12 lg:gap-y-6 lg:pb-16">
         {/*
           En movil esta caja no genera caja propia (display: contents), asi que el
           titular, el parrafo, la accion y los iconos pasan a ser hijos directos

@@ -561,12 +561,13 @@ const jsonLd = {
        centrada entre el contenido de arriba y el de abajo el aire tiene que ser
        el mismo a los dos lados. Casi siempre lo es, porque cada seccion reserva
        abajo lo mismo que la siguiente arriba (py-20 sm:py-28, o sea 5rem y
-       7rem). La excepcion es el hero: reserva abajo 1.5rem (2rem desde lg)
-       porque su contenido tiene que caber en la pantalla, y ahi la regla se mete
-       hacia dentro de About la mitad de la diferencia (--rule-offset), de modo
-       que aparece un poco por debajo del pliegue en vez de en el borde. Si se
-       cambia el aire de abajo del hero o el de arriba de About, hay que rehacer
-       esas cuentas.
+       7rem). La excepcion es el hero: reserva abajo 1.5rem por debajo de lg y
+       4rem desde lg (que es lo que deja el marquee centrado en la franja que
+       queda entre la ilustracion y el borde de la pantalla), y ahi la regla se
+       mete hacia dentro de About la mitad de la diferencia (--rule-offset), de
+       modo que aparece un poco por debajo del pliegue en vez de en el borde. Si
+       se cambia el aire de abajo del hero o el de arriba de About, hay que
+       rehacer esas cuentas.
        Los filetes de dentro de cada seccion, los que separan unidades, siguen
        siendo solidos (border-t border-gray-200).
        ========================================== */
@@ -587,7 +588,7 @@ const jsonLd = {
      * aire que el de abajo arriba: la mitad de la diferencia, medida desde el
      * borde superior de la seccion. Solo pasa entre el hero y About. Las cuentas,
      * con el aire de abajo del hero y el de arriba de About en cada escalon:
-     * (5rem - 1.5rem) / 2, (7rem - 1.5rem) / 2 y (7rem - 2rem) / 2.
+     * (5rem - 1.5rem) / 2, (7rem - 1.5rem) / 2 y (7rem - 4rem) / 2.
      */
     .section-rule-hero {
       --rule-offset: 1.75rem;
@@ -598,7 +599,7 @@ const jsonLd = {
     }
 
     @media (min-width: 1024px) {
-      .section-rule-hero { --rule-offset: 2.5rem; }
+      .section-rule-hero { --rule-offset: 1.5rem; }
     }
 
     /* ==========================================
