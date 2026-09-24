@@ -23,18 +23,15 @@
     "items": [
       {
         "title": "Contexto operativo real",
-        "text": "He trabajado la operación de alojamiento por dentro: sé cómo se organiza el día a día, qué es urgente y qué puede esperar.",
-        "image": "/images/about-operations.webp"
+        "text": "He trabajado la operación de alojamiento por dentro: sé cómo se organiza el día a día, qué es urgente y qué puede esperar."
       },
       {
         "title": "Puente entre la operación y el equipo técnico",
-        "text": "Traduzco entre lo que necesita la operación y lo que puede hacer el producto, y los dos lados me entienden.",
-        "image": "/images/about-bridge.webp"
+        "text": "Traduzco entre lo que necesita la operación y lo que puede hacer el producto, y los dos lados me entienden."
       },
       {
         "title": "Capacidad de construir",
-        "text": "Puedo montar un prototipo, integrar una API o mantener un producto en producción.",
-        "image": "/images/about-building.webp"
+        "text": "Puedo montar un prototipo, integrar una API o mantener un producto en producción."
       }
     ]
   }

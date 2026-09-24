@@ -23,18 +23,15 @@
     "items": [
       {
         "title": "Real operational context",
-        "text": "I have worked lodging operations from the inside: I know how the day is organised, what is urgent and what can wait.",
-        "image": "/images/about-operations.webp"
+        "text": "I have worked lodging operations from the inside: I know how the day is organised, what is urgent and what can wait."
       },
       {
         "title": "A bridge between operations and engineering",
-        "text": "I translate between what operations needs and what the product can do, and both sides understand me.",
-        "image": "/images/about-bridge.webp"
+        "text": "I translate between what operations needs and what the product can do, and both sides understand me."
       },
       {
         "title": "Ability to build",
-        "text": "I can put together a prototype, integrate an API or maintain a product in production.",
-        "image": "/images/about-building.webp"
+        "text": "I can put together a prototype, integrate an API or maintain a product in production."
       }
     ]
   }

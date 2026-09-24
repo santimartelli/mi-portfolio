@@ -37,34 +37,21 @@ const About = ({ content: t }: AboutProps) => {
         </ol>
 
         {/* Lo que puedo aportar: titulo de banda y, debajo, una sola columna con
-            tres filas, cada una con su ilustracion pequena a la izquierda. Las
-            imagenes van con alt vacio porque solo refuerzan el texto que tienen
-            al lado, y en una caja de 3:2 con object-contain, porque los tres
-            recortes no miden lo mismo. */}
+            tres filas, cada una con su rotulo en versalitas y su linea. Sin
+            imagenes y sin filetes: las filas las separa el aire. */}
         <div className="mt-20">
           <h3 className="text-subhead font-light text-black dark:text-white">
             {t.principles.title}
           </h3>
           <div className="mt-8 space-y-10">
             {t.principles.items.map((item) => (
-              <div key={item.title} className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-                <img
-                  src={item.image}
-                  alt=""
-                  width="1000"
-                  height="667"
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[3/2] w-32 shrink-0 object-contain sm:w-44"
-                />
-                <div>
-                  <h4 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
-                    {item.title}
-                  </h4>
-                  <p className="measure mt-3 font-light leading-relaxed text-gray-600 dark:text-gray-400">
-                    {item.text}
-                  </p>
-                </div>
+              <div key={item.title}>
+                <h4 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
+                  {item.title}
+                </h4>
+                <p className="measure mt-3 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                  {item.text}
+                </p>
               </div>
             ))}
           </div>
