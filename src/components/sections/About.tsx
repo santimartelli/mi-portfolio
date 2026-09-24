@@ -36,18 +36,18 @@ const About = ({ content: t }: AboutProps) => {
           ))}
         </ol>
 
-        {/* Lo que puedo aportar: titulo de banda y, debajo, tres columnas, una
-            por pieza, cada una con su ilustracion. Las imagenes van con alt vacio
-            porque solo refuerzan el texto que tienen al lado, y con la misma caja
-            de 3:2 para que los rotulos de las tres columnas queden a la misma
-            altura aunque los dibujos no midan lo mismo. */}
+        {/* Lo que puedo aportar: titulo de banda y, debajo, una sola columna con
+            tres filas, cada una con su ilustracion pequena a la izquierda. Las
+            imagenes van con alt vacio porque solo refuerzan el texto que tienen
+            al lado, y en una caja de 3:2 con object-contain, porque los tres
+            recortes no miden lo mismo. */}
         <div className="mt-20">
           <h3 className="text-subhead font-light text-black dark:text-white">
             {t.principles.title}
           </h3>
-          <div className="mt-8 grid gap-10 lg:grid-cols-3 lg:gap-16">
+          <div className="mt-8 space-y-10">
             {t.principles.items.map((item) => (
-              <div key={item.title}>
+              <div key={item.title} className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
                 <img
                   src={item.image}
                   alt=""
@@ -55,14 +55,16 @@ const About = ({ content: t }: AboutProps) => {
                   height="667"
                   loading="lazy"
                   decoding="async"
-                  className="mb-6 aspect-[3/2] w-full object-contain"
+                  className="aspect-[3/2] w-32 shrink-0 object-contain sm:w-44"
                 />
-                <h4 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
-                  {item.title}
-                </h4>
-                <p className="measure mt-3 font-light leading-relaxed text-gray-600 dark:text-gray-400">
-                  {item.text}
-                </p>
+                <div>
+                  <h4 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
+                    {item.title}
+                  </h4>
+                  <p className="measure mt-3 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                    {item.text}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
