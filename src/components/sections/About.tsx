@@ -40,8 +40,12 @@ const About = ({ content: t }: AboutProps) => {
             piezas, cada una con su guion. El rotulo va en negrita y engarzado con
             la linea, asi que cada pieza cae en una sola linea en escritorio. El
             guion es el mismo recurso que usan las listas de experiencia y
-            proyectos: un filete corto, sin puntos ni vinetas. */}
-        <div className="mt-20">
+            proyectos: un filete corto, sin puntos ni vinetas.
+            El bloque va centrado en la seccion (mx-auto w-fit) pero con el texto
+            alineado a la izquierda dentro: lo que se centra es la lista, no las
+            lineas. En pantallas estrechas el w-fit se queda con el ancho que hay
+            y el texto envuelve. */}
+        <div className="mt-20 mx-auto w-fit text-left">
           <h3 className="text-subhead font-light text-black dark:text-white">
             {t.principles.title}
           </h3>
