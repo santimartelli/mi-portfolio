@@ -1,8 +1,8 @@
-// Sobre mi. La seccion va en dos columnas, como el hero: a la izquierda el
-// titular, la entradilla y las tres etapas de la historia, en orden; a la
-// derecha, en piezas cortas, lo que aporto. Sin cajas y sin prosa larga: cada
-// etapa y cada pieza se leen de un vistazo, y el detalle vive donde toca
-// (experiencia, skills y proyectos), asi que aqui solo esta el arco.
+// Sobre mi. A la izquierda el titular, la entradilla y la trayectoria como linea
+// de tiempo: tres paradas en orden, unidas por la espina que dibuja .timeline
+// (y que se va rellenando con el scroll, ver el layout). A la derecha, en piezas
+// cortas, lo que aporto. Sin cajas y sin prosa larga: cada parada cabe en una
+// linea, y el detalle vive donde toca (experiencia, skills y proyectos).
 import type { AboutTranslations } from '../../util/i18n';
 
 interface AboutProps {
@@ -22,16 +22,15 @@ const About = ({ content: t }: AboutProps) => {
               {t.lead}
             </p>
 
-            {/* Las tres etapas, en orden. Un filete entre unidades, sin cajas. */}
-            <ol className="mt-12 list-none">
+            {/* La trayectoria, en orden. El hilo y el nodo los pone .timeline;
+                aqui solo va el contenido de cada parada. */}
+            <ol className="timeline mt-12">
               {t.steps.map((step) => (
-                <li
-                  key={step.id}
-                  className="border-t border-gray-200 pt-6 pb-6 first:border-t-0 first:pt-0 last:pb-0 dark:border-gray-700">
-                  <h3 className="text-title-lg font-light text-black dark:text-white">
+                <li key={step.id}>
+                  <h3 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
                     {step.title}
                   </h3>
-                  <p className="measure mt-3 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                  <p className="measure mt-2 font-light leading-relaxed text-gray-600 dark:text-gray-400">
                     {step.line}
                   </p>
                 </li>
