@@ -1,8 +1,7 @@
-// Sobre mi. A la izquierda el titular, la entradilla y la trayectoria como linea
-// de tiempo: tres paradas en orden, unidas por la espina que dibuja .timeline
-// (y que se va rellenando con el scroll, ver el layout). A la derecha, en piezas
-// cortas, lo que aporto. Sin cajas y sin prosa larga: cada parada cabe en una
-// linea, y el detalle vive donde toca (experiencia, skills y proyectos).
+// Sobre mi. A la izquierda el titular, la entradilla y la trayectoria en tres
+// paradas, en orden y separadas por aire. A la derecha, en piezas cortas, lo que
+// aporto. Sin cajas, sin lineas y sin prosa larga: cada parada cabe en una linea,
+// y el detalle vive donde toca (experiencia, skills y proyectos).
 import type { AboutTranslations } from '../../util/i18n';
 
 interface AboutProps {
@@ -22,9 +21,9 @@ const About = ({ content: t }: AboutProps) => {
               {t.lead}
             </p>
 
-            {/* La trayectoria, en orden. El hilo y el nodo los pone .timeline;
-                aqui solo va el contenido de cada parada. */}
-            <ol className="timeline mt-12">
+            {/* La trayectoria, en orden: tres paradas, sin linea. Las separa el
+                aire, y el detalle de cada una vive en las secciones de al lado. */}
+            <ol className="mt-12 list-none space-y-8">
               {t.steps.map((step) => (
                 <li key={step.id}>
                   <h3 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
