@@ -20,10 +20,12 @@ const About = ({ content: t }: AboutProps) => {
           {t.lead}
         </p>
 
-        {/* La trayectoria, de izquierda a derecha: una parada por columna. */}
+        {/* La trayectoria, de izquierda a derecha: una parada por columna, cada
+            una con su borde de 1px, que es como se declara un contenedor en este
+            mundo. La rejilla las estira a la misma altura. */}
         <ol className="mt-16 grid list-none gap-10 lg:grid-cols-3 lg:gap-16">
           {t.steps.map((step) => (
-            <li key={step.id}>
+            <li key={step.id} className="border border-gray-200 p-6 dark:border-gray-700">
               <h3 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
                 {step.title}
               </h3>
