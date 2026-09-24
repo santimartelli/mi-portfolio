@@ -59,8 +59,15 @@ export interface AboutTranslations {
    * solo el arco.
    */
   steps: Array<{ id: string; title: string; line: string }>;
-  /** Lo que aporto: tres piezas cortas, con su rotulo. */
-  principles: { title: string; items: Array<{ title: string; text: string }> };
+  /**
+   * Lo que puedo aportar: tres piezas cortas, cada una con su rotulo y su
+   * ilustracion. Las imagenes son las mismas en los dos idiomas: no llevan texto
+   * y son decorativas, asi que el alt va vacio y no hace falta traducirlas.
+   */
+  principles: {
+    title: string;
+    items: Array<{ title: string; text: string; image: string }>;
+  };
 }
 
 export type ExperienceTrack = 'hospitality' | 'technology';

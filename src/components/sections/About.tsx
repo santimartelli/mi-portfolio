@@ -37,23 +37,35 @@ const About = ({ content: t }: AboutProps) => {
         </ol>
 
         {/* Lo que puedo aportar: titulo de banda y, debajo, tres columnas, una
-            por pieza. Sin bordes, que esos los lleva la banda de paradas. */}
+            por pieza, cada una con su ilustracion. Las imagenes van con alt vacio
+            porque solo refuerzan el texto que tienen al lado, y con la misma caja
+            de 3:2 para que los rotulos de las tres columnas queden a la misma
+            altura aunque los dibujos no midan lo mismo. */}
         <div className="mt-20">
           <h3 className="text-subhead font-light text-black dark:text-white">
             {t.principles.title}
           </h3>
-          <dl className="mt-8 grid gap-10 lg:grid-cols-3 lg:gap-16">
+          <div className="mt-8 grid gap-10 lg:grid-cols-3 lg:gap-16">
             {t.principles.items.map((item) => (
               <div key={item.title}>
-                <dt className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
+                <img
+                  src={item.image}
+                  alt=""
+                  width="1000"
+                  height="667"
+                  loading="lazy"
+                  decoding="async"
+                  className="mb-6 aspect-[3/2] w-full object-contain"
+                />
+                <h4 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
                   {item.title}
-                </dt>
-                <dd className="measure mt-3 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                </h4>
+                <p className="measure mt-3 font-light leading-relaxed text-gray-600 dark:text-gray-400">
                   {item.text}
-                </dd>
+                </p>
               </div>
             ))}
-          </dl>
+          </div>
         </div>
       </div>
     </section>
