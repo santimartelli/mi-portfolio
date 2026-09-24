@@ -36,21 +36,19 @@ const About = ({ content: t }: AboutProps) => {
           ))}
         </ol>
 
-        {/* Lo que aporto: el titulo de la banda a la izquierda y las tres piezas
-            como filas, cada una con su rotulo en versalitas. Las separa el aire,
-            sin filetes: la banda de paradas ya lleva bordes y no hace falta otra
-            regla. */}
-        <div className="mt-20 grid gap-8 lg:grid-cols-12 lg:gap-12">
-          <h3 className="text-subhead font-light text-black lg:col-span-3 dark:text-white">
+        {/* Lo que puedo aportar: titulo de banda y, debajo, tres columnas, una
+            por pieza. Sin bordes, que esos los lleva la banda de paradas. */}
+        <div className="mt-20">
+          <h3 className="text-subhead font-light text-black dark:text-white">
             {t.principles.title}
           </h3>
-          <dl className="lg:col-span-9">
+          <dl className="mt-8 grid gap-10 lg:grid-cols-3 lg:gap-16">
             {t.principles.items.map((item) => (
-              <div key={item.title} className="py-6 first:pt-0 last:pb-0">
+              <div key={item.title}>
                 <dt className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
                   {item.title}
                 </dt>
-                <dd className="measure mt-2 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                <dd className="measure mt-3 font-light leading-relaxed text-gray-600 dark:text-gray-400">
                   {item.text}
                 </dd>
               </div>
