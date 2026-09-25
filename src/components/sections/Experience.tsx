@@ -91,19 +91,16 @@ const Experience = ({ content: t }: ExperienceProps) => {
                 </div>
               </div>
 
-              <div className="mt-4 space-y-1">
-                <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
-                  {entry.period}
-                </p>
-                <p className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
-                  {t.trackLabels[entry.track]}
-                </p>
+              {/* El cuando y el donde, en una sola linea. */}
+              <p className="mt-4 flex flex-wrap items-baseline gap-x-2 text-xs text-gray-500 dark:text-gray-400">
+                <span className="font-mono uppercase tracking-widest tabular">{entry.period}</span>
                 {entry.location && (
-                  <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                    {entry.location}
-                  </p>
+                  <>
+                    <span aria-hidden="true" className="text-gray-300 dark:text-gray-600">·</span>
+                    <span className="font-light">{entry.location}</span>
+                  </>
                 )}
-              </div>
+              </p>
 
               <p className="mt-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
                 {entry.summary}
@@ -120,17 +117,20 @@ const Experience = ({ content: t }: ExperienceProps) => {
                 ))}
               </ul>
 
-              {entry.tools && entry.tools.length > 0 && (
-                <ul className="mt-6 flex list-none flex-wrap gap-2">
-                  {entry.tools.map((tool) => (
-                    <li
-                      key={tool}
-                      className="rounded border border-gray-300 px-2 py-1 font-mono text-[0.65rem] font-normal uppercase tracking-widest text-black dark:border-gray-600 dark:text-white">
-                      {tool}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              {/* Las etiquetas de la tarjeta: primero la faceta, que es la misma
+                  taxonomia de los filtros, y despues las herramientas. */}
+              <ul className="mt-6 flex list-none flex-wrap gap-2">
+                <li className="rounded border border-gray-400 px-2 py-1 font-mono text-[0.65rem] font-normal uppercase tracking-widest text-black dark:border-gray-500 dark:text-white">
+                  {t.trackLabels[entry.track]}
+                </li>
+                {entry.tools?.map((tool) => (
+                  <li
+                    key={tool}
+                    className="rounded border border-gray-300 px-2 py-1 font-mono text-[0.65rem] font-normal uppercase tracking-widest text-black dark:border-gray-600 dark:text-white">
+                    {tool}
+                  </li>
+                ))}
+              </ul>
             </li>
           ))}
         </ol>
