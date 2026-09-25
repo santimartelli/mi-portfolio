@@ -69,6 +69,11 @@ export interface ExperienceEntry {
   id: string;
   track: ExperienceTrack;
   company: string;
+  /**
+   * Logotipo de la empresa, para la esquina de la tarjeta. No lleva alt: el
+   * nombre va justo al lado y la imagen solo lo acompania.
+   */
+  logo?: string;
   role: string;
   period: string;
   location?: string;

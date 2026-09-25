@@ -65,6 +65,15 @@ const Experience = ({ content: t }: ExperienceProps) => {
               <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
                 {/* Metadatos */}
                 <div className="lg:col-span-3">
+                  {entry.logo && (
+                    <img
+                      src={entry.logo}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      className="mb-5 h-12 w-auto max-w-full object-contain"
+                    />
+                  )}
                   <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
                     {entry.period}
                   </p>
