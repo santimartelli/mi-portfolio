@@ -55,6 +55,7 @@
       "logo": "/images/tanya-martelli-logo.webp",
       "role": "Desarrollo y mantenimiento de producto propio",
       "period": "2024 – actualidad",
+      "location": "Lloret de Mar · Remoto",
       "summary": "Sitio web y sistema de gestión para una fotógrafa profesional. Producto real en producción que desarrollo y mantengo.",
       "highlights": [
         "Producto en producción cuyo contenido gestiona la propia clienta",
@@ -90,6 +91,7 @@
       "logo": "/images/acerko-logo.webp",
       "role": "Freelance Web Developer",
       "period": "2024 – 2025",
+      "location": "Lloret de Mar",
       "summary": "Rediseño y mejora de un sitio comercial en producción, trabajando directamente con el cliente.",
       "highlights": [
         "Rediseño de un sitio WordPress en producción, sin sacarlo de línea",
@@ -108,6 +110,7 @@
       "logo": "/images/dorna-logo.webp",
       "role": "Corporate Reception & Administration",
       "period": "2019 – 2024",
+      "location": "Barcelona",
       "summary": "Recepción corporativa en un entorno internacional, a lo largo de varias temporadas del Mundial de MotoGP.",
       "highlights": [
         "Atención a ejecutivos, patrocinadores, proveedores y prensa internacional",
@@ -124,6 +127,7 @@
       "logo": "/images/dorna-logo.webp",
       "role": "Web Development Internship",
       "period": "2023",
+      "location": "Barcelona",
       "summary": "Prácticas de desarrollo web dentro del equipo técnico, en paralelo a la recepción corporativa.",
       "highlights": [
         "Desarrollo con HTML, CSS y JavaScript",
