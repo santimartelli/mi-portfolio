@@ -49,7 +49,7 @@ const About = ({ content: t }: AboutProps) => {
             <li
               key={item.title}
               className="flex gap-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
-              <span aria-hidden="true" className="mt-[0.6em] h-px w-3 shrink-0 bg-gray-400 dark:bg-gray-600" />
+              <span aria-hidden="true" className="mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-gray-400 dark:bg-gray-600" />
               <span>
                 <strong className="font-semibold text-black dark:text-white">{item.title}:</strong>{' '}
                 {item.text}

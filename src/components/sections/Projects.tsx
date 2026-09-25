@@ -136,7 +136,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                       <li
                         key={item}
                         className="flex gap-3 border-b border-gray-100 py-3 font-light leading-relaxed text-gray-600 last:border-b-0 dark:border-gray-800 dark:text-gray-400">
-                        <span aria-hidden="true" className="mt-[0.7em] h-px w-3 shrink-0 bg-gray-400 dark:bg-gray-600" />
+                        <span aria-hidden="true" className="mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-gray-400 dark:bg-gray-600" />
                         <span>{item}</span>
                       </li>
                     ))}
