@@ -57,66 +57,61 @@ const Experience = ({ content: t }: ExperienceProps) => {
           })}
         </div>
 
-        <ol className="mt-14 grid list-none gap-6">
+        <ol className="mt-14 grid list-none gap-6 lg:grid-cols-3">
           {entries.map((entry) => (
             <li
               key={entry.id}
-              className="border border-gray-200 p-6 sm:p-8 dark:border-gray-700">
-              <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
-                {/* Metadatos */}
-                <div className="lg:col-span-3">
-                  {entry.logo && (
-                    <img
-                      src={entry.logo}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      className="mb-5 h-12 w-auto max-w-full object-contain"
-                    />
-                  )}
-                  <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
-                    {entry.period}
-                  </p>
-                  <p className="mt-4 text-label font-medium uppercase text-gray-500 dark:text-gray-400">
-                    {t.trackLabels[entry.track]}
-                  </p>
-                  {entry.location && (
-                    <p className="mt-4 text-sm font-light text-gray-500 dark:text-gray-400">
-                      {entry.location}
-                    </p>
-                  )}
-                </div>
+              className="border border-gray-200 p-6 dark:border-gray-700">
+              {/* La tarjeta va en vertical: el logotipo y los metadatos arriba,
+                  y debajo el relato. En una columna tan estrecha los hitos van a
+                  una sola columna, no a dos. */}
+              {entry.logo && (
+                <img
+                  src={entry.logo}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="mb-5 h-12 w-auto max-w-full object-contain"
+                />
+              )}
+              <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
+                {entry.period}
+              </p>
+              <p className="mt-4 text-label font-medium uppercase text-gray-500 dark:text-gray-400">
+                {t.trackLabels[entry.track]}
+              </p>
+              {entry.location && (
+                <p className="mt-4 text-sm font-light text-gray-500 dark:text-gray-400">
+                  {entry.location}
+                </p>
+              )}
 
-                {/* Contenido */}
-                <div className="lg:col-span-9">
-                  <h3 className="text-subhead font-light text-black dark:text-white">
-                    {entry.company}
-                  </h3>
-                  <p className="mt-1 text-base font-light text-gray-700 dark:text-gray-300">
-                    {entry.role}
-                  </p>
-                  <p className="measure mt-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
-                    {entry.summary}
-                  </p>
+              <h3 className="mt-6 text-subhead font-light text-black dark:text-white">
+                {entry.company}
+              </h3>
+              <p className="mt-1 text-base font-light text-gray-700 dark:text-gray-300">
+                {entry.role}
+              </p>
+              <p className="mt-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                {entry.summary}
+              </p>
 
-                  <ul className="mt-6 grid list-none gap-x-12 gap-y-2 sm:grid-cols-2">
-                    {entry.highlights.map((highlight) => (
-                      <li
-                        key={highlight}
-                        className="flex gap-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
-                        <span aria-hidden="true" className="mt-[0.6em] h-px w-3 shrink-0 bg-gray-400 dark:bg-gray-600" />
-                        <span>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
+              <ul className="mt-6 list-none space-y-2">
+                {entry.highlights.map((highlight) => (
+                  <li
+                    key={highlight}
+                    className="flex gap-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                    <span aria-hidden="true" className="mt-[0.6em] h-px w-3 shrink-0 bg-gray-400 dark:bg-gray-600" />
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
 
-                  {entry.tools && entry.tools.length > 0 && (
-                    <p className="mt-6 font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                      {entry.tools.join(' · ')}
-                    </p>
-                  )}
-                </div>
-              </div>
+              {entry.tools && entry.tools.length > 0 && (
+                <p className="mt-6 font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                  {entry.tools.join(' · ')}
+                </p>
+              )}
             </li>
           ))}
         </ol>
