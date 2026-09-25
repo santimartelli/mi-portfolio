@@ -25,7 +25,7 @@ const About = ({ content: t }: AboutProps) => {
             mundo. La rejilla las estira a la misma altura. */}
         <ol className="mt-16 grid list-none gap-10 lg:grid-cols-3 lg:gap-16">
           {t.steps.map((step) => (
-            <li key={step.id} className="rounded-xl border border-gray-200 p-6 transition-colors duration-200 hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-500">
+            <li key={step.id} className="rounded-xl border border-gray-200 p-6 hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-500">
               <h3 className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
                 {step.title}
               </h3>
