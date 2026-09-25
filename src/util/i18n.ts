@@ -88,8 +88,6 @@ export interface ExperienceTranslations {
   /** Etiqueta del filtro que muestra ambas facetas. */
   allLabel: string;
   trackLabels: Record<ExperienceTrack, string>;
-  /** Nota de honestidad sobre áreas objetivo aún no desempeñadas como cargo. */
-  note: string;
   entries: ExperienceEntry[];
 }
 

@@ -134,10 +134,6 @@ const Experience = ({ content: t }: ExperienceProps) => {
             </li>
           ))}
         </ol>
-
-        <p className="measure mt-10 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
-          {t.note}
-        </p>
       </div>
     </section>
   );
