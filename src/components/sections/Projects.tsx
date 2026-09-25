@@ -34,7 +34,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                 {/* Prueba y datos */}
                 <div className="lg:col-span-5">
                   <div className="lg:sticky lg:top-24">
-                    <div className="relative aspect-video overflow-hidden border border-gray-200 bg-gray-100 hover:border-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-500">
+                    <div className="relative aspect-video overflow-hidden border border-gray-200 bg-gray-100 transition-colors duration-200 ease-out hover:border-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-500">
                       <img
                         src={project.image}
                         alt={project.imageAlt}
@@ -75,7 +75,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                           href={project.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-sm font-light uppercase tracking-widest text-gray-600 transition-colors duration-300 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
+                          className="flex items-center gap-2 text-sm font-light uppercase tracking-widest text-gray-600 transition-colors duration-300 ease-out hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
                           <HiExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
                           {t.labels.visit}
                           <span className="sr-only"> — {project.title}</span>
@@ -86,7 +86,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                           href={project.code}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-sm font-light uppercase tracking-widest text-gray-600 transition-colors duration-300 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
+                          className="flex items-center gap-2 text-sm font-light uppercase tracking-widest text-gray-600 transition-colors duration-300 ease-out hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
                           <FaGithub className="h-3.5 w-3.5" aria-hidden="true" />
                           {t.labels.code}
                           <span className="sr-only"> — {project.title}</span>

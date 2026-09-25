@@ -44,7 +44,7 @@ const Contact = ({ content: t }: ContactProps) => {
               <a
                 href={channel.href}
                 {...(channel.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
-                className="grid items-baseline gap-2 py-5 transition-colors duration-200 hover:bg-gray-50 lg:grid-cols-12 lg:gap-12 dark:hover:bg-gray-900/40">
+                className="grid items-baseline gap-2 py-5 transition-colors duration-200 ease-out hover:bg-gray-50 lg:grid-cols-12 lg:gap-12 dark:hover:bg-gray-900/40">
                 <span className="flex items-center gap-3 lg:col-span-3">
                   <channel.icon className="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true" />
                   <span className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
@@ -77,7 +77,7 @@ const Contact = ({ content: t }: ContactProps) => {
                 <a
                   href={meta.href}
                   download={CV_FILES[file.id as CvLocale]}
-                  className="grid items-baseline gap-2 py-5 transition-colors duration-200 hover:bg-gray-50 lg:grid-cols-12 lg:gap-12 dark:hover:bg-gray-900/40">
+                  className="grid items-baseline gap-2 py-5 transition-colors duration-200 ease-out hover:bg-gray-50 lg:grid-cols-12 lg:gap-12 dark:hover:bg-gray-900/40">
                   <span className="flex items-center gap-3 lg:col-span-3">
                     <FaDownload className="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true" />
                     <span className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">

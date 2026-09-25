@@ -51,7 +51,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
                 type="button"
                 onClick={() => setFilter(option.id)}
                 aria-pressed={isActive}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 ease-out ${
                   isActive
                     ? 'bg-gray-100 text-black dark:bg-gray-800 dark:text-white'
                     : 'text-gray-700 hover:bg-gray-100 hover:text-black dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white'
@@ -66,7 +66,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
           {entries.map((entry) => (
             <li
               key={entry.id}
-              className="rounded-xl border border-gray-200 p-6 hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-500">
+              className="rounded-xl border border-gray-200 p-6 transition-colors duration-200 ease-out hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-500">
               {/* Cabecera: el logotipo a la izquierda y, a su derecha, el nombre
                   de la empresa con el puesto debajo. Despues los metadatos, muy
                   juntos, y el relato. Los hitos van con punto, no con guion. */}

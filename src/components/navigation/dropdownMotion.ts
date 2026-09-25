@@ -38,7 +38,7 @@ export const dropdownPanelClass =
 
 /** Clases de un item del panel, con el estado activo resuelto. */
 export const dropdownItemClass = (isActive: boolean) =>
-  `flex w-full items-center gap-3 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-lg ${
+  `flex w-full items-center gap-3 px-3 py-2 text-sm font-medium transition-colors duration-200 ease-out rounded-lg ${
     isActive
       ? 'text-black dark:text-white bg-gray-100 dark:bg-gray-800'
       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white'

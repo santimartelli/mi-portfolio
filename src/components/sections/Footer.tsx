@@ -51,7 +51,7 @@ const Footer = ({ content: t }: FooterProps) => {
                     target="_blank"
                     rel="noopener noreferrer me"
                     aria-label={social.label}
-                    className="block text-gray-500 transition-colors duration-200 hover:text-black dark:text-gray-400 dark:hover:text-white">
+                    className="block text-gray-500 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
                     <social.icon className="h-4 w-4" aria-hidden="true" />
                   </a>
                 </li>
@@ -68,7 +68,7 @@ const Footer = ({ content: t }: FooterProps) => {
                 <li key={item.name}>
                   <a
                     href={item.href}
-                    className="font-light text-gray-600 transition-colors duration-200 hover:text-black dark:text-gray-400 dark:hover:text-white">
+                    className="font-light text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
                     {item.name}
                   </a>
                 </li>
@@ -86,7 +86,7 @@ const Footer = ({ content: t }: FooterProps) => {
                   <a
                     href={contact.href}
                     {...(contact.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
-                    className="flex items-center gap-2 font-light text-gray-600 transition-colors duration-200 hover:text-black dark:text-gray-400 dark:hover:text-white">
+                    className="flex items-center gap-2 font-light text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
                     <contact.icon className="h-3 w-3 shrink-0 text-gray-500" aria-hidden="true" />
                     <span className="break-all">{contact.value}</span>
                   </a>
