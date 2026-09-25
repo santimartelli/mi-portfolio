@@ -34,7 +34,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                 {/* Prueba y datos */}
                 <div className="lg:col-span-5">
                   <div className="lg:sticky lg:top-24">
-                    <div className="relative aspect-video overflow-hidden border border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-gray-800">
+                    <div className="relative aspect-video overflow-hidden border border-gray-200 bg-gray-100 transition-colors duration-200 hover:border-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-500">
                       <img
                         src={project.image}
                         alt={project.imageAlt}
