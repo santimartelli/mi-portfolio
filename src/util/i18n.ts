@@ -88,6 +88,10 @@ export interface ExperienceTranslations {
   /** Etiqueta del filtro que muestra ambas facetas. */
   allLabel: string;
   trackLabels: Record<ExperienceTrack, string>;
+  /**
+   * Los puestos, en orden de lectura: los mas recientes primero, por fecha de
+   * fin, y los que siguen abiertos arriba. El filtro conserva ese orden.
+   */
   entries: ExperienceEntry[];
 }
 

@@ -7,6 +7,7 @@
     "technology": "Technology"
   },
   "entries": [
+
     {
       "id": "els-quimics",
       "track": "hospitality",
@@ -27,6 +28,26 @@
       ],
       "tools": ["Booking.com", "Expedia", "Excel"]
     },
+
+    {
+      "id": "tanya-martelli",
+      "track": "technology",
+      "company": "Tanya Martelli Photography",
+      "logo": "/images/tanya-martelli-logo.webp",
+      "role": "Development and maintenance of my own product",
+      "period": "2024 – present",
+      "location": "Remote",
+      "summary": "Website and management system for a professional photographer. A real product in production that I build and maintain.",
+      "highlights": [
+        "A production product whose content the client manages herself",
+        "Architecture evolution: from Vue + Node/Express + MySQL to Next.js, React and Supabase",
+        "Media storage migrated from Cloudinary to Cloudflare R2",
+        "Multi-language site and a custom admin dashboard",
+        "Continuous maintenance and evolution since 2024"
+      ],
+      "tools": ["Next.js", "React", "TypeScript", "Supabase", "Cloudflare R2"]
+    },
+
     {
       "id": "hotel-marsol",
       "track": "hospitality",
@@ -47,24 +68,7 @@
       ],
       "tools": ["PMS", "Reservations", "Groups", "Switchboard"]
     },
-    {
-      "id": "tanya-martelli",
-      "track": "technology",
-      "company": "Tanya Martelli Photography",
-      "logo": "/images/tanya-martelli-logo.webp",
-      "role": "Development and maintenance of my own product",
-      "period": "2024 – present",
-      "location": "Remote",
-      "summary": "Website and management system for a professional photographer. A real product in production that I build and maintain.",
-      "highlights": [
-        "A production product whose content the client manages herself",
-        "Architecture evolution: from Vue + Node/Express + MySQL to Next.js, React and Supabase",
-        "Media storage migrated from Cloudinary to Cloudflare R2",
-        "Multi-language site and a custom admin dashboard",
-        "Continuous maintenance and evolution since 2024"
-      ],
-      "tools": ["Next.js", "React", "TypeScript", "Supabase", "Cloudflare R2"]
-    },
+
     {
       "id": "gran-hotel-flamingo",
       "track": "hospitality",
@@ -83,6 +87,7 @@
       ],
       "tools": ["PMS", "POS", "Billing", "Groups"]
     },
+
     {
       "id": "acerko",
       "track": "technology",
@@ -102,6 +107,7 @@
       ],
       "tools": ["WordPress", "WPBakery", "JavaScript", "CSS"]
     },
+
     {
       "id": "dorna-corporate",
       "track": "hospitality",
@@ -119,6 +125,7 @@
       ],
       "tools": ["Visits", "Administration", "Languages"]
     },
+
     {
       "id": "dorna-webdev",
       "track": "technology",
@@ -138,13 +145,14 @@
       ],
       "tools": ["HTML", "CSS", "JavaScript", "Vue.js", "REST APIs"]
     },
+
     {
       "id": "ac-palau",
       "track": "hospitality",
       "company": "AC Palau de Bellavista by Marriott",
       "logo": "/images/ac-hotels-logo.webp",
       "role": "Front Office",
-      "period": "2 years",
+      "period": "2018 – 2019",
       "location": "Girona",
       "summary": "Front office at an urban Marriott-branded hotel.",
       "highlights": [
@@ -157,5 +165,6 @@
       ],
       "tools": ["Marsha", "Reservations", "Billing", "VIP"]
     }
+  
   ]
 }
