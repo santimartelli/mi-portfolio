@@ -45,7 +45,8 @@
         "Walk-ins y solicitudes especiales",
         "Cotización y gestión de grupos",
         "Centralita"
-      ]
+      ],
+      "tools": ["PMS", "Reservas", "Grupos", "Centralita"]
     },
     {
       "id": "tanya-martelli",
@@ -79,7 +80,8 @@
         "Pagos, facturación, TPV y arqueo",
         "Gestión de incidencias",
         "Coordinación con otros departamentos"
-      ]
+      ],
+      "tools": ["PMS", "TPV", "Facturación", "Grupos"]
     },
     {
       "id": "acerko",
@@ -112,7 +114,8 @@
         "Gestión de visitas y de visitantes internacionales",
         "Tareas administrativas y de coordinación",
         "Comunicación en varios idiomas"
-      ]
+      ],
+      "tools": ["Visitas", "Administración", "Idiomas"]
     },
     {
       "id": "dorna-webdev",
@@ -149,7 +152,7 @@
         "Solicitudes especiales y protocolos de privacidad",
         "Uso diario de PMS"
       ],
-      "tools": ["PMS"]
+      "tools": ["Marsha", "Reservas", "Facturación", "VIP"]
     }
   ]
 }

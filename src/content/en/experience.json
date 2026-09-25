@@ -45,7 +45,8 @@
         "Walk-ins and special requests",
         "Group quotations and management",
         "Switchboard"
-      ]
+      ],
+      "tools": ["PMS", "Reservations", "Groups", "Switchboard"]
     },
     {
       "id": "tanya-martelli",
@@ -79,7 +80,8 @@
         "Payments, invoicing, POS and cash reconciliation",
         "Incident handling",
         "Coordination with other departments"
-      ]
+      ],
+      "tools": ["PMS", "POS", "Billing", "Groups"]
     },
     {
       "id": "acerko",
@@ -112,7 +114,8 @@
         "Visit and international visitor management",
         "Administrative and coordination tasks",
         "Communication in several languages"
-      ]
+      ],
+      "tools": ["Visits", "Administration", "Languages"]
     },
     {
       "id": "dorna-webdev",
@@ -149,7 +152,7 @@
         "Special requests and privacy protocols",
         "Daily use of PMS"
       ],
-      "tools": ["PMS"]
+      "tools": ["Marsha", "Reservations", "Billing", "VIP"]
     }
   ]
 }
