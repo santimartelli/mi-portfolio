@@ -66,9 +66,9 @@ const Experience = ({ content: t }: ExperienceProps) => {
             <li
               key={entry.id}
               className="border border-gray-200 p-6 dark:border-gray-700">
-              {/* Cabecera: el logotipo a la izquierda del nombre de la empresa y
-                  el puesto debajo. Despues los metadatos, muy juntos, y el
-                  relato. Los hitos van con punto, no con guion. */}
+              {/* Cabecera: el logotipo a la izquierda y, a su derecha, el nombre
+                  de la empresa con el puesto debajo. Despues los metadatos, muy
+                  juntos, y el relato. Los hitos van con punto, no con guion. */}
               <div className="flex items-center gap-4">
                 {entry.logo && (
                   <img
@@ -76,16 +76,18 @@ const Experience = ({ content: t }: ExperienceProps) => {
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    className="h-12 w-auto max-w-full shrink-0 rounded-lg object-contain"
+                    className="h-14 w-auto max-w-full shrink-0 rounded-lg object-contain"
                   />
                 )}
-                <h3 className="text-subhead font-light text-black dark:text-white">
-                  {entry.company}
-                </h3>
+                <div>
+                  <h3 className="text-subhead font-light text-black dark:text-white">
+                    {entry.company}
+                  </h3>
+                  <p className="mt-1 text-base font-light text-gray-700 dark:text-gray-300">
+                    {entry.role}
+                  </p>
+                </div>
               </div>
-              <p className="mt-1 text-base font-light text-gray-700 dark:text-gray-300">
-                {entry.role}
-              </p>
 
               <div className="mt-4 space-y-1">
                 <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
