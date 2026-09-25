@@ -34,11 +34,11 @@ export const menuItemVariants = {
 
 /** Clases del panel desplegable. Una sola definicion para los dos menus. */
 export const dropdownPanelClass =
-  'absolute right-0 top-[72px] w-56 bg-white dark:bg-gray-950 border border-black dark:border-gray-800 mobile-menu overflow-hidden z-30';
+  'absolute right-0 top-[72px] w-56 bg-white dark:bg-gray-950 border border-black dark:border-gray-800 rounded-xl mobile-menu overflow-hidden z-30';
 
 /** Clases de un item del panel, con el estado activo resuelto. */
 export const dropdownItemClass = (isActive: boolean) =>
-  `flex w-full items-center gap-3 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-sm ${
+  `flex w-full items-center gap-3 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-lg ${
     isActive
       ? 'text-black dark:text-white bg-gray-100 dark:bg-gray-800'
       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white'

@@ -65,7 +65,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
           {entries.map((entry) => (
             <li
               key={entry.id}
-              className="border border-gray-200 p-6 dark:border-gray-700">
+              className="rounded-xl border border-gray-200 p-6 dark:border-gray-700">
               {/* Cabecera: el logotipo a la izquierda y, a su derecha, el nombre
                   de la empresa con el puesto debajo. Despues los metadatos, muy
                   juntos, y el relato. Los hitos van con punto, no con guion. */}
