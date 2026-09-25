@@ -65,7 +65,24 @@ const Experience = ({ content: t }: ExperienceProps) => {
               {/* La tarjeta va en vertical: el logotipo y los metadatos arriba,
                   y debajo el relato. En una columna tan estrecha los hitos van a
                   una sola columna, no a dos. */}
-              <div className="flex items-center gap-4">
+              {/* Los metadatos arriba, muy juntos: son tres datos de la misma
+                  cosa. Y debajo, el logotipo a la izquierda del nombre de la
+                  empresa. */}
+              <div className="space-y-1">
+                <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
+                  {entry.period}
+                </p>
+                <p className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
+                  {t.trackLabels[entry.track]}
+                </p>
+                {entry.location && (
+                  <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                    {entry.location}
+                  </p>
+                )}
+              </div>
+
+              <div className="mt-6 flex items-center gap-4">
                 {entry.logo && (
                   <img
                     src={entry.logo}
@@ -75,24 +92,10 @@ const Experience = ({ content: t }: ExperienceProps) => {
                     className="h-12 w-auto max-w-full shrink-0 rounded-lg object-contain"
                   />
                 )}
-                <div className="space-y-1">
-                  <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
-                    {entry.period}
-                  </p>
-                  <p className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
-                    {t.trackLabels[entry.track]}
-                  </p>
-                  {entry.location && (
-                    <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                      {entry.location}
-                    </p>
-                  )}
-                </div>
+                <h3 className="text-subhead font-light text-black dark:text-white">
+                  {entry.company}
+                </h3>
               </div>
-
-              <h3 className="mt-6 text-subhead font-light text-black dark:text-white">
-                {entry.company}
-              </h3>
               <p className="mt-1 text-base font-light text-gray-700 dark:text-gray-300">
                 {entry.role}
               </p>
