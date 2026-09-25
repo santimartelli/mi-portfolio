@@ -71,7 +71,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
                   alt=""
                   loading="lazy"
                   decoding="async"
-                  className="mb-5 h-12 w-auto max-w-full object-contain"
+                  className="mb-5 h-12 w-auto max-w-full rounded-lg object-contain"
                 />
               )}
               <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
@@ -100,7 +100,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
                 {entry.highlights.map((highlight) => (
                   <li
                     key={highlight}
-                    className="flex gap-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                    className="flex gap-3 text-ui font-light leading-relaxed text-gray-600 dark:text-gray-400">
                     <span aria-hidden="true" className="mt-[0.6em] h-px w-3 shrink-0 bg-gray-400 dark:bg-gray-600" />
                     <span>{highlight}</span>
                   </li>
@@ -108,9 +108,15 @@ const Experience = ({ content: t }: ExperienceProps) => {
               </ul>
 
               {entry.tools && entry.tools.length > 0 && (
-                <p className="mt-6 font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                  {entry.tools.join(' · ')}
-                </p>
+                <ul className="mt-6 flex list-none flex-wrap gap-2">
+                  {entry.tools.map((tool) => (
+                    <li
+                      key={tool}
+                      className="rounded bg-gray-100 px-2 py-1 font-mono text-[0.65rem] font-semibold uppercase tracking-widest text-black dark:bg-gray-800 dark:text-white">
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
               )}
             </li>
           ))}
