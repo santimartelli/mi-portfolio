@@ -76,14 +76,16 @@ const Experience = ({ content: t }: ExperienceProps) => {
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    className="h-14 w-auto max-w-full shrink-0 rounded-lg object-contain"
+                    className="h-16 w-auto max-w-full shrink-0 rounded-lg object-contain"
                   />
                 )}
+                {/* Nombre y puesto un escalon mas pequenos y con 2px entre
+                    ellos, para que el bloque no sobrepase el alto del logo. */}
                 <div>
-                  <h3 className="text-subhead font-light text-black dark:text-white">
+                  <h3 className="text-title font-light text-black dark:text-white">
                     {entry.company}
                   </h3>
-                  <p className="mt-1 text-base font-light text-gray-700 dark:text-gray-300">
+                  <p className="mt-0.5 text-sm font-light text-gray-700 dark:text-gray-300">
                     {entry.role}
                   </p>
                 </div>
