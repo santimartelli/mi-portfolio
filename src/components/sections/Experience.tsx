@@ -39,8 +39,9 @@ const Experience = ({ content: t }: ExperienceProps) => {
           {t.description}
         </p>
 
-        {/* La seleccion son etiquetas: fondo gris, la activa un escalon mas oscura
-            y el texto en tinta; las demas en gris. */}
+        {/* La seleccion usa el mismo estilo que los items de los desplegables:
+            radio de 8px, texto de 14 en su caja, la activa con fondo gris y el
+            texto en tinta, y las demas con ese mismo fondo al pasar el puntero. */}
         <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label={t.title}>
           {filters.map((option) => {
             const isActive = filter === option.id;
@@ -50,10 +51,10 @@ const Experience = ({ content: t }: ExperienceProps) => {
                 type="button"
                 onClick={() => setFilter(option.id)}
                 aria-pressed={isActive}
-                className={`rounded px-3 py-2 text-xs font-medium uppercase tracking-widest transition-colors duration-200 ${
+                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                   isActive
-                    ? 'bg-gray-200 text-black dark:bg-gray-700 dark:text-white'
-                    : 'bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-black dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+                    ? 'bg-gray-100 text-black dark:bg-gray-800 dark:text-white'
+                    : 'text-gray-700 hover:bg-gray-100 hover:text-black dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white'
                 }`}>
                 {option.label}
               </button>
