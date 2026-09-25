@@ -77,7 +77,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    className="h-16 w-auto max-w-full shrink-0 rounded-lg object-contain"
+                    className="h-16 w-auto max-w-32 shrink-0 rounded-lg object-contain"
                   />
                 )}
                 {/* Nombre y puesto un escalon mas pequenos y con 2px entre
