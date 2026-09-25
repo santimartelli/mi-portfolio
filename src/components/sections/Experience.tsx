@@ -1,6 +1,8 @@
 // Experiencia: una sola linea temporal con dos facetas.
-// Cada puesto es una fila ancha: metadatos a la izquierda, contenido a la
-// derecha y los hitos en dos columnas cuando hay sitio.
+// Mismo idioma que About y que el hero: titular y entradilla a la izquierda, los
+// filtros con los botones del hero (el activo solido en tinta, los demas con
+// filete) y cada puesto en una tarjeta de 1px, con los metadatos a la izquierda,
+// el relato a la derecha y los hitos como lista de guiones.
 import { useMemo, useState } from 'react';
 import type { ExperienceTrack, ExperienceTranslations } from '../../util/i18n';
 
@@ -30,18 +32,16 @@ const Experience = ({ content: t }: ExperienceProps) => {
   return (
     <section id="experience" className="section-rule py-20 sm:py-28">
       <div className="shell">
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-5">
-            <h2 className="text-headline font-light text-black dark:text-white">
-              {t.title}
-            </h2>
-          </div>
-          <p className="measure text-lead font-light text-gray-600 lg:col-span-7 dark:text-gray-400">
-            {t.description}
-          </p>
-        </div>
+        <h2 className="text-headline font-light text-black dark:text-white">
+          {t.title}
+        </h2>
+        <p className="measure mt-5 text-lead font-light leading-[1.6] text-gray-600 dark:text-gray-400">
+          {t.description}
+        </p>
 
-        <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label={t.title}>
+        {/* Los filtros usan los dos botones del hero: el activo solido en tinta y
+            los demas con filete. */}
+        <div className="mt-10 flex flex-wrap gap-3" role="group" aria-label={t.title}>
           {filters.map((option) => {
             const isActive = filter === option.id;
             return (
@@ -50,31 +50,29 @@ const Experience = ({ content: t }: ExperienceProps) => {
                 type="button"
                 onClick={() => setFilter(option.id)}
                 aria-pressed={isActive}
-                className={`border px-4 py-2 text-xs font-medium uppercase tracking-widest transition-colors duration-200 ${
-                  isActive
-                    ? 'border-black bg-black text-white dark:border-white dark:bg-white dark:text-black'
-                    : 'border-gray-200 text-gray-500 hover:border-gray-400 hover:text-black dark:border-gray-700 dark:text-gray-400 dark:hover:border-gray-500 dark:hover:text-white'
-                }`}>
+                className={`${isActive ? 'cta-primary' : 'cta-secondary'} flex items-center justify-center px-4 py-2 text-small font-semibold uppercase tracking-widest`}>
                 {option.label}
               </button>
             );
           })}
         </div>
 
-        <ol className="mt-14 list-none">
+        <ol className="mt-14 grid list-none gap-6">
           {entries.map((entry) => (
-            <li key={entry.id} className="border-b border-gray-200 py-10 dark:border-gray-700">
+            <li
+              key={entry.id}
+              className="border border-gray-200 p-6 sm:p-8 dark:border-gray-700">
               <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
                 {/* Metadatos */}
                 <div className="lg:col-span-3">
                   <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
                     {entry.period}
                   </p>
-                  <p className="mt-3 inline-block border border-gray-300 px-2 py-1 text-[0.65rem] font-medium uppercase tracking-widest text-gray-600 dark:border-gray-600 dark:text-gray-400">
+                  <p className="mt-4 text-label font-medium uppercase text-gray-500 dark:text-gray-400">
                     {t.trackLabels[entry.track]}
                   </p>
                   {entry.location && (
-                    <p className="mt-3 text-sm font-light text-gray-500 dark:text-gray-400">
+                    <p className="mt-4 text-sm font-light text-gray-500 dark:text-gray-400">
                       {entry.location}
                     </p>
                   )}
@@ -82,7 +80,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
 
                 {/* Contenido */}
                 <div className="lg:col-span-9">
-                  <h3 className="text-title-lg font-light text-black dark:text-white">
+                  <h3 className="text-subhead font-light text-black dark:text-white">
                     {entry.company}
                   </h3>
                   <p className="mt-1 text-base font-light text-gray-700 dark:text-gray-300">
