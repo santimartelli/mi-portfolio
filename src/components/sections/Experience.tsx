@@ -1,8 +1,8 @@
 // Experiencia: una sola linea temporal con dos facetas.
-// Mismo idioma que About y que el hero: titular y entradilla a la izquierda, los
-// filtros con los botones del hero (el activo solido en tinta, los demas con
-// filete) y cada puesto en una tarjeta de 1px, con los metadatos a la izquierda,
-// el relato a la derecha y los hitos como lista de guiones.
+// Mismo idioma que About y que el hero: titular y entradilla a la izquierda, la
+// seleccion como etiquetas de fondo gris y cada puesto en una tarjeta de 1px con
+// el logotipo a la izquierda del nombre de la empresa, el puesto debajo, los
+// metadatos juntos y el relato como lista de puntos.
 import { useMemo, useState } from 'react';
 import type { ExperienceTrack, ExperienceTranslations } from '../../util/i18n';
 
@@ -39,9 +39,9 @@ const Experience = ({ content: t }: ExperienceProps) => {
           {t.description}
         </p>
 
-        {/* Los filtros usan los dos botones del hero: el activo solido en tinta y
-            los demas con filete. */}
-        <div className="mt-10 flex flex-wrap gap-3" role="group" aria-label={t.title}>
+        {/* La seleccion son etiquetas: fondo gris, la activa un escalon mas oscura
+            y el texto en tinta; las demas en gris. */}
+        <div className="mt-10 flex flex-wrap gap-2" role="group" aria-label={t.title}>
           {filters.map((option) => {
             const isActive = filter === option.id;
             return (
@@ -50,7 +50,11 @@ const Experience = ({ content: t }: ExperienceProps) => {
                 type="button"
                 onClick={() => setFilter(option.id)}
                 aria-pressed={isActive}
-                className={`${isActive ? 'cta-primary' : 'cta-secondary'} flex items-center justify-center px-4 py-2 text-small font-semibold uppercase tracking-widest`}>
+                className={`rounded px-3 py-2 text-xs font-medium uppercase tracking-widest transition-colors duration-200 ${
+                  isActive
+                    ? 'bg-gray-200 text-black dark:bg-gray-700 dark:text-white'
+                    : 'bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-black dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+                }`}>
                 {option.label}
               </button>
             );
@@ -62,27 +66,10 @@ const Experience = ({ content: t }: ExperienceProps) => {
             <li
               key={entry.id}
               className="border border-gray-200 p-6 dark:border-gray-700">
-              {/* La tarjeta va en vertical: el logotipo y los metadatos arriba,
-                  y debajo el relato. En una columna tan estrecha los hitos van a
-                  una sola columna, no a dos. */}
-              {/* Los metadatos arriba, muy juntos: son tres datos de la misma
-                  cosa. Y debajo, el logotipo a la izquierda del nombre de la
-                  empresa. */}
-              <div className="space-y-1">
-                <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
-                  {entry.period}
-                </p>
-                <p className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
-                  {t.trackLabels[entry.track]}
-                </p>
-                {entry.location && (
-                  <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                    {entry.location}
-                  </p>
-                )}
-              </div>
-
-              <div className="mt-6 flex items-center gap-4">
+              {/* Cabecera: el logotipo a la izquierda del nombre de la empresa y
+                  el puesto debajo. Despues los metadatos, muy juntos, y el
+                  relato. Los hitos van con punto, no con guion. */}
+              <div className="flex items-center gap-4">
                 {entry.logo && (
                   <img
                     src={entry.logo}
@@ -99,6 +86,21 @@ const Experience = ({ content: t }: ExperienceProps) => {
               <p className="mt-1 text-base font-light text-gray-700 dark:text-gray-300">
                 {entry.role}
               </p>
+
+              <div className="mt-4 space-y-1">
+                <p className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
+                  {entry.period}
+                </p>
+                <p className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
+                  {t.trackLabels[entry.track]}
+                </p>
+                {entry.location && (
+                  <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                    {entry.location}
+                  </p>
+                )}
+              </div>
+
               <p className="mt-4 font-light leading-relaxed text-gray-600 dark:text-gray-400">
                 {entry.summary}
               </p>
@@ -108,7 +110,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
                   <li
                     key={highlight}
                     className="flex gap-3 text-ui font-light leading-relaxed text-gray-600 dark:text-gray-400">
-                    <span aria-hidden="true" className="mt-[0.6em] h-px w-2 shrink-0 bg-gray-300 dark:bg-gray-700" />
+                    <span aria-hidden="true" className="mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-gray-400 dark:bg-gray-600" />
                     <span>{highlight}</span>
                   </li>
                 ))}
@@ -119,7 +121,7 @@ const Experience = ({ content: t }: ExperienceProps) => {
                   {entry.tools.map((tool) => (
                     <li
                       key={tool}
-                      className="rounded bg-gray-100 px-2 py-1 font-mono text-[0.65rem] font-normal uppercase tracking-widest text-black dark:bg-gray-800 dark:text-white">
+                      className="rounded border border-gray-300 px-2 py-1 font-mono text-[0.65rem] font-normal uppercase tracking-widest text-black dark:border-gray-600 dark:text-white">
                       {tool}
                     </li>
                   ))}
