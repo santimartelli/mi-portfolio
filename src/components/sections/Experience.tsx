@@ -4,6 +4,7 @@
 // el logotipo a la izquierda del nombre de la empresa, el puesto debajo, los
 // metadatos juntos y el relato como lista de puntos.
 import { useMemo, useState } from 'react';
+import { badgeClass, badgeStrongClass } from '../common/badge';
 import type { ExperienceTrack, ExperienceTranslations } from '../../util/i18n';
 
 type Filter = 'all' | ExperienceTrack;
@@ -121,13 +122,9 @@ const Experience = ({ content: t }: ExperienceProps) => {
               {/* Las etiquetas de la tarjeta: primero la faceta, que es la misma
                   taxonomia de los filtros, y despues las herramientas. */}
               <ul className="mt-6 flex list-none flex-wrap gap-2">
-                <li className="rounded border border-gray-400 px-2 py-1 font-mono text-[0.65rem] font-normal uppercase tracking-widest text-black dark:border-gray-500 dark:text-white">
-                  {t.trackLabels[entry.track]}
-                </li>
+                <li className={badgeStrongClass}>{t.trackLabels[entry.track]}</li>
                 {entry.tools?.map((tool) => (
-                  <li
-                    key={tool}
-                    className="rounded border border-gray-300 px-2 py-1 font-mono text-[0.65rem] font-normal uppercase tracking-widest text-black dark:border-gray-600 dark:text-white">
+                  <li key={tool} className={badgeClass}>
                     {tool}
                   </li>
                 ))}

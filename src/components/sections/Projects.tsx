@@ -8,8 +8,8 @@
 // metricas— sigue en los dos `projects.json` y en el tipo, pero no se pinta: la
 // tarjeta se lee de un vistazo y el recruiter no tiene que bajar por un muro de
 // texto. Si algun dia hace falta, volver a pintarlo es anadir el bloque.
-import { FaGithub } from 'react-icons/fa';
 import { HiExternalLink } from 'react-icons/hi';
+import { badgeClass } from '../common/badge';
 import type { ProjectsTranslations } from '../../util/i18n';
 
 interface ProjectsProps {
@@ -20,16 +20,12 @@ interface ProjectsProps {
 const cardClass =
   'rounded-xl border border-gray-200 p-6 transition-colors duration-200 ease-out hover:border-gray-400 sm:p-8 dark:border-gray-700 dark:hover:border-gray-500';
 
-/** Una tecnologia del stack: la misma etiqueta que las herramientas de Experiencia. */
-const badgeClass =
-  'rounded border border-gray-300 px-2 py-1 font-mono text-[0.65rem] font-normal uppercase tracking-widest text-black dark:border-gray-600 dark:text-white';
-
 /** El rotulo de un bloque: la etiqueta de la casa. */
 const labelClass = 'text-label font-medium uppercase text-gray-500 dark:text-gray-400';
 
 /** Un enlace de accion: el boton secundario del hero. */
 const linkClass =
-  'cta-secondary flex items-center gap-2 px-4 py-2 text-small font-semibold uppercase tracking-widest';
+  'cta-secondary flex items-center gap-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest';
 
 const Projects = ({ content: t }: ProjectsProps) => {
   return (
@@ -117,15 +113,8 @@ const Projects = ({ content: t }: ProjectsProps) => {
               <div className="mt-5 flex flex-wrap items-center gap-3">
                 {project.href && (
                   <a href={project.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                    <HiExternalLink className="h-4 w-4" aria-hidden="true" />
+                    <HiExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
                     {t.labels.visit}
-                    <span className="sr-only"> — {project.title}</span>
-                  </a>
-                )}
-                {project.code && (
-                  <a href={project.code} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                    <FaGithub className="h-4 w-4" aria-hidden="true" />
-                    {t.labels.code}
                     <span className="sr-only"> — {project.title}</span>
                   </a>
                 )}
