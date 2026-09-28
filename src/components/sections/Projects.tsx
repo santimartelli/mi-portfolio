@@ -128,7 +128,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                     publico, el enlace. Va pegado a las etiquetas; el hueco que
                     deja una tarjeta mas alta cae entre el resultado y el enlace,
                     que es donde no se lee como un corte. */}
-                <h4 className={`mt-6 ${labelClass}`}>{t.labels.result}</h4>
+                <h4 className={`mt-8 ${labelClass}`}>{t.labels.result}</h4>
                 <p className="mt-2.5 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
                   {project.result}
                 </p>
