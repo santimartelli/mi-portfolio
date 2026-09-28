@@ -722,45 +722,42 @@ const jsonLd = {
     }
 
     /*
-     * Recorte de la ilustracion del hero. Hay dos versiones de la misma escena y
-     * el <picture> elige una: la apaisada en pantallas estrechas y la vertical
-     * desde lg. Aqui se fija el tamaño de cada una.
+     * Ilustracion del hero. Desde que el hero se centra (ver el comentario de
+     * `Hero.tsx`) la escena va **debajo del texto, centrada y sola**: un solo
+     * recorte, el apaisado, en todos los tamanos, porque en una composicion
+     * centrada una banda ancha y simetrica lee mejor que un retrato suelto.
      *
-     * En movil ocupa el ancho completo con su proporcion apaisada (1,78), que es
-     * lo que la deja ancha y baja a la vez. Desde lg vuelve a proporcion
-     * automatica, para que el tope de alto pueda encogerla conservando la suya
-     * sin deformarla: con una proporcion fija y el ancho al 100%, cualquier tope
-     * de alto la aplasta.
+     * En movil ocupa el ancho completo con su proporcion (1,78), que es lo que la
+     * deja ancha y baja a la vez. Desde `sm` el ancho pasa a automatico y lo que
+     * manda es el tope de alto: asi encoge conservando su proporcion en vez de
+     * aplastarse, y el titular, el texto y las acciones siguen cabiendo en la
+     * misma pantalla. El recorte vertical (`hero-portrait.webp`) sigue en
+     * `public/images`, sin usar.
      *
-     * Desde lg la imagen se pega al borde derecho de su columna, no se centra en
-     * ella. El bloque de texto arranca en el borde izquierdo del contenedor, asi
-     * que con la imagen en el derecho las dos mitades quedan a la misma
-     * distancia del borde de la pagina, que es lo que hace que el hero se lea
-     * centrado y alineado con la rejilla del resto de secciones. Centrada en su
-     * columna, la imagen solo llegaba a su borde cuando el tope de alto no
-     * encogia lo bastante: el aire que le sobraba a la derecha era justo lo que
-     * descentraba la composicion. Ese es el unico eje que cambia; el vertical
-     * sigue centrado por el propio grid.
-     *
-     * Va en el CSS global y no con utilidades de Tailwind a proposito. Con
-     * `lg:aspect-auto` Tailwind emitia ademas un `.aspect-auto` suelto y global,
-     * que por orden de fuente ganaba al aspect-ratio de movil y dejaba la imagen
-     * con la proporcion del retrato.
+     * Va en el CSS global y no con utilidades de Tailwind a proposito: con
+     * `sm:aspect-auto` Tailwind emitia ademas un `.aspect-auto` suelto y global,
+     * que por orden de fuente ganaba al aspect-ratio de movil.
      */
     .hero-media {
+      display: block;
       width: 100%;
       height: auto;
       aspect-ratio: 1400 / 611;
+      margin-inline: auto;
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 640px) {
       .hero-media {
         width: auto;
         max-width: 100%;
         aspect-ratio: auto;
-        max-height: calc(100vh - 16rem);
-        margin-inline-start: auto;
-        margin-inline-end: 0;
+        max-height: 22vh;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-media {
+        max-height: 28vh;
       }
     }
 
