@@ -297,22 +297,62 @@ const jsonLd = {
       top: 1rem;
     }
 
-    /* Las tres barras del boton del menu. Al abrir el desplegable se cruzan en
-       aspa y la del centro se va hacia la derecha: es el unico movimiento del
-       boton y es de estado, con la misma duracion y la misma curva que el resto
-       de la casa (200ms, arranque inmediato). El estado lo pone `data-open` en el
-       propio boton, asi que el CSS no necesita saber nada de React. */
-    .menu-button[data-open='true'] .menu-bar:nth-child(1) {
+    /* Desplegables de la barra: `<details>` nativo.
+       Abrir y cerrar lo hace el navegador, sin una sola linea de JavaScript, que
+       es lo que hace que funcionen aunque la isla no llegue a hidratarse. El
+       estado vive en el atributo `[open]`, asi que el CSS no necesita saber nada
+       de React: las tres barras se cruzan en aspa y el panel aparece solo con
+       eso. El panel se pinta siempre (el navegador esconde los hijos de un
+       `<details>` cerrado, y aqui se recupera con `display: block`) para poder
+       transicionar: cerrado esta invisible, sin raton y 4px mas arriba; abierto,
+       en su sitio. Es una transicion de estado, con la duracion y la curva de la
+       casa (200ms, arranque inmediato). */
+    .dropdown > summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .dropdown > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .dropdown > .dropdown-panel {
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-0.25rem);
+      pointer-events: none;
+      transition:
+        opacity 0.2s cubic-bezier(0, 0, 0.2, 1),
+        transform 0.2s cubic-bezier(0, 0, 0.2, 1),
+        visibility 0.2s;
+    }
+
+    .dropdown[open] > .dropdown-panel {
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .dropdown[open] > summary .menu-bar:nth-child(1) {
       transform: translateY(6px) rotate(45deg);
     }
 
-    .menu-button[data-open='true'] .menu-bar:nth-child(2) {
+    .dropdown[open] > summary .menu-bar:nth-child(2) {
       opacity: 0;
       transform: translateX(20px);
     }
 
-    .menu-button[data-open='true'] .menu-bar:nth-child(3) {
+    .dropdown[open] > summary .menu-bar:nth-child(3) {
       transform: translateY(-6px) rotate(-45deg);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .dropdown > .dropdown-panel,
+      .dropdown > summary .menu-bar {
+        transition: none;
+      }
     }
 
     html,

@@ -2,6 +2,11 @@
 //
 // Los idiomas son enlaces reales (`/` y `/en/`), no navegación por JavaScript:
 // así funcionan sin JS, son rastreables y respetan los hreflang del documento.
+// El desplegable es un `<details>` nativo, como el del menú: lo abre y lo cierra
+// el navegador, y el estado vive en `[open]` (ver `Layout.astro` y
+// `dropdownStyles.ts`). JavaScript solo añade cerrar al pulsar fuera o con
+// Escape.
+//
 // Se eliminó `flag-icons`, que aportaba ~420 KB de CSS para dos banderas. El
 // icono de diccionario se retiró y volvió a petición del usuario, y acabó siendo
 // lo único que queda del botón: primero se probó a subir el código del idioma de
@@ -9,20 +14,14 @@
 // marca, y la petición final fue quitarlo. Sin texto visible, el nombre
 // accesible lo pone el aria-label y el idioma activo se marca dentro del
 // desplegable, con el punto y el fondo del item.
-//
-// El panel se pinta siempre y lo que cambia es la clase: ver `dropdownStyles.ts`.
-import { useEffect, useRef } from 'react';
 import { MdOutlineTranslate } from 'react-icons/md';
 import type { Locale, NavbarTranslations } from '../../util/i18n';
 import { pathForLocale } from '../../util/site';
-import { dropdownItemClass, dropdownPanelClass, dropdownPanelClosedClass } from './dropdownStyles';
+import { dropdownItemClass, dropdownPanelClass } from './dropdownStyles';
 
 interface LanguageSelectorProps {
   content: NavbarTranslations;
   locale: Locale;
-  isOpen: boolean;
-  onToggle: () => void;
-  onClose: () => void;
 }
 
 const LANGUAGE_OPTIONS: Array<{ code: Locale; label: string; short: string }> = [
@@ -30,22 +29,8 @@ const LANGUAGE_OPTIONS: Array<{ code: Locale; label: string; short: string }> = 
   { code: 'es', label: 'Español', short: 'ES' },
 ];
 
-const LanguageSelector = ({ content, locale, isOpen, onToggle, onClose }: LanguageSelectorProps) => {
+const LanguageSelector = ({ content, locale }: LanguageSelectorProps) => {
   const t = content;
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Cierra el dropdown al hacer clic fuera
-  useEffect(() => {
-    if (!isOpen) return;
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (containerRef.current && !containerRef.current.contains(target)) {
-        onClose();
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isOpen, onClose]);
 
   /**
    * Guarda la posición de scroll antes de navegar para que el layout la
@@ -63,29 +48,22 @@ const LanguageSelector = ({ content, locale, isOpen, onToggle, onClose }: Langua
   };
 
   return (
-    <div className="relative language-selector" ref={containerRef}>
-      {/* Boton de solo icono. El codigo del idioma (ES / EN) se retiro a
-          peticion del usuario, asi que el nombre accesible lo pone el
-          aria-label y el idioma activo se ve marcado dentro del desplegable.
-          La caja es de 48x56, como la del boton del menu, y el padding de la
-          izquierda empuja el simbolo 2px hacia la derecha: es la mitad del
-          trabajo de acercar los dos iconos de la barra (el boton del menu hace
-          lo simetrico), sin mover las cajas ni solapar sus areas de toque. */}
-      <button
-        type="button"
-        onClick={onToggle}
-        className="relative z-40 flex h-14 w-12 items-center justify-center pl-1 text-black dark:text-white rounded-sm"
-        aria-haspopup="true"
-        aria-expanded={isOpen}
-        aria-controls="language-menu"
-        aria-label={t.languageLabel}>
+    <details name="barra" className="dropdown relative">
+      {/* El boton, que es el `summary`: de solo icono. El codigo del idioma
+          (ES / EN) se retiro a peticion del usuario, asi que el nombre accesible
+          lo pone el aria-label y el idioma activo se ve marcado dentro del
+          desplegable. La caja es de 48x56, como la del boton del menu, y el
+          padding de la izquierda empuja el simbolo 2px hacia la derecha: es la
+          mitad del trabajo de acercar los dos iconos de la barra (el boton del
+          menu hace lo simetrico), sin mover las cajas ni solapar sus areas de
+          toque. */}
+      <summary
+        aria-label={t.languageLabel}
+        className="relative z-40 flex h-14 w-12 items-center justify-center pl-1 text-black dark:text-white">
         <MdOutlineTranslate className="w-5 h-5" aria-hidden="true" />
-      </button>
+      </summary>
 
-      {/* El panel: se pinta siempre y la clase decide si esta abierto. */}
-      <div
-        id="language-menu"
-        className={`${dropdownPanelClass} ${isOpen ? '' : dropdownPanelClosedClass}`}>
+      <div id="language-menu" className={dropdownPanelClass}>
         <ul className="list-none space-y-1">
           {LANGUAGE_OPTIONS.map((option) => {
             const isActive = option.code === locale;
@@ -94,10 +72,7 @@ const LanguageSelector = ({ content, locale, isOpen, onToggle, onClose }: Langua
                 <a
                   href={pathForLocale(option.code)}
                   hrefLang={option.code}
-                  onClick={() => {
-                    rememberScrollPosition();
-                    onClose();
-                  }}
+                  onClick={rememberScrollPosition}
                   aria-current={isActive ? 'true' : undefined}
                   className={dropdownItemClass(isActive)}>
                   <span
@@ -118,7 +93,7 @@ const LanguageSelector = ({ content, locale, isOpen, onToggle, onClose }: Langua
           })}
         </ul>
       </div>
-    </div>
+    </details>
   );
 };
 

@@ -1,21 +1,26 @@
 // Barra de navegacion con menu desplegable en todos los tamanos.
 //
-// La barra no se anima: es visible y usable desde el HTML del servidor, y los dos
-// desplegables (el menu y el selector de idioma) se abren con una transicion de
-// clases, sin medir alturas ni montar y desmontar paneles. Ver el porque en
-// `dropdownStyles.ts`. El unico estado que depende del scroll es el fondo: en
-// cuanto la pagina se mueve, la barra pasa de opaca a translucida con el fondo
-// difuminado (backdrop-filter) para que el contenido que pasa por debajo se lea
-// como tal y no desaparezca de golpe. El difuminado esta siempre declarado y lo
-// que cambia es la opacidad del blanco, que es lo unico que se puede interpolar:
-// asi la transicion es continua. Sin JavaScript la barra se queda opaca y los
-// paneles cerrados, que es exactamente el estado de antes.
+// **Los dos desplegables son `<details>` nativos**: abrir y cerrar lo hace el
+// navegador, sin una sola linea de JavaScript, asi que funcionan aunque la isla
+// no llegue a hidratarse. El estado vive en el atributo `[open]` y el CSS lo lee
+// (ver `Layout.astro`): de ahi salen el panel y el aspa de las tres barras. React
+// solo añade dos comodidades cuando hidrata: cerrar al pulsar fuera o con Escape,
+// y cerrar el otro desplegable al abrir uno (eso ultimo tambien lo hace el
+// navegador solo, por el `name` compartido de los dos `<details>`).
+//
+// La barra no se anima a si misma: su unico estado lo fija el scroll, y es el
+// fondo. En cuanto la pagina se mueve, la barra pasa de opaca a translucida con
+// el fondo difuminado (backdrop-filter) para que el contenido que pasa por debajo
+// se lea como tal y no desaparezca de golpe. El difuminado esta siempre declarado
+// y lo que cambia es la opacidad del blanco, que es lo unico que se puede
+// interpolar: asi la transicion es continua. Sin JavaScript la barra se queda
+// opaca y los paneles cerrados, que es exactamente el estado de antes.
 import { useState, useEffect } from "react";
 import { useActiveSection } from "../../util/useActiveSection";
 import type { Locale, NavbarTranslations } from "../../util/i18n";
 import Logo from "../common/Logo";
 import LanguageSelector from "./LanguageSelector";
-import { dropdownItemClass, dropdownPanelClass, dropdownPanelClosedClass } from "./dropdownStyles";
+import { dropdownItemClass, dropdownPanelClass } from "./dropdownStyles";
 
 interface NavbarProps {
   content: NavbarTranslations;
@@ -23,8 +28,6 @@ interface NavbarProps {
 }
 
 const Navbar = ({ content: t, locale }: NavbarProps) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [languageOpen, setLanguageOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const activeSection = useActiveSection();
 
@@ -40,10 +43,6 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
     { key: "contact", label: t.navigation.contact },
   ];
 
-  useEffect(() => {
-    if (menuOpen) setLanguageOpen(false);
-  }, [menuOpen]);
-
   // Estado del fondo segun el scroll. El listener es pasivo y lleva un umbral de
   // 8px, que absorbe el rebote elastico de iOS (scrollY puede ser negativo) y el
   // ruido de las ruedas de los trackpads. Se comprueba tambien al montar porque
@@ -55,24 +54,29 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lo unico que aporta JavaScript al desplegable: cerrarlo al pulsar fuera o
+  // con Escape, que un `<details>` no hace solo. Si la isla no hidrata, el
+  // desplegable sigue abriendo y cerrando; simplemente no se cierra al pulsar
+  // fuera.
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
+    const closeAll = () => {
+      document
+        .querySelectorAll<HTMLDetailsElement>("details.dropdown[open]")
+        .forEach((dropdown) => {
+          dropdown.open = false;
+        });
+    };
+    const handlePointerDown = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (!target.closest(".mobile-menu") && !target.closest(".nav-bar")) {
-        setMenuOpen(false);
-        setLanguageOpen(false);
-      }
+      if (!target.closest(".dropdown")) closeAll();
     };
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setMenuOpen(false);
-        setLanguageOpen(false);
-      }
+      if (e.key === "Escape") closeAll();
     };
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
@@ -97,16 +101,7 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
             el aire lo pone el padding asimetrico de cada boton, que empuja su
             dibujo hacia el vecino. Ver el comentario del boton del menu. */}
         <div className="flex shrink-0 items-center">
-          <LanguageSelector
-            content={t}
-            locale={locale}
-            isOpen={languageOpen}
-            onToggle={() => {
-              setMenuOpen(false);
-              setLanguageOpen((prev) => !prev);
-            }}
-            onClose={() => setLanguageOpen(false)}
-          />
+          <LanguageSelector content={t} locale={locale} />
           {/* Menu: mismo panel y mismos items que el selector de idioma.
               La caja es de 48x56 y el dibujo se empuja 2px hacia la izquierda con
               el padding de la derecha (las barras van centradas en la caja de
@@ -114,27 +109,16 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
               del trabajo de acercar los dos iconos: el selector de idioma hace lo
               simetrico. Sin esto, con las dos cajas centradas, quedaban 42px
               entre el simbolo y las barras y parecian dos controles sueltos. */}
-          <div className="relative z-40">
-          <button
-            type="button"
-            onClick={() => {
-              setLanguageOpen(false);
-              setMenuOpen((prev) => !prev);
-            }}
+          <details name="barra" className="dropdown relative z-40">
+          <summary
             aria-label={t.menuLabel}
-            aria-expanded={menuOpen}
-            aria-controls="primary-menu"
-            data-open={menuOpen ? "true" : "false"}
             className="menu-button flex h-14 w-12 flex-col items-center justify-center pr-1 text-black dark:text-white">
             <span className="menu-bar block h-0.5 w-6 bg-current transition-transform duration-200 ease-out motion-reduce:transition-none" />
             <span className="menu-bar my-1 block h-0.5 w-6 bg-current transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none" />
             <span className="menu-bar block h-0.5 w-6 bg-current transition-transform duration-200 ease-out motion-reduce:transition-none" />
-          </button>
+          </summary>
 
-          {/* El panel: se pinta siempre y la clase decide si esta abierto. */}
-          <div
-            id="primary-menu"
-            className={`${dropdownPanelClass} ${menuOpen ? "" : dropdownPanelClosedClass}`}>
+          <div id="primary-menu" className={dropdownPanelClass}>
             <ul className="list-none space-y-1">
               {sections.map((section) => {
                 const isActive = activeSection === section.key;
@@ -142,7 +126,10 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
                   <li key={section.key}>
                     <a
                       href={`${prefix}/#${section.key}`}
-                      onClick={() => setMenuOpen(false)}
+                      onClick={(e) => {
+                        // El navegador no cierra el <details> al seguir un enlace.
+                        (e.currentTarget.closest("details") as HTMLDetailsElement | null)?.removeAttribute("open");
+                      }}
                       aria-current={isActive ? "true" : undefined}
                       className={dropdownItemClass(isActive)}>
                       {section.label}
@@ -158,7 +145,7 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
               })}
             </ul>
           </div>
-          </div>
+          </details>
         </div>
       </div>
     </nav>
