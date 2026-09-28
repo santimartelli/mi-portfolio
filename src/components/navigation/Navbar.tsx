@@ -87,15 +87,26 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
       className={`nav-bar fixed inset-x-0 top-0 z-50 bg-white backdrop-blur-md transition-colors duration-200 ease-out dark:bg-gray-950 ${
         scrolled ? "supports-[backdrop-filter]:bg-white/85 dark:supports-[backdrop-filter]:bg-gray-950/85" : ""
       }`}>
-      {/* El fondo de la barra cruza la pantalla entera, pero su contenido usa el
-          mismo `.shell` que las secciones: misma anchura maxima (1600px) y los
-          mismos escalones de margen lateral. Antes la barra repartia su contenido
-          de borde a borde y solo coincidia con el contenido por debajo de 1600px:
-          en pantallas anchas el logo y los iconos quedaban a cientos de pixeles de
-          la vertical de las secciones, y con el hero anclado a los bordes (el
-          contacto, la foto y el marquee) el desfase se veia en todo el bloque. */}
-      <div className="shell flex h-16 items-center justify-between gap-3 sm:gap-6">
-        <a href={homeHref} className="shrink-0">
+      {/* El contenido va a sangre (`.bleed`: todo el ancho, sin tope y con una
+          sangria corta). El usuario lo pidio asi dos veces, con un tramo en medio
+          en el que iba en `.shell`: con `.bleed` la marca y los iconos se acercan
+          a los bordes y dejan de compartir vertical con el contenido, que si sigue
+          topado en 1600px. */}
+      <div className="bleed flex h-16 items-center justify-between gap-3 sm:gap-6">
+        {/* La marca: el retrato del usuario a la izquierda del logo, los dos
+            dentro del mismo enlace a la portada. La foto va con `alt` vacio a
+            proposito: no aporta nada que no diga el nombre que tiene al lado, y un
+            lector de pantalla no necesita oir dos veces quien es. */}
+        <a href={homeHref} className="flex shrink-0 items-center gap-3">
+          <img
+            src="/images/hero-photo.webp"
+            alt=""
+            width="1200"
+            height="1220"
+            loading="eager"
+            decoding="async"
+            className="h-9 w-9 rounded-full object-cover sm:h-10 sm:w-10"
+          />
           <Logo />
         </a>
 

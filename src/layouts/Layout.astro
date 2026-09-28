@@ -248,13 +248,43 @@ const jsonLd = {
     }
 
     /*
-     * En pantallas estrechas el titular baja: 28 a 40px en vez de 44 a 68px. El
+     * En pantallas estrechas el titular baja: 24 a 36px en vez de 44 a 68px. El
      * corte es el mismo que usa la rejilla del hero para pasar a dos columnas,
      * asi que el tamaño pequeño acompaña a la version apilada.
+     *
+     * El valor bajo un escalon mas a peticion del usuario, que en el movil veia
+     * el hero «muy pegado y cargado»: con 24px en un telefono de 390 el titular
+     * deja de competir con la ilustracion. Solo afecta a esta media query, asi
+     * que el escritorio no se mueve (esta bloqueado por
+     * `tests/e2e/desktop-lock.spec.ts`).
      */
     @media (max-width: 1023.98px) {
       :root {
-        --text-display: clamp(1.75rem, 3.2vw, 2.5rem);
+        --text-display: clamp(1.5rem, 3vw, 2.25rem);
+      }
+
+      /*
+       * **Y la escala de las secciones acompaña a la del hero.** El usuario lo
+       * pidio asi: en movil los titulares de seccion (paso `headline`, que baja a
+       * 38,4px) eran mas grandes que el del hero (24px), y las entradillas
+       * (`lead`, 18px) mas grandes que la suya (14px), asi que la pagina parecia
+       * tener dos escalas. Ahora el titular de seccion usa **el mismo paso que el
+       * del hero** y la entradilla **el mismo cuerpo**.
+       *
+       * Se hace aqui, sobre los dos pasos de la escala, y no clase por clase en
+       * cada seccion: asi la coherencia vive en un solo sitio y las cinco
+       * secciones no se pueden desincronizar. El cuerpo es **1rem (16px), el
+       * mismo que el texto de las tarjetas** —que no lleva clase y hereda el
+       * tamaño base del navegador—, asi que en movil todo el texto corrido mide
+       * igual. Desde lg no se toca nada: alli el hero sigue con `display` (66px) y
+       * las secciones con `headline` y `lead` (18px).
+       */
+      .text-headline {
+        font-size: var(--text-display);
+      }
+
+      .text-lead {
+        font-size: 1rem;
       }
     }
 
@@ -556,75 +586,6 @@ const jsonLd = {
     }
 
     /* ==========================================
-       MARQUEE DE CARACTERISTICAS
-       La lista va dos veces dentro de una pista que se desplaza la mitad de su
-       ancho, asi que el bucle no tiene costura: al llegar al final, la segunda
-       copia ocupa exactamente el sitio de la primera. La copia duplicada lleva
-       aria-hidden en el marcado para que quien use lector de pantalla no oiga la
-       lista dos veces.
-
-       Se para con el puntero encima o con el foco dentro, que es lo minimo para
-       que se pueda leer algo que se mueve solo.
-
-       Los costados se difuminan con una mascara del propio lienzo (alpha), no
-       con un degradado de color: sobre el papel claro un color dejaria halo y
-       ademas ataria el efecto al fondo. La distancia es relativa al ancho, para
-       que el desvanecido crezca con la pantalla, con suelo para que en movil se
-       note y tope para que en pantallas anchas no se coma media fila: asi la
-       pieza nunca se corta a media palabra contra el borde. El negro del
-       degradado es opacidad de mascara, no un color de la paleta.
-
-       Bajo prefers-reduced-motion no hay recorrido: la pista se queda quieta al
-       principio y solo se difumina el costado derecho, que es el que sigue
-       teniendo contenido detras.
-       ========================================== */
-    .marquee {
-      overflow: hidden;
-      -webkit-mask-image: linear-gradient(
-        to right,
-        transparent 0,
-        black clamp(2.5rem, 8%, 10rem),
-        black calc(100% - clamp(2.5rem, 8%, 10rem)),
-        transparent 100%
-      );
-      mask-image: linear-gradient(
-        to right,
-        transparent 0,
-        black clamp(2.5rem, 8%, 10rem),
-        black calc(100% - clamp(2.5rem, 8%, 10rem)),
-        transparent 100%
-      );
-    }
-
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee 60s linear infinite;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .marquee {
-        -webkit-mask-image: linear-gradient(to right, black 0, black 85%, transparent 100%);
-        mask-image: linear-gradient(to right, black 0, black 85%, transparent 100%);
-      }
-
-      .marquee-track {
-        animation: none;
-      }
-    }
-
-    .marquee:hover .marquee-track,
-    .marquee:focus-within .marquee-track {
-      animation-play-state: paused;
-    }
-
-    @keyframes marquee {
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    /* ==========================================
        FILETE QUE ABRE CADA SECCION
        Cada seccion se separa de la anterior con una sola regla de 1px: la
        misma que dibujaba el Divider que se retiro, un gris que se desvanece en
@@ -639,12 +600,19 @@ const jsonLd = {
        el mismo a los dos lados. Casi siempre lo es, porque cada seccion reserva
        abajo lo mismo que la siguiente arriba (py-20 sm:py-28, o sea 5rem y
        7rem). La excepcion es el hero: reserva abajo 1.5rem por debajo de lg y
-       4rem desde lg (que es lo que deja el marquee centrado en la franja que
+       4rem desde lg (que es el aire que deja centrada la fila de iconos en la franja que
        queda entre la ilustracion y el borde de la pantalla), y ahi la regla se
        mete hacia dentro de About la mitad de la diferencia (--rule-offset), de
        modo que aparece un poco por debajo del pliegue en vez de en el borde. Si
        se cambia el aire de abajo del hero o el de arriba de About, hay que
        rehacer esas cuentas.
+
+       **El pie no usa esta clase**: su filete es solido, de 1px y de lado a lado
+       —un border-t de gray-200, el mismo gris de las tarjetas— y cae en su borde
+       superior, que es justo donde termina Contacto: es la linea del pie y a la
+       vez el final de la seccion. El pie no reserva aire arriba (lo pone Contacto
+       con su padding de abajo), asi que no hay nada que centrar y la regla del
+       desplazamiento no le afecta. Es peticion del usuario.
        Los filetes de dentro de cada seccion, los que separan unidades, siguen
        siendo solidos (border-t border-gray-200).
        ========================================== */
@@ -675,6 +643,8 @@ const jsonLd = {
       .section-rule-hero { --rule-offset: 2.75rem; }
     }
 
+    /* Desde lg el hero reserva 4rem abajo (el `lg:pb-16` de su contenedor), asi
+       que el desplazamiento vuelve a (7 - 4) / 2 = 1,5rem. */
     @media (min-width: 1024px) {
       .section-rule-hero { --rule-offset: 1.5rem; }
     }
@@ -716,44 +686,85 @@ const jsonLd = {
       .shell { padding-inline: 6rem; }
     }
 
+
+    /*
+     * Contenedor a sangre, solo para la barra: todo el ancho de la ventana, sin
+     * tope y con una sangria corta. El usuario pidio dos veces que la barra
+     * ocupara todo el ancho, asi que su contenido no comparte vertical con el de
+     * las secciones (que van en `.shell`, con tope de 1600px): a 1440 el logo
+     * arranca en x=48 y el contenido de la pagina en x=80.
+     */
+    .bleed {
+      width: 100%;
+      padding-inline: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .bleed { padding-inline: 2rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .bleed { padding-inline: 3rem; }
+    }
+
     /* Medida de lectura: 64ch, dentro del rango 45-75ch. */
     .measure {
       max-width: 64ch;
     }
 
-    /*
 
     /*
-     * Retrato de la columna derecha del hero. Es una foto, no una escena
-     * apaisada: su proporcion es casi cuadrada (1200x1220), asi que la regla ya
-     * no fija ninguna `aspect-ratio` —manda la del propio archivo— y lo que
-     * cambia por breakpoint es el alto.
+     * Ilustracion del hero. **Un solo recorte, el 4:3 de movil** (`hero-hotel-ops.webp`,
+     * 1200x900) en todos los tamanos: en la version apilada ocupa el ancho entero y
+     * desde lg llena su columna (la de la derecha). Aqui se reserva su proporcion con
+     * `aspect-ratio` —asi el hueco esta antes de que cargue la imagen y el texto de
+     * debajo no baila— y su ancho.
      *
-     * En movil un retrato a todo el ancho se comeria la pantalla, asi que se topa
-     * en alto y se centra: el titular y el texto siguen cabiendo en el mismo
-     * viewport. Desde lg la foto se pega al borde derecho de su columna, no se
-     * centra en ella. El bloque de texto arranca en el borde izquierdo del
-     * contenedor, asi que con la foto en el derecho las dos mitades quedan a la
-     * misma distancia del borde de la pagina, que es lo que hace que el hero se
-     * lea centrado y alineado con la rejilla del resto de secciones.
+     * Va en el CSS global y no con utilidades de Tailwind a proposito: el tope de
+     * ancho por el alto disponible y la proporcion tienen que convivir, y con
+     * utilidades el orden de fuente se cruzaba.
      *
-     * Va en el CSS global y no con utilidades de Tailwind a proposito: el orden de
-     * las utilidades no es el que uno escribe, y el margen que pega la imagen a su
-     * borde acababa ganando donde no tocaba.
+     * Sin radio: la ilustracion viene sobre blanco (esquinas medidas, 253-255) y se
+     * funde con la pagina.
      */
     .hero-media {
       display: block;
-      width: auto;
-      max-width: 100%;
-      max-height: 26vh;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1200 / 900;
+      /* En la version apilada la ilustracion no llega a los bordes: se queda en
+         el 94% del ancho del contenedor. El usuario la encontro grande al 100% y
+         la quiso un poco mas pequeña (88%), y despues un poco mas grande: 94% es
+         ese punto medio, unos 329px de ancho en un telefono de 390.
+         El alto disponible se mide con `svh` y no con `vh`: el hero usa la misma
+         unidad estable (ver `Hero.tsx`), asi que los dos hablan del mismo alto y
+         el tope no cambia cuando la barra del navegador se esconde al bajar.
+         En telefono se descuentan 34rem y en tablet 30: el cuerpo del texto subio
+         a 16px (el de las tarjetas) y en una caja estrecha eso son mas renglones,
+         asi que en pantallas bajas de telefono (360x740) hay que encoger mas la
+         imagen para que el hero siga cabiendo entero. En un telefono normal
+         (390x844) ninguno de los dos topes llega a entrar y la imagen se queda en
+         su 94%. */
+      max-width: min(94%, calc((100svh - 34rem) * 4 / 3));
       margin-inline: auto;
+    }
+
+    @media (min-width: 640px) {
+      .hero-media {
+        /* La caja es mas ancha, el texto ocupa menos renglones y sobra mas alto. */
+        max-width: min(94%, calc((100svh - 30rem) * 4 / 3));
+      }
     }
 
     @media (min-width: 1024px) {
       .hero-media {
-        max-height: calc(100vh - 16rem);
-        margin-inline-start: auto;
-        margin-inline-end: 0;
+        /* Desde lg la ilustracion comparte fila con el texto, asi que el alto que
+           hay que descontar es solo el marco del hero (los 4rem de arriba, la fila
+           de iconos de 3rem y los 4rem de abajo: 11rem) mas un margen de 1rem. Con
+           el tope en 12rem, en una ventana normal (900px) el tope no llega a
+           entrar y la imagen llena su columna; en una ventana baja encoge antes
+           que el texto y el hero sigue cabiendo entero. */
+        max-width: min(100%, calc((100vh - 12rem) * 4 / 3));
       }
     }
 

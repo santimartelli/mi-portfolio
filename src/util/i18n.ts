@@ -23,16 +23,16 @@ export interface HeroTranslations {
   /** Rotulo del hueco reservado para la foto de perfil del hero. */
   photoPlaceholder: string;
   /**
-   * Texto alternativo de la ilustracion del hero. **Ya no se pinta**: la
-   * ilustracion salio del hero a peticion del usuario, que prefirio reservar ese
-   * sitio para una foto de perfil. El campo y su texto siguen en los dos
-   * `hero.json` por si vuelve.
+   * Texto alternativo de la ilustracion del hero. Es **un solo recorte** (el 4:3)
+   * en todos los tamanos, asi que hay un unico texto: el apaisado que llegó a
+   * usarse en escritorio ya no se pinta.
    */
   imageAlt: string;
   /**
-   * Caracteristicas y logros, en piezas cortas, para el marquee al pie del hero.
-   * Cada una es una unidad suelta: se leen en diagonal y se separan con un punto
-   * en el marcado, no dentro del texto. El orden del array es el de lectura.
+   * Caracteristicas y logros, en piezas cortas. **Ya no se pintan**: el marquee
+   * que iba al pie del hero se retiro a peticion del usuario y en su sitio
+   * quedaron los iconos de contacto. El campo y sus textos siguen en los dos
+   * `hero.json` por si vuelve.
    */
   marquee: string[];
 }
