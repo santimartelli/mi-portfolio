@@ -11,8 +11,9 @@
 // centro. El stack va entero, en las etiquetas compartidas con Experiencia, y el
 // cierre se apoya en el borde inferior (`mt-auto`), asi que todas las tarjetas de
 // una fila acaban a la misma altura; el resultado se corta a tres lineas
-// (`line-clamp-3`) para que el texto largo no estire la rejilla. El enlace es solo
-// texto subrayado: sin caja, el subrayado ya es la senal de enlace de la casa.
+// (`line-clamp-3`) para que el texto largo no estire la rejilla. El enlace es la
+// etiqueta de la casa en versalitas, subrayada suavemente y sin caja: el subrayado
+// ya es la senal de enlace.
 //
 // El detalle largo —el problema, la solucion, el rol, la lista de implementacion,
 // el stack anterior y la tabla de metricas— sigue en los dos `projects.json` y en
@@ -45,10 +46,11 @@ const labelClass = 'text-label font-medium uppercase text-gray-500 dark:text-gra
 /** Una linea de dato: el paso `ui` de las listas de Skills. */
 const dataClass = 'text-ui font-light leading-relaxed text-gray-600 dark:text-gray-400';
 
-/** El enlace: solo texto subrayado, sin caja y sin versalitas. El subrayado ya es
- *  la senal de enlace de la casa; el hover solo lo tine de acento. */
+/** El enlace: la etiqueta de la casa en versalitas y en tinta, pero subrayada
+ *  suavemente —filete gris claro, el de 1px y `0.22em` que ya trae el `a` global—
+ *  y sin caja. El subrayado es la senal de enlace; el hover solo lo oscurece. */
 const linkClass =
-  'inline-flex text-sm font-light text-black underline transition-colors duration-200 ease-out hover:text-accent-400 dark:text-white dark:hover:text-accent-400';
+  'inline-flex text-label font-medium uppercase text-black underline decoration-gray-300 underline-offset-[0.3em] transition-colors duration-200 ease-out hover:decoration-gray-500 dark:text-white dark:decoration-gray-600 dark:hover:decoration-gray-400';
 
 const Projects = ({ content: t }: ProjectsProps) => {
   return (
@@ -87,12 +89,12 @@ const Projects = ({ content: t }: ProjectsProps) => {
                   className="text-title font-light text-black dark:text-white">
                   {project.title}
                 </h3>
-                <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
+                <p className="mt-4 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
                   {project.subtitle}
                 </p>
 
                 {/* El que, el cuando y el estado: los tres datos de la ficha. */}
-                <p className="mt-4 flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                <p className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-1">
                   <span className={labelClass}>{project.category}</span>
                   <span className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
                     {project.period}
@@ -111,7 +113,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                 </p>
 
                 {/* El stack entero, en las etiquetas de la casa. */}
-                <ul className="mt-4 flex list-none flex-wrap gap-2">
+                <ul className="mt-5 flex list-none flex-wrap gap-2">
                   {project.technologies.map((technology) => (
                     <li key={technology} className={badgeClass}>
                       {technology}
@@ -121,14 +123,14 @@ const Projects = ({ content: t }: ProjectsProps) => {
 
                 {/* El cierre, apoyado en el borde inferior: a donde llego el
                     trabajo y, si el producto es publico, el enlace. */}
-                <div className="mt-auto pt-6">
+                <div className="mt-auto pt-8">
                   <h4 className={labelClass}>{t.labels.result}</h4>
-                  <p className="mt-2 line-clamp-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                  <p className="mt-2.5 line-clamp-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
                     {project.result}
                   </p>
 
                   {project.href && (
-                    <div className="mt-4 flex flex-wrap items-center justify-end">
+                    <div className="mt-5 flex flex-wrap items-center justify-end">
                       <a
                         href={project.href}
                         target="_blank"
