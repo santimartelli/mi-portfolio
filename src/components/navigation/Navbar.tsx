@@ -84,7 +84,7 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
   return (
     <nav
       aria-label={t.menuLabel}
-      className={`nav-bar fixed inset-x-0 top-0 z-50 border-b border-gray-200 bg-white backdrop-blur-md transition-colors duration-200 ease-out dark:border-gray-800 dark:bg-gray-950 ${
+      className={`nav-bar fixed inset-x-0 top-0 z-50 bg-white backdrop-blur-md transition-colors duration-200 ease-out dark:bg-gray-950 ${
         scrolled ? "supports-[backdrop-filter]:bg-white/85 dark:supports-[backdrop-filter]:bg-gray-950/85" : ""
       }`}>
       {/* El header no usa .shell, porque necesita el ancho completo, pero desde

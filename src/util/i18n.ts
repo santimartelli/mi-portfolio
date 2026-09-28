@@ -20,10 +20,13 @@ export interface HeroTranslations {
   cta: string;
   /** Segunda accion del hero, junto a la principal. Enlaza a proyectos. */
   ctaProjects: string;
+  /** Rotulo del hueco reservado para la foto de perfil del hero. */
+  photoPlaceholder: string;
   /**
-   * Texto alternativo de la ilustracion del hero. Es contenido, no decoracion:
-   * la imagen ocupa una columna entera y aporta significado, asi que se
-   * describe en cada idioma en vez de dejarla con alt vacio.
+   * Texto alternativo de la ilustracion del hero. **Ya no se pinta**: la
+   * ilustracion salio del hero a peticion del usuario, que prefirio reservar ese
+   * sitio para una foto de perfil. El campo y su texto siguen en los dos
+   * `hero.json` por si vuelve.
    */
   imageAlt: string;
   /**
