@@ -1,8 +1,8 @@
 // Skills: la misma familia que About y Experiencia. Cabecera con el titular y la
-// entradilla a la izquierda y, debajo, tarjetas horizontales apiladas: en cada
-// una, el titulo del bloque y su descripcion breve a la izquierda y el contenido
-// a la derecha. Las habilidades son etiquetas, igual que las herramientas de
-// Experiencia. Sin barras ni porcentajes.
+// entradilla a la izquierda y, debajo, tarjetas verticales en una rejilla de tres
+// columnas. Dentro de cada tarjeta, en este orden: titulo, descripcion breve y la
+// lista de piezas con punto, el mismo marcador que usa el resto del sitio. Sin
+// barras ni porcentajes.
 import type { SkillsTranslations } from '../../util/i18n';
 
 interface SkillsProps {
@@ -13,10 +13,13 @@ interface SkillsProps {
 const cardClass =
   'rounded-xl border border-gray-200 p-6 transition-colors duration-200 ease-out hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-500';
 
-/** La rejilla de dentro: titulo y descripcion a la izquierda, contenido a la derecha. */
-const innerGrid = 'grid gap-6 lg:grid-cols-12 lg:gap-12';
-const headCell = 'lg:col-span-4';
-const bodyCell = 'lg:col-span-8';
+/** Un item de las listas: punto y texto, como en About y Experiencia. */
+const itemClass =
+  'flex gap-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400';
+const dotClass =
+  'mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-gray-400 dark:bg-gray-600';
+const metaClass =
+  'font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400';
 
 const Skills = ({ content: t }: SkillsProps) => {
   return (
@@ -29,85 +32,70 @@ const Skills = ({ content: t }: SkillsProps) => {
           {t.description}
         </p>
 
-        <div className="mt-16 grid gap-6">
-          {/* Los cuatro grupos de habilidades: cada pieza es una etiqueta. */}
+        <div className="mt-16 grid gap-6 lg:grid-cols-3">
+          {/* Los cuatro grupos de habilidades. */}
           {t.groups.map((group) => (
             <div key={group.id} className={cardClass}>
-              <div className={innerGrid}>
-                <div className={headCell}>
-                  <h3 className="text-title font-light text-black dark:text-white">
-                    {group.title}
-                  </h3>
-                  <p className="measure mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
-                    {group.description}
-                  </p>
-                </div>
-                <ul className={`flex list-none flex-wrap content-start gap-2 ${bodyCell}`}>
-                  {group.items.map((item) => (
-                    <li
-                      key={item.label}
-                      className="rounded border border-gray-300 px-2 py-1 font-mono text-[0.65rem] font-normal uppercase tracking-widest text-black dark:border-gray-600 dark:text-white">
+              <h3 className="text-title font-light text-black dark:text-white">
+                {group.title}
+              </h3>
+              <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
+                {group.description}
+              </p>
+              <ul className="mt-6 list-none space-y-2">
+                {group.items.map((item) => (
+                  <li key={item.label} className={itemClass}>
+                    <span aria-hidden="true" className={dotClass} />
+                    <span>
                       {item.label}
-                      {item.level && (
-                        <span className="text-gray-500 dark:text-gray-400"> · {item.level}</span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                      {item.level && <span className="text-gray-500 dark:text-gray-400"> · {item.level}</span>}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
 
-          {/* Idiomas: nombre y nivel, en dos columnas de filas. */}
+          {/* Idiomas: el nombre a la izquierda y el nivel a la derecha. */}
           <div className={cardClass}>
-            <div className={innerGrid}>
-              <div className={headCell}>
-                <h3 className="text-title font-light text-black dark:text-white">
-                  {t.languages.title}
-                </h3>
-                <p className="measure mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
-                  {t.languages.description}
-                </p>
-              </div>
-              <ul className={`grid list-none content-start gap-x-12 gap-y-2 sm:grid-cols-2 ${bodyCell}`}>
-                {t.languages.items.map((language) => (
-                  <li
-                    key={language.name}
-                    className="flex items-baseline justify-between gap-4">
-                    <span className="font-light text-gray-700 dark:text-gray-300">
-                      {language.name}
-                    </span>
-                    <span className="font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                      {language.level}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <h3 className="text-title font-light text-black dark:text-white">
+              {t.languages.title}
+            </h3>
+            <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
+              {t.languages.description}
+            </p>
+            <ul className="mt-6 list-none space-y-2">
+              {t.languages.items.map((language) => (
+                <li key={language.name} className={itemClass}>
+                  <span aria-hidden="true" className={dotClass} />
+                  <span className="flex flex-1 items-baseline justify-between gap-3">
+                    <span>{language.name}</span>
+                    <span className={metaClass}>{language.level}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Formacion. */}
+          {/* Formacion: la titulacion y, debajo, su meta en mono. */}
           <div className={cardClass}>
-            <div className={innerGrid}>
-              <div className={headCell}>
-                <h3 className="text-title font-light text-black dark:text-white">
-                  {t.education.title}
-                </h3>
-                <p className="measure mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
-                  {t.education.description}
-                </p>
-              </div>
-              <ul className={`grid list-none content-start gap-y-4 ${bodyCell}`}>
-                {t.education.items.map((item) => (
-                  <li key={item.title}>
-                    <p className="font-light text-gray-700 dark:text-gray-300">{item.title}</p>
-                    <p className="mt-1 font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
-                      {item.meta}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <h3 className="text-title font-light text-black dark:text-white">
+              {t.education.title}
+            </h3>
+            <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
+              {t.education.description}
+            </p>
+            <ul className="mt-6 list-none space-y-2">
+              {t.education.items.map((item) => (
+                <li key={item.title} className={itemClass}>
+                  <span aria-hidden="true" className={dotClass} />
+                  <span>
+                    {item.title}
+                    <span className={`mt-1 block ${metaClass}`}>{item.meta}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
