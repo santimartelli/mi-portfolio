@@ -1,6 +1,6 @@
 {
-  "title": "Work",
-  "description": "Three real products, told from the problem to the result. These are not technology showcases: each one explains what had to be solved and what I actually did.",
+  "title": "Projects",
+  "description": "Products built to solve real problems. From internal operations tools to applications in use in production today.",
   "labels": {
     "problem": "Problem",
     "solution": "Solution",
@@ -39,7 +39,7 @@
         "AI-assisted reviews through the API's own gateway: the key never reaches the frontend, the AI only returns editable drafts, and the style preferences I keep saving are fed back into the prompt.",
         "Quality: 48 test files (domain, components and API against a real PostgreSQL, with property tests and timezone tests), Playwright end-to-end tests and axe accessibility audits at three screen sizes."
       ],
-      "result": "I use it daily to prepare arrivals, messages, quotes and departures. It replaces a workflow that lived in four different places without touching the PMS: that stays the source of bookings and invoicing, and this tool covers the layer that was missing. It is built for a single operator, but with the \"establishment\" entity from day one, so it can be reused at other properties.",
+      "result": "A tool I use every day in the running of an apart-hotel to manage arrivals, messages, quotes and housekeeping. It complements the PMS by covering operational processes that used to be spread across several tools.",
       "technologies": ["React 19", "TypeScript", "Vite", "TanStack Router", "TanStack Query", "Tailwind CSS v4", "Fastify", "PostgreSQL", "Drizzle ORM", "Better Auth", "Docker", "pnpm"]
     },
     {
@@ -63,7 +63,7 @@
         "Direct browser → R2 uploads via presigned URLs: credentials never leave the server and the file never passes through the application.",
         "Five-language site with transactional email for booking and contact requests."
       ],
-      "result": "A product in production, in real use and maintained continuously since 2024. The client manages her own content, the site serves five languages, and image delivery is decoupled from the application server.",
+      "result": "A product in production and maintained since 2024. It lets the client manage her own content, serves five languages and uses a modern architecture for the application, the data and image delivery.",
       "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "Cloudflare R2"],
       "previousStack": ["Vue", "Node.js / Express", "MySQL", "Cloudinary"]
     },
@@ -87,7 +87,7 @@
         "Work on caching and asset loading.",
         "Cross-browser testing and fixes for issues reported by the client."
       ],
-      "result": "The site moved to a coherent, reusable structure with clearer navigation and less dependence on a developer for routine content changes.",
+      "result": "A redesign of a live commercial site to improve navigation, consistency and maintenance, cutting the dependence on development for routine content changes.",
       "technologies": ["WordPress", "WPBakery", "JavaScript", "CSS"]
     }
   ]

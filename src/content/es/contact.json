@@ -1,7 +1,7 @@
 {
-  "title": "Contacto",
-  "description": "Busco oportunidades donde se crucen hospitality, experiencia de cliente y tecnología.",
-  "statement": "Me interesan especialmente puestos de hotel tech, operaciones hoteleras, customer success, implantación y onboarding, soporte de producto y soporte técnico, en equipos donde conocer la operación por dentro suponga una ventaja.",
+  "title": "Hablemos",
+  "description": "Busco oportunidades donde se conecten hospitality, operaciones y tecnología.",
+  "statement": "Me interesan especialmente equipos de Hotel Tech, Hospitality Operations, Customer Success, Implementation, Onboarding y Product Support, donde mi experiencia utilizando tecnología hotelera desde el lado operativo pueda aportar contexto desde el primer día.",
   "channelsTitle": "Dónde encontrarme",
   "channels": {
     "email": {
@@ -48,7 +48,7 @@
   },
   "availability": {
     "title": "Disponibilidad",
-    "text": "Abierto a oportunidades a tiempo completo. Girona, Barcelona o en remoto."
+    "text": "Disponible para oportunidades a tiempo completo en Girona, Barcelona, remoto o híbrido."
   },
-  "closing": "Si crees que mi perfil encaja con lo que buscas, escríbeme y te cuento más."
+  "closing": "Si crees que mi perfil puede encajar en tu equipo, escríbeme."
 }

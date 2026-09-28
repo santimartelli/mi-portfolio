@@ -1,6 +1,6 @@
 {
   "title": "Proyectos",
-  "description": "Tres productos reales, contados desde el problema hasta el resultado. No son escaparates de tecnología: cada uno explica qué había que resolver y qué hice exactamente.",
+  "description": "Productos construidos para resolver problemas reales. Desde herramientas internas de operaciones hasta aplicaciones utilizadas actualmente en producción.",
   "labels": {
     "problem": "Problema",
     "solution": "Solución",
@@ -39,7 +39,7 @@
         "Reseñas asistidas por IA a través de un gateway propio en el backend: la clave nunca llega al frontend, la IA solo devuelve borradores editables y las preferencias de estilo que voy guardando se reinyectan en el prompt.",
         "Calidad: 48 archivos de test (dominio, componentes y API contra PostgreSQL real, con property tests y pruebas de zona horaria), pruebas end-to-end con Playwright y auditoría de accesibilidad con axe en tres resoluciones."
       ],
-      "result": "La uso a diario para preparar llegadas, mensajes, cotizaciones y salidas. Sustituye un flujo que vivía repartido en cuatro sitios sin tocar el PMS: sigue siendo la fuente de reservas y facturación, y esta herramienta cubre la capa que faltaba. Está construida para un solo operador, pero con la entidad «establecimiento» desde el primer día, así que puede reutilizarse en otros alojamientos.",
+      "result": "Herramienta que utilizo a diario en la operación de un aparthotel para gestionar llegadas, mensajes, cotizaciones y limpiezas. Complementa al PMS cubriendo procesos operativos que antes estaban repartidos entre varias herramientas.",
       "technologies": ["React 19", "TypeScript", "Vite", "TanStack Router", "TanStack Query", "Tailwind CSS v4", "Fastify", "PostgreSQL", "Drizzle ORM", "Better Auth", "Docker", "pnpm"]
     },
     {
@@ -63,7 +63,7 @@
         "Subida directa navegador → R2 con URLs prefirmadas: las credenciales nunca salen del servidor y el archivo no pasa por la aplicación.",
         "Sitio en cinco idiomas y envío de correo transaccional para las solicitudes de reserva y contacto."
       ],
-      "result": "Un producto en producción, en uso real y mantenido de forma continua desde 2024. La clienta gestiona su propio contenido, el sitio sirve cinco idiomas y la entrega de imágenes quedó desacoplada del servidor de la aplicación.",
+      "result": "Producto en producción y mantenido desde 2024. Permite gestionar contenido de forma autónoma, sirve cinco idiomas y utiliza una arquitectura moderna para aplicación, datos y entrega de imágenes.",
       "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "Cloudflare R2"],
       "previousStack": ["Vue", "Node.js / Express", "MySQL", "Cloudinary"]
     },
@@ -87,7 +87,7 @@
         "Trabajo sobre caché y carga de recursos.",
         "Pruebas en distintos navegadores y corrección de incidencias reportadas por el cliente."
       ],
-      "result": "El sitio pasó a una estructura coherente y reutilizable, con una navegación más clara y menos dependencia de un desarrollador para los cambios rutinarios de contenido.",
+      "result": "Rediseño de un sitio comercial en producción para mejorar navegación, consistencia y mantenimiento, reduciendo la dependencia de desarrollo para cambios habituales de contenido.",
       "technologies": ["WordPress", "WPBakery", "JavaScript", "CSS"]
     }
   ]

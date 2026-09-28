@@ -1,11 +1,11 @@
 {
   "title": "Skills",
-  "description": "Lo que sé hacer, agrupado por dónde lo he aprendido. Sin barras de progreso ni porcentajes: las herramientas hoteleras se listan por uso real en el puesto de trabajo, no por nivel certificado.",
+  "description": "Experiencia práctica en operaciones hoteleras, atención al cliente y desarrollo de producto, con herramientas utilizadas en entornos reales de trabajo y proyectos en producción.",
   "groups": [
     {
       "id": "hospitality",
       "title": "Hospitality & Operations",
-      "description": "El día a día de un alojamiento: recepción, reservas, canales y pricing, con las herramientas que se usan en el puesto.",
+      "description": "El día a día de un alojamiento: front office, reservas, canales, distribución y pricing.",
       "items": [
         { "label": "Operaciones hoteleras" },
         { "label": "Front office" },
@@ -24,7 +24,7 @@
     {
       "id": "customer",
       "title": "Customer & Product",
-      "description": "Atención al cliente, implantación y soporte: el perfil al que quiero orientarme, con la operación como base.",
+      "description": "La intersección entre usuario, operación y producto: entender necesidades, resolver problemas y acompañar la adopción de herramientas.",
       "items": [
         { "label": "Atención al cliente" },
         { "label": "Onboarding de clientes" },
@@ -37,7 +37,7 @@
     {
       "id": "technology",
       "title": "Technology",
-      "description": "Del CFGS al producto propio en producción: front, back y las herramientas del día a día.",
+      "description": "Desarrollo web aplicado a productos reales: frontend, backend, APIs, bases de datos, infraestructura y despliegue.",
       "items": [
         { "label": "JavaScript" },
         { "label": "TypeScript" },
@@ -60,7 +60,7 @@
     {
       "id": "business",
       "title": "Business",
-      "description": "Las herramientas transversales: Excel, orden, resolución de problemas y comunicación.",
+      "description": "Herramientas y capacidades que utilizo de forma transversal en operaciones, tecnología y atención al cliente.",
       "items": [
         { "label": "Excel", "level": "Avanzado" },
         { "label": "Operaciones" },

@@ -1,21 +1,21 @@
 {
   "title": "Cómo llegué aquí",
-  "lead": "Empecé en el mostrador de un hotel, no delante de un editor de código. La tecnología llegó después, por lo que veía desde ahí: hoy es lo que me deja traducir entre lo que necesita la operación y lo que puede hacer el producto.",
+  "lead": "Empecé en el mostrador de un hotel, no delante de un editor de código. La tecnología llegó después, a partir de los problemas y procesos que veía cada día. Hoy esa combinación me permite entender tanto la operación como las herramientas que la hacen funcionar.",
   "steps": [
     {
       "id": "hospitality",
       "title": "Hospitality",
-      "line": "Empecé de socorrista en un hotel. Después, la recepción corporativa de Dorna Sports en las temporadas de MotoGP, y más tarde años de recepción en hoteles y un aparthotel."
+      "line": "Empecé trabajando en un hotel y después pasé por la recepción corporativa de Dorna Sports durante las temporadas de MotoGP, hoteles de alta ocupación y, actualmente, la operativa de un aparthotel."
     },
     {
       "id": "operations",
       "title": "Operaciones",
-      "line": "Del mostrador a la operación por dentro: disponibilidad, asignación de habitaciones, canales, facturación y pricing, con PMS como Opera o Avalon y OTAs como Booking.com o Expedia. Ahí, con el sistema Marsha de Marriott, vi lo que el código puede hacer dentro de un hotel."
+      "line": "Reservas, disponibilidad, habitaciones, facturación, atención al huésped, canales y pricing. He trabajado diariamente con PMS como Opera y Avalon y con OTAs como Booking.com y Expedia."
     },
     {
       "id": "technology",
       "title": "Tecnología",
-      "line": "La tecnología no es un extra en la operación de un hotel: agiliza procesos y ayuda a decidir mejor. Por eso he acabado construyendo mis propias herramientas, para cubrir lo que el software del hotel no resolvía."
+      "line": "Estudiar Desarrollo de Aplicaciones Web me permitió pasar de utilizar software a entender cómo se construye. Desde entonces he desarrollado productos propios, integrado APIs y mantenido aplicaciones reales en producción."
     }
   ],
   "principles": {
@@ -23,15 +23,15 @@
     "items": [
       {
         "title": "Contexto operativo real",
-        "text": "He trabajado la operación de alojamiento por dentro: sé cómo se organiza el día a día, qué es urgente y qué puede esperar."
+        "text": "Conozco el día a día de un alojamiento: prioridades, incidencias, huéspedes, reservas, habitaciones, canales y coordinación entre equipos."
       },
       {
-        "title": "Puente entre la operación y el equipo técnico",
-        "text": "Traduzco entre lo que necesita la operación y lo que puede hacer el producto, y los dos lados me entienden."
+        "title": "Conexión entre operación y producto",
+        "text": "Entiendo qué necesita el usuario hotelero y puedo trasladarlo a un equipo técnico o de producto con contexto, prioridades y casos de uso reales."
       },
       {
         "title": "Capacidad de construir",
-        "text": "Puedo montar un prototipo, integrar una API o mantener un producto en producción."
+        "text": "Además de entender el problema, puedo prototipar soluciones, trabajar con APIs y desarrollar y mantener productos web en producción."
       }
     ]
   }

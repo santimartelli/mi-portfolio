@@ -1,21 +1,21 @@
 {
   "title": "How I got here",
-  "lead": "I started behind a hotel front desk, not behind a code editor. Technology came later, from what I saw there: today it is what lets me translate between what operations needs and what the product can do.",
+  "lead": "I started at a hotel front desk, not in a code editor. Technology came later, out of the problems and processes I saw every day. Today that combination lets me understand both the operation and the tools that keep it running.",
   "steps": [
     {
       "id": "hospitality",
       "title": "Hospitality",
-      "line": "I started as a lifeguard at a hotel. Then came corporate reception at Dorna Sports during the MotoGP seasons, and later years on hotel and apart-hotel front desks."
+      "line": "I started working in a hotel, then moved through corporate reception at Dorna Sports during the MotoGP seasons, high-occupancy hotels and, today, the daily operation of an apart-hotel."
     },
     {
       "id": "operations",
       "title": "Operations",
-      "line": "From the front desk into the operation itself: availability, room allocation, channels, billing and pricing, with PMS such as Opera or Avalon and OTAs such as Booking.com or Expedia. There, working with Marriott's Marsha system, I saw what code can do inside a hotel."
+      "line": "Reservations, availability, rooms, billing, guest service, channels and pricing. I have worked daily with PMS such as Opera and Avalon and with OTAs such as Booking.com and Expedia."
     },
     {
       "id": "technology",
       "title": "Technology",
-      "line": "Technology is not an extra in hotel operations: it speeds up processes and helps make better decisions. That is why I have ended up building my own tools, to cover what the hotel software did not solve."
+      "line": "Studying Web Application Development is what took me from using software to understanding how it is built. Since then I have built my own products, integrated APIs and maintained real applications in production."
     }
   ],
   "principles": {
@@ -23,15 +23,15 @@
     "items": [
       {
         "title": "Real operational context",
-        "text": "I have worked lodging operations from the inside: I know how the day is organised, what is urgent and what can wait."
+        "text": "I know the day to day of a property: priorities, incidents, guests, reservations, rooms, channels and coordination across teams."
       },
       {
-        "title": "A bridge between operations and engineering",
-        "text": "I translate between what operations needs and what the product can do, and both sides understand me."
+        "title": "Connection between operations and product",
+        "text": "I understand what hotel users need and I can pass it on to an engineering or product team with context, priorities and real use cases."
       },
       {
         "title": "Ability to build",
-        "text": "I can put together a prototype, integrate an API or maintain a product in production."
+        "text": "Beyond understanding the problem, I can prototype solutions, work with APIs and build and maintain web products in production."
       }
     ]
   }

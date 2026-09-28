@@ -1,11 +1,11 @@
 {
   "title": "Skills",
-  "description": "What I can do, grouped by where I learned it. No progress bars or percentages: hotel tools are listed by real day-to-day use at work, not by certified level.",
+  "description": "Hands-on experience across hotel operations, customer service and product development, with tools used in real workplaces and products live in production.",
   "groups": [
     {
       "id": "hospitality",
       "title": "Hospitality & Operations",
-      "description": "The day to day of a property: front desk, reservations, channels and pricing, with the tools used on the job.",
+      "description": "The day to day of a property: front office, reservations, channels, distribution and pricing.",
       "items": [
         { "label": "Hotel operations" },
         { "label": "Front office" },
@@ -24,7 +24,7 @@
     {
       "id": "customer",
       "title": "Customer & Product",
-      "description": "Customer service, implementation and support: the profile I want to move towards, with operations as the base.",
+      "description": "Where the user, operations and product meet: understanding needs, solving problems and supporting the adoption of tools.",
       "items": [
         { "label": "Customer service" },
         { "label": "Customer onboarding" },
@@ -37,7 +37,7 @@
     {
       "id": "technology",
       "title": "Technology",
-      "description": "From vocational training to my own product in production: front end, back end and the everyday tooling.",
+      "description": "Web development applied to real products: frontend, backend, APIs, databases, infrastructure and deployment.",
       "items": [
         { "label": "JavaScript" },
         { "label": "TypeScript" },
@@ -60,7 +60,7 @@
     {
       "id": "business",
       "title": "Business",
-      "description": "The transversal toolkit: spreadsheets, order, problem solving and communication.",
+      "description": "Tools and capabilities I use across operations, technology and customer service.",
       "items": [
         { "label": "Excel", "level": "Advanced" },
         { "label": "Operations" },

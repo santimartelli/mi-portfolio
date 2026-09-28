@@ -1,6 +1,6 @@
 {
   "title": "Experience",
-  "description": "One career with two facets: hotel operations and web development. You can filter to see either one on its own.",
+  "description": "A path that runs between hotel operations and technology. Filter by area to explore each part of my experience.",
   "allLabel": "Full track record",
   "trackLabels": {
     "hospitality": "Hospitality & Operations",
@@ -16,15 +16,13 @@
       "role": "Operations & property management",
       "period": "2026 – present",
       "location": "Girona",
-      "summary": "An apart-hotel with 33 apartments. I take part in daily operations and in the guest relationship, from booking to stay.",
+      "summary": "An apart-hotel with 33 apartments in Girona. I work on the day-to-day running of the property: reservations, availability, guest service, distribution, pricing and coordination of incidents and operational needs.",
       "highlights": [
-        "Daily operations of the property",
         "Reservations, availability and amendments",
         "Guest support in person, by email and by phone, in several languages",
         "Channel management: Booking.com, Expedia and direct sales",
-        "Incident handling and coordination of operational needs",
         "Pricing and revenue-related operations",
-        "I design and build my own internal tool for daily operations: arrivals, message templates, quotes and housekeeping"
+        "Design and development of my own internal tool to manage arrivals, message templates, quotes and housekeeping."
       ],
       "tools": ["Booking.com", "Expedia", "Excel"]
     },
@@ -37,7 +35,7 @@
       "role": "Development and maintenance of my own product",
       "period": "2024 – present",
       "location": "Remote",
-      "summary": "Website and management system for a professional photographer. A real product in production that I build and maintain.",
+      "summary": "A real web product in production for a professional photographer, with a public site, content management, image infrastructure and admin tools. I have been building and maintaining it since 2024.",
       "highlights": [
         "A production product whose content the client manages herself",
         "Architecture evolution: from Vue + Node/Express + MySQL to Next.js, React and Supabase",
@@ -56,7 +54,7 @@
       "role": "Front Office · Reception",
       "period": "2025 – 2026",
       "location": "Lloret de Mar",
-      "summary": "Front desk at a coastal hotel with a high volume of arrivals and departures.",
+      "summary": "Front office at a high-occupancy holiday hotel, handling a steady volume of arrivals, departures, reservations and incidents.",
       "highlights": [
         "Guest support in person, by email and by phone",
         "Reservations and amendments",
@@ -77,7 +75,7 @@
       "role": "Front Office · Reception",
       "period": "2024 – 2025",
       "location": "Lloret de Mar",
-      "summary": "Front desk with individual guests and groups during high season.",
+      "summary": "Front office in high season, looking after both individual guests and groups in a high-occupancy setting.",
       "highlights": [
         "Multilingual support for individual guests and groups",
         "Check-in and check-out",
@@ -116,7 +114,7 @@
       "role": "Corporate Reception & Administration",
       "period": "2019 – 2024",
       "location": "Barcelona",
-      "summary": "Corporate reception in an international environment, across several MotoGP World Championship seasons.",
+      "summary": "Corporate reception in an international environment linked to the MotoGP World Championship, looking after executives, sponsors, suppliers, press and international visitors across several seasons.",
       "highlights": [
         "Support for executives, sponsors, suppliers and international press",
         "Visit and international visitor management",
@@ -154,7 +152,7 @@
       "role": "Front Office",
       "period": "2018 – 2019",
       "location": "Girona",
-      "summary": "Front office at an urban Marriott-branded hotel.",
+      "summary": "Front office at an urban Marriott-branded hotel, looking after international guests, VIPs and professional sports teams.",
       "highlights": [
         "Front office and guest support",
         "Reservations and invoicing",

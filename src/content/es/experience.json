@@ -1,6 +1,6 @@
 {
   "title": "Experiencia",
-  "description": "Una sola trayectoria con dos facetas: operaciones hoteleras y desarrollo web. Puedes filtrar para ver cada una por separado.",
+  "description": "Una trayectoria entre operaciones hoteleras y tecnología. Filtra por área para explorar cada parte de mi experiencia.",
   "allLabel": "Toda la trayectoria",
   "trackLabels": {
     "hospitality": "Hospitality & Operations",
@@ -16,15 +16,13 @@
       "role": "Operaciones y gestión del establecimiento",
       "period": "2026 – actualidad",
       "location": "Girona",
-      "summary": "Aparthotel de 33 apartamentos. Participo en la operativa diaria y en la relación con el huésped, desde la reserva hasta la estancia.",
+      "summary": "Aparthotel de 33 apartamentos en Girona. Trabajo en la operativa diaria del establecimiento: reservas, disponibilidad, atención al huésped, distribución, pricing y coordinación de incidencias y necesidades operativas.",
       "highlights": [
-        "Operativa diaria del establecimiento",
         "Gestión de reservas, disponibilidad y modificaciones",
-        "Atención al cliente presencial, por email y por teléfono, en varios idiomas",
+        "Atención al huésped presencial, por email y por teléfono, en varios idiomas",
         "Gestión de canales: Booking.com, Expedia y venta directa",
-        "Resolución de incidencias y coordinación de necesidades operativas",
         "Operaciones de pricing y apoyo a decisiones relacionadas con revenue",
-        "Diseño y desarrollo mi propia herramienta interna para la operativa diaria: llegadas, plantillas de mensajes, cotizaciones y limpiezas"
+        "Diseño y desarrollo de una herramienta interna propia para gestionar llegadas, plantillas de mensajes, cotizaciones y limpiezas."
       ],
       "tools": ["Booking.com", "Expedia", "Excel"]
     },
@@ -37,7 +35,7 @@
       "role": "Desarrollo y mantenimiento de producto propio",
       "period": "2024 – actualidad",
       "location": "Remoto",
-      "summary": "Sitio web y sistema de gestión para una fotógrafa profesional. Producto real en producción que desarrollo y mantengo.",
+      "summary": "Producto web real en producción para una fotógrafa profesional, con sitio público, gestión de contenido, infraestructura de imágenes y herramientas de administración. Lo desarrollo y mantengo desde 2024.",
       "highlights": [
         "Producto en producción cuyo contenido gestiona la propia clienta",
         "Evolución de arquitectura: de Vue + Node/Express + MySQL a Next.js, React y Supabase",
@@ -56,7 +54,7 @@
       "role": "Front Office · Recepción",
       "period": "2025 – 2026",
       "location": "Lloret de Mar",
-      "summary": "Recepción de un hotel de costa con un volumen alto de llegadas y salidas.",
+      "summary": "Front office en un hotel vacacional de alta ocupación, gestionando un volumen elevado de llegadas, salidas, reservas e incidencias.",
       "highlights": [
         "Atención presencial, por email y por teléfono",
         "Reservas y modificaciones",
@@ -77,7 +75,7 @@
       "role": "Front Office · Recepción",
       "period": "2024 – 2025",
       "location": "Lloret de Mar",
-      "summary": "Recepción con clientes individuales y grupos durante la temporada alta.",
+      "summary": "Front office en temporada alta, atendiendo tanto a clientes individuales como a grupos en un entorno de alta ocupación.",
       "highlights": [
         "Atención multilingüe a clientes individuales y grupos",
         "Check-in y check-out",
@@ -116,7 +114,7 @@
       "role": "Corporate Reception & Administration",
       "period": "2019 – 2024",
       "location": "Barcelona",
-      "summary": "Recepción corporativa en un entorno internacional, a lo largo de varias temporadas del Mundial de MotoGP.",
+      "summary": "Recepción corporativa en un entorno internacional vinculado al Mundial de MotoGP, atendiendo a ejecutivos, patrocinadores, proveedores, prensa y visitantes internacionales durante varias temporadas.",
       "highlights": [
         "Atención a ejecutivos, patrocinadores, proveedores y prensa internacional",
         "Gestión de visitas y de visitantes internacionales",
@@ -154,7 +152,7 @@
       "role": "Front Office",
       "period": "2018 – 2019",
       "location": "Girona",
-      "summary": "Front office en un hotel urbano de la marca Marriott.",
+      "summary": "Front office en un hotel urbano de la marca Marriott, con atención a clientes internacionales, VIP y equipos deportivos profesionales.",
       "highlights": [
         "Front office y atención al cliente",
         "Reservas y facturación",
