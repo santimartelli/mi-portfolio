@@ -1,5 +1,5 @@
 {
-  "title": "Let's connect",
+  "title": "Contact",
   "description": "I am looking for opportunities where hospitality, customer experience and technology meet.",
   "statement": "I am particularly interested in roles in hotel tech, hotel operations, customer success, implementation and onboarding, product support and technical support, in teams where knowing the operation from the inside is an advantage.",
   "channelsTitle": "Where to find me",
@@ -11,6 +11,10 @@
     "linkedin": {
       "label": "LinkedIn",
       "description": "My professional profile and track record."
+    },
+    "whatsapp": {
+      "label": "WhatsApp",
+      "description": "Messages and calls."
     },
     "github": {
       "label": "GitHub",

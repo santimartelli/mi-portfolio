@@ -173,6 +173,7 @@ export interface ContactTranslations {
   channels: {
     email: { label: string; description: string };
     linkedin: { label: string; description: string };
+    whatsapp: { label: string; description: string };
     github: { label: string; description: string };
   };
   cv: {

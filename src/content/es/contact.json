@@ -1,5 +1,5 @@
 {
-  "title": "Hablemos",
+  "title": "Contacto",
   "description": "Busco oportunidades donde se crucen hospitality, experiencia de cliente y tecnología.",
   "statement": "Me interesan especialmente puestos de hotel tech, operaciones hoteleras, customer success, implantación y onboarding, soporte de producto y soporte técnico, en equipos donde conocer la operación por dentro suponga una ventaja.",
   "channelsTitle": "Dónde encontrarme",
@@ -11,6 +11,10 @@
     "linkedin": {
       "label": "LinkedIn",
       "description": "Mi perfil profesional y mi trayectoria."
+    },
+    "whatsapp": {
+      "label": "WhatsApp",
+      "description": "Mensajes y llamadas."
     },
     "github": {
       "label": "GitHub",
