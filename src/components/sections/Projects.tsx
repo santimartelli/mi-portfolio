@@ -1,15 +1,18 @@
-// Proyectos: casos de estudio, con el mismo lenguaje que About, Experiencia y
-// Skills. Cabecera con el titular y la entradilla a la izquierda y, debajo, una
-// rejilla de dos columnas con una tarjeta vertical por proyecto.
+// Proyectos: casos de estudio, con la misma familia que About, Experiencia y
+// Skills, y la misma cabecera y la misma rejilla de tres columnas que Skills. La
+// tarjeta es vertical: la captura a sangre y, debajo, el bloque de texto con el
+// relleno de Skills (24px).
 //
-// La tarjeta es un indice, no un caso de estudio: se barre de un vistazo. La
-// captura va a sangre —la tarjeta no lleva relleno, lo lleva el bloque de texto—
-// y recortada a una banda 5:2 anclada arriba: es lo que la mantiene corta sin
-// quedarse con un recorte del centro. Debajo, el relato minimo: que es, cuando y
-// en que estado, el stack resumido a las cuatro etiquetas que identifican el
-// producto y, al pie, a donde llego con su rotulo y el enlace. El cierre se apoya
-// en el borde inferior (`mt-auto`), asi que las dos tarjetas de una fila acaban a
-// la misma altura aunque su texto no mida lo mismo.
+// La tarjeta es un indice, no un caso de estudio: se barre de un vistazo. Los
+// pasos de letra son los de Skills —el titulo en `title` (17px), el subtitulo y el
+// resultado en `sm` (14px), el paso que Skills usa para la descripcion, y los
+// datos en `label` (12px) y `ui` (13px)— y la captura va recortada a una banda 5:2
+// anclada arriba, que es lo que la mantiene corta sin quedarse con un recorte del
+// centro. El stack se resume a cuatro etiquetas y el resto se cuenta en un `+N`
+// con los nombres completos para lectores de pantalla. El cierre se apoya en el
+// borde inferior (`mt-auto`), asi que todas las tarjetas de una fila acaban a la
+// misma altura, y el resultado se corta a tres lineas (`line-clamp-3`) para que el
+// texto largo no estire la rejilla.
 //
 // El detalle largo —el problema, la solucion, el rol, la lista de implementacion
 // y la tabla de metricas— sigue en los dos `projects.json` y en el tipo, pero no
@@ -26,9 +29,9 @@ interface ProjectsProps {
 /** Cuantas etiquetas de stack caben en una linea antes de resumir el resto. */
 const MAX_TECHNOLOGIES = 4;
 
-/** La tarjeta: el mismo filete, el mismo radio y el mismo hover que Experiencia
- *  y Skills, pero sin relleno —lo lleva el bloque de texto— y en columna, para
- *  que el cierre pueda apoyarse en el borde inferior. */
+/** La tarjeta: el mismo filete, el mismo radio y el mismo hover que Skills, pero
+ *  sin relleno —lo lleva el bloque de texto— y en columna, para que el cierre
+ *  pueda apoyarse en el borde inferior. */
 const cardClass =
   'flex flex-col overflow-hidden rounded-xl border border-gray-200 transition-colors duration-200 ease-out hover:border-gray-400 dark:border-gray-700 dark:hover:border-gray-500';
 
@@ -37,8 +40,14 @@ const cardClass =
 const captureClass =
   'relative aspect-[5/2] w-full shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-800';
 
+/** El bloque de texto: el relleno de Skills, que es el que la tarjeta no lleva. */
+const bodyClass = 'flex flex-1 flex-col p-6';
+
 /** El rotulo de un bloque: la etiqueta de la casa. */
 const labelClass = 'text-label font-medium uppercase text-gray-500 dark:text-gray-400';
+
+/** Una linea de dato: el paso `ui` de las listas de Skills. */
+const dataClass = 'text-ui font-light leading-relaxed text-gray-600 dark:text-gray-400';
 
 /** Un enlace de accion: el boton secundario del hero. */
 const linkClass =
@@ -55,7 +64,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
           {t.description}
         </p>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-2">
+        <div className="mt-16 grid gap-6 lg:grid-cols-3">
           {t.projects.map((project) => {
             const visibleTechnologies = project.technologies.slice(0, MAX_TECHNOLOGIES);
             const remainingTechnologies = project.technologies.slice(MAX_TECHNOLOGIES);
@@ -79,24 +88,23 @@ const Projects = ({ content: t }: ProjectsProps) => {
                   />
                 </div>
 
-                {/* El texto: el relleno que la tarjeta ya no lleva. */}
-                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <div className={bodyClass}>
                   <h3
                     id={`project-${project.id}`}
                     className="text-title font-light text-black dark:text-white">
                     {project.title}
                   </h3>
-                  <p className="mt-2 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
+                  <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
                     {project.subtitle}
                   </p>
 
-                  {/* El que, el cuando y el estado, en una sola linea. */}
-                  <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+                  {/* El que, el cuando y el estado: los tres datos de la ficha. */}
+                  <p className="mt-4 flex flex-wrap items-center gap-x-2.5 gap-y-1">
                     <span className={labelClass}>{project.category}</span>
                     <span className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
                       {project.period}
                     </span>
-                    <span className="flex items-center gap-2 text-sm font-light text-gray-600 dark:text-gray-400">
+                    <span className={`flex items-center gap-2 ${dataClass}`}>
                       <span
                         aria-hidden="true"
                         className={`h-1.5 w-1.5 rounded-full ${
@@ -113,7 +121,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                       los nombres completos en texto solo para lectores de
                       pantalla. Doce etiquetas son tres renglones y el doble de
                       tarjeta; cuatro identifican el producto igual de bien. */}
-                  <ul className="mt-3 flex list-none flex-wrap gap-2">
+                  <ul className="mt-4 flex list-none flex-wrap gap-2">
                     {visibleTechnologies.map((technology) => (
                       <li key={technology} className={badgeClass}>
                         {technology}
@@ -127,7 +135,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                     )}
                   </ul>
                   {project.previousStack && (
-                    <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
+                    <p className="mt-3 text-ui font-light leading-relaxed text-gray-500 dark:text-gray-400">
                       <span className="text-gray-400 dark:text-gray-600">
                         {t.labels.previousStack}:{' '}
                       </span>
@@ -137,9 +145,9 @@ const Projects = ({ content: t }: ProjectsProps) => {
 
                   {/* El cierre, apoyado en el borde inferior: a donde llego el
                       trabajo y, si el producto es publico, el enlace. */}
-                  <div className="mt-auto pt-5">
+                  <div className="mt-auto pt-6">
                     <h4 className={labelClass}>{t.labels.result}</h4>
-                    <p className="mt-2 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                    <p className="mt-2 line-clamp-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
                       {project.result}
                     </p>
 
