@@ -117,27 +117,22 @@ const Hero = ({ content: t }: HeroProps) => {
           </div>
         </div>
 
-        {/* Ilustracion del perfil. Hay dos recortes de la misma escena y el
-            navegador elige uno: el apaisado en pantallas estrechas y el vertical
-            desde lg, donde tiene columna propia. Va en un <picture> para que
-            solo se descargue el que se usa, no los dos.
-            El tamaño de cada recorte lo fija la clase .hero-media del layout, no
-            utilidades de Tailwind: ahi el tope de alto y la proporcion por
-            breakpoint conviven en el orden correcto, que con utilidades no
-            ocurria. En movil ocupa el ancho completo, y al ser apaisada eso la
-            deja ancha y baja a la vez, que es lo que permite ver el titular y el
-            texto en el mismo viewport.
-            En movil va primero, antes del titular: la columna se apila y el
-            order del <picture> la sube. En el marcado sigue despues del texto a
+        {/* Retrato del perfil: una sola foto, la que aporto el usuario, en la
+            columna derecha y pegada a su borde.
+            El tamaño lo fija la clase .hero-media del layout, no utilidades de
+            Tailwind: ahi el tope de alto de cada breakpoint vive en el orden
+            correcto, que con utilidades no ocurria.
+            En movil va primero, antes del titular, y con el alto topado: la
+            columna se apila y el order la sube, pero un retrato a todo el ancho
+            se comeria la pantalla. En el marcado sigue despues del texto a
             proposito, para que quien use lector de pantalla reciba el titular
-            antes que la ilustracion; desde lg el order se resetea. */}
+            antes que la foto; desde lg el order se resetea. */}
         <picture className="order-first mt-6 lg:order-none lg:col-span-6 lg:mt-0">
-          <source media="(max-width: 1023.98px)" srcSet="/images/hero-landscape.webp" />
           <img
-            src="/images/hero-portrait.webp"
+            src="/images/hero-photo.webp"
             alt={t.imageAlt}
-            width="1000"
-            height="1102"
+            width="1200"
+            height="1220"
             loading="eager"
             decoding="async"
             className="hero-media"

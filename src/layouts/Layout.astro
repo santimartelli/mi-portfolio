@@ -724,42 +724,33 @@ const jsonLd = {
     /*
 
     /*
-     * Recorte de la ilustracion del hero. Hay dos versiones de la misma escena y
-     * el <picture> elige una: la apaisada en pantallas estrechas y la vertical
-     * desde lg. Aqui se fija el tamaño de cada una.
+     * Retrato de la columna derecha del hero. Es una foto, no una escena
+     * apaisada: su proporcion es casi cuadrada (1200x1220), asi que la regla ya
+     * no fija ninguna `aspect-ratio` —manda la del propio archivo— y lo que
+     * cambia por breakpoint es el alto.
      *
-     * En movil ocupa el ancho completo con su proporcion apaisada (1,78), que es
-     * lo que la deja ancha y baja a la vez. Desde lg vuelve a proporcion
-     * automatica, para que el tope de alto pueda encogerla conservando la suya
-     * sin deformarla: con una proporcion fija y el ancho al 100%, cualquier tope
-     * de alto la aplasta.
+     * En movil un retrato a todo el ancho se comeria la pantalla, asi que se topa
+     * en alto y se centra: el titular y el texto siguen cabiendo en el mismo
+     * viewport. Desde lg la foto se pega al borde derecho de su columna, no se
+     * centra en ella. El bloque de texto arranca en el borde izquierdo del
+     * contenedor, asi que con la foto en el derecho las dos mitades quedan a la
+     * misma distancia del borde de la pagina, que es lo que hace que el hero se
+     * lea centrado y alineado con la rejilla del resto de secciones.
      *
-     * Desde lg la imagen se pega al borde derecho de su columna, no se centra en
-     * ella. El bloque de texto arranca en el borde izquierdo del contenedor, asi
-     * que con la imagen en el derecho las dos mitades quedan a la misma
-     * distancia del borde de la pagina, que es lo que hace que el hero se lea
-     * centrado y alineado con la rejilla del resto de secciones. Centrada en su
-     * columna, la imagen solo llegaba a su borde cuando el tope de alto no
-     * encogia lo bastante: el aire que le sobraba a la derecha era justo lo que
-     * descentraba la composicion. Ese es el unico eje que cambia; el vertical
-     * sigue centrado por el propio grid.
-     *
-     * Va en el CSS global y no con utilidades de Tailwind a proposito. Con
-     * `lg:aspect-auto` Tailwind emitia ademas un `.aspect-auto` suelto y global,
-     * que por orden de fuente ganaba al aspect-ratio de movil y dejaba la imagen
-     * con la proporcion del retrato.
+     * Va en el CSS global y no con utilidades de Tailwind a proposito: el orden de
+     * las utilidades no es el que uno escribe, y el margen que pega la imagen a su
+     * borde acababa ganando donde no tocaba.
      */
     .hero-media {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 1400 / 611;
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: 26vh;
+      margin-inline: auto;
     }
 
     @media (min-width: 1024px) {
       .hero-media {
-        width: auto;
-        max-width: 100%;
-        aspect-ratio: auto;
         max-height: calc(100vh - 16rem);
         margin-inline-start: auto;
         margin-inline-end: 0;
