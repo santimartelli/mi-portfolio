@@ -10,10 +10,10 @@
 // anclada arriba, que es lo que la mantiene corta sin quedarse con un recorte del
 // centro. El stack va entero, en las etiquetas compartidas con Experiencia, y el
 // cierre se apoya en el borde inferior (`mt-auto`), asi que todas las tarjetas de
-// una fila acaban a la misma altura; el resultado se corta a tres lineas
-// (`line-clamp-3`) para que el texto largo no estire la rejilla. El enlace es la
-// etiqueta de la casa en versalitas, subrayada suavemente y sin caja: el subrayado
-// ya es la senal de enlace.
+// una fila acaban a la misma altura. El resultado se ve entero, sin recortar: el
+// usuario no quiere puntos suspensivos, y si un resultado es largo la fila crece.
+// El enlace es la etiqueta de la casa en versalitas, subrayada suavemente y sin
+// caja: el subrayado ya es la senal de enlace.
 //
 // El detalle largo —el problema, la solucion, el rol, la lista de implementacion,
 // el stack anterior y la tabla de metricas— sigue en los dos `projects.json` y en
@@ -125,7 +125,7 @@ const Projects = ({ content: t }: ProjectsProps) => {
                     trabajo y, si el producto es publico, el enlace. */}
                 <div className="mt-auto pt-8">
                   <h4 className={labelClass}>{t.labels.result}</h4>
-                  <p className="mt-2.5 line-clamp-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                  <p className="mt-2.5 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
                     {project.result}
                   </p>
 
