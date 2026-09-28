@@ -732,27 +732,33 @@ const jsonLd = {
       width: 100%;
       height: auto;
       aspect-ratio: 1200 / 900;
-      /* En la version apilada la ilustracion no llega a los bordes: se queda en
-         el 94% del ancho del contenedor. El usuario la encontro grande al 100% y
-         la quiso un poco mas pequeña (88%), y despues un poco mas grande: 94% es
-         ese punto medio, unos 329px de ancho en un telefono de 390.
-         El alto disponible se mide con `svh` y no con `vh`: el hero usa la misma
-         unidad estable (ver `Hero.tsx`), asi que los dos hablan del mismo alto y
-         el tope no cambia cuando la barra del navegador se esconde al bajar.
-         En telefono se descuentan 34rem y en tablet 30: el cuerpo del texto subio
-         a 16px (el de las tarjetas) y en una caja estrecha eso son mas renglones,
-         asi que en pantallas bajas de telefono (360x740) hay que encoger mas la
-         imagen para que el hero siga cabiendo entero. En un telefono normal
-         (390x844) ninguno de los dos topes llega a entrar y la imagen se queda en
-         su 94%. */
-      max-width: min(94%, calc((100svh - 34rem) * 4 / 3));
       margin-inline: auto;
     }
 
-    @media (min-width: 640px) {
+    /*
+     * **En la version apilada el unico tope es de alto, y es una fraccion de la
+     * pantalla.** La ilustracion va a sangre (los margenes negativos del
+     * `<picture>`, ver `Hero.tsx`), asi que el ancho lo pone la pantalla, y el alto
+     * se limita a **46svh**: nunca se lleva mas de ese 46% del alto. `object-fit:
+     * contain` escala el dibujo dentro de esa caja sin deformarlo y sin bandas
+     * visibles (viene sobre blanco).
+     *
+     * Antes esto era `max-width: calc((100svh - 34rem) * 4 / 3)`, una constante que
+     * daba por hecho cuanto ocupan el titular, la entradilla, los CTA y los aires
+     * en un telefono estrecho: en una ventana ancha y baja (900x700) o en tablet
+     * dejaba la imagen minuscula —208px donde cabian 429—, y el usuario la veia
+     * «muy pequeña». Con una fraccion, la imagen se lleva lo que le toca en
+     * cualquier forma de ventana. Si con ese 46% el hero no cabe en la pantalla
+     * (pasa en telefonos bajos, donde el texto a 16px ocupa mucho), el hero crece y
+     * se hace scroll: es preferible a una ilustracion de juguete.
+     *
+     * La `aspect-ratio` del bloque de arriba sigue siendo la que reserva el hueco
+     * antes de que cargue la imagen.
+     */
+    @media (max-width: 1023.98px) {
       .hero-media {
-        /* La caja es mas ancha, el texto ocupa menos renglones y sobra mas alto. */
-        max-width: min(94%, calc((100svh - 30rem) * 4 / 3));
+        max-height: 46svh;
+        object-fit: contain;
       }
     }
 

@@ -138,8 +138,19 @@ const Hero = ({ content: t }: HeroProps) => {
           {/* La ilustracion: **el mismo recorte 4:3 que en movil**, en la columna
               de la derecha desde lg. El tamano lo fija `.hero-media`, en el
               layout. En el marcado va despues del texto —el titular se lee
-              antes— y el `order-first` la sube en la version apilada. */}
-          <picture className="order-first lg:order-none">
+              antes— y el `order-first` la sube en la version apilada.
+              **En la version apilada va a sangre**: los margenes negativos le
+              devuelven la sangria de `.shell` (1,25rem por debajo de 640, 1,75 de
+              640 a 1023), asi que ocupa el ancho entero de la pantalla. El unico
+              tope que le queda es el de alto, y es una **fraccion de la pantalla**
+              (`.hero-media`, 46svh), no una constante que adivine cuanto ocupa el
+              texto: con `(100svh - 34rem)` una ventana ancha y baja (900x700) o una
+              tablet dejaban la imagen minuscula —208px donde cabian 429—, que es lo
+              que el usuario veia. `block` es necesario para que los margenes
+              negativos cuenten: un <picture> es inline por defecto. Desde lg los
+              margenes se anulan (`lg:mx-0`) y la imagen vuelve a su columna, que es
+              lo que esta bloqueado. */}
+          <picture className="order-first -mx-5 block sm:-mx-7 lg:order-none lg:mx-0">
             <img
               src="/images/hero-hotel-ops.webp"
               alt={t.imageAlt}
