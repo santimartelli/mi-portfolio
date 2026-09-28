@@ -1,4 +1,8 @@
-// Pie: marca, navegacion, contacto, ubicacion y stack en una rejilla ancha.
+// Pie: marca, navegacion, contacto, ubicacion y stack en la misma rejilla ancha
+// de siempre. Aqui solo se alinean los pasos de letra con el resto de la casa
+// —las columnas con el rotulo `label`, el cuerpo con el paso `sm` y el aviso
+// legal con `ui`—, porque la estructura del pie no es la de una seccion: no lleva
+// tarjetas, lleva columnas.
 import { FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import type { FooterTranslations } from '../../util/i18n';
 import { SITE } from '../../util/site';
@@ -6,6 +10,16 @@ import { SITE } from '../../util/site';
 interface FooterProps {
   content: FooterTranslations;
 }
+
+/** El rotulo de una columna: la etiqueta de la casa. */
+const labelClass = 'text-label font-medium uppercase text-gray-500 dark:text-gray-400';
+
+/** Un enlace del pie: el paso `sm` del cuerpo y el hover de siempre. */
+const linkClass =
+  'text-sm font-light text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white';
+
+/** Una linea de dato del pie: el paso `ui`, un escalon por debajo del cuerpo. */
+const dataClass = 'text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400';
 
 const Footer = ({ content: t }: FooterProps) => {
   const currentYear = new Date().getFullYear();
@@ -39,7 +53,7 @@ const Footer = ({ content: t }: FooterProps) => {
       <div className="shell">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-16">
           <div>
-            <p className="text-title font-medium text-black dark:text-white">{t.brand.name}</p>
+            <p className="text-title font-light text-black dark:text-white">{t.brand.name}</p>
             <p className="mt-4 max-w-[38ch] text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
               {t.brand.description}
             </p>
@@ -60,15 +74,11 @@ const Footer = ({ content: t }: FooterProps) => {
           </div>
 
           <nav aria-label={t.navigation.title}>
-            <h2 className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
-              {t.navigation.title}
-            </h2>
+            <h2 className={labelClass}>{t.navigation.title}</h2>
             <ul className="mt-5 list-none space-y-2">
               {navItems.map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.href}
-                    className="font-light text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
+                  <a href={item.href} className={linkClass}>
                     {item.name}
                   </a>
                 </li>
@@ -77,16 +87,14 @@ const Footer = ({ content: t }: FooterProps) => {
           </nav>
 
           <div>
-            <h2 className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
-              {t.navigation.links.contact}
-            </h2>
+            <h2 className={labelClass}>{t.navigation.links.contact}</h2>
             <ul className="mt-5 list-none space-y-2">
               {contactLinks.map((contact) => (
                 <li key={contact.label}>
                   <a
                     href={contact.href}
                     {...(contact.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
-                    className="flex items-center gap-2 font-light text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
+                    className={`flex items-center gap-2 ${linkClass}`}>
                     <contact.icon className="h-3 w-3 shrink-0 text-gray-500" aria-hidden="true" />
                     <span className="break-all">{contact.value}</span>
                   </a>
@@ -94,32 +102,22 @@ const Footer = ({ content: t }: FooterProps) => {
               ))}
             </ul>
 
-            <h2 className="mt-8 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
-              {t.location.label}
-            </h2>
-            <p className="mt-5 flex items-center gap-2 font-light text-gray-600 dark:text-gray-400">
+            <h2 className={`mt-8 ${labelClass}`}>{t.location.label}</h2>
+            <p className={`mt-5 flex items-center gap-2 ${dataClass}`}>
               <FaMapMarkerAlt className="h-3 w-3 shrink-0 text-gray-500" aria-hidden="true" />
               {t.location.value}
             </p>
           </div>
 
           <div>
-            <h2 className="text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
-              {t.technologies.title}
-            </h2>
-            <p className="mt-5 font-light leading-relaxed text-gray-500 dark:text-gray-400">
-              {t.builtWith.items.join(' · ')}
-            </p>
-            <h2 className="mt-8 text-xs font-medium uppercase tracking-widest text-gray-500 dark:text-gray-400">
-              {t.builtWith.label}
-            </h2>
-            <p className="mt-5 font-light leading-relaxed text-gray-500 dark:text-gray-400">
-              {t.brand.name}
-            </p>
+            <h2 className={labelClass}>{t.technologies.title}</h2>
+            <p className={`mt-5 ${dataClass}`}>{t.builtWith.items.join(' · ')}</p>
+            <h2 className={`mt-8 ${labelClass}`}>{t.builtWith.label}</h2>
+            <p className={`mt-5 ${dataClass}`}>{t.brand.name}</p>
           </div>
         </div>
 
-        <p className="mt-14 border-t border-gray-200 pt-6 text-xs font-light text-gray-500 dark:border-gray-700 dark:text-gray-400">
+        <p className="mt-14 border-t border-gray-200 pt-6 text-ui font-light text-gray-500 dark:border-gray-700 dark:text-gray-400">
           © {currentYear} {t.brand.name}. {t.copyright}
         </p>
       </div>
