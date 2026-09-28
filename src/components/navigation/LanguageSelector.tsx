@@ -9,12 +9,13 @@
 // marca, y la petición final fue quitarlo. Sin texto visible, el nombre
 // accesible lo pone el aria-label y el idioma activo se marca dentro del
 // desplegable, con el punto y el fondo del item.
+//
+// El panel se pinta siempre y lo que cambia es la clase: ver `dropdownStyles.ts`.
 import { useEffect, useRef } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { MdOutlineTranslate } from 'react-icons/md';
 import type { Locale, NavbarTranslations } from '../../util/i18n';
 import { pathForLocale } from '../../util/site';
-import { dropdownVariants, dropdownItemClass, dropdownPanelClass, menuItemVariants } from './dropdownMotion';
+import { dropdownItemClass, dropdownPanelClass, dropdownPanelClosedClass } from './dropdownStyles';
 
 interface LanguageSelectorProps {
   content: NavbarTranslations;
@@ -76,58 +77,47 @@ const LanguageSelector = ({ content, locale, isOpen, onToggle, onClose }: Langua
         className="relative z-40 flex h-14 w-12 items-center justify-center pl-1 text-black dark:text-white rounded-sm"
         aria-haspopup="true"
         aria-expanded={isOpen}
+        aria-controls="language-menu"
         aria-label={t.languageLabel}>
         <MdOutlineTranslate className="w-5 h-5" aria-hidden="true" />
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            key="language-menu"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={dropdownVariants}
-            className={dropdownPanelClass}>
-            <motion.div variants={menuItemVariants} className="p-3">
-              <ul className="list-none space-y-1">
-                {LANGUAGE_OPTIONS.map((option) => {
-                  const isActive = option.code === locale;
-                  return (
-                    <li key={option.code}>
-                      <motion.a
-                        href={pathForLocale(option.code)}
-                        hrefLang={option.code}
-                        onClick={() => {
-                          rememberScrollPosition();
-                          onClose();
-                        }}
-                        whileTap={{ scale: 0.98 }}
-                        aria-current={isActive ? 'true' : undefined}
-                        className={dropdownItemClass(isActive)}>
-                        <span
-                          aria-hidden="true"
-                          className="inline-flex items-center justify-center w-6 h-4 border border-gray-300 dark:border-gray-600 text-[0.6rem] font-semibold tracking-wider">
-                          {option.short}
-                        </span>
-                        <span className="font-medium">{option.label}</span>
-                        {isActive && (
-                          <motion.span
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            className="ml-auto w-1.5 h-1.5 rounded-full bg-black dark:bg-white"
-                            aria-hidden="true"
-                          />
-                        )}
-                      </motion.a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* El panel: se pinta siempre y la clase decide si esta abierto. */}
+      <div
+        id="language-menu"
+        className={`${dropdownPanelClass} ${isOpen ? '' : dropdownPanelClosedClass}`}>
+        <ul className="list-none space-y-1">
+          {LANGUAGE_OPTIONS.map((option) => {
+            const isActive = option.code === locale;
+            return (
+              <li key={option.code}>
+                <a
+                  href={pathForLocale(option.code)}
+                  hrefLang={option.code}
+                  onClick={() => {
+                    rememberScrollPosition();
+                    onClose();
+                  }}
+                  aria-current={isActive ? 'true' : undefined}
+                  className={dropdownItemClass(isActive)}>
+                  <span
+                    aria-hidden="true"
+                    className="inline-flex items-center justify-center w-6 h-4 border border-gray-300 dark:border-gray-600 text-[0.6rem] font-semibold tracking-wider">
+                    {option.short}
+                  </span>
+                  <span className="font-medium">{option.label}</span>
+                  {isActive && (
+                    <span
+                      className="ml-auto w-1.5 h-1.5 rounded-full bg-black dark:bg-white"
+                      aria-hidden="true"
+                    />
+                  )}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };

@@ -297,6 +297,24 @@ const jsonLd = {
       top: 1rem;
     }
 
+    /* Las tres barras del boton del menu. Al abrir el desplegable se cruzan en
+       aspa y la del centro se va hacia la derecha: es el unico movimiento del
+       boton y es de estado, con la misma duracion y la misma curva que el resto
+       de la casa (200ms, arranque inmediato). El estado lo pone `data-open` en el
+       propio boton, asi que el CSS no necesita saber nada de React. */
+    .menu-button[data-open='true'] .menu-bar:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .menu-button[data-open='true'] .menu-bar:nth-child(2) {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    .menu-button[data-open='true'] .menu-bar:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
     html,
     body {
       height: 100%;
