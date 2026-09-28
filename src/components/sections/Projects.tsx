@@ -119,19 +119,19 @@ const Projects = ({ content: t }: ProjectsProps) => {
                 <div className="lg:col-span-7">
                   <h3
                     id={`project-${project.id}`}
-                    className="text-subhead font-light text-black dark:text-white">
+                    className="text-title font-light text-black dark:text-white">
                     {project.title}
                   </h3>
-                  <p className="measure mt-2 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                  <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
                     {project.subtitle}
                   </p>
 
-                  <p className="measure mt-5 font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                  <p className="measure mt-4 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
                     {project.solution}
                   </p>
 
-                  <h4 className={`mt-8 ${labelClass}`}>{t.labels.result}</h4>
-                  <p className="measure mt-3 border-t border-gray-300 pt-4 text-subhead font-light text-black dark:border-gray-600 dark:text-white">
+                  <h4 className={`mt-6 ${labelClass}`}>{t.labels.result}</h4>
+                  <p className="measure mt-2 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
                     {project.result}
                   </p>
                 </div>
