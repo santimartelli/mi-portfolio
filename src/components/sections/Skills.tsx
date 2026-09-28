@@ -18,8 +18,6 @@ const itemClass =
   'flex break-inside-avoid gap-3 text-ui font-light leading-relaxed text-gray-600 dark:text-gray-400';
 const dotClass =
   'mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-gray-400 dark:bg-gray-600';
-const metaClass =
-  'font-mono text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400';
 
 const Skills = ({ content: t }: SkillsProps) => {
   return (
@@ -68,9 +66,8 @@ const Skills = ({ content: t }: SkillsProps) => {
               {t.languages.items.map((language) => (
                 <li key={language.name} className={itemClass}>
                   <span aria-hidden="true" className={dotClass} />
-                  <span className="flex flex-1 items-baseline justify-between gap-3">
-                    <span>{language.name}</span>
-                    <span className={metaClass}>{language.level}</span>
+                  <span>
+                    {language.name}: {language.level}
                   </span>
                 </li>
               ))}
@@ -91,7 +88,7 @@ const Skills = ({ content: t }: SkillsProps) => {
                   <span aria-hidden="true" className={dotClass} />
                   <span>
                     {item.title}
-                    <span className={`mt-1 block ${metaClass}`}>{item.meta}</span>
+                    <span className="mt-1 block text-sm font-light text-gray-500 dark:text-gray-400">{item.meta}</span>
                   </span>
                 </li>
               ))}
