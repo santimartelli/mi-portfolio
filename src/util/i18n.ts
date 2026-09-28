@@ -98,18 +98,25 @@ export interface ExperienceTranslations {
 export interface SkillsTranslations {
   title: string;
   description: string;
+  /**
+   * Los bloques de la seccion. Cada uno lleva su titulo y una descripcion breve,
+   * que es lo que se lee en la columna izquierda de su tarjeta; el contenido va a
+   * la derecha.
+   */
   groups: Array<{
     id: string;
     title: string;
-    note?: string;
+    description: string;
     items: Array<{ label: string; level?: string }>;
   }>;
   languages: {
     title: string;
+    description: string;
     items: Array<{ name: string; level: string }>;
   };
   education: {
     title: string;
+    description: string;
     items: Array<{ title: string; meta: string }>;
   };
 }

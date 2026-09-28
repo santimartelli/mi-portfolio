@@ -5,6 +5,7 @@
     {
       "id": "hospitality",
       "title": "Hospitality & Operations",
+      "description": "El día a día de un alojamiento: recepción, reservas, canales y pricing, con las herramientas que se usan en el puesto.",
       "items": [
         { "label": "Operaciones hoteleras" },
         { "label": "Front office" },
@@ -23,7 +24,7 @@
     {
       "id": "customer",
       "title": "Customer & Product",
-      "note": "Áreas a las que quiero orientarme. Mi experiencia en front office y atención al cliente es directamente transferible, pero todavía no las he desempeñado como cargo formal.",
+      "description": "Atención al cliente, implantación y soporte: el perfil al que quiero orientarme, con la operación como base.",
       "items": [
         { "label": "Atención al cliente" },
         { "label": "Onboarding de clientes" },
@@ -36,7 +37,7 @@
     {
       "id": "technology",
       "title": "Technology",
-      "note": "CFGS en Desarrollo de Aplicaciones Web y experiencia práctica construyendo y manteniendo productos en producción.",
+      "description": "Del CFGS al producto propio en producción: front, back y las herramientas del día a día.",
       "items": [
         { "label": "JavaScript" },
         { "label": "TypeScript" },
@@ -59,6 +60,7 @@
     {
       "id": "business",
       "title": "Business",
+      "description": "Las herramientas transversales: Excel, orden, resolución de problemas y comunicación.",
       "items": [
         { "label": "Excel", "level": "Avanzado" },
         { "label": "Operaciones" },
@@ -70,6 +72,7 @@
   ],
   "languages": {
     "title": "Idiomas",
+    "description": "Los idiomas con los que trabajo, y el nivel de cada uno.",
     "items": [
       { "name": "Español", "level": "Nativo" },
       { "name": "Catalán", "level": "Avanzado" },
@@ -80,6 +83,7 @@
   },
   "education": {
     "title": "Formación",
+    "description": "La titulación reglada que sostiene la parte técnica.",
     "items": [
       {
         "title": "CFGS en Desarrollo de Aplicaciones Web (DAW)",

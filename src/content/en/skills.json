@@ -5,6 +5,7 @@
     {
       "id": "hospitality",
       "title": "Hospitality & Operations",
+      "description": "The day to day of a property: front desk, reservations, channels and pricing, with the tools used on the job.",
       "items": [
         { "label": "Hotel operations" },
         { "label": "Front office" },
@@ -23,7 +24,7 @@
     {
       "id": "customer",
       "title": "Customer & Product",
-      "note": "Areas I want to move towards. My front office and customer service experience transfers directly, but I have not held these as a formal role yet.",
+      "description": "Customer service, implementation and support: the profile I want to move towards, with operations as the base.",
       "items": [
         { "label": "Customer service" },
         { "label": "Customer onboarding" },
@@ -36,7 +37,7 @@
     {
       "id": "technology",
       "title": "Technology",
-      "note": "Higher Vocational Qualification in Web Application Development, plus hands-on experience building and maintaining products in production.",
+      "description": "From vocational training to my own product in production: front end, back end and the everyday tooling.",
       "items": [
         { "label": "JavaScript" },
         { "label": "TypeScript" },
@@ -59,6 +60,7 @@
     {
       "id": "business",
       "title": "Business",
+      "description": "The transversal toolkit: spreadsheets, order, problem solving and communication.",
       "items": [
         { "label": "Excel", "level": "Advanced" },
         { "label": "Operations" },
@@ -70,6 +72,7 @@
   ],
   "languages": {
     "title": "Languages",
+    "description": "The languages I work in, and the level of each.",
     "items": [
       { "name": "Spanish", "level": "Native" },
       { "name": "Catalan", "level": "Advanced" },
@@ -80,6 +83,7 @@
   },
   "education": {
     "title": "Education",
+    "description": "The formal qualification behind the technical side.",
     "items": [
       {
         "title": "Higher Vocational Qualification in Web Application Development",
