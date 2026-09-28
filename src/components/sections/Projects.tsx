@@ -42,99 +42,93 @@ const Projects = ({ content: t }: ProjectsProps) => {
           {t.description}
         </p>
 
-        <div className="mt-16 grid gap-6">
+        <div className="mt-16 grid gap-6 lg:grid-cols-2">
           {t.projects.map((project) => (
             <article
               key={project.id}
               aria-labelledby={`project-${project.id}`}
               className={cardClass}>
-              <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
-                {/* Prueba y datos */}
-                <div className="lg:col-span-5">
-                  <div className="relative aspect-video overflow-hidden rounded-lg border border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-gray-800">
-                    <img
-                      src={project.image}
-                      alt={project.imageAlt}
-                      width={1200}
-                      height={675}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
+              {/* En vertical: la captura, el titulo, la descripcion y los datos,
+                  y debajo el relato en corto y los enlaces. */}
+              <div className="relative aspect-video overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
+                <img
+                  src={project.image}
+                  alt={project.imageAlt}
+                  width={1200}
+                  height={675}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+              </div>
 
-                  <p className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
-                    <span className={labelClass}>{project.category}</span>
-                    <span className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
-                      {project.period}
-                    </span>
-                    <span className="flex items-center gap-2 text-sm font-light text-gray-600 dark:text-gray-400">
-                      <span
-                        aria-hidden="true"
-                        className={`h-1.5 w-1.5 rounded-full ${
-                          project.status === 'production'
-                            ? 'bg-accent-400'
-                            : 'bg-gray-400 dark:bg-gray-600'
-                        }`}
-                      />
-                      {t.status[project.status]}
-                    </span>
-                  </p>
+              <h3
+                id={`project-${project.id}`}
+                className="mt-5 text-title font-light text-black dark:text-white">
+                {project.title}
+              </h3>
+              <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
+                {project.subtitle}
+              </p>
 
-                  <ul className="mt-4 flex list-none flex-wrap gap-2">
-                    {project.technologies.map((technology) => (
-                      <li key={technology} className={badgeClass}>
-                        {technology}
-                      </li>
-                    ))}
-                  </ul>
-                  {project.previousStack && (
-                    <p className="mt-4 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
-                      <span className="text-gray-400 dark:text-gray-600">
-                        {t.labels.previousStack}:{' '}
-                      </span>
-                      {project.previousStack.join(' · ')}
-                    </p>
-                  )}
+              <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+                <span className={labelClass}>{project.category}</span>
+                <span className="font-mono text-xs uppercase tracking-widest text-gray-500 tabular dark:text-gray-400">
+                  {project.period}
+                </span>
+                <span className="flex items-center gap-2 text-sm font-light text-gray-600 dark:text-gray-400">
+                  <span
+                    aria-hidden="true"
+                    className={`h-1.5 w-1.5 rounded-full ${
+                      project.status === 'production'
+                        ? 'bg-accent-400'
+                        : 'bg-gray-400 dark:bg-gray-600'
+                    }`}
+                  />
+                  {t.status[project.status]}
+                </span>
+              </p>
 
-                  <div className="mt-5 flex flex-wrap items-center gap-3">
-                    {project.href && (
-                      <a href={project.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                        <HiExternalLink className="h-4 w-4" aria-hidden="true" />
-                        {t.labels.visit}
-                        <span className="sr-only"> — {project.title}</span>
-                      </a>
-                    )}
-                    {project.code && (
-                      <a href={project.code} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                        <FaGithub className="h-4 w-4" aria-hidden="true" />
-                        {t.labels.code}
-                        <span className="sr-only"> — {project.title}</span>
-                      </a>
-                    )}
-                  </div>
-                </div>
+              <ul className="mt-4 flex list-none flex-wrap gap-2">
+                {project.technologies.map((technology) => (
+                  <li key={technology} className={badgeClass}>
+                    {technology}
+                  </li>
+                ))}
+              </ul>
+              {project.previousStack && (
+                <p className="mt-4 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
+                  <span className="text-gray-400 dark:text-gray-600">
+                    {t.labels.previousStack}:{' '}
+                  </span>
+                  {project.previousStack.join(' · ')}
+                </p>
+              )}
 
-                {/* El relato, en corto: que es, que se hizo y a donde llego. */}
-                <div className="lg:col-span-7">
-                  <h3
-                    id={`project-${project.id}`}
-                    className="text-title font-light text-black dark:text-white">
-                    {project.title}
-                  </h3>
-                  <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
-                    {project.subtitle}
-                  </p>
+              <p className="mt-4 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                {project.solution}
+              </p>
 
-                  <p className="measure mt-4 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
-                    {project.solution}
-                  </p>
+              <h4 className={`mt-6 ${labelClass}`}>{t.labels.result}</h4>
+              <p className="mt-2 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
+                {project.result}
+              </p>
 
-                  <h4 className={`mt-6 ${labelClass}`}>{t.labels.result}</h4>
-                  <p className="measure mt-2 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400">
-                    {project.result}
-                  </p>
-                </div>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                {project.href && (
+                  <a href={project.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                    <HiExternalLink className="h-4 w-4" aria-hidden="true" />
+                    {t.labels.visit}
+                    <span className="sr-only"> — {project.title}</span>
+                  </a>
+                )}
+                {project.code && (
+                  <a href={project.code} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                    <FaGithub className="h-4 w-4" aria-hidden="true" />
+                    {t.labels.code}
+                    <span className="sr-only"> — {project.title}</span>
+                  </a>
+                )}
               </div>
             </article>
           ))}
