@@ -1,6 +1,6 @@
 {
   "title": "Proyectos",
-  "description": "Cuatro productos reales, contados desde el problema hasta el resultado. No son escaparates de tecnología: cada uno explica qué había que resolver y qué hice exactamente.",
+  "description": "Tres productos reales, contados desde el problema hasta el resultado. No son escaparates de tecnología: cada uno explica qué había que resolver y qué hice exactamente.",
   "labels": {
     "problem": "Problema",
     "solution": "Solución",
@@ -89,44 +89,6 @@
       ],
       "result": "El sitio pasó a una estructura coherente y reutilizable, con una navegación más clara y menos dependencia de un desarrollador para los cambios rutinarios de contenido.",
       "technologies": ["WordPress", "WPBakery", "JavaScript", "CSS"]
-    },
-    {
-      "id": "martelli-dev",
-      "title": "martelli.dev",
-      "subtitle": "Reposicionar un portfolio para que cuente una sola historia",
-      "category": "Producto propio",
-      "period": "2026",
-      "status": "production",
-      "image": "/images/martelli-dev.webp",
-      "imageAlt": "Comparativa antes y después del reposicionamiento de martelli.dev: de presentarse como desarrollador full stack a comunicar hospitality y tecnología en un mismo perfil.",
-      "code": "https://github.com/santimartelli/mi-portfolio",
-      "problem": "LinkedIn y martelli.dev contaban dos historias profesionales distintas. LinkedIn hablaba de operaciones hoteleras; la web presentaba a un desarrollador full stack. Quien llegaba desde LinkedIn veía un perfil que no encajaba con el que acababa de leer, y la evidencia técnica real quedaba enterrada bajo copy genérico de portfolio.",
-      "solution": "Reposicionar el sitio como una narrativa única —hospitality, operaciones y tecnología— manteniendo el trabajo técnico como evidencia verificable en lugar de eliminarlo. La tecnología no desaparece: pasa a ser la prueba de que además sé construir productos.",
-      "role": "Todo: estrategia de contenido, arquitectura de la información, diseño e implementación frontend.",
-      "implementation": [
-        "Corregido el renderizado por idioma: /en/ servía HTML inicial en español porque el idioma se detectaba desde el navegador después de cargar. Ahora el locale se resuelve en el servidor y se pasa por el árbol de componentes.",
-        "Todo el texto salió de los componentes a archivos JSON por idioma, tipados y validados en el typecheck.",
-        "Secciones nuevas de experiencia y skills; los proyectos se convirtieron en casos de estudio con problema, solución, rol y resultado.",
-        "Metadatos: canonical, hreflang (es / en / x-default), Open Graph, Twitter Cards, JSON-LD, sitemap y robots.txt.",
-        "Accesibilidad: enlace de salto al contenido, estados de foco visibles, ARIA en controles que solo llevan icono, respeto por prefers-reduced-motion y alternativa sin JavaScript para las animaciones de aparición.",
-        "Rendimiento: eliminación de dependencias sin usar y de un paquete de CSS de iconos que pesaba más que todo el resto de la hoja de estilos, más optimización de las imágenes de proyecto."
-      ],
-      "result": "El sitio cuenta ahora la misma historia que LinkedIn, con el detalle técnico como respaldo en lugar de como titular. El HTML de /en/ creció porque la página tiene dos secciones nuevas y cuatro casos de estudio en lugar de dos fichas de proyecto; el resto de métricas bajó. Todas las cifras de la tabla están medidas sobre el build de producción, antes y después.",
-      "technologies": ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      "metrics": {
-        "title": "Antes / después",
-        "columns": ["Métrica", "Antes", "Después"],
-        "rows": [
-          ["<html lang> en /en/", "es", "en"],
-          ["CSS sin comprimir", "880 kB", "35 kB"],
-          ["CSS comprimido (gzip)", "180 kB", "7,1 kB"],
-          ["Imagen de proyecto más pesada", "1,10 MB", "81 kB"],
-          ["Peso total del build", "6,7 MB", "1,5 MB"],
-          ["Dependencias de producción", "21", "14"],
-          ["Avisos de astro check", "85", "0"],
-          ["HTML de /en/", "115 kB", "147 kB"]
-        ]
-      }
     }
   ]
 }

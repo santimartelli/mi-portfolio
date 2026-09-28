@@ -1,6 +1,6 @@
 {
   "title": "Work",
-  "description": "Four real products, told from the problem to the result. These are not technology showcases: each one explains what had to be solved and what I actually did.",
+  "description": "Three real products, told from the problem to the result. These are not technology showcases: each one explains what had to be solved and what I actually did.",
   "labels": {
     "problem": "Problem",
     "solution": "Solution",
@@ -89,44 +89,6 @@
       ],
       "result": "The site moved to a coherent, reusable structure with clearer navigation and less dependence on a developer for routine content changes.",
       "technologies": ["WordPress", "WPBakery", "JavaScript", "CSS"]
-    },
-    {
-      "id": "martelli-dev",
-      "title": "martelli.dev",
-      "subtitle": "Repositioning a portfolio to tell one story",
-      "category": "Own product",
-      "period": "2026",
-      "status": "production",
-      "image": "/images/martelli-dev.webp",
-      "imageAlt": "Before-and-after comparison of the martelli.dev repositioning: from presenting as a full stack developer to communicating hospitality and technology in one profile.",
-      "code": "https://github.com/santimartelli/mi-portfolio",
-      "problem": "LinkedIn and martelli.dev were telling two different professional stories. LinkedIn talked about hotel operations; the site presented a full stack developer. Anyone arriving from LinkedIn saw a profile that did not match the one they had just read, and the real technical evidence was buried under generic portfolio copy.",
-      "solution": "Reposition the site as a single narrative — hospitality, operations and technology — keeping the technical work as verifiable evidence instead of removing it. Technology does not disappear: it becomes the proof that I can also build products.",
-      "role": "Everything: content strategy, information architecture, design and frontend implementation.",
-      "implementation": [
-        "Fixed per-language rendering: /en/ served Spanish in its initial HTML because the language was detected from the browser after load. The locale is now resolved on the server and passed through the component tree.",
-        "Moved all copy out of the components into per-locale JSON files, typed and validated at typecheck time.",
-        "Added experience and skills sections; turned projects into case studies covering problem, solution, role and result.",
-        "Metadata: canonical, hreflang (es / en / x-default), Open Graph, Twitter Cards, JSON-LD, sitemap and robots.txt.",
-        "Accessibility: skip link, visible focus states, ARIA on icon-only controls, prefers-reduced-motion support and a no-JavaScript fallback for the reveal animations.",
-        "Performance: removed unused dependencies and an icon-font CSS bundle that weighed more than the rest of the stylesheet combined, plus optimisation of the project imagery."
-      ],
-      "result": "The site now tells the same story as LinkedIn, with the technical detail as backing rather than as the headline. The /en/ HTML grew because the page now has two extra sections and four case studies instead of two project cards; every other metric went down. All figures in the table were measured on the production build, before and after.",
-      "technologies": ["Astro", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      "metrics": {
-        "title": "Before / after",
-        "columns": ["Metric", "Before", "After"],
-        "rows": [
-          ["<html lang> on /en/", "es", "en"],
-          ["CSS, uncompressed", "880 kB", "35 kB"],
-          ["CSS, gzip", "180 kB", "7.1 kB"],
-          ["Heaviest project image", "1.10 MB", "81 kB"],
-          ["Total build size", "6.7 MB", "1.5 MB"],
-          ["Production dependencies", "21", "14"],
-          ["astro check hints", "85", "0"],
-          ["/en/ HTML", "115 kB", "147 kB"]
-        ]
-      }
     }
   ]
 }
