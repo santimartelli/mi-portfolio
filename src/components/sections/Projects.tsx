@@ -90,7 +90,9 @@ const Projects = ({ content: t }: ProjectsProps) => {
                   className="text-title font-light text-black dark:text-white">
                   {project.title}
                 </h3>
-                <p className="mt-4 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
+                {/* El titulo y el subtitulo van juntos: el subtitulo es su
+                    continuacion, no un bloque aparte. */}
+                <p className="mt-2 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
                   {project.subtitle}
                 </p>
 
