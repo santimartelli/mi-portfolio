@@ -15,7 +15,7 @@ const cardClass =
 
 /** Un item de las listas: punto y texto, como en About y Experiencia. */
 const itemClass =
-  'flex gap-3 text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400';
+  'flex break-inside-avoid gap-3 text-ui font-light leading-relaxed text-gray-600 dark:text-gray-400';
 const dotClass =
   'mt-[0.65em] h-1 w-1 shrink-0 rounded-full bg-gray-400 dark:bg-gray-600';
 const metaClass =
@@ -42,7 +42,7 @@ const Skills = ({ content: t }: SkillsProps) => {
               <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
                 {group.description}
               </p>
-              <ul className="mt-6 list-none space-y-2">
+              <ul className="mt-6 list-none columns-1 gap-x-6 space-y-2 sm:columns-2">
                 {group.items.map((item) => (
                   <li key={item.label} className={itemClass}>
                     <span aria-hidden="true" className={dotClass} />
@@ -64,7 +64,7 @@ const Skills = ({ content: t }: SkillsProps) => {
             <p className="mt-3 text-sm font-light leading-relaxed text-gray-500 dark:text-gray-400">
               {t.languages.description}
             </p>
-            <ul className="mt-6 list-none space-y-2">
+            <ul className="mt-6 list-none columns-1 gap-x-6 space-y-2 sm:columns-2">
               {t.languages.items.map((language) => (
                 <li key={language.name} className={itemClass}>
                   <span aria-hidden="true" className={dotClass} />
