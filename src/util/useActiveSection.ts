@@ -1,108 +1,89 @@
 /**
- * Hook personalizado para detectar la sección activa durante el scroll
+ * Hook que devuelve la seccion activa mientras se hace scroll.
  *
- * Utiliza IntersectionObserver y un listener de scroll para determinar
- * qué sección del portfolio está visible en el viewport. Esto permite
- * resaltar el enlace correspondiente en la barra de navegación.
+ * **Decide por posicion en la pantalla, no por proporciones de la seccion.** La
+ * version anterior tenia dos mecanismos y los dos filtraban por porcentaje:
+ * exigia que mas del 20% de la seccion estuviera visible en el listener de scroll
+ * y, ademas, un IntersectionObserver sobre una banda del 20%-30% de la pantalla
+ * con `threshold: 0.1` (el 10% de la seccion dentro de esa banda). Con eso, una
+ * seccion mas alta que cinco veces la pantalla **no podia quedar activa nunca**:
+ * en movil Experiencia mide 5284px con una pantalla de 844, su maximo visible es
+ * el 14% —no llega al 20% del respaldo— y en la banda del observer solo caben
+ * 84px, el 1,6%, que tampoco llega al 10%. El usuario lo reporto («al pulsar
+ * Experiencia el item no se queda seleccionado») y se reprodujo: al hacer clic el
+ * `hash` cambiaba a `#experience` y la pagina se desplazaba bien, pero el
+ * resaltado se quedaba en el item anterior. Skills estaba en el 26%, a un paso de
+ * fallar lo mismo en un telefono mas bajo.
+ *
+ * Ahora la regla es la de cualquier indice: **activa la ultima seccion cuyo borde
+ * superior ya ha pasado una linea fija**, el 25% del alto de la ventana. No
+ * depende de lo larga que sea la seccion, asi que el fallo no puede repetirse.
+ *
+ * El calculo va dentro de un `requestAnimationFrame` para no trabajar en cada
+ * evento de scroll, y se rehace al cambiar el tamano de la ventana, al cambiar el
+ * hash (los enlaces del menu y los del pie) y cuando cambia el alto del documento:
+ * los filtros de Experiencia, una imagen que carga o una fuente que entra mueven
+ * las secciones sin que haya scroll, y con solo escuchar el scroll el resaltado se
+ * quedaria desfasado.
  */
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+/** Las secciones que se resaltan, en el orden en que aparecen en la pagina. */
+const SECCIONES = ["home", "about", "experience", "skills", "projects", "contact"] as const;
+
+/** La linea de activacion: 25% del alto de la ventana, medida desde arriba. */
+const LINEA = 0.25;
 
 /**
- * Hook que detecta y retorna la sección activa basándose en el scroll del usuario
- *
- * Combina dos estrategias para mayor precisión:
- * 1. IntersectionObserver: Detecta cuando una sección entra en el viewport
- * 2. Scroll Listener: Calcula qué sección es más visible como respaldo
- *
- * @returns ID de la sección actualmente visible ('home' | 'about' | 'experience' | 'skills' | 'projects' | 'contact')
+ * Devuelve el id de la seccion activa ('home' | 'about' | 'experience' |
+ * 'skills' | 'projects' | 'contact').
  *
  * @example
  * const activeSection = useActiveSection();
  * console.log(activeSection); // 'about'
  */
 export function useActiveSection() {
-  // Estado para almacenar la sección activa (por defecto 'home')
-  const [activeSection, setActiveSection] = useState<string>("home");
+  const [activeSection, setActiveSection] = useState<string>(SECCIONES[0]);
 
   useEffect(() => {
-    // Lista de IDs de todas las secciones a observar, en el orden de la página
-    const sections = ["home", "about", "experience", "skills", "projects", "contact"];
+    let frame = 0;
 
-    // Configuración del IntersectionObserver
-    const observerOptions = {
-      root: null, // Usa el viewport como referencia
-      rootMargin: "-20% 0px -70% 0px", // Ajusta el área de detección: sección activa cuando está en el 20-30% superior
-      threshold: 0.1, // Se activa cuando al menos el 10% de la sección es visible
-    };
+    const medir = () => {
+      frame = 0;
+      const linea = window.innerHeight * LINEA;
+      let activa: string = SECCIONES[0];
 
-    /**
-     * Callback ejecutado cuando una sección entra o sale del área de observación
-     * Actualiza la sección activa cuando una sección se vuelve visible
-     */
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-
-    // Crea el observador con las opciones configuradas
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    // Registra todas las secciones para que sean observadas
-    sections.forEach((section) => {
-      const element = document.getElementById(section);
-      if (element) observer.observe(element);
-    });
-
-    /**
-     * Listener de scroll como sistema de respaldo
-     * Calcula manualmente qué sección tiene mayor visibilidad en el viewport
-     */
-    const onScroll = () => {
-      // Variables para rastrear la sección más visible
-      let maxVisibleSection = "";
-      let maxVisiblePercentage = 0;
-
-      // Itera sobre cada sección para calcular su visibilidad
-      sections.forEach((section) => {
-        const element = document.getElementById(section);
-        if (!element) return;
-
-        const rect = element.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-
-        // Calcula cuánto de la sección está visible en el viewport
-        const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-        const visiblePercentage = visibleHeight / rect.height;
-
-        // Actualiza la sección más visible si este porcentaje es mayor
-        if (visiblePercentage > maxVisiblePercentage) {
-          maxVisiblePercentage = visiblePercentage;
-          maxVisibleSection = section;
-        }
-      });
-
-      // Actualiza la sección activa solo si está visible más del 20%
-      if (maxVisibleSection && maxVisiblePercentage > 0.2) {
-        setActiveSection(maxVisibleSection);
+      // Se recorren en orden de pagina, asi que gana la ultima cuyo borde superior
+      // ya ha cruzado la linea.
+      for (const id of SECCIONES) {
+        const seccion = document.getElementById(id);
+        if (seccion && seccion.getBoundingClientRect().top <= linea) activa = id;
       }
+
+      // Solo cambia el estado cuando cambia de verdad: evita renders por frame.
+      setActiveSection((anterior) => (anterior === activa ? anterior : activa));
     };
 
-    // Registra el listener de scroll con la opción passive para mejor rendimiento
-    window.addEventListener("scroll", onScroll, { passive: true });
+    const pedirMedida = () => {
+      if (!frame) frame = requestAnimationFrame(medir);
+    };
 
-    // Función de limpieza: se ejecuta cuando el componente se desmonta
+    medir();
+    window.addEventListener("scroll", pedirMedida, { passive: true });
+    window.addEventListener("resize", pedirMedida);
+    window.addEventListener("hashchange", pedirMedida);
+
+    // El alto del documento tambien cambia sin scroll: filtros, imagenes, fuentes.
+    const observador = new ResizeObserver(pedirMedida);
+    observador.observe(document.body);
+
     return () => {
-      // Desregistra todas las secciones del observador
-      sections.forEach((section) => {
-        const element = document.getElementById(section);
-        if (element) observer.unobserve(element);
-      });
-      // Remueve el listener de scroll
-      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", pedirMedida);
+      window.removeEventListener("resize", pedirMedida);
+      window.removeEventListener("hashchange", pedirMedida);
+      observador.disconnect();
     };
   }, []);
 
