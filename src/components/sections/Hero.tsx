@@ -1,249 +1,181 @@
-// Importación de bibliotecas de animación y componentes
-import { motion, useInView } from 'framer-motion';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { useMemo, memo, useRef } from 'react';
-import { useTranslations } from '../../util/i18n';
-import '../../styles/ticker.css';
+// Hero: **dos columnas desde lg** —el texto a la izquierda y la ilustracion a la
+// derecha— y una sola columna apilada por debajo, con la misma imagen 4:3 en los
+// dos casos. Al pie, los iconos de contacto, en el sitio que ocupaba el marquee.
+//
+// Esta es la forma que el usuario pidio recuperar: el hero de dos columnas de
+// siempre, pero con **la ilustracion de movil** en la columna de la derecha, en
+// vez del recorte apaisado que ocupaba el ancho completo. Asi hay un solo archivo
+// de imagen para todos los tamanos (`hero-hotel-ops.webp`, 4:3) y un solo
+// `<img>`, sin `<picture>` ni `<source>`.
+//
+// El titular, la entradilla y los dos CTA van en la columna izquierda: centrados
+// por debajo de lg —donde la columna es la pantalla entera— y alineados a la
+// izquierda desde lg, que es como se lee una columna. El envoltorio de las dos
+// columnas se lleva el alto que queda por encima de la fila de iconos (`flex-1`)
+// y lo centra (`justify-center` en movil, `content-center` en la rejilla), asi
+// que el aire de arriba y el de abajo salen iguales. El aire de abajo del hero es
+// el de siempre (1,5rem en movil y 4rem desde lg, en el `lg:pb-16` del
+// contenedor), que es lo que mantiene centrada la regla que separa del hero (ver
+// `.section-rule-hero`); el `pt` son 4rem exactos porque la barra no tiene filete
+// inferior.
+//
+// El orden del marcado es el del lector de pantalla —titular primero, ilustracion
+// despues— y el `order-first` de la imagen la sube por encima del titular en la
+// version apilada; desde lg el `lg:order-none` la devuelve a su columna, la
+// derecha. La proporcion y el tope de alto de la imagen viven en `.hero-media`,
+// en el layout.
+import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import type { HeroTranslations } from '../../util/i18n';
+import { SITE } from '../../util/site';
 
-// Interfaz que define la estructura de un enlace social
-interface SocialLink {
-  readonly icon: React.ComponentType<{ className?: string }>;
-  readonly href: string;
-  readonly label: string;
+interface HeroProps {
+  content: HeroTranslations;
 }
 
-/**
- * Componente Hero - Sección principal de presentación del portfolio
- * Muestra el nombre, descripción profesional, información clave y enlaces sociales
- * con animaciones sutiles y diseño responsivo inspirado en e-ink
- */
-const Hero = () => {
-  // Obtiene las traducciones del contexto de internacionalización
-  const { hero: t } = useTranslations();
+/** Los dos CTA: texto subrayado suavemente, **sin caja**. Es el mismo enlace que
+ *  llevan los casos de estudio y la seccion de contacto. */
+const ctaClass =
+  'inline-flex text-label font-medium uppercase text-black underline decoration-gray-300 underline-offset-[0.3em] transition-colors duration-200 ease-out hover:decoration-gray-500 dark:text-white dark:decoration-gray-600 dark:hover:decoration-gray-400';
 
-  // Referencia para detectar cuando el contenido entra en el viewport
-  const contentRef = useRef(null);
+const Hero = ({ content: t }: HeroProps) => {
+  // Los cuatro accesos de contacto, en el mismo orden que la seccion de contacto.
+  // El correo abre el cliente de correo y WhatsApp la aplicacion; LinkedIn y GitHub
+  // abren en pestana nueva. Son iconos sin texto, asi que el nombre accesible lo
+  // pone el aria-label.
+  const contactLinks = [
+    { icon: FaLinkedin, href: SITE.linkedin, label: 'LinkedIn', external: true },
+    { icon: FaEnvelope, href: `mailto:${SITE.email}`, label: 'Email', external: false },
+    { icon: FaWhatsapp, href: SITE.whatsapp, label: 'WhatsApp', external: true },
+    { icon: FaGithub, href: SITE.github, label: 'GitHub', external: true },
+  ];
 
-  // Hook que detecta si el contenido está visible (para activar animaciones)
-  // once: true = solo detecta la primera vez, amount: 0.05 = se activa con 5% visible
-  const contentInView = useInView(contentRef, { once: true, amount: 0.05 });
-
-  // Array memoizado de enlaces sociales (no cambia entre renders)
-  const socialLinks: readonly SocialLink[] = useMemo(
-    () => [
-      {
-        icon: FaGithub,
-        href: 'https://github.com/santimartelli',
-        label: 'GitHub',
-      },
-      {
-        icon: FaLinkedin,
-        href: 'https://www.linkedin.com/in/santiagomartelli/',
-        label: 'LinkedIn',
-      },
-    ],
-    []
-  );
-
-  /**
-   * Función auxiliar que determina el idioma actual basado en la URL
-   * @returns 'en' si la ruta comienza con /en, caso contrario 'es' (español por defecto)
-   */
-  const getCurrentLocale = (): string => {
-    if (typeof window !== 'undefined') {
-      const pathname = window.location.pathname;
-      if (pathname.startsWith('/en')) return 'en';
-    }
-    return 'es';
-  };
-
-  const currentLocale = getCurrentLocale();
-
+  // `svh` y no `dvh`: **el alto del hero no puede cambiar con el scroll**. En
+  // movil, `100dvh` es el alto de la ventana *dinamico*, asi que crece cuando la
+  // barra del navegador se esconde al bajar: el hero se estiraba, el reparto de
+  // `justify-between` se rehacia y los espacios cambiaban a mitad de scroll. El
+  // usuario lo reporto tal cual. `100svh` es el alto pequeño —el de la ventana con
+  // la barra visible, que es lo que se ve al cargar— y no se mueve. En escritorio
+  // `min-h-screen` (100vh) ya era estable y sigue igual, que es lo que esta
+  // bloqueado.
   return (
-    // Sección principal
-    <section
-      id="home"
-      className="relative w-full bg-white dark:bg-gray-950 py-32 md:py-40">
-      {/* Contenedor principal */}
-      <div
-        ref={contentRef}
-        className="w-full flex flex-col justify-center items-center">
-        {/* Área de contenido */}
-        <div className="w-full max-w-4xl mx-auto px-6 sm:px-8 flex items-start justify-center">
-          <div className="w-full text-center">
-            {/* Contenedor de elementos */}
-            <div className="flex flex-col items-center justify-center space-y-8 sm:space-y-12">
-              {/* Nombre */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-center space-y-2">
-                <h1 className="text-black dark:text-white font-light leading-[0.85] tracking-tight">
-                  {/* Versión móvil */}
-                  <div className="block sm:hidden">
-                    <motion.div
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                      className="text-6xl">
-                      {t.firstName}
-                    </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.8, delay: 0.6 }}
-                      className="text-6xl text-gray-500 dark:text-gray-500">
-                      {t.lastName}
-                    </motion.div>
-                  </div>
-                  {/* Versión escritorio */}
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="hidden sm:block text-7xl md:text-8xl lg:text-9xl xl:text-9xl">
-                    {t.firstName} <span className="text-gray-500 dark:text-gray-500">{t.lastName}</span>
-                  </motion.div>
-                </h1>
-              </motion.div>
+    <section id="home" className="flex min-h-[100svh] flex-col pt-16 pb-6 lg:min-h-screen lg:pb-0">
+      <div className="shell flex flex-1 flex-col lg:pb-16">
+        {/* El envoltorio del hero. Por debajo de lg es una columna apilada que
+            **reparte el aire entre sus tres piezas** con `justify-between`: la
+            ilustracion arriba, los CTA abajo y **el titular con la entradilla como
+            una sola pieza** en medio, que es lo que pidio el usuario. Y el `py-6`
+            deja **1,5rem de blanco** por debajo del header y por encima de los
+            iconos, para que las piezas no toquen los bordes.
 
-              {/* Descripción profesional */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.0 }}
-                className="max-w-lg sm:max-w-xl mx-auto">
-                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-light tracking-wide">
-                  {currentLocale === 'es'
-                    ? 'Desarrollador especializado en crear experiencias digitales que combinan diseño intuitivo con arquitecturas sólidas.'
-                    : 'Developer specialized in creating digital experiences that combine intuitive design with solid architectures.'}
-                </p>
-              </motion.div>
+            Para que el titular y la entradilla viajen juntos pero el bloque de los
+            CTA siga siendo una pieza aparte del reparto, la columna del texto se
+            disuelve en movil con `contents`: entonces el envoltorio ve tres items
+            —la imagen, el grupo del titular y la entradilla, y los CTA—, mientras
+            que desde lg la columna vuelve a ser una caja (`lg:flex lg:flex-col`)
+            con las tres cosas dentro, en la primera de las dos columnas de la
+            rejilla, y el reparto vuelve a ser el simetrico que esta bloqueado
+            (`content-center`, con `lg:py-0` para que el `py-6` no mueva nada).
 
-              {/* Tarjetas de información */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.2 }}
-                className="w-full max-w-2xl sm:max-w-3xl">
-                {/* Primera fila */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-6 mb-3 sm:mb-0">
-                  {/* Tarjeta Especialización */}
-                  <div className="group p-4 sm:p-5 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 bg-gray-50/30 dark:bg-gray-800/20">
-                    <div className="text-center space-y-2">
-                      <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full mx-auto"></div>
-                      <p className="text-xs uppercase tracking-widest font-medium text-gray-500 dark:text-gray-500">
-                        {currentLocale === 'es' ? 'Especialización' : 'Specialization'}
-                      </p>
-                      <p className="text-sm font-light text-gray-700 dark:text-gray-300">Full Stack Developer</p>
-                    </div>
-                  </div>
-                  {/* Tarjeta Stack Principal */}
-                  <div className="group p-4 sm:p-5 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 bg-gray-50/30 dark:bg-gray-800/20">
-                    <div className="text-center space-y-2">
-                      <div className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full mx-auto"></div>
-                      <p className="text-xs uppercase tracking-widest font-medium text-gray-500 dark:text-gray-500">
-                        {currentLocale === 'es' ? 'Stack Principal' : 'Main Stack'}
-                      </p>
-                      <p className="text-sm font-light text-gray-700 dark:text-gray-300">React, TypeScript, Node.js</p>
-                    </div>
-                  </div>
-                  {/* Tarjeta Disponibilidad - solo visible en escritorio */}
-                  <div className="hidden sm:block group p-4 sm:p-5 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 bg-gray-50/30 dark:bg-gray-800/20">
-                    <div className="text-center space-y-2">
-                      <div className="w-1 h-1 bg-green-400 rounded-full mx-auto"></div>
-                      <p className="text-xs uppercase tracking-widest font-medium text-gray-500 dark:text-gray-500">
-                        {currentLocale === 'es' ? 'Disponibilidad' : 'Availability'}
-                      </p>
-                      <p className="text-sm font-light text-gray-700 dark:text-gray-300">
-                        {currentLocale === 'es' ? 'Disponible' : 'Available'}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                {/* Segunda fila - solo móvil */}
-                <div className="grid grid-cols-1 sm:hidden gap-3">
-                  {/* Tarjeta Disponibilidad - solo móvil */}
-                  <div className="group p-4 border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 bg-gray-50/30 dark:bg-gray-800/20">
-                    <div className="text-center space-y-2">
-                      <div className="w-1 h-1 bg-green-400 rounded-full mx-auto"></div>
-                      <p className="text-xs uppercase tracking-widest font-medium text-gray-500 dark:text-gray-500">
-                        {currentLocale === 'es' ? 'Disponibilidad' : 'Availability'}
-                      </p>
-                      <p className="text-sm font-light text-gray-700 dark:text-gray-300">
-                        {currentLocale === 'es' ? 'Disponible' : 'Available'}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+            El `gap-6` es el suelo: el reparto se lleva el sobrante, pero en una
+            pantalla baja, donde no sobra nada, las tres piezas se quedan a 24px
+            como minimo.
 
-              {/* Llamado a la acción */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.4 }}
-                className="flex flex-col gap-6 sm:gap-8 items-center justify-center">
-                {/* Enlace a proyectos */}
-                <motion.a
-                  href="#projects"
-                  whileHover={{ y: -1 }}
-                  className="text-base sm:text-lg font-light text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors duration-300 uppercase tracking-widest">
-                  {currentLocale === 'es' ? 'Ver Proyectos' : 'View Projects'}
-                </motion.a>
-                {/* Enlaces sociales */}
-                <div className="flex gap-6 sm:gap-8">
-                  {socialLinks.map((social, index) => (
-                    <motion.a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1, y: -1 }}
-                      whileTap={{ scale: 0.95 }}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={contentInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 1.6 + index * 0.1 }}
-                      className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors duration-300 p-2 hover:bg-gray-50 dark:hover:bg-gray-800/30 rounded-sm"
-                      aria-label={social.label}>
-                      <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </motion.a>
-                  ))}
-                </div>
-              </motion.div>
+            **El blanco de abajo es mayor que el de arriba** (2,25rem frente a
+            1,5rem) porque el usuario quiso **subir un poco los CTA**: el sobrante
+            se reparte, asi que el aire que se le da abajo sale mitad de ese blanco
+            y mitad del hueco de la ilustracion al titular, que se acorta otros 6px.
+            Desde lg los dos se anulan con `lg:py-0`. */}
+        <div className="flex flex-1 flex-col items-center justify-between gap-6 pt-6 pb-9 text-center lg:grid lg:grid-cols-2 lg:content-center lg:items-center lg:gap-x-16 lg:gap-y-0 lg:py-0 lg:text-left">
+          {/* La columna del texto: en movil no es una caja, sino dos piezas sueltas
+              del envoltorio (el grupo del titular y la entradilla, y los CTA); desde
+              lg es la columna de la izquierda. */}
+          <div className="contents lg:flex lg:flex-col lg:items-start lg:gap-8">
+            {/* **El titular y la entradilla, una sola pieza**: es la unidad que
+                reparte el espacio en movil, asi que van juntos en su propia caja y
+                con su propio hueco: **16px en movil** —el usuario lo quiso un poco
+                mas corto que los 24px del resto de huecos del hero— y 32 desde lg,
+                que es el paso que tiene bloqueado el escritorio. */}
+            <div className="flex flex-col items-center gap-4 lg:items-start lg:gap-8">
+              {/* La entradilla va a `max-w-4xl` (896px) en vez del `.measure` de
+                  64ch, a peticion del usuario, que la queria mas ancha; en la
+                  columna, que mide la mitad, el tope no llega a entrar y manda el
+                  ancho de la columna. El interlineado baja a 1,5 en movil, que es
+                  el minimo comodo para texto corrido.
+                  **El paso de letra cambia por breakpoint**: en la version apilada
+                  va en `base` (16px), **el mismo cuerpo que el texto de las
+                  tarjetas**, y desde lg en `lead` (18px). El titular sale del token
+                  `--text-display` (24px en un telefono de 390), y en la media query
+                  de menos de 1024px las entradillas de las secciones usan el mismo
+                  cuerpo que esta, para que todo el texto corrido del sitio mida
+                  igual en movil. */}
+              <h1 className="text-display text-balance font-light text-black dark:text-white">
+                {t.headline}
+              </h1>
+
+              <p className="max-w-4xl text-pretty text-base font-light leading-normal text-gray-600 lg:text-lead lg:leading-[1.6] dark:text-gray-400">
+                {t.description}
+              </p>
+            </div>
+
+            {/* Los dos CTA, debajo del texto: enlaces subrayados, no botones, y una
+                pieza mas del reparto en movil.
+                El `mt-6` es el truco para **acercar la ilustracion al titular**: el
+                reparto de `justify-between` da lo mismo a los dos huecos, asi que
+                pedir 1,5rem de aire extra sobre los CTA sale mitad del hueco de
+                arriba (imagen-titular, que es el que el usuario queria mas corto) y
+                mitad del de abajo. Desde lg se anula: ahi el hueco lo pone el
+                `gap-8` de la columna. */}
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 lg:mt-0 lg:justify-start">
+              <a href="#experience" className={ctaClass}>
+                {t.cta}
+              </a>
+              <a href="#projects" className={ctaClass}>
+                {t.ctaProjects}
+              </a>
             </div>
           </div>
+
+          {/* La ilustracion: **el mismo recorte 4:3 que en movil**, en la columna
+              de la derecha desde lg. El tamano lo fija `.hero-media`, en el
+              layout. En el marcado va despues del texto —el titular se lee
+              antes— y el `order-first` la sube en la version apilada. */}
+          <picture className="order-first lg:order-none">
+            <img
+              src="/images/hero-hotel-ops.webp"
+              alt={t.imageAlt}
+              width="1200"
+              height="900"
+              loading="eager"
+              decoding="async"
+              className="hero-media"
+            />
+          </picture>
         </div>
 
-        {/* Ticker de texto - oculto */}
-        <div className="hidden absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 w-[80%] sm:w-[70%] h-8 sm:h-10 overflow-hidden z-50">
-          {/* Gradientes de desvanecimiento */}
-          <div className="absolute left-0 top-0 h-full w-8 sm:w-12 bg-gradient-to-r from-white dark:from-gray-950 to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 h-full w-8 sm:w-12 bg-gradient-to-l from-white dark:from-gray-950 to-transparent z-10"></div>
-          {/* Contenido del ticker */}
-          <div className="relative h-full flex items-center">
-            <motion.div
-              animate={{ x: [400, -400] }}
-              transition={{
-                duration: 50,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-              className="flex items-center whitespace-nowrap h-full">
-              <span className="text-xs sm:text-sm font-light text-gray-400 dark:text-gray-500 px-6 sm:px-8 tracking-widest">
-                {currentLocale === 'es'
-                  ? 'FULL STACK DEVELOPER × REACT × TYPESCRIPT × NODE.JS × UI/UX DESIGN × DIGITAL EXPERIENCES × CLEAN CODE × FULL STACK DEVELOPER × REACT × TYPESCRIPT'
-                  : 'FULL STACK DEVELOPER × REACT × TYPESCRIPT × NODE.JS × UI/UX DESIGN × DIGITAL EXPERIENCES × CLEAN CODE × FULL STACK DEVELOPER × REACT × TYPESCRIPT'}
-              </span>
-            </motion.div>
-          </div>
-        </div>
+        {/* Los accesos de contacto, **en el sitio que ocupaba el marquee**: los
+            cuatro canales del sitio, cada uno en una caja de 48px (el objetivo
+            tactil que usa todo el sitio) con el icono de 20 en la version apilada
+            y de 24 desde lg, que es el mismo paso que usa el pie. El usuario
+            pidio los iconos mas pequeños en movil: lo que baja es el dibujo, no la
+            caja, asi que el objetivo tactil no cambia. El mismo hover que los
+            enlaces de la barra, y sin texto: el nombre accesible lo pone el
+            aria-label. */}
+        <ul className="flex list-none items-center justify-center gap-3">
+          {contactLinks.map((link) => (
+            <li key={link.label}>
+              <a
+                href={link.href}
+                {...(link.external ? { target: '_blank', rel: 'noopener noreferrer me' } : {})}
+                aria-label={link.label}
+                className="flex h-12 w-12 items-center justify-center text-gray-600 transition-colors duration-200 ease-out hover:text-black dark:text-gray-400 dark:hover:text-white">
+                <link.icon className="h-5 w-5 lg:h-6 lg:w-6" aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
 };
 
-// Exporta el componente memorizado para optimizar renders
-// memo() previene re-renders innecesarios cuando las props no cambian
-export default memo(Hero);
+export default Hero;

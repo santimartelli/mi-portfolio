@@ -12,45 +12,57 @@ export default {
         darktext: {
           300: "#C5C6C7", // Light gray text
         },
+        /*
+         * La escala apunta a los tokens reales. Antes guardaba la paleta teal
+         * abandonada (#66FCF1 / #45A29E), asi que cualquier utilidad de acento
+         * que no cubriera la tabla de remapeo pintaba el color viejo.
+         */
         accent: {
-          400: "#66FCF1", // Bright teal/mint
-          500: "#45A29E", // Darker teal
+          400: "var(--accent)",
+          500: "var(--accent)",
         },
+      },
+      /*
+       * Escala tipografica fluida. Un solo juego de pasos para todo el sitio:
+       * display -> headline -> title-lg -> subhead -> lead -> base -> ui -> small
+       * -> label -> micro. Los titulares usan clamp() para escalar de forma
+       * continua en vez de saltar por breakpoint.
+       *
+       * Restaurada: el commit a311201 la borro sin querer al corregir los colores
+       * de acento, asi que durante ese tramo los 32 usos de estos pasos
+       * (text-headline, text-lead, text-subhead, text-title, ...) no generaban
+       * ninguna regla y los titulares caian al tamano por defecto del navegador.
+       */
+      fontSize: {
+        micro: ["0.6875rem", { lineHeight: "1.4", letterSpacing: "0.14em" }],
+        label: ["0.75rem", { lineHeight: "1.4", letterSpacing: "0.1em" }],
+        ui: ["0.8125rem", { lineHeight: "1.5" }],
+        small: ["0.875rem", { lineHeight: "1.6" }],
+        base: ["1rem", { lineHeight: "1.65" }],
+        title: ["1.0625rem", { lineHeight: "1.4" }],
+        lead: ["1.125rem", { lineHeight: "1.6" }],
+        subhead: ["1.25rem", { lineHeight: "1.45" }],
+        "title-lg": ["1.5rem", { lineHeight: "1.3" }],
+        headline: ["clamp(2.4rem, 3.6vw, 3.4rem)", { lineHeight: "1.06", letterSpacing: "-0.01em" }],
+        /*
+         * El valor de display vive en el token --text-display de Layout.astro,
+         * no aqui: la config no se recarga en caliente en desarrollo y este es
+         * el unico paso que se ajusta a ojo. Mismo patron que --accent.
+         */
+        display: ["var(--text-display)", { lineHeight: "0.98", letterSpacing: "-0.02em" }],
       },
       fontFamily: {
-        "titillium-web": ["Titillium Web", "sans-serif"],
+        // Fuente unica del sitio. Misma pila que el token --font-sans.
+        sans: ["Manrope Variable", "Manrope", "system-ui", "sans-serif"],
       },
-      animation: {
-        fadeIn: "fadeIn .5s ease-in forwards",
-        imageHover: "imageHover .8s ease-in-out forwards",
-        blink: "blink 2s infinite",
-        enterUp: "enterUp 2.2s forwards",
-        "pulse-slow": "pulseSlow 4s ease-in-out infinite",
-      },
-      keyframes: {
-        fadeIn: {
-          "0%": { opacity: 0 },
-          "100%": { opacity: 1 },
-        },
-        imageHover: {
-          "0%": { transform: "scale(1)", filter: "blur(4px)", opacity: "0.5" },
-          "100%": { transform: "scale(1.1)", filter: "blur(0)", opacity: "1" },
-        },
-        blink: {
-          "0%": { opacity: "0.4", transform: "rotate(0deg)" },
-          "50%": { opacity: "1", transform: "rotate(20deg)" },
-          "100%": { opacity: "0.4", transform: "rotate(0deg)" },
-        },
-        enterUp: {
-          "0%": { transform: "translateY(80%)", opacity: 0 },
-          "50%": { transform: "translateY(40%)", opacity: 0 },
-          "100%": { transform: "translateY(0)", opacity: 1 },
-        },
-        pulseSlow: {
-          "0%, 100%": { opacity: 1, color: "#444950" },
-          "50%": { opacity: 0.9, color: "#45A29E" },
-        },
-      },
+      /*
+       * Sin animaciones declaradas. Aqui vivieron fadeIn, imageHover, enterUp y
+       * blink, que eran animaciones de entrada y la politica de movimiento
+       * prohibe, y despues statusPulse, el latido del punto de estado del hero,
+       * que se fue con la linea de disponibilidad. Lo unico que anima hoy es el
+       * marquee de caracteristicas, y su animacion vive con el resto de su CSS en
+       * Layout.astro, no aqui.
+       */
       boxShadow: {
         white: "0px 15px 50px -40px rgba(0, 0, 0, 0.5)",
       },

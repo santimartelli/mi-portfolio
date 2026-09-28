@@ -1,29 +1,144 @@
 ---
-// Importaciones de fuentes: Inter Variable (pesos 100-900) y Titillium Web
-import "@fontsource-variable/inter";
-import "@fontsource/titillium-web";
+// Layout principal: metadatos por idioma, SEO, accesibilidad y sistema de temas.
+import "../styles/fonts.css";
+// La URL con hash del subset latino, para precargarla. Es el mismo archivo que
+// referencia fonts.css, asi que Vite emite una sola copia y el preload apunta a
+// la que realmente se descarga.
+import manropeLatinUrl from "@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url";
 
-// Interfaz que define las props del layout
+import type { Locale } from "../util/i18n";
+import { OG_IMAGE, SITE, SITE_URL, pathForLocale } from "../util/site";
+
 interface Props {
   title: string;
   description: string;
+  /** Locale resuelto en el servidor. Determina <html lang> y los metadatos. */
+  locale: Locale;
+  /** Ruta canónica de la página, por ejemplo "/" o "/en/". */
+  path: string;
 }
 
-// Declaración global de Window para Google Analytics
 declare global {
   interface Window {
-    dataLayer: any[];
+    dataLayer: unknown[];
   }
 }
 
-const { description, title } = Astro.props;
+const { description, title, locale, path } = Astro.props;
+
+// URL canónica de esta página y de su alternativa en el otro idioma.
+const canonical = new URL(path, SITE_URL).href;
+const esUrl = new URL(pathForLocale('es'), SITE_URL).href;
+const enUrl = new URL(pathForLocale('en'), SITE_URL).href;
+const ogImage = new URL(OG_IMAGE[locale], SITE_URL).href;
+const ogLocale = locale === 'es' ? 'es_ES' : 'en_GB';
+const ogLocaleAlternate = locale === 'es' ? 'en_GB' : 'es_ES';
+
+const skipLabel = locale === 'es' ? 'Saltar al contenido' : 'Skip to content';
+
+// Datos estructurados: una sola persona, descrita de forma verificable.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
+      name: SITE.name,
+      url: `${SITE_URL}/`,
+      email: `mailto:${SITE.email}`,
+      jobTitle:
+        locale === 'es'
+          ? 'Operaciones hoteleras y desarrollo web'
+          : 'Hotel operations and web development',
+      description,
+      sameAs: [SITE.linkedin, SITE.github],
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Girona',
+        addressRegion: 'Catalunya',
+        addressCountry: 'ES',
+      },
+      knowsLanguage: ['es', 'ca', 'en', 'it', 'fr'],
+      hasOccupation: {
+        '@type': 'Occupation',
+        name:
+          locale === 'es'
+            ? 'Operaciones hoteleras y tecnología'
+            : 'Hotel operations and technology',
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: SITE.name,
+      inLanguage: locale,
+      publisher: { '@id': `${SITE_URL}/#person` },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: locale,
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#person` },
+    },
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="author" content={SITE.name} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Tipografia: se precarga el subset latino para que Manrope este lista
+         cuando la pagina pinta. Sin esto el navegador solo descubre la fuente
+         despues de analizar el CSS, llega tarde y la pagina cambiaba de
+         tipografia a la vista. El crossorigin es obligatorio en fuentes, incluso
+         siendo del mismo origen. -->
+    <link rel="preload" as="font" type="font/woff2" href={manropeLatinUrl} crossorigin />
+
+    <!-- Canonical y alternativas por idioma -->
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={esUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <!-- x-default apunta a la versión inglesa: es la que se comparte desde LinkedIn -->
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlternate} />
+    <meta property="profile:first_name" content="Santiago" />
+    <meta property="profile:last_name" content="Martelli" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={title} />
+
+    <title>{title}</title>
+
     <!-- Google Analytics (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SEW399N9F"></script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-4SEW399N9F"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -32,107 +147,69 @@ const { description, title } = Astro.props;
       gtag("js", new Date());
       gtag("config", "G-4SEW399N9F");
     </script>
-    <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
 
-    <!-- Script de restauración de posición de scroll -->
-    <script>
-      // Restaura la posición de scroll después del cambio de idioma
-      document.addEventListener('DOMContentLoaded', function() {
-        const storedPosition = sessionStorage.getItem('scrollPosition');
-        if (storedPosition) {
-          try {
-            const { x, y } = JSON.parse(storedPosition);
-            // Usa requestAnimationFrame para asegurar que la página esté completamente renderizada
-            requestAnimationFrame(() => {
-              window.scrollTo({
-                left: x,
-                top: y,
-                behavior: 'instant' // Usa 'instant' para evitar animación de scroll suave
-              });
-            });
-            // Limpia la posición guardada después de restaurarla
-            sessionStorage.removeItem('scrollPosition');
-          } catch (error) {
-            console.error('Error al restaurar posición de scroll:', error);
-            sessionStorage.removeItem('scrollPosition');
-          }
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Restaura la posición de scroll después de cambiar de idioma -->
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function () {
+        var storedPosition = sessionStorage.getItem("scrollPosition");
+        if (!storedPosition) return;
+        try {
+          var position = JSON.parse(storedPosition);
+          requestAnimationFrame(function () {
+            window.scrollTo({ left: position.x, top: position.y, behavior: "instant" });
+          });
+          sessionStorage.removeItem("scrollPosition");
+        } catch (error) {
+          sessionStorage.removeItem("scrollPosition");
         }
       });
     </script>
   </head>
   <body class="flex flex-col bg-darkbg-950 text-darktext-300">
+    <a class="skip-link" href="#home">{skipLabel}</a>
+
     <slot />
   </body>
 
   <style is:global>
+    /*
+     * Tokens del sitio. El tema es unico y claro: el selector de tema se retiro
+     * a peticion del usuario, asi que no hay dos juegos de valores ni reglas que
+     * compitan por ellos. Los nombres --darkbg-* y --darktext-* se conservan
+     * porque de ellos dependen las utilidades de Tailwind (bg-darkbg-950,
+     * text-darktext-300) y la tabla de remapeo: lo que cambio es su valor, no su
+     * nombre.
+     */
     :root {
-      color-scheme: light dark;
-    }
+      color-scheme: light;
 
-    /* ========================================
-       🎨 SISTEMA DE DISEÑO PROFESIONAL 
-       ======================================== */
+      /*
+       * Fuente unica del sitio. Manrope es una geometrica con buena
+       * legibilidad, asi que sirve tanto para titulares como para el cuerpo.
+       */
+      --font-sans: "Manrope Variable", Manrope, system-ui, sans-serif;
 
-    /* Modo oscuro - Elegante y Profesional */
-    :root,
-    .dark {
-      /* === BACKGROUNDS === */
-      --darkbg-950: #0a0b0f;           /* Fondo principal profundo */
-      --darkbg-900: #151821;           /* Fondo secundario */
-      --darkbg-800: #1f2937;           /* Fondo de tarjetas */
-      --darkbg-700: #374151;           /* Fondo hover sutil */
-      --darkbg-600: #4b5563;           /* Bordes suaves */
-      
-      /* === TEXTOS === */
-      --darktext-50: #f8fafc;          /* Texto principal - blanco puro */
-      --darktext-100: #f1f5f9;         /* Texto enfático */
-      --darktext-200: #e2e8f0;         /* Texto normal */
-      --darktext-300: #cbd5e1;         /* Texto secundario */
-      --darktext-400: #94a3b8;         /* Texto muted */
-      --darktext-500: #64748b;         /* Texto disabled */
-      
-      /* === ACCENTS === */
-      --accent-primary: #3b82f6;       /* Azul profesional */
-      --accent-primary-hover: #2563eb;
-      --accent-secondary: #06b6d4;     /* Cian moderno */
-      --accent-tertiary: #8b5cf6;      /* Púrpura elegante */
-      --accent-success: #10b981;       /* Verde éxito */
-      --accent-warning: #f59e0b;       /* Ámbar advertencia */
-      --accent-error: #ef4444;         /* Rojo error */
-      
-      /* === SISTEMA UNIFICADO === */
-      --bg-primary: var(--darkbg-950);
-      --bg-secondary: var(--darkbg-900);
-      --bg-tertiary: var(--darkbg-800);
-      --bg-quaternary: var(--darkbg-700);
-      --bg-hover: var(--darkbg-700);
-      
-      --text-primary: var(--darktext-50);
-      --text-secondary: var(--darktext-200);
-      --text-tertiary: var(--darktext-300);
-      --text-muted: var(--darktext-400);
-      
-      --accent: var(--accent-primary);
-      --accent-hover: var(--accent-primary-hover);
-      --border-primary: rgba(59, 130, 246, 0.2);
-      --border-secondary: rgba(59, 130, 246, 0.1);
-      --shadow-primary: rgba(59, 130, 246, 0.15);
-    }
+      /*
+       * Tamano del titular del hero. El resto de la escala vive en el tema de
+       * Tailwind, pero este valor se queda aqui a proposito: la config de
+       * Tailwind no se recarga en caliente en el servidor de desarrollo, y este
+       * es el unico paso que se ajusta a ojo. Aqui el cambio se ve al instante,
+       * sin reiniciar nada. La utilidad .text-display lo consume con var().
+       *
+       * El valor de escritorio es el original; en pantallas estrechas baja un
+       * escalon mas abajo, en el media query de despues del bloque.
+       */
+      --text-display: clamp(2.75rem, 4.6vw, 4.25rem);
 
-    /* Modo claro - Limpio y Minimalista */
-    .light {
       /* === BACKGROUNDS === */
       --darkbg-950: #ffffff;           /* Fondo principal puro */
       --darkbg-900: #f8fafc;           /* Fondo secundario */
       --darkbg-800: #f1f5f9;           /* Fondo de tarjetas */
       --darkbg-700: #e2e8f0;           /* Fondo hover */
       --darkbg-600: #cbd5e1;           /* Bordes */
-      
+
       /* === TEXTOS === */
       --darktext-50: #0f172a;          /* Texto principal oscuro */
       --darktext-100: #1e293b;         /* Texto enfático */
@@ -140,33 +217,75 @@ const { description, title } = Astro.props;
       --darktext-300: #475569;         /* Texto secundario */
       --darktext-400: #64748b;         /* Texto muted */
       --darktext-500: #94a3b8;         /* Texto disabled */
-      
+
       /* === ACCENTS === */
       --accent-primary: #2563eb;       /* Azul más oscuro para contraste */
+      --on-accent: #ffffff;            /* Texto sobre el acento: 5.17:1 */
       --accent-primary-hover: #1d4ed8;
       --accent-secondary: #0891b2;     /* Cian más oscuro */
       --accent-tertiary: #7c3aed;      /* Púrpura más oscuro */
       --accent-success: #059669;       /* Verde más oscuro */
       --accent-warning: #d97706;       /* Ámbar más oscuro */
       --accent-error: #dc2626;         /* Rojo más oscuro */
-      
+
       /* === SISTEMA UNIFICADO === */
       --bg-primary: var(--darkbg-950);
       --bg-secondary: var(--darkbg-900);
       --bg-tertiary: var(--darkbg-800);
       --bg-quaternary: var(--darkbg-700);
       --bg-hover: var(--darkbg-700);
-      
+
       --text-primary: var(--darktext-50);
       --text-secondary: var(--darktext-200);
       --text-tertiary: var(--darktext-300);
       --text-muted: var(--darktext-400);
-      
+
       --accent: var(--accent-primary);
       --accent-hover: var(--accent-primary-hover);
       --border-primary: rgba(37, 99, 235, 0.2);
       --border-secondary: rgba(37, 99, 235, 0.1);
       --shadow-primary: rgba(37, 99, 235, 0.1);
+    }
+
+    /*
+     * En pantallas estrechas el titular baja: 24 a 36px en vez de 44 a 68px. El
+     * corte es el mismo que usa la rejilla del hero para pasar a dos columnas,
+     * asi que el tamaño pequeño acompaña a la version apilada.
+     *
+     * El valor bajo un escalon mas a peticion del usuario, que en el movil veia
+     * el hero «muy pegado y cargado»: con 24px en un telefono de 390 el titular
+     * deja de competir con la ilustracion. Solo afecta a esta media query, asi
+     * que el escritorio no se mueve (esta bloqueado por
+     * `tests/e2e/desktop-lock.spec.ts`).
+     */
+    @media (max-width: 1023.98px) {
+      :root {
+        --text-display: clamp(1.5rem, 3vw, 2.25rem);
+      }
+
+      /*
+       * **Y la escala de las secciones acompaña a la del hero.** El usuario lo
+       * pidio asi: en movil los titulares de seccion (paso `headline`, que baja a
+       * 38,4px) eran mas grandes que el del hero (24px), y las entradillas
+       * (`lead`, 18px) mas grandes que la suya (14px), asi que la pagina parecia
+       * tener dos escalas. Ahora el titular de seccion usa **el mismo paso que el
+       * del hero** y la entradilla **el mismo cuerpo**.
+       *
+       * Se hace aqui, sobre los dos pasos de la escala, y no clase por clase en
+       * cada seccion: asi la coherencia vive en un solo sitio y las cinco
+       * secciones no se pueden desincronizar. El cuerpo es **1rem (16px), el
+       * mismo que el texto de las tarjetas** —que no lleva clase y hereda el
+       * tamaño base del navegador—, asi que en movil todo el texto corrido mide
+       * igual. Desde lg no se toca nada: alli el hero sigue con `display` (66px) y
+       * las secciones con `headline` y `lead` (18px).
+       */
+      .text-headline {
+        font-size: var(--text-display);
+      }
+
+      .text-lead {
+        font-size: 1rem;
+      }
     }
 
     /* Reset de CSS base */
@@ -176,31 +295,134 @@ const { description, title } = Astro.props;
       box-sizing: border-box;
     }
 
-    :focus {
-      outline: 0.5px solid var(--text-accent);
+    /* Indicador de foco visible y consistente. `:focus-visible` evita el anillo
+       en clics de ratón y lo mantiene al navegar con teclado. */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* La barra de navegación es fija: evita que tape el título al saltar a una sección */
+    section[id] {
+      scroll-margin-top: 5.5rem;
+    }
+
+    /* Enlace de salto al contenido, visible solo al recibir foco */
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      z-index: 100;
+      padding: 0.75rem 1.25rem;
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 1px solid var(--accent);
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    /* Desplegables de la barra: `<details>` nativo.
+       Abrir y cerrar lo hace el navegador, sin una sola linea de JavaScript, que
+       es lo que hace que funcionen aunque la isla no llegue a hidratarse. El
+       estado vive en el atributo `[open]`, asi que el CSS no necesita saber nada
+       de React: las tres barras se cruzan en aspa y el panel aparece solo con
+       eso. El panel se pinta siempre (el navegador esconde los hijos de un
+       `<details>` cerrado, y aqui se recupera con `display: block`) para poder
+       transicionar: cerrado esta invisible, sin raton y 4px mas arriba; abierto,
+       en su sitio. Es una transicion de estado, con la duracion y la curva de la
+       casa (200ms, arranque inmediato). */
+    .dropdown > summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .dropdown > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .dropdown > .dropdown-panel {
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-0.25rem);
+      pointer-events: none;
+      transition:
+        opacity 0.2s cubic-bezier(0, 0, 0.2, 1),
+        transform 0.2s cubic-bezier(0, 0, 0.2, 1),
+        visibility 0.2s;
+    }
+
+    .dropdown[open] > .dropdown-panel {
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .dropdown[open] > summary .menu-bar:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .dropdown[open] > summary .menu-bar:nth-child(2) {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    .dropdown[open] > summary .menu-bar:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .dropdown > .dropdown-panel,
+      .dropdown > summary .menu-bar {
+        transition: none;
+      }
     }
 
     html,
     body {
       height: 100%;
-      font-family: "Titillium Web", "Inter variable", system-ui, sans-serif;
+      /* El contenedor de scroll es <html>, no <main>: tenerlo en main no hacia nada. */
+      scroll-behavior: smooth;
+      font-family: var(--font-sans);
       background-color: var(--bg-primary);
       color: var(--text-primary);
-      transition: all 0.3s ease;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     main {
       display: flex;
       flex-direction: column;
-      scroll-behavior: smooth;
       margin: 0;
       padding: 0;
       background-color: var(--bg-primary);
     }
 
     ::selection {
-      background-color: var(--text-accent);
+      background-color: var(--accent);
       color: var(--bg-primary);
+    }
+
+    /* Respeta la preferencia de movimiento reducido. */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
     }
 
     /* ========================================
@@ -211,11 +433,11 @@ const { description, title } = Astro.props;
     .bg-darkbg-950, .bg-\[0B0C10\], .bg-\[\#0B0C10\] {
       background-color: var(--bg-primary) !important;
     }
-    
+
     .bg-darkbg-900, .bg-\[1F2833\], .bg-\[\#1F2833\] {
       background-color: var(--bg-secondary) !important;
     }
-    
+
     .bg-darkbg-800 {
       background-color: var(--bg-tertiary) !important;
     }
@@ -223,7 +445,7 @@ const { description, title } = Astro.props;
     .bg-darkbg-700 {
       background-color: var(--bg-quaternary) !important;
     }
-    
+
     /* === TEXTOS === */
     .text-white {
       color: var(--text-primary) !important;
@@ -232,16 +454,16 @@ const { description, title } = Astro.props;
     .text-darktext-300 {
       color: var(--text-secondary) !important;
     }
-    
+
     .text-darktext-400 {
       color: var(--text-muted) !important;
     }
-    
+
     /* === ACCENTS === */
-    .text-accent-400, .text-\[45A29E\], .text-\[\#45A29E\] {
+    .text-accent-400 {
       color: var(--accent) !important;
     }
-    
+
     .text-accent-500 {
       color: var(--accent-hover) !important;
     }
@@ -249,13 +471,13 @@ const { description, title } = Astro.props;
     .bg-accent-400, .bg-accent-500 {
       background-color: var(--accent) !important;
     }
-    
+
     /* === BORDES === */
-    .border-accent-500, .border-\[45A29E\], .border-\[\#45A29E\] {
+    .border-accent-500 {
       border-color: var(--accent) !important;
     }
 
-    .border-accent-500\/30, .border-\[45A29E\]\/20 {
+    .border-accent-500\/30 {
       border-color: var(--border-primary) !important;
     }
 
@@ -318,76 +540,271 @@ const { description, title } = Astro.props;
       border-color: color-mix(in srgb, var(--accent) 10%, transparent) !important;
     }
 
-    /* ========================================
-       🚀 CLASES DE UTILIDAD MODERNAS
-       ======================================== */
+    /* ==========================================
+       LLAMADA A LA ACCION
+       Al final no queda nada del boton portado: se le fueron quitando la sombra,
+       el labio, la elevacion, el brillo y la forma de pastilla. Lo que hay es el
+       mismo recurso que usan los iconos de contacto: un cambio de color con
+       transicion al pasar el puntero, sin animacion ni movimiento. Los colores
+       son los del mundo: tinta de fondo, papel en el texto y tinta suave al
+       pasar por encima (9,7:1 con el texto blanco).
 
-    .theme-card {
-      background-color: var(--bg-tertiary);
-      border: 1px solid var(--border-secondary);
-      transition: all 0.3s ease;
+       Se define con los tokens y no con utilidades de acento porque la tabla de
+       remapeo casa nombres exactos de clase, asi que cualquier variante
+       (hover:, dark:) se le escapa y cae en la paleta antigua.
+       ========================================== */
+    .cta-primary {
+      border: 0;
+      border-radius: 8px;
+      background-color: var(--text-primary);
+      color: var(--bg-primary);
+      /* Mismo tempo que los iconos: 200ms y la curva de salida de Tailwind. */
+      transition: background-color 0.2s cubic-bezier(0, 0, 0.2, 1);
     }
 
-    .theme-card:hover {
-      background-color: var(--bg-hover);
-      border-color: var(--border-primary);
-      box-shadow: 0 4px 6px -1px var(--shadow-primary);
+    .cta-primary:hover {
+      background-color: var(--text-secondary);
     }
 
-    .theme-button-primary {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
-      position: relative;
-      overflow: hidden;
+    /*
+     * Boton secundario del hero, para la segunda accion (proyectos). Mismo
+     * cuerpo, mismo radio y mismo tempo que el primario, porque son la misma
+     * familia, pero sin relleno: se declara con el filete de 1px, que es como se
+     * declara la profundidad en este mundo, y al pasar el puntero solo cambia el
+     * gris del filete a tinta. Asi la accion principal sigue siendo una sola y
+     * las dos no compiten.
+     */
+    .cta-secondary {
+      border: 1px solid var(--darkbg-600);
+      border-radius: 8px;
+      color: var(--text-primary);
+      transition: border-color 0.2s cubic-bezier(0, 0, 0.2, 1);
     }
 
-    .theme-button-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+    .cta-secondary:hover {
+      border-color: var(--text-primary);
     }
 
-    .theme-button-primary:active {
-      transform: translateY(0px);
-      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+    /* ==========================================
+       FILETE QUE ABRE CADA SECCION
+       Cada seccion se separa de la anterior con una sola regla de 1px: la
+       misma que dibujaba el Divider que se retiro, un gris que se desvanece en
+       los dos costados para que la linea no toque los bordes de la pantalla.
+       Va como fondo del propio elemento (1px de alto) y no con border-top,
+       porque un borde no admite degradado; asi no hay que meter un elemento
+       extra ni posicionar nada. El gris es gray-300 al 60%, que es el color
+       exacto que tenia aquel separador.
+
+       La regla cae en el borde superior de la seccion, asi que para que quede
+       centrada entre el contenido de arriba y el de abajo el aire tiene que ser
+       el mismo a los dos lados. Casi siempre lo es, porque cada seccion reserva
+       abajo lo mismo que la siguiente arriba (py-20 sm:py-28, o sea 5rem y
+       7rem). La excepcion es el hero: reserva abajo 1.5rem por debajo de lg y
+       4rem desde lg (que es el aire que deja centrada la fila de iconos en la franja que
+       queda entre la ilustracion y el borde de la pantalla), y ahi la regla se
+       mete hacia dentro de About la mitad de la diferencia (--rule-offset), de
+       modo que aparece un poco por debajo del pliegue en vez de en el borde. Si
+       se cambia el aire de abajo del hero o el de arriba de About, hay que
+       rehacer esas cuentas.
+
+       **El pie no usa esta clase**: su filete es solido, de 1px y de lado a lado
+       —un border-t de gray-200, el mismo gris de las tarjetas— y cae en su borde
+       superior, que es justo donde termina Contacto: es la linea del pie y a la
+       vez el final de la seccion. El pie no reserva aire arriba (lo pone Contacto
+       con su padding de abajo), asi que no hay nada que centrar y la regla del
+       desplazamiento no le afecta. Es peticion del usuario.
+       Los filetes de dentro de cada seccion, los que separan unidades, siguen
+       siendo solidos (border-t border-gray-200).
+       ========================================== */
+    .section-rule {
+      background-image: linear-gradient(
+        to right,
+        transparent,
+        rgb(209 213 219 / 0.6),
+        transparent
+      );
+      background-size: 100% 1px;
+      background-position: 0 var(--rule-offset, 0);
+      background-repeat: no-repeat;
     }
 
-    .theme-button-secondary {
-      background-color: transparent;
-      color: var(--text-secondary);
-      border: 1.5px solid color-mix(in srgb, var(--accent) 30%, transparent);
-      border-radius: 12px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
+    /*
+     * Desplazamiento de la regla cuando el bloque de arriba reserva abajo menos
+     * aire que el de abajo arriba: la mitad de la diferencia, medida desde el
+     * borde superior de la seccion. Solo pasa entre el hero y About. Las cuentas,
+     * con el aire de abajo del hero y el de arriba de About en cada escalon:
+     * (5rem - 1.5rem) / 2, (7rem - 1.5rem) / 2 y (7rem - 4rem) / 2.
+     */
+    .section-rule-hero {
+      --rule-offset: 1.75rem;
     }
 
-    .theme-button-secondary:hover {
-      background-color: color-mix(in srgb, var(--accent) 10%, transparent);
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-1px);
+    @media (min-width: 640px) {
+      .section-rule-hero { --rule-offset: 2.75rem; }
     }
 
-    .theme-button-secondary:active {
-      transform: translateY(0px);
+    /* Desde lg el hero reserva 4rem abajo (el `lg:pb-16` de su contenedor), asi
+       que el desplazamiento vuelve a (7 - 4) / 2 = 1,5rem. */
+    @media (min-width: 1024px) {
+      .section-rule-hero { --rule-offset: 1.5rem; }
     }
 
-    .theme-text-gradient {
-      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    /* ==========================================
+       ANCHO Y LECTURA
+       Las secciones cruzan la pantalla; el texto se queda en una
+       columna legible. Ocupar todo el ancho no puede costar lectura.
+       ========================================== */
+    /*
+     * Margen lateral de la pagina. Crece por escalones y en escritorio manda: el
+     * hero y las secciones dejan mucho aire en los bordes y poco en el centro,
+     * que es lo que hace que el contenido se lea como un bloque centrado y no
+     * como algo pegado a los lados. El escalon de 1024px ya es de 4rem, el mismo
+     * que el padding horizontal de la barra de navegacion, para que el logotipo
+     * y el contenido empiecen en la misma vertical; los dos suben juntos a 5rem
+     * y 6rem en los escalones siguientes.
+     */
+    .shell {
+      margin-inline: auto;
+      width: 100%;
+      max-width: 1600px;
+      padding-inline: 1.25rem;
     }
 
-    .theme-border-gradient {
-      border: 1px solid transparent;
-      background: linear-gradient(var(--bg-tertiary), var(--bg-tertiary)) padding-box,
-                  linear-gradient(135deg, var(--accent), var(--accent-secondary)) border-box;
+    @media (min-width: 640px) {
+      .shell { padding-inline: 1.75rem; }
     }
+
+    @media (min-width: 1024px) {
+      .shell { padding-inline: 4rem; }
+    }
+
+    @media (min-width: 1280px) {
+      .shell { padding-inline: 5rem; }
+    }
+
+    @media (min-width: 1536px) {
+      .shell { padding-inline: 6rem; }
+    }
+
+
+    /*
+     * Contenedor a sangre, solo para la barra: todo el ancho de la ventana, sin
+     * tope y con una sangria corta. El usuario pidio dos veces que la barra
+     * ocupara todo el ancho, asi que su contenido no comparte vertical con el de
+     * las secciones (que van en `.shell`, con tope de 1600px): a 1440 el logo
+     * arranca en x=48 y el contenido de la pagina en x=80.
+     */
+    .bleed {
+      width: 100%;
+      padding-inline: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .bleed { padding-inline: 2rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .bleed { padding-inline: 3rem; }
+    }
+
+    /* Medida de lectura: 64ch, dentro del rango 45-75ch. */
+    .measure {
+      max-width: 64ch;
+    }
+
+
+    /*
+     * Ilustracion del hero. **Un solo recorte, el 4:3 de movil** (`hero-hotel-ops.webp`,
+     * 1200x900) en todos los tamanos: en la version apilada ocupa el ancho entero y
+     * desde lg llena su columna (la de la derecha). Aqui se reserva su proporcion con
+     * `aspect-ratio` —asi el hueco esta antes de que cargue la imagen y el texto de
+     * debajo no baila— y su ancho.
+     *
+     * Va en el CSS global y no con utilidades de Tailwind a proposito: el tope de
+     * ancho por el alto disponible y la proporcion tienen que convivir, y con
+     * utilidades el orden de fuente se cruzaba.
+     *
+     * Sin radio: la ilustracion viene sobre blanco (esquinas medidas, 253-255) y se
+     * funde con la pagina.
+     */
+    .hero-media {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1200 / 900;
+      /* En la version apilada la ilustracion no llega a los bordes: se queda en
+         el 94% del ancho del contenedor. El usuario la encontro grande al 100% y
+         la quiso un poco mas pequeña (88%), y despues un poco mas grande: 94% es
+         ese punto medio, unos 329px de ancho en un telefono de 390.
+         El alto disponible se mide con `svh` y no con `vh`: el hero usa la misma
+         unidad estable (ver `Hero.tsx`), asi que los dos hablan del mismo alto y
+         el tope no cambia cuando la barra del navegador se esconde al bajar.
+         En telefono se descuentan 34rem y en tablet 30: el cuerpo del texto subio
+         a 16px (el de las tarjetas) y en una caja estrecha eso son mas renglones,
+         asi que en pantallas bajas de telefono (360x740) hay que encoger mas la
+         imagen para que el hero siga cabiendo entero. En un telefono normal
+         (390x844) ninguno de los dos topes llega a entrar y la imagen se queda en
+         su 94%. */
+      max-width: min(94%, calc((100svh - 34rem) * 4 / 3));
+      margin-inline: auto;
+    }
+
+    @media (min-width: 640px) {
+      .hero-media {
+        /* La caja es mas ancha, el texto ocupa menos renglones y sobra mas alto. */
+        max-width: min(94%, calc((100svh - 30rem) * 4 / 3));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-media {
+        /* Desde lg la ilustracion comparte fila con el texto, asi que el alto que
+           hay que descontar es solo el marco del hero (los 4rem de arriba, la fila
+           de iconos de 3rem y los 4rem de abajo: 11rem) mas un margen de 1rem. Con
+           el tope en 12rem, en una ventana normal (900px) el tope no llega a
+           entrar y la imagen llena su columna; en una ventana baja encoge antes
+           que el texto y el hero sigue cabiendo entero. */
+        max-width: min(100%, calc((100vh - 12rem) * 4 / 3));
+      }
+    }
+
+    /* ==========================================
+       SUPERFICIES DEL NAVEGADOR
+       Lo que no dibujamos tambien lleva el diseno: cursor,
+       scrollbar, subrayados y cifras tabulares.
+       ========================================== */
+    :where(input, textarea) {
+      caret-color: var(--accent);
+    }
+
+    a {
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.22em;
+    }
+
+    :where(code, kbd, samp, time, .tabular) {
+      font-variant-numeric: tabular-nums;
+    }
+
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--darkbg-600) transparent;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--darkbg-600);
+      border: 3px solid var(--bg-primary);
+      border-radius: 999px;
+    }
+
   </style>
 </html>

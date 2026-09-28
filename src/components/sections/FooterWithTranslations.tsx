@@ -1,24 +1,15 @@
-// Importaciones necesarias para el componente wrapper
+// Isla de el pie de página.
 import Footer from './Footer';
-import { I18nProvider, type Translations } from '../../util/i18n';
+import type { FooterTranslations } from '../../util/i18n';
 
-// Interfaz que define las props del componente
-interface FooterWithTranslationsProps {
-  translations: Translations;
+interface FooterIslandProps {
+  content: FooterTranslations;
 }
 
-/**
- * Componente FooterWithTranslations - Wrapper del componente Footer
- * Propósito: Proveer el contexto de traducciones (I18nProvider) al componente Footer
- * Este patrón permite que Footer acceda a las traducciones mediante useTranslations()
- */
-const FooterWithTranslations = ({ translations }: FooterWithTranslationsProps) => {
+const FooterIsland = ({ content }: FooterIslandProps) => {
   return (
-    <I18nProvider translations={translations}>
-      <Footer />
-    </I18nProvider>
+    <Footer content={content} />
   );
 };
 
-// Exporta el componente para ser usado en las páginas de Astro
-export default FooterWithTranslations;
+export default FooterIsland;

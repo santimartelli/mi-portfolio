@@ -1,0 +1,94 @@
+{
+  "title": "Skills",
+  "description": "Experiencia práctica en operaciones hoteleras, atención al cliente y desarrollo de producto, con herramientas utilizadas en entornos reales de trabajo y proyectos en producción.",
+  "groups": [
+    {
+      "id": "hospitality",
+      "title": "Hospitality & Operations",
+      "description": "El día a día de un alojamiento: front office, reservas, canales, distribución y pricing.",
+      "items": [
+        { "label": "Operaciones hoteleras" },
+        { "label": "Front office" },
+        { "label": "Reservas y disponibilidad" },
+        { "label": "Experiencia de huésped" },
+        { "label": "PMS" },
+        { "label": "Opera" },
+        { "label": "Avalon" },
+        { "label": "OTAs" },
+        { "label": "Booking.com" },
+        { "label": "Expedia" },
+        { "label": "Venta directa" },
+        { "label": "Pricing y operaciones de revenue" }
+      ]
+    },
+    {
+      "id": "customer",
+      "title": "Customer & Product",
+      "description": "La intersección entre usuario, operación y producto: entender necesidades, resolver problemas y acompañar la adopción de herramientas.",
+      "items": [
+        { "label": "Atención al cliente" },
+        { "label": "Onboarding de clientes" },
+        { "label": "Apoyo a implantaciones" },
+        { "label": "Soporte técnico" },
+        { "label": "Troubleshooting" },
+        { "label": "Comunicación entre equipos" }
+      ]
+    },
+    {
+      "id": "technology",
+      "title": "Technology",
+      "description": "Desarrollo web aplicado a productos reales: frontend, backend, APIs, bases de datos, infraestructura y despliegue.",
+      "items": [
+        { "label": "JavaScript" },
+        { "label": "TypeScript" },
+        { "label": "React" },
+        { "label": "Vue" },
+        { "label": "Astro" },
+        { "label": "Node.js" },
+        { "label": "Express" },
+        { "label": "APIs REST" },
+        { "label": "MySQL" },
+        { "label": "Docker" },
+        { "label": "Git / GitHub" },
+        { "label": "Nginx" },
+        { "label": "WordPress" },
+        { "label": "Tailwind CSS" },
+        { "label": "HTML" },
+        { "label": "CSS" }
+      ]
+    },
+    {
+      "id": "business",
+      "title": "Business",
+      "description": "Herramientas y capacidades que utilizo de forma transversal en operaciones, tecnología y atención al cliente.",
+      "items": [
+        { "label": "Excel", "level": "Avanzado" },
+        { "label": "Operaciones" },
+        { "label": "Resolución de problemas" },
+        { "label": "Comunicación" },
+        { "label": "Atención internacional" }
+      ]
+    }
+  ],
+  "languages": {
+    "title": "Idiomas",
+    "description": "Los idiomas con los que trabajo, y el nivel de cada uno.",
+    "items": [
+      { "name": "Español", "level": "Nativo" },
+      { "name": "Catalán", "level": "Avanzado" },
+      { "name": "Inglés", "level": "Avanzado" },
+      { "name": "Italiano", "level": "Intermedio" },
+      { "name": "Francés", "level": "Intermedio" }
+    ]
+  },
+  "education": {
+    "title": "Formación",
+    "description": "La titulación reglada que sostiene la parte técnica.",
+    "items": [
+      {
+        "title": "Desarrollo de Aplicaciones Web (DAW)",
+        "meta": "Formación profesional de grado superior"
+      }
+    ]
+  }
+}

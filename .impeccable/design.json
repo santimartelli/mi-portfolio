@@ -1,0 +1,658 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-23T21:19:22Z",
+  "title": "Design System: Santiago Martelli — portfolio",
+  "extensions": {
+    "themes": {
+      "light": {
+        "label": "Claro (unico tema)",
+        "paper": "#ffffff",
+        "ink": "#0f172a",
+        "note": "El selector de tema se retiro a peticion del usuario, asi que el sitio tiene un solo juego de tokens. Este registro guardaba antes un tema oscuro que ya no existe; las rampas tonales se han regenerado con una mezcla simple hacia negro y blanco, porque el metodo original no esta documentado."
+      }
+    },
+    "colorMeta": {
+      "darkbg-950": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "purpose": "Fondo principal. Unico tema.",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#333333",
+          "#5c5c5c",
+          "#858585",
+          "#adadad",
+          "#d6d6d6",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff",
+          "#ffffff"
+        ],
+        "lightVariant": "#ffffff",
+        "darkVariant": "#0a0b0f"
+      },
+      "darkbg-900": {
+        "role": "neutral",
+        "displayName": "Paper Soft",
+        "purpose": "Superficie secundaria.",
+        "canonical": "#f8fafc",
+        "tonalRamp": [
+          "#323232",
+          "#595a5b",
+          "#818283",
+          "#a9aaab",
+          "#d0d2d4",
+          "#f8fafc",
+          "#f9fbfc",
+          "#fafbfd",
+          "#fbfcfd",
+          "#fcfdfe",
+          "#fdfefe"
+        ],
+        "lightVariant": "#f8fafc",
+        "darkVariant": "#151821"
+      },
+      "darkbg-800": {
+        "role": "neutral",
+        "displayName": "Paper Sunk",
+        "purpose": "Tarjetas.",
+        "canonical": "#f1f5f9",
+        "tonalRamp": [
+          "#303132",
+          "#57585a",
+          "#7d7f81",
+          "#a4a7a9",
+          "#caced1",
+          "#f1f5f9",
+          "#f3f6fa",
+          "#f5f8fb",
+          "#f7f9fc",
+          "#f9fbfc",
+          "#fbfcfd"
+        ],
+        "lightVariant": "#f1f5f9",
+        "darkVariant": "#1f2937"
+      },
+      "darkbg-700": {
+        "role": "neutral",
+        "displayName": "Paper Line",
+        "purpose": "Hover y bordes suaves.",
+        "canonical": "#e2e8f0",
+        "tonalRamp": [
+          "#2d2e30",
+          "#515456",
+          "#76797d",
+          "#9a9ea3",
+          "#bec3ca",
+          "#e2e8f0",
+          "#e6ebf2",
+          "#eaeef4",
+          "#eef2f6",
+          "#f2f5f8",
+          "#f6f8fa"
+        ],
+        "lightVariant": "#e2e8f0",
+        "darkVariant": "#374151"
+      },
+      "darkbg-600": {
+        "role": "neutral",
+        "displayName": "Paper Edge",
+        "purpose": "Bordes.",
+        "canonical": "#cbd5e1",
+        "tonalRamp": [
+          "#292b2d",
+          "#494d51",
+          "#6a6f75",
+          "#8a9199",
+          "#abb3bd",
+          "#cbd5e1",
+          "#d2dbe5",
+          "#dae1e9",
+          "#e1e7ee",
+          "#e8edf2",
+          "#eff2f6"
+        ],
+        "lightVariant": "#cbd5e1",
+        "darkVariant": "#4b5563"
+      },
+      "darktext-50": {
+        "role": "primary",
+        "displayName": "Ink",
+        "purpose": "Texto de maximo contraste y titulares.",
+        "canonical": "#0f172a",
+        "tonalRamp": [
+          "#030508",
+          "#05080f",
+          "#080c16",
+          "#0a101d",
+          "#0d1323",
+          "#0f172a",
+          "#313748",
+          "#525866",
+          "#747883",
+          "#9599a1",
+          "#b7b9bf"
+        ],
+        "lightVariant": "#0f172a",
+        "darkVariant": "#f8fafc"
+      },
+      "darktext-200": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "purpose": "Texto normal.",
+        "canonical": "#334155",
+        "tonalRamp": [
+          "#0a0d11",
+          "#12171f",
+          "#1b222c",
+          "#232c3a",
+          "#2b3747",
+          "#334155",
+          "#505c6d",
+          "#6c7685",
+          "#89919c",
+          "#a5abb4",
+          "#c2c6cc"
+        ],
+        "lightVariant": "#334155",
+        "darkVariant": "#e2e8f0"
+      },
+      "darktext-300": {
+        "role": "neutral",
+        "displayName": "Ink Muted",
+        "purpose": "Texto secundario.",
+        "canonical": "#475569",
+        "tonalRamp": [
+          "#0e1115",
+          "#1a1f26",
+          "#252c37",
+          "#303a47",
+          "#3c4758",
+          "#475569",
+          "#616d7e",
+          "#7b8593",
+          "#949ca8",
+          "#aeb4bd",
+          "#c8ccd2"
+        ],
+        "lightVariant": "#475569",
+        "darkVariant": "#cbd5e1"
+      },
+      "darktext-400": {
+        "role": "neutral",
+        "displayName": "Ink Faint",
+        "purpose": "Texto atenuado.",
+        "canonical": "#64748b",
+        "tonalRamp": [
+          "#14171c",
+          "#242a32",
+          "#343c48",
+          "#444f5f",
+          "#546175",
+          "#64748b",
+          "#7a879b",
+          "#8f9bab",
+          "#a5aebc",
+          "#bbc2cc",
+          "#d0d5dc"
+        ],
+        "lightVariant": "#64748b",
+        "darkVariant": "#94a3b8"
+      },
+      "accent-primary": {
+        "role": "primary",
+        "displayName": "Signal Blue",
+        "purpose": "Unico acento saturado.",
+        "canonical": "#2563eb",
+        "tonalRamp": [
+          "#07142f",
+          "#0d2455",
+          "#13337a",
+          "#1943a0",
+          "#1f53c5",
+          "#2563eb",
+          "#4479ee",
+          "#628ff1",
+          "#81a5f3",
+          "#9fbaf6",
+          "#bed0f9"
+        ],
+        "lightVariant": "#2563eb",
+        "darkVariant": "#3b82f6"
+      },
+      "accent-primary-hover": {
+        "role": "primary",
+        "displayName": "Signal Blue Deep",
+        "purpose": "Acento en hover.",
+        "canonical": "#1d4ed8",
+        "tonalRamp": [
+          "#06102b",
+          "#0a1c4e",
+          "#0f2970",
+          "#143593",
+          "#1842b5",
+          "#1d4ed8",
+          "#3d67dd",
+          "#5c80e3",
+          "#7c98e8",
+          "#9cb1ee",
+          "#bbcaf3"
+        ],
+        "lightVariant": "#1d4ed8",
+        "darkVariant": "#2563eb"
+      },
+      "accent-secondary": {
+        "role": "secondary",
+        "displayName": "Cyan",
+        "purpose": "Acento secundario.",
+        "canonical": "#0891b2",
+        "tonalRamp": [
+          "#021d24",
+          "#033440",
+          "#044b5d",
+          "#056379",
+          "#077a96",
+          "#0891b2",
+          "#2ba0bd",
+          "#4db0c8",
+          "#70bfd2",
+          "#92cfdd",
+          "#b5dee8"
+        ],
+        "lightVariant": "#0891b2",
+        "darkVariant": "#06b6d4"
+      },
+      "accent-tertiary": {
+        "role": "tertiary",
+        "displayName": "Violet",
+        "purpose": "Acento terciario.",
+        "canonical": "#7c3aed",
+        "tonalRamp": [
+          "#190c2f",
+          "#2d1555",
+          "#401e7b",
+          "#5427a1",
+          "#6831c7",
+          "#7c3aed",
+          "#8e56f0",
+          "#a171f2",
+          "#b38df5",
+          "#c5a8f7",
+          "#d8c4fa"
+        ],
+        "lightVariant": "#7c3aed",
+        "darkVariant": "#8b5cf6"
+      },
+      "accent-success": {
+        "role": "success",
+        "displayName": "Success",
+        "purpose": "Exito.",
+        "canonical": "#059669",
+        "tonalRamp": [
+          "#011e15",
+          "#023626",
+          "#034e37",
+          "#036647",
+          "#047e58",
+          "#059669",
+          "#28a57e",
+          "#4bb393",
+          "#6ec2a8",
+          "#91d1bd",
+          "#b4e0d2"
+        ],
+        "lightVariant": "#059669",
+        "darkVariant": "#10b981"
+      },
+      "accent-warning": {
+        "role": "warning",
+        "displayName": "Warning",
+        "purpose": "Aviso.",
+        "canonical": "#d97706",
+        "tonalRamp": [
+          "#2b1801",
+          "#4e2b02",
+          "#713e03",
+          "#945104",
+          "#b66405",
+          "#d97706",
+          "#de8a29",
+          "#e49d4c",
+          "#e9b06f",
+          "#eec391",
+          "#f4d6b4"
+        ],
+        "lightVariant": "#d97706",
+        "darkVariant": "#f59e0b"
+      },
+      "accent-error": {
+        "role": "error",
+        "displayName": "Error",
+        "purpose": "Error.",
+        "canonical": "#dc2626",
+        "tonalRamp": [
+          "#2c0808",
+          "#4f0e0e",
+          "#721414",
+          "#961a1a",
+          "#b92020",
+          "#dc2626",
+          "#e14444",
+          "#e66363",
+          "#eb8181",
+          "#f0a0a0",
+          "#f4bebe"
+        ],
+        "lightVariant": "#dc2626",
+        "darkVariant": "#ef4444"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
+        "fontSize": "var(--text-display)",
+        "fontWeight": 300,
+        "lineHeight": 0.98,
+        "letterSpacing": "-0.02em",
+        "purpose": "Titular del hero. El valor vive en el token --text-display de Layout.astro (clamp 2.75rem-4.25rem, 44-68px) y la utilidad lo consume con var(), para poder ajustarlo sin reiniciar el servidor de desarrollo."
+      },
+      "headline": {
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
+        "fontSize": "clamp(2.4rem, 3.6vw, 3.4rem)",
+        "fontWeight": 300,
+        "lineHeight": 1.06,
+        "letterSpacing": "-0.01em",
+        "purpose": "Titulares de seccion."
+      },
+      "title": {
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
+        "fontSize": "1.0625rem",
+        "fontWeight": 300,
+        "lineHeight": 1.3,
+        "letterSpacing": "normal",
+        "purpose": "Encabezados de fila y titulos cortos."
+      },
+      "body": {
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
+        "fontSize": "1rem",
+        "fontWeight": 300,
+        "lineHeight": 1.65,
+        "letterSpacing": "normal",
+        "purpose": "Texto corrido. Una sola familia geometrica para toda la web."
+      },
+      "meta": {
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
+        "fontSize": "0.75rem",
+        "fontWeight": 500,
+        "lineHeight": 1.4,
+        "letterSpacing": "0.1em",
+        "purpose": "Etiquetas en mayusculas."
+      },
+      "mono": {
+        "fontFamily": "ui-monospace, SFMono-Regular, Menlo, monospace",
+        "fontSize": "0.75rem",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": "normal",
+        "purpose": "Identificadores literales: correo, usuario."
+      },
+      "title-lg": {
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
+        "fontSize": "1.5rem",
+        "fontWeight": 300,
+        "lineHeight": 1.3,
+        "letterSpacing": "normal",
+        "purpose": "Titulos de caso, empresas y grupos."
+      },
+      "subhead": {
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
+        "fontSize": "1.25rem",
+        "fontWeight": 300,
+        "lineHeight": 1.45,
+        "letterSpacing": "normal",
+        "purpose": "El posicionamiento y los subtitulos."
+      },
+      "lead": {
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
+        "fontSize": "1.125rem",
+        "fontWeight": 300,
+        "lineHeight": 1.6,
+        "letterSpacing": "normal",
+        "purpose": "Entradillas y texto destacado."
+      },
+      "small": {
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
+        "fontSize": "0.875rem",
+        "fontWeight": 300,
+        "lineHeight": 1.6,
+        "letterSpacing": "normal",
+        "purpose": "Texto secundario."
+      },
+      "ui": {
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
+        "fontSize": "0.8125rem",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": "normal",
+        "purpose": "Reservado para interfaz. Sin uso, no genera CSS."
+      },
+      "micro": {
+        "fontFamily": "'Manrope Variable', 'Manrope', system-ui, sans-serif",
+        "fontSize": "0.6875rem",
+        "fontWeight": 300,
+        "lineHeight": 1.4,
+        "letterSpacing": "0.14em",
+        "purpose": "Micro-etiquetas y datos."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-primary-dark",
+        "value": "rgba(59, 130, 246, 0.15)",
+        "purpose": "Sombra de acento en tarjetas. Sin uso desde que el mundo es claro."
+      },
+      {
+        "name": "shadow-primary-light",
+        "value": "rgba(37, 99, 235, 0.1)",
+        "purpose": "Sombra de acento en tarjetas (tema claro)."
+      },
+      {
+        "name": "shadow-white",
+        "value": "0px 15px 50px -40px rgba(0,0,0,0.5)",
+        "purpose": "Elevacion neutra heredada."
+      }
+    ],
+    "motion": [
+      {
+        "name": "dropdown",
+        "value": "0.18s ease-out",
+        "purpose": "Apertura del menu y del selector de idioma. Lo unico que anima Framer Motion."
+      },
+      {
+        "name": "theme-toggle",
+        "value": "spring (stiffness 700, damping 30)",
+        "purpose": "Desplazamiento del boton de tema."
+      },
+      {
+        "name": "hover",
+        "value": "0.2s ease / 0.3s ease",
+        "purpose": "Transiciones CSS de color y borde. Sin animaciones de entrada."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Anula animacion y transiciones. El contenido no depende de ninguna."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px",
+        "purpose": "Rejillas de dos columnas."
+      },
+      {
+        "name": "md",
+        "value": "768px",
+        "purpose": "Tres columnas y tipografia grande."
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "purpose": "Rejillas de dos columnas en contenido."
+      },
+      {
+        "name": "xl",
+        "value": "1280px",
+        "purpose": "Display a tamano maximo."
+      },
+      {
+        "name": "contenedor",
+        "value": "1600px",
+        "purpose": "Techo de .shell. Medida de lectura 64ch."
+      }
+    ],
+    "accessibility": {
+      "standard": "WCAG 2.1 AA en texto y controles",
+      "contrast": {
+        "dark": {
+          "text-primary": 18.8,
+          "text-secondary": 13.25,
+          "text-muted": 7.67,
+          "gray-400": 7.75,
+          "gray-500": 4.07,
+          "accent": 5.35
+        },
+        "light": {
+          "text-primary": 17.85,
+          "text-secondary": 10.35,
+          "text-muted": 4.76,
+          "gray-500": 4.83,
+          "accent": 5.17
+        }
+      },
+      "notes": [
+        "Corregido en a3cf3f2: el texto pequeno apagado en oscuro pasó de gray-500 (4.07:1) a gray-400 (7.75:1), y los iconos en claro de gray-400 (2.54:1) a gray-500 (4.83:1).",
+        "gray-500 sobre el fondo oscuro queda solo en el apellido del hero, que es texto grande y cumple AA-large.",
+        "El contenido del HTML inicial depende de JavaScript para hacerse visible; un <noscript> lo fuerza si no hay JS."
+      ]
+    }
+  },
+  "components": [
+    {
+      "name": "Marca",
+      "kind": "logo",
+      "refersTo": "logo",
+      "description": "Dos lineas apiladas: el nombre arriba y el posicionamiento debajo, sin caja de iniciales ni separador. La jerarquia la hacen el peso y el color.",
+      "html": "<a href=\"/\"><span class=\"flex flex-col leading-tight\"><span class=\"text-sm font-semibold sm:text-lg\">Santiago Martelli</span><span class=\"text-[0.65rem] font-light text-gray-500 sm:text-sm\">Hospitality + Technology</span></span></a>",
+      "css": ".font-display{font-family:var(--font-display)}"
+    },
+    {
+      "name": "Navbar",
+      "kind": "nav",
+      "refersTo": "navbar",
+      "description": "Fijo con filete inferior, y toda la barra en la pila de display (marca, idioma y desplegables la heredan). Menu desplegable con boton de hamburguesa en todos los tamanos.",
+      "html": "<nav class=\"fixed inset-x-0 top-0 z-50\"><!-- marca, tema, idioma, boton de menu --></nav>",
+      "css": "nav{position:fixed;inset-inline:0;top:0;z-index:50;background-color:var(--bg-primary);border-bottom:1px solid var(--bg-quaternary)}"
+    },
+    {
+      "name": "Desplegable",
+      "kind": "dropdown",
+      "refersTo": "dropdown",
+      "description": "Panel estrecho alineado a la derecha, compartido por el menu y el selector de idioma a traves de dropdownMotion.ts.",
+      "html": "<div class=\"absolute right-0 top-[72px] w-56 border border-black bg-white p-3\"><a class=\"flex items-center gap-3 px-3 py-2 text-sm\">Llegadas</a></div>",
+      "css": ".dropdown{position:absolute;right:0;top:72px;width:14rem;border:1px solid #000;background:#fff;overflow:hidden;z-index:30}"
+    },
+    {
+      "name": "Filtro de experiencia",
+      "kind": "button",
+      "refersTo": "filter",
+      "description": "Conmutador con aria-pressed; el activo se invierte a tinta solida.",
+      "html": "<button aria-pressed=\"true\">Toda la trayectoria</button>",
+      "css": "button{border:1px solid;padding:.5rem 1rem;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}button[aria-pressed=\"true\"]{background:#000;color:#fff}"
+    },
+    {
+      "name": "Fila enlazada",
+      "kind": "link",
+      "refersTo": "row-link",
+      "description": "Rejilla de 12 columnas con etiqueta, valor y descripcion. Nunca una tarjeta.",
+      "html": "<a class=\"row\" href=\"#\"><span class=\"row-label\">Email</span><span class=\"row-value\">santimartelli@gmail.com</span></a>",
+      "css": ".row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3rem;padding:1.25rem 0;border-bottom:1px solid #e5e7eb}.row:hover{background:#f9fafb}"
+    },
+    {
+      "name": "Tabla de metricas",
+      "kind": "table",
+      "refersTo": "table-metrics",
+      "description": "Cruza la anchura completa. Cabecera en versalitas y cifras con font-variant-numeric tabular.",
+      "html": "<table class=\"metrics\"><thead><tr><th scope=\"col\">Metrica</th><th scope=\"col\">Antes</th></tr></thead><tbody><tr><td>CSS gzip</td><td>180 kB</td></tr></tbody></table>",
+      "css": ".metrics{width:100%;border-collapse:collapse}.metrics td+td{font-family:monospace;font-variant-numeric:tabular-nums}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Portfolio oscuro y tecnico",
+    "overview": "Un mundo casi negro con tinte azulado, tipografia ligera de gran tamano y un unico azul de senal. La estetica quiere parecer la de alguien que construye software: minimalista, geometrica, sin adornos, con el propio codigo como argumento. El contenido cuenta una sola trayectoria (hospitalidad + operaciones + tecnologia) y la tecnologia aparece como evidencia verificable, no como titular.",
+    "keyCharacteristics": [
+      "Fondo casi negro con tinte azulado y un unico acento saturado.",
+      "Una sola familia para todo el sitio: Manrope (geometrica), con la monoespaciada del sistema solo para datos.",
+      "Esquinas rectas en todo el sistema.",
+      "Secciones a todo el ancho (.shell, techo 1800px) con la prosa limitada a 68ch.",
+      "Unidades repetibles con la misma anatomia en lugar de tarjetas.",
+      "Sin animaciones de entrada: el contenido es visible en el HTML y no depende de JavaScript.",
+      "La marca es el nombre en una linea con el posicionamiento tras dos puntos, sin caja de iniciales.",
+      "Escala tipografica fluida de diez pasos: display hasta 90px, cuerpo a 16px, sin tamanos sueltos por componente."
+    ],
+    "rules": [
+      {
+        "name": "Un solo acento",
+        "body": "signal-blue es la unica senal de acento; el resto del mundo es neutro.",
+        "section": "colors"
+      },
+      {
+        "name": "Titulares en peso 300",
+        "body": "El aire tecnico viene del peso ligero a gran tamano.",
+        "section": "typography"
+      },
+      {
+        "name": "Esquinas rectas",
+        "body": "No se introducen radios salvo el foco, los botones y el rail del conmutador.",
+        "section": "shapes"
+      },
+      {
+        "name": "El acento no es un fondo",
+        "body": "El acento es una senal, no una superficie.",
+        "section": "colors"
+      },
+      {
+        "name": "Ancho sin coste de lectura",
+        "body": "Las secciones cruzan la pantalla con .shell; la prosa se limita con .measure (68ch).",
+        "section": "layout"
+      },
+      {
+        "name": "Sin animaciones de entrada",
+        "body": "Nada aparece al hacer scroll. Framer Motion solo cubre transiciones funcionales.",
+        "section": "motion"
+      },
+      {
+        "name": "Una sola familia",
+        "body": "Manrope en toda la web, declarada una vez en --font-sans. La monoespaciada del sistema solo para datos.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Usa signal-blue como unica senal de acento.",
+      "Manten el peso 300 en los titulares grandes.",
+      "Deja que .shell de la anchura y .measure proteja la lectura.",
+      "Organiza el contenido denso en unidades repetibles con filete, no en tarjetas."
+    ],
+    "donts": [
+      "No introduzcas una segunda familia tipografica.",
+      "No anadas animaciones de entrada ni apariciones al hacer scroll.",
+      "No estires la prosa a todo el ancho.",
+      "No uses el acento en superficies grandes."
+    ],
+    "knownDeviations": [
+      "Dos islas hidratadas (navbar y filtro) y ~89 kB de JS comprimido, casi todo el runtime de React."
+    ]
+  }
+}

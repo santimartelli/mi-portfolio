@@ -1,0 +1,168 @@
+{
+  "title": "Experiencia",
+  "description": "Una trayectoria entre operaciones hoteleras y tecnología. Filtra por área para explorar cada parte de mi experiencia.",
+  "allLabel": "Toda la trayectoria",
+  "trackLabels": {
+    "hospitality": "Hospitality & Operations",
+    "technology": "Technology"
+  },
+  "entries": [
+
+    {
+      "id": "els-quimics",
+      "track": "hospitality",
+      "company": "Apartaments Els Químics",
+      "logo": "/images/els-quimics-logo.webp",
+      "role": "Operaciones y gestión del establecimiento",
+      "period": "2026 – actualidad",
+      "location": "Girona",
+      "summary": "Aparthotel de 33 apartamentos en Girona. Trabajo en la operativa diaria del establecimiento: reservas, disponibilidad, atención al huésped, distribución, pricing y coordinación de incidencias y necesidades operativas.",
+      "highlights": [
+        "Gestión de reservas, disponibilidad y modificaciones",
+        "Atención al huésped presencial, por email y por teléfono, en varios idiomas",
+        "Gestión de canales: Booking.com, Expedia y venta directa",
+        "Operaciones de pricing y apoyo a decisiones relacionadas con revenue",
+        "Diseño y desarrollo de una herramienta interna propia para gestionar llegadas, plantillas de mensajes, cotizaciones y limpiezas."
+      ],
+      "tools": ["Booking.com", "Expedia", "Excel"]
+    },
+
+    {
+      "id": "tanya-martelli",
+      "track": "technology",
+      "company": "Tanya Martelli Photography",
+      "logo": "/images/tanya-martelli-logo.webp",
+      "role": "Desarrollo y mantenimiento de producto propio",
+      "period": "2024 – actualidad",
+      "location": "Remoto",
+      "summary": "Producto web real en producción para una fotógrafa profesional, con sitio público, gestión de contenido, infraestructura de imágenes y herramientas de administración. Lo desarrollo y mantengo desde 2024.",
+      "highlights": [
+        "Producto en producción cuyo contenido gestiona la propia clienta",
+        "Evolución de arquitectura: de Vue + Node/Express + MySQL a Next.js, React y Supabase",
+        "Migración del almacenamiento de medios de Cloudinary a Cloudflare R2",
+        "Sitio multiidioma y panel de administración a medida",
+        "Mantenimiento y evolución continuos desde 2024"
+      ],
+      "tools": ["Next.js", "React", "TypeScript", "Supabase", "Cloudflare R2"]
+    },
+
+    {
+      "id": "hotel-marsol",
+      "track": "hospitality",
+      "company": "Hotel Marsol",
+      "logo": "/images/hotel-marsol-logo.webp",
+      "role": "Front Office · Recepción",
+      "period": "2025 – 2026",
+      "location": "Lloret de Mar",
+      "summary": "Front office en un hotel vacacional de alta ocupación, gestionando un volumen elevado de llegadas, salidas, reservas e incidencias.",
+      "highlights": [
+        "Atención presencial, por email y por teléfono",
+        "Reservas y modificaciones",
+        "Gestión de incidencias",
+        "Asignación y coordinación de habitaciones",
+        "Walk-ins y solicitudes especiales",
+        "Cotización y gestión de grupos",
+        "Centralita"
+      ],
+      "tools": ["PMS", "Reservas", "Grupos", "Centralita"]
+    },
+
+    {
+      "id": "gran-hotel-flamingo",
+      "track": "hospitality",
+      "company": "Gran Hotel Flamingo",
+      "logo": "/images/gran-hotel-flamingo-logo.webp",
+      "role": "Front Office · Recepción",
+      "period": "2024 – 2025",
+      "location": "Lloret de Mar",
+      "summary": "Front office en temporada alta, atendiendo tanto a clientes individuales como a grupos en un entorno de alta ocupación.",
+      "highlights": [
+        "Atención multilingüe a clientes individuales y grupos",
+        "Check-in y check-out",
+        "Pagos, facturación, TPV y arqueo",
+        "Gestión de incidencias",
+        "Coordinación con otros departamentos"
+      ],
+      "tools": ["PMS", "TPV", "Facturación", "Grupos"]
+    },
+
+    {
+      "id": "acerko",
+      "track": "technology",
+      "company": "Acerko.com",
+      "logo": "/images/acerko-logo.webp",
+      "role": "Freelance Web Developer",
+      "period": "2024 – 2025",
+      "location": "Remoto",
+      "summary": "Rediseño y mejora de un sitio comercial en producción, trabajando directamente con el cliente.",
+      "highlights": [
+        "Rediseño de un sitio WordPress en producción, sin sacarlo de línea",
+        "Mejoras de navegación y de experiencia de usuario",
+        "JavaScript y CSS a medida",
+        "Diseño responsive",
+        "Optimización de rendimiento",
+        "Testing, troubleshooting y mejoras a partir de necesidades reales del negocio"
+      ],
+      "tools": ["WordPress", "WPBakery", "JavaScript", "CSS"]
+    },
+
+    {
+      "id": "dorna-corporate",
+      "track": "hospitality",
+      "company": "Dorna Sports · MotoGP",
+      "logo": "/images/dorna-logo.webp",
+      "role": "Corporate Reception & Administration",
+      "period": "2019 – 2024",
+      "location": "Barcelona",
+      "summary": "Recepción corporativa en un entorno internacional vinculado al Mundial de MotoGP, atendiendo a ejecutivos, patrocinadores, proveedores, prensa y visitantes internacionales durante varias temporadas.",
+      "highlights": [
+        "Atención a ejecutivos, patrocinadores, proveedores y prensa internacional",
+        "Gestión de visitas y de visitantes internacionales",
+        "Tareas administrativas y de coordinación",
+        "Comunicación en varios idiomas"
+      ],
+      "tools": ["Visitas", "Administración", "Idiomas"]
+    },
+
+    {
+      "id": "dorna-webdev",
+      "track": "technology",
+      "company": "Dorna Sports",
+      "logo": "/images/dorna-logo.webp",
+      "role": "Web Development Internship",
+      "period": "2023",
+      "location": "Remoto",
+      "summary": "Prácticas de desarrollo web dentro del equipo técnico, en paralelo a la recepción corporativa.",
+      "highlights": [
+        "Desarrollo con HTML, CSS y JavaScript",
+        "Componentes con Vue.js",
+        "Consumo e integración de APIs REST",
+        "Integración frontend/backend",
+        "Debugging y QA/testing",
+        "Mejoras de usabilidad"
+      ],
+      "tools": ["HTML", "CSS", "JavaScript", "Vue.js", "REST APIs"]
+    },
+
+    {
+      "id": "ac-palau",
+      "track": "hospitality",
+      "company": "AC Palau de Bellavista by Marriott",
+      "logo": "/images/ac-hotels-logo.webp",
+      "role": "Front Office",
+      "period": "2018 – 2019",
+      "location": "Girona",
+      "summary": "Front office en un hotel urbano de la marca Marriott, con atención a clientes internacionales, VIP y equipos deportivos profesionales.",
+      "highlights": [
+        "Front office y atención al cliente",
+        "Reservas y facturación",
+        "Gestión de incidencias",
+        "Atención a clientes VIP y a equipos deportivos profesionales",
+        "Solicitudes especiales y protocolos de privacidad",
+        "Uso diario de PMS"
+      ],
+      "tools": ["Marsha", "Reservas", "Facturación", "VIP"]
+    }
+  
+  ]
+}

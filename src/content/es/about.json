@@ -1,0 +1,38 @@
+{
+  "title": "Cómo llegué aquí",
+  "lead": "Empecé en el mostrador de un hotel, no delante de un editor de código. La tecnología llegó después, a partir de los problemas y procesos que veía cada día. Hoy esa combinación me permite entender tanto la operación como las herramientas que la hacen funcionar.",
+  "steps": [
+    {
+      "id": "hospitality",
+      "title": "Hospitality",
+      "line": "Empecé trabajando en un hotel y después pasé por la recepción corporativa de Dorna Sports durante las temporadas de MotoGP, hoteles de alta ocupación y, actualmente, la operativa de un aparthotel."
+    },
+    {
+      "id": "operations",
+      "title": "Operaciones",
+      "line": "Reservas, disponibilidad, habitaciones, facturación, atención al huésped, canales y pricing. He trabajado diariamente con PMS como Opera y Avalon y con OTAs como Booking.com y Expedia."
+    },
+    {
+      "id": "technology",
+      "title": "Tecnología",
+      "line": "Estudiar Desarrollo de Aplicaciones Web me permitió pasar de utilizar software a entender cómo se construye. Desde entonces he desarrollado productos propios, integrado APIs y mantenido aplicaciones reales en producción."
+    }
+  ],
+  "principles": {
+    "title": "Lo que puedo aportar",
+    "items": [
+      {
+        "title": "Contexto operativo real",
+        "text": "Conozco el día a día de un alojamiento: prioridades, incidencias, huéspedes, reservas, habitaciones, canales y coordinación entre equipos."
+      },
+      {
+        "title": "Conexión entre operación y producto",
+        "text": "Entiendo qué necesita el usuario hotelero y puedo trasladarlo a un equipo técnico o de producto con contexto, prioridades y casos de uso reales."
+      },
+      {
+        "title": "Capacidad de construir",
+        "text": "Además de entender el problema, puedo prototipar soluciones, trabajar con APIs y desarrollar y mantener productos web en producción."
+      }
+    ]
+  }
+}

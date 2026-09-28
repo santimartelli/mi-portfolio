@@ -1,49 +1,94 @@
 {
-  "badge": "Proyectos destacados",
-  "title": "Mis proyectos",
-  "description": {
-    "intro": "Cada proyecto es una",
-    "highlight": "historia única",
-    "continuation": "de innovación, creatividad y soluciones técnicas que transforman ideas en realidades digitales excepcionales."
+  "title": "Proyectos",
+  "description": "Productos construidos para resolver problemas reales. Desde herramientas internas de operaciones hasta aplicaciones utilizadas actualmente en producción.",
+  "labels": {
+    "problem": "Problema",
+    "solution": "Solución",
+    "role": "Mi rol",
+    "implementation": "Implementación y evolución",
+    "result": "Resultado",
+    "technology": "Tecnología",
+    "previousStack": "Stack anterior",
+    "visit": "Ver el sitio",
+    "code": "Código"
   },
   "status": {
     "production": "En producción",
     "development": "En desarrollo"
   },
-  "featuresLabel": "Características principales",
-  "buttons": {
-    "viewProject": "Live web",
-    "code": "Código"
-  },
-  "cta": {
-    "question": "¿Tienes un proyecto en mente? Me encantaría colaborar contigo.",
-    "button": "Hablemos"
-  },
-  "projects": {
-    "tanyaPortfolio": {
-      "title": "Tanya Martelli",
-      "subtitle": "Photography portfolio",
-      "category": "Web development",
-      "body": "Portfolio profesional para la fotógrafa Tanya Martelli con diseño minimalista centrado en la experiencia visual. Incluye galería interactiva con categorías, sistema de reserva de sesiones, panel de administración completo y formulario de contacto personalizado.",
-      "features": [
-        "Galería interactiva con filtros",
-        "Sistema de reservas integrado",
-        "Panel de administración",
-        "SEO optimizado",
-        "Diseño responsive"
-      ]
+  "projects": [
+    {
+      "id": "recep-app",
+      "title": "recep-app",
+      "subtitle": "Herramienta interna para las operaciones diarias de un aparthotel",
+      "category": "Producto propio",
+      "period": "2026 – actualidad",
+      "status": "production",
+      "image": "/images/recep-app.webp",
+      "imageAlt": "Diagrama de los módulos de recep-app: llegadas, plantillas multiidioma, cotizaciones, salidas y fianzas, limpiezas, mantenimiento, reseñas e importación del PMS.",
+      "problem": "El trabajo diario de recepción en un aparthotel de 33 apartamentos estaba repartido entre notas, WhatsApp, email y las extranets de las OTAs. Preparar cada llegada tiene ramas distintas según la hora (presencial o check-in autónomo), las plantillas de mensajes se reescribían a mano en varios idiomas y cada cotización se calculaba a mano con tasas turísticas, parking y depósito. El PMS sigue siendo la fuente de reservas, facturación y sincronización con OTAs, pero no cubre esa capa de trabajo diario.",
+      "solution": "Una herramienta web interna, móvil primero porque se usa de pie, que centraliza ese flujo: checklist de llegada adaptativo, biblioteca de plantillas multiidioma, cotizaciones deterministas, salidas y fianzas, limpiezas, mantenimiento y borradores de respuesta a reseñas. La herramienta prepara; yo envío. Nada se envía automáticamente y no se almacenan datos sensibles ni de contacto: solo nombre, habitación, fechas y estados.",
+      "role": "Desarrollo completo en solitario: definición de producto, modelado del dominio, frontend, backend, base de datos, pruebas y despliegue.",
+      "implementation": [
+        "Monorepo con tres piezas: la web (React 19 sobre Vite), la API (Fastify con PostgreSQL) y un paquete de dominio puro, sin dependencias de framework ni de entorno.",
+        "El dominio concentra las reglas deterministas: cálculo de cotizaciones en céntimos enteros (nunca decimales para dinero), tasas turísticas, parking y depósito; checklist de llegada con ramas dentro y fuera de horario; plantillas con variables; programación de limpiezas; aviso diario.",
+        "API contract-first: esquemas de Fastify, OpenAPI y cliente tipado generado, para que la web nunca dependa de los tipos internos de la base de datos.",
+        "Guardado automático con revisión explícita: cada escritura envía la revisión esperada y el servidor responde 409 si otra vista la ha modificado, con aviso de conflicto en la interfaz.",
+        "Actualización en vivo por Server-Sent Events en lugar de WebSockets: suficiente para invalidar las vistas cuando cambia una estancia.",
+        "Importación de la planificación desde la exportación real del PMS, con coincidencia por capas (número de reserva, coincidencia exacta, renombrada o movida). Las propuestas nunca tocan el progreso ya hecho, requieren aprobación antes de aplicarse e ignoran a propósito las columnas con datos sensibles o de dinero.",
+        "Reseñas asistidas por IA a través de un gateway propio en el backend: la clave nunca llega al frontend, la IA solo devuelve borradores editables y las preferencias de estilo que voy guardando se reinyectan en el prompt.",
+        "Calidad: 48 archivos de test (dominio, componentes y API contra PostgreSQL real, con property tests y pruebas de zona horaria), pruebas end-to-end con Playwright y auditoría de accesibilidad con axe en tres resoluciones."
+      ],
+      "result": "Herramienta que utilizo a diario en la operación de un aparthotel para gestionar llegadas, mensajes, cotizaciones y limpiezas. Complementa al PMS cubriendo procesos operativos que antes estaban repartidos entre varias herramientas.",
+      "technologies": ["React 19", "TypeScript", "Vite", "TanStack Router", "TanStack Query", "Tailwind CSS v4", "Fastify", "PostgreSQL", "Drizzle ORM", "Better Auth", "Docker", "pnpm"]
     },
-    "acerkoFreelance": {
+    {
+      "id": "tanya-martelli",
+      "title": "Tanya Martelli Photography",
+      "subtitle": "Sitio web y sistema de gestión para una fotógrafa profesional",
+      "category": "Producto propio",
+      "period": "2024 – actualidad",
+      "status": "production",
+      "image": "/images/tanya-martelli.webp",
+      "imageAlt": "Composición del sitio y del panel de administración de Tanya Martelli Photography, donde se gestionan las reservas de sesiones y la galería de trabajos.",
+      "href": "https://tanyamartelli.com",
+      "problem": "Una fotógrafa profesional necesitaba un único sitio donde mostrar su trabajo, publicar series editoriales, recibir solicitudes de sesión y gestionar su agenda sin depender de mí para cada cambio. La primera versión funcionaba, pero era cara de evolucionar: las imágenes vivían en un servicio externo y cualquier cambio de contenido pasaba por código o por la base de datos a mano.",
+      "solution": "Un sitio multiidioma con Next.js (App Router) y Supabase como base de datos y autenticación, más un panel de administración propio para que ella gestione el portfolio, las experiencias, las sedes, la portada y las solicitudes. Los medios se movieron a Cloudflare R2 servidos por CDN, con subida directa del navegador a R2 mediante URLs prefirmadas.",
+      "role": "Desarrollo completo en solitario: decisiones de producto, frontend, backend, modelo de datos, despliegue y mantenimiento continuo.",
+      "implementation": [
+        "Primera versión con Vue, Node/Express y MySQL.",
+        "Migración a Next.js, React y TypeScript con Tailwind CSS.",
+        "Contenido estructurado en Supabase y panel de administración a medida (portfolio, experiencias, sedes, portada, relaciones con clientas).",
+        "Migración del almacenamiento de imágenes de Cloudinary a Cloudflare R2, conservando las URLs antiguas durante la transición.",
+        "Subida directa navegador → R2 con URLs prefirmadas: las credenciales nunca salen del servidor y el archivo no pasa por la aplicación.",
+        "Sitio en cinco idiomas y envío de correo transaccional para las solicitudes de reserva y contacto."
+      ],
+      "result": "Producto en producción y mantenido desde 2024. Permite gestionar contenido de forma autónoma, sirve cinco idiomas y utiliza una arquitectura moderna para aplicación, datos y entrega de imágenes.",
+      "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "Cloudflare R2"],
+      "previousStack": ["Vue", "Node.js / Express", "MySQL", "Cloudinary"]
+    },
+    {
+      "id": "acerko",
       "title": "Acerko.com",
-      "subtitle": "Desarrollador WordPress (Freelance)",
-      "category": "WordPress · Freelance",
-      "body": "Rediseño integral del sitio de Acerko.com para mejorar claridad de navegación y consistencia visual, creando componentes reutilizables y microinteracciones alineadas a la identidad de marca.",
-      "features": [
-        "Rediseño completo en WordPress con WPBakery",
-        "Microinteracciones y componentes personalizados",
-        "Optimización de performance y caching",
-        "Pruebas cross-browser y accesibilidad"
-      ]
+      "subtitle": "Rediseño de un sitio comercial en producción",
+      "category": "Freelance · WordPress",
+      "period": "2024 – 2025",
+      "status": "production",
+      "image": "/images/acerko.webp",
+      "imageAlt": "Composición del sitio de Acerko.com con las páginas de tarifas de fibra y móvil y los botones de contratación y contacto.",
+      "href": "https://acerko.com",
+      "problem": "Un sitio comercial en activo cuya estructura se había ido degradando: lenguajes visuales distintos según la página, navegación poco clara y plantillas sin componentes reutilizables, lo que hacía cada cambio de contenido más lento y más arriesgado de lo necesario.",
+      "solution": "Un rediseño incremental sobre la instalación de WordPress existente, en lugar de una reescritura: componentes reutilizables y una navegación más clara, manteniendo el sitio en línea y el canal de contacto funcionando durante todo el proceso.",
+      "role": "Freelance Web Developer, con trato directo con el cliente.",
+      "implementation": [
+        "Reconstrucción de las plantillas con WPBakery y componentes propios reutilizables.",
+        "Unificación de tipografía, espaciado y color para que todas las páginas compartieran el mismo lenguaje visual.",
+        "Microinteracciones y ajustes de JavaScript y CSS a medida.",
+        "Trabajo sobre caché y carga de recursos.",
+        "Pruebas en distintos navegadores y corrección de incidencias reportadas por el cliente."
+      ],
+      "result": "Rediseño de un sitio comercial en producción para mejorar navegación, consistencia y mantenimiento, reduciendo la dependencia de desarrollo para cambios habituales de contenido.",
+      "technologies": ["WordPress", "WPBakery", "JavaScript", "CSS"]
     }
-  }
+  ]
 }

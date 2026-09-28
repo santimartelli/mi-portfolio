@@ -1,49 +1,94 @@
 {
-  "badge": "Featured Projects",
-  "title": "My projects",
-  "description": {
-    "intro": "Each project is a",
-    "highlight": "unique story",
-    "continuation": "of innovation, creativity and technical solutions that transform ideas into exceptional digital realities."
-  },
-  "status": {
-    "production": "In Production",
-    "development": "In Development"
-  },
-  "featuresLabel": "Key Features",
-  "buttons": {
-    "viewProject": "Live web",
+  "title": "Projects",
+  "description": "Products built to solve real problems. From internal operations tools to applications in use in production today.",
+  "labels": {
+    "problem": "Problem",
+    "solution": "Solution",
+    "role": "My role",
+    "implementation": "Implementation and evolution",
+    "result": "Result",
+    "technology": "Technology",
+    "previousStack": "Previous stack",
+    "visit": "Visit site",
     "code": "Code"
   },
-  "cta": {
-    "question": "Have a project in mind? I'd love to collaborate with you.",
-    "button": "Let's Talk"
+  "status": {
+    "production": "In production",
+    "development": "In development"
   },
-  "projects": {
-    "tanyaPortfolio": {
-      "title": "Tanya Martelli",
-      "subtitle": "Photography Portfolio",
-      "category": "Web Development",
-      "body": "Professional portfolio for photographer Tanya Martelli with minimalist design focused on visual experience. Includes interactive gallery with categories, session booking system, complete admin panel and custom contact form.",
-      "features": [
-        "Interactive gallery with filters",
-        "Integrated booking system",
-        "Administration panel",
-        "SEO optimized",
-        "Responsive design"
-      ]
+  "projects": [
+    {
+      "id": "recep-app",
+      "title": "recep-app",
+      "subtitle": "Internal tool for the daily operations of an apart-hotel",
+      "category": "Own product",
+      "period": "2026 – present",
+      "status": "production",
+      "image": "/images/recep-app.webp",
+      "imageAlt": "Diagram of recep-app's modules: arrivals, multilingual templates, quotes, departures and deposits, housekeeping, maintenance, reviews and PMS import.",
+      "problem": "Daily front desk work at a 33-apartment apart-hotel was spread across notes, WhatsApp, email and OTA extranets. Preparing each arrival branches differently depending on the time of day (in person or self check-in), message templates were rewritten by hand in several languages, and every quote was calculated manually with tourist tax, parking and deposit. The PMS remains the source of bookings, invoicing and OTA sync, but it does not cover that daily layer of work.",
+      "solution": "An internal web tool, mobile first because it is used standing up, that centralises that flow: an adaptive arrival checklist, a multilingual template library, deterministic quotes, departures and deposits, housekeeping, maintenance, and drafts for replying to reviews. The tool prepares; I send. Nothing is sent automatically, and no sensitive or contact data is stored: only name, room, dates and states.",
+      "role": "Sole developer end to end: product definition, domain modelling, frontend, backend, database, testing and deployment.",
+      "implementation": [
+        "Monorepo with three parts: the web app (React 19 on Vite), the API (Fastify with PostgreSQL) and a pure domain package with no framework or environment dependencies.",
+        "The domain holds the deterministic rules: quote calculation in integer cents (never floats for money), tourist tax, parking and deposit; arrival checklist branching for in-hours and out-of-hours; templates with variables; cleaning schedule; daily briefing.",
+        "Contract-first API: Fastify schemas, OpenAPI and a generated typed client, so the web app never depends on the database's internal types.",
+        "Autosave with an explicit revision: every write sends the revision it expects and the server answers 409 if another view changed it, with a conflict notice in the UI.",
+        "Live updates over Server-Sent Events instead of WebSockets: enough to invalidate views when a stay changes.",
+        "Import of the planning from the PMS's real export, with layered matching (booking reference, exact match, renamed, or moved). Proposed changes never touch work already done, require approval before being applied, and deliberately ignore columns holding sensitive or money data.",
+        "AI-assisted reviews through the API's own gateway: the key never reaches the frontend, the AI only returns editable drafts, and the style preferences I keep saving are fed back into the prompt.",
+        "Quality: 48 test files (domain, components and API against a real PostgreSQL, with property tests and timezone tests), Playwright end-to-end tests and axe accessibility audits at three screen sizes."
+      ],
+      "result": "A tool I use every day in the running of an apart-hotel to manage arrivals, messages, quotes and housekeeping. It complements the PMS by covering operational processes that used to be spread across several tools.",
+      "technologies": ["React 19", "TypeScript", "Vite", "TanStack Router", "TanStack Query", "Tailwind CSS v4", "Fastify", "PostgreSQL", "Drizzle ORM", "Better Auth", "Docker", "pnpm"]
     },
-    "acerkoFreelance": {
+    {
+      "id": "tanya-martelli",
+      "title": "Tanya Martelli Photography",
+      "subtitle": "Website and management system for a professional photographer",
+      "category": "Own product",
+      "period": "2024 – present",
+      "status": "production",
+      "image": "/images/tanya-martelli.webp",
+      "imageAlt": "Composite of the Tanya Martelli Photography site and admin dashboard, where session bookings and the photo gallery are managed.",
+      "href": "https://tanyamartelli.com",
+      "problem": "A professional photographer needed a single place to show her work, publish editorial series, take session enquiries and manage her schedule without depending on me for every change. The first version worked, but it was expensive to evolve: images lived in a third-party service and any content change went through code or through the database by hand.",
+      "solution": "A multi-language site built with Next.js (App Router) and Supabase for database and authentication, plus a custom admin dashboard so she can manage the portfolio, experiences, locations, homepage and guest enquiries herself. Media moved to Cloudflare R2 served over a CDN, with direct browser-to-R2 uploads through presigned URLs.",
+      "role": "Sole developer end to end: product decisions, frontend, backend, data model, deployment and ongoing maintenance.",
+      "implementation": [
+        "First version built with Vue, Node/Express and MySQL.",
+        "Migration to Next.js, React and TypeScript with Tailwind CSS.",
+        "Content modelled in Supabase with a custom admin dashboard (portfolio, experiences, locations, homepage, guest relations).",
+        "Image storage migrated from Cloudinary to Cloudflare R2, keeping the old URLs working during the transition.",
+        "Direct browser → R2 uploads via presigned URLs: credentials never leave the server and the file never passes through the application.",
+        "Five-language site with transactional email for booking and contact requests."
+      ],
+      "result": "A product in production and maintained since 2024. It lets the client manage her own content, serves five languages and uses a modern architecture for the application, the data and image delivery.",
+      "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "Cloudflare R2"],
+      "previousStack": ["Vue", "Node.js / Express", "MySQL", "Cloudinary"]
+    },
+    {
+      "id": "acerko",
       "title": "Acerko.com",
-      "subtitle": "WordPress Developer (Freelance)",
-      "category": "WordPress · Freelance",
-      "body": "Full redesign of Acerko.com's corporate site to improve navigation clarity and visual consistency, delivering reusable components and brand-aligned microinteractions.",
-      "features": [
-        "Complete WordPress redesign with WPBakery",
-        "Custom microinteractions and components",
-        "Performance and caching optimization",
-        "Cross-browser and accessibility testing"
-      ]
+      "subtitle": "Redesign of a live commercial website",
+      "category": "Freelance · WordPress",
+      "period": "2024 – 2025",
+      "status": "production",
+      "image": "/images/acerko.webp",
+      "imageAlt": "Composite of the Acerko.com site showing the fibre and mobile pricing pages and the sign-up and contact buttons.",
+      "href": "https://acerko.com",
+      "problem": "A live commercial site whose structure had drifted: different visual languages from page to page, unclear navigation and templates with no reusable components, which made every content change slower and riskier than it needed to be.",
+      "solution": "An incremental redesign on top of the existing WordPress installation rather than a rewrite: reusable components and clearer navigation, keeping the site online and the contact funnel working throughout.",
+      "role": "Freelance Web Developer, working directly with the client.",
+      "implementation": [
+        "Rebuilt the page templates with WPBakery and custom reusable components.",
+        "Unified typography, spacing and colour so every page shared the same visual language.",
+        "Custom microinteractions and JavaScript/CSS adjustments.",
+        "Work on caching and asset loading.",
+        "Cross-browser testing and fixes for issues reported by the client."
+      ],
+      "result": "A redesign of a live commercial site to improve navigation, consistency and maintenance, cutting the dependence on development for routine content changes.",
+      "technologies": ["WordPress", "WPBakery", "JavaScript", "CSS"]
     }
-  }
+  ]
 }

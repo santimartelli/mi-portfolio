@@ -2,7 +2,11 @@
   "navigation": {
     "home": "Home",
     "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
     "projects": "Projects",
     "contact": "Contact"
-  }
+  },
+  "menuLabel": "Navigation menu",
+  "languageLabel": "Select language"
 }

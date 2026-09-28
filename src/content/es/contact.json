@@ -1,61 +1,54 @@
 {
-  "badge": "Redes & Recursos",
-  "title": "Conectemos",
-  "description": {
-    "line1": "Sígueme en mis redes sociales para estar al día con mis últimos proyectos,",
-    "line2": "o descarga mi CV",
-    "line2_highlight": "para conocer más sobre mi experiencia."
-  },
-  "contact": {
-    "title": "Contacto",
-    "subtitle": "Envíame un mensaje",
-    "methods": {
-      "email": {
-        "label": "Email",
-        "action": "Enviar mensaje"
-      },
-      "whatsapp": {
-        "label": "WhatsApp",
-        "action": "Abrir chat"
-      }
-    }
-  },
-  "socialNetworks": {
-    "title": "Redes Profesionales",
-    "subtitle": "Contéctame en mis redes",
-    "whyFollow": {
-      "title": "¿Por qué seguirme?",
-      "reasons": [
-        "Tutoriales y tips de desarrollo",
-        "Behind the scenes de proyectos",
-        "Updates de tecnologías modernas"
-      ]
+  "title": "Hablemos",
+  "description": "Busco oportunidades donde se conecten hospitality, operaciones y tecnología.",
+  "statement": "Me interesan especialmente equipos de Hotel Tech, Hospitality Operations, Customer Success, Implementation, Onboarding y Product Support, donde mi experiencia utilizando tecnología hotelera desde el lado operativo pueda aportar contexto desde el primer día.",
+  "channelsTitle": "Dónde encontrarme",
+  "channels": {
+    "email": {
+      "label": "Email",
+      "description": "La forma más directa de contactarme."
+    },
+    "linkedin": {
+      "label": "LinkedIn",
+      "description": "Mi perfil profesional y mi trayectoria."
+    },
+    "whatsapp": {
+      "label": "WhatsApp",
+      "description": "Mensajes y llamadas."
+    },
+    "github": {
+      "label": "GitHub",
+      "description": "El código de los proyectos que cuento aquí."
     }
   },
   "cv": {
     "title": "Curriculum Vitae",
-    "subtitle": "Descarga mi CV actualizado",
-    "info": {
-      "title": "Información del CV",
-      "highlights": [
-        "3+ años de experiencia",
-        "Stack completo documentado",
-        "Proyectos y logros destacados",
-        "Referencias disponibles"
-      ]
+    "subtitle": "Descarga o consulta",
+    "download": "Descargar",
+    "summary": "Mi CV actual está orientado a desarrollo web. Estoy preparando una versión específica para hotel tech y hospitality.",
+    "hotelTech": {
+      "title": "Hotel Tech / Hospitality CV",
+      "description": "Versión centrada en operaciones hoteleras, herramientas de gestión y atención al cliente. Todavía no está publicada.",
+      "status": "En preparación"
     },
-    "spanish": {
-      "language": "Español",
-      "description": "Curriculum Vitae completo",
-      "size": "52.9 KB",
-      "lastUpdate": "Oct 2025"
-    },
-    "english": {
-      "language": "English",
-      "description": "Complete Resume",
-      "size": "59 KB",
-      "lastUpdate": "Oct 2025"
-    }
+    "files": [
+      {
+        "id": "es",
+        "language": "Español",
+        "label": "Desarrollo web",
+        "description": "CV orientado a desarrollo y producto web."
+      },
+      {
+        "id": "en",
+        "language": "English",
+        "label": "Web development",
+        "description": "Resume focused on web development and product work."
+      }
+    ]
   },
-  "availability": "Disponible para proyectos freelance y oportunidades de tiempo completo"
+  "availability": {
+    "title": "Disponibilidad",
+    "text": "Disponible para oportunidades a tiempo completo en Girona, Barcelona, remoto o híbrido."
+  },
+  "closing": "Si crees que mi perfil puede encajar en tu equipo, escríbeme."
 }

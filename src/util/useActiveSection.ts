@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
  * 1. IntersectionObserver: Detecta cuando una sección entra en el viewport
  * 2. Scroll Listener: Calcula qué sección es más visible como respaldo
  *
- * @returns ID de la sección actualmente visible ('home' | 'about' | 'projects' | 'skills' | 'contact')
+ * @returns ID de la sección actualmente visible ('home' | 'about' | 'experience' | 'skills' | 'projects' | 'contact')
  *
  * @example
  * const activeSection = useActiveSection();
@@ -26,8 +26,8 @@ export function useActiveSection() {
   const [activeSection, setActiveSection] = useState<string>("home");
 
   useEffect(() => {
-    // Lista de IDs de todas las secciones a observar
-    const sections = ["home", "about", "projects", "skills", "contact"];
+    // Lista de IDs de todas las secciones a observar, en el orden de la página
+    const sections = ["home", "about", "experience", "skills", "projects", "contact"];
 
     // Configuración del IntersectionObserver
     const observerOptions = {

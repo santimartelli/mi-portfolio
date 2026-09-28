@@ -1,8 +1,12 @@
 {
   "navigation": {
     "home": "Inicio",
-    "about": "Acerca de",
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "skills": "Skills",
     "projects": "Proyectos",
     "contact": "Contacto"
-  }
+  },
+  "menuLabel": "Menú de navegación",
+  "languageLabel": "Seleccionar idioma"
 }

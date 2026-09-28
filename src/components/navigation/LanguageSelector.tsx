@@ -1,235 +1,100 @@
-// Importaciones necesarias: hooks de React, Framer Motion para animaciones,
-// icono de traducción, contexto de tema, tipos de locale y estilos de banderas
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+// Selector de idioma.
+//
+// Los idiomas son enlaces reales (`/` y `/en/`), no navegación por JavaScript:
+// así funcionan sin JS, son rastreables y respetan los hreflang del documento.
+// El desplegable es un `<details>` nativo, como el del menú: lo abre y lo cierra
+// el navegador, y el estado vive en `[open]` (ver `Layout.astro` y
+// `dropdownStyles.ts`). JavaScript solo añade cerrar al pulsar fuera o con
+// Escape.
+//
+// Se eliminó `flag-icons`, que aportaba ~420 KB de CSS para dos banderas. El
+// icono de diccionario se retiró y volvió a petición del usuario, y acabó siendo
+// lo único que queda del botón: primero se probó a subir el código del idioma de
+// tamaño, después a dejarlo en su tamaño de siempre con el peso fino de la
+// marca, y la petición final fue quitarlo. Sin texto visible, el nombre
+// accesible lo pone el aria-label y el idioma activo se marca dentro del
+// desplegable, con el punto y el fondo del item.
 import { MdOutlineTranslate } from 'react-icons/md';
-import { useThemeContext } from '../../util/ThemeContext';
-import type { CvLocale } from '../../util/cvMetadata';
-import 'flag-icons/css/flag-icons.min.css';
+import type { Locale, NavbarTranslations } from '../../util/i18n';
+import { pathForLocale } from '../../util/site';
+import { dropdownItemClass, dropdownPanelClass } from './dropdownStyles';
 
-// Interfaz que define las props del componente
 interface LanguageSelectorProps {
-  isOpen: boolean;
-  onToggle: () => void;
-  onClose: () => void;
+  content: NavbarTranslations;
+  locale: Locale;
 }
 
-// Array de opciones de idioma con código, etiqueta y clase de bandera
-const LANGUAGE_OPTIONS: Array<{ code: CvLocale; label: string; flag: string }> = [
-  { code: 'en', label: 'English', flag: 'fi fi-us' },
-  { code: 'es', label: 'Español', flag: 'fi fi-es' },
+const LANGUAGE_OPTIONS: Array<{ code: Locale; label: string; short: string }> = [
+  { code: 'en', label: 'English', short: 'EN' },
+  { code: 'es', label: 'Español', short: 'ES' },
 ];
 
-// Variantes de animación para el dropdown (apertura/cierre con transición de altura)
-const dropdownVariants = {
-  hidden: {
-    height: 0,
-    opacity: 1,
-    transformOrigin: 'top',
-  },
-  visible: {
-    height: 'auto',
-    opacity: 1,
-    transition: {
-      height: {
-        duration: 0.3,
-        ease: 'easeOut',
-      },
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
-    },
-  },
-  exit: {
-    height: 0,
-    opacity: 1,
-    transition: {
-      height: {
-        duration: 0.2,
-        ease: 'easeIn',
-      },
-      staggerChildren: 0.05,
-      staggerDirection: -1,
-    },
-  },
-};
+const LanguageSelector = ({ content, locale }: LanguageSelectorProps) => {
+  const t = content;
 
-// Variantes de animación para cada item del menú (fade + desplazamiento vertical)
-const menuItemVariants = {
-  hidden: {
-    opacity: 0,
-    y: -10,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.2,
-      ease: 'easeOut',
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -10,
-    transition: {
-      duration: 0.15,
-      ease: 'easeIn',
-    },
-  },
-};
-
-// Función helper que detecta el idioma actual basándose en la ruta del navegador
-const getCurrentLocaleFromPath = (): CvLocale => {
-  if (typeof window !== 'undefined') {
-    return window.location.pathname.startsWith('/en') ? 'en' : 'es';
-  }
-  return 'es';
-};
-
-/**
- * Componente LanguageSelector - Selector de idioma con dropdown animado
- * Permite cambiar entre español e inglés, con animaciones suaves y manejo de estado de scroll
- * Incluye detección de clics fuera del componente para cerrar el dropdown automáticamente
- */
-const LanguageSelector = ({ isOpen, onToggle, onClose }: LanguageSelectorProps) => {
-  const { theme } = useThemeContext();
-  const [currentLocale, setCurrentLocale] = useState<CvLocale>(getCurrentLocaleFromPath);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Escucha cambios en el historial del navegador para actualizar el idioma actual
-  useEffect(() => {
-    const handleLocationChange = () => {
-      setCurrentLocale(getCurrentLocaleFromPath());
-    };
-
-    window.addEventListener('popstate', handleLocationChange);
-    return () => window.removeEventListener('popstate', handleLocationChange);
-  }, []);
-
-  // Detecta clics fuera del selector para cerrarlo automáticamente
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (containerRef.current && !containerRef.current.contains(target)) {
-        onClose();
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isOpen, onClose]);
-
-  const buttonClass = useMemo(
-    () =>
-      [
-        'relative z-40 flex items-center justify-center gap-2 h-14 px-3 text-sm font-medium focus:outline-none',
-        theme === 'dark' ? 'text-white' : 'text-black',
-      ].join(' '),
-    [theme]
-  );
-
-  // Maneja el cambio de idioma: construye la nueva ruta, guarda la posición de scroll y navega
-  const changeLanguage = (locale: CvLocale) => {
-    if (typeof window === 'undefined') return;
-
-    const currentPath = window.location.pathname;
-    let newPath = '';
-
-    if (locale === 'en') {
-      if (currentPath === '/') {
-        newPath = '/en/';
-      } else if (currentPath.startsWith('/en')) {
-        newPath = currentPath;
-      } else {
-        newPath = `/en${currentPath}`;
-      }
-    } else {
-      if (currentPath.startsWith('/en/')) {
-        newPath = currentPath.replace('/en/', '/');
-      } else if (currentPath === '/en') {
-        newPath = '/';
-      } else {
-        newPath = currentPath;
-      }
+  /**
+   * Guarda la posición de scroll antes de navegar para que el layout la
+   * restaure al cargar el otro idioma.
+   */
+  const rememberScrollPosition = () => {
+    try {
+      sessionStorage.setItem(
+        'scrollPosition',
+        JSON.stringify({ x: window.scrollX, y: window.scrollY })
+      );
+    } catch {
+      // sessionStorage puede no estar disponible; no es crítico.
     }
-
-    const currentScrollY = window.scrollY;
-    const currentScrollX = window.scrollX;
-
-    sessionStorage.setItem('scrollPosition', JSON.stringify({ x: currentScrollX, y: currentScrollY }));
-
-    if (newPath) {
-      window.location.href = newPath;
-    }
-    onClose();
   };
 
   return (
-    <div
-      className="relative language-selector"
-      ref={containerRef}>
-      <motion.button
-        type="button"
-        onClick={onToggle}
-        className={buttonClass}
-        aria-haspopup="true"
-        aria-expanded={isOpen}
-        aria-label="Select language">
-        <MdOutlineTranslate className="w-5 h-5" />
-        <span className="text-sm font-semibold uppercase tracking-wide">{currentLocale === 'en' ? 'EN' : 'ES'}</span>
-      </motion.button>
+    <details name="barra" className="dropdown relative">
+      {/* El boton, que es el `summary`: de solo icono. El codigo del idioma
+          (ES / EN) se retiro a peticion del usuario, asi que el nombre accesible
+          lo pone el aria-label y el idioma activo se ve marcado dentro del
+          desplegable. La caja es de 48x56, como la del boton del menu, y el
+          padding de la izquierda empuja el simbolo 2px hacia la derecha: es la
+          mitad del trabajo de acercar los dos iconos de la barra (el boton del
+          menu hace lo simetrico), sin mover las cajas ni solapar sus areas de
+          toque. */}
+      <summary
+        aria-label={t.languageLabel}
+        className="relative z-40 flex h-14 w-12 items-center justify-center pl-1 text-black dark:text-white">
+        <MdOutlineTranslate className="w-5 h-5" aria-hidden="true" />
+      </summary>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            key="language-menu"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={dropdownVariants}
-            className="absolute right-0 top-[72px] w-56 bg-white dark:bg-gray-950 border border-black dark:border-gray-800 mobile-menu overflow-hidden z-30">
-            <motion.div
-              variants={menuItemVariants}
-              className="p-3">
-              <div className="space-y-1">
-                {LANGUAGE_OPTIONS.map((option) => {
-                  const isActive = option.code === currentLocale;
-                  return (
-                    <motion.button
-                      key={option.code}
-                      type="button"
-                      className={`flex w-full items-center gap-3 px-3 py-2 text-sm font-medium transition-colors duration-200 focus:outline-none ${
-                        isActive
-                          ? 'text-black dark:text-white bg-gray-100 dark:bg-gray-800'
-                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-black dark:hover:text-white'
-                      }`}
-                      onClick={() => changeLanguage(option.code)}
-                      whileTap={{ scale: 0.98 }}
-                      aria-current={isActive ? 'true' : 'false'}>
-                      <span
-                        className={`${option.flag} rounded-sm shadow-sm`}
-                        style={{ width: '16px', height: '11px', display: 'inline-block' }}
-                      />
-                      <span className="font-medium">{option.label}</span>
-                      {isActive && (
-                        <motion.div
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          className="ml-auto w-1.5 h-1.5 rounded-full bg-black dark:bg-white"
-                        />
-                      )}
-                    </motion.button>
-                  );
-                })}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+      <div id="language-menu" className={dropdownPanelClass}>
+        <ul className="list-none space-y-1">
+          {LANGUAGE_OPTIONS.map((option) => {
+            const isActive = option.code === locale;
+            return (
+              <li key={option.code}>
+                <a
+                  href={pathForLocale(option.code)}
+                  hrefLang={option.code}
+                  onClick={rememberScrollPosition}
+                  aria-current={isActive ? 'true' : undefined}
+                  className={dropdownItemClass(isActive)}>
+                  <span
+                    aria-hidden="true"
+                    className="inline-flex items-center justify-center w-6 h-4 border border-gray-300 dark:border-gray-600 text-[0.6rem] font-semibold tracking-wider">
+                    {option.short}
+                  </span>
+                  <span className="font-medium">{option.label}</span>
+                  {isActive && (
+                    <span
+                      className="ml-auto w-1.5 h-1.5 rounded-full bg-black dark:bg-white"
+                      aria-hidden="true"
+                    />
+                  )}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </details>
   );
 };
 
-// Exporta el componente para ser usado en el NavControls
 export default LanguageSelector;

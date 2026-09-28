@@ -6,33 +6,31 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "check": "astro check",
+    "assets": "node scripts/generate-assets.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:e2e": "playwright test",
+    "test:e2e:desktop": "playwright test --project=desktop",
+    "test:e2e:mobile": "playwright test --project=mobile",
+    "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
     "@astrojs/react": "^3.5.0",
     "@astrojs/tailwind": "^5.1.0",
-    "@fontsource-variable/fira-code": "^5.0.18",
-    "@fontsource-variable/inter": "^5.0.18",
-    "@fontsource-variable/onest": "^5.0.4",
-    "@fontsource/geist-mono": "^5.0.3",
-    "@fontsource/titillium-web": "^5.0.20",
+    "@fontsource-variable/manrope": "^5.3.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.8.6",
-    "flag-icons": "^7.5.0",
-    "framer-motion": "^11.18.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
-    "sass": "^1.77.4",
-    "swiper": "^11.1.4",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.5",
-    "usehooks-ts": "^3.1.0"
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@types/react-lines-ellipsis": "^0.15.6"
+    "@playwright/test": "^1.63.0",
+    "impeccable": "^4.1.0"
   }
 }

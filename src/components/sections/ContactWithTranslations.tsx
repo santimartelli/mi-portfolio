@@ -1,26 +1,15 @@
-// Importación del componente Contact y proveedor de traducciones
+// Isla de la sección de contacto y CV.
 import Contact from './Contact';
-import { I18nProvider, type Translations } from '../../util/i18n';
+import type { ContactTranslations } from '../../util/i18n';
 
-// Interfaz que define las props del componente wrapper
-interface ContactWithTranslationsProps {
-  translations: Translations;
+interface ContactIslandProps {
+  content: ContactTranslations;
 }
 
-/**
- * Componente ContactWithTranslations - Wrapper del componente Contact
- * Propósito: Proveer el contexto de traducciones (I18nProvider) al componente Contact
- * Este patrón permite que Contact acceda a las traducciones mediante el hook useTranslations()
- *
- * @param translations - Objeto con todas las traducciones del sitio
- */
-const ContactWithTranslations = ({ translations }: ContactWithTranslationsProps) => {
+const ContactIsland = ({ content }: ContactIslandProps) => {
   return (
-    <I18nProvider translations={translations}>
-      <Contact />
-    </I18nProvider>
+    <Contact content={content} />
   );
 };
 
-// Exporta el componente wrapper
-export default ContactWithTranslations;
+export default ContactIsland;

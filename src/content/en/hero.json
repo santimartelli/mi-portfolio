@@ -1,20 +1,19 @@
 {
-  "badge": "Full Stack Developer",
-  "firstName": "Santiago",
-  "lastName": "Martelli",
-  "description": {
-    "intro": "Full Stack Developer specialized in building",
-    "highlight": "scalable, high-performance web solutions.",
-    "continuation": "With 3+ years of experience in modern technologies like",
-    "technologies": ["React", "TypeScript", "Node.js", "SQL/NoSQL databases"]
-  },
-  "buttons": {
-    "projects": "View Portfolio",
-    "contact": "Let's Collaborate"
-  },
-  "scrollIndicator": "Explore more",
-  "ariaLabels": {
-    "projectsButton": "View project portfolio",
-    "contactButton": "Contact for opportunities"
-  }
+  "headline": "Hotel operations + technology",
+  "description": "I know how a property runs from the inside: front office, reservations, PMS, OTAs, pricing and guest service. On that foundation I add technical training and experience building web products. A profile that connects what a hotel really needs with the teams and products that solve it.",
+  "cta": "View experience",
+  "ctaProjects": "View projects",
+  "photoPlaceholder": "Profile photo",
+  "imageAlt": "Isometric illustration of a hotel's ecosystem: the building in the centre and, around it, the front desk, guest service, reviews, revenue, distribution and implementation.",
+  "marquee": [
+    "8+ years in hospitality",
+    "Front office and guest experience",
+    "5-star and high-occupancy hotels",
+    "Marriott experience",
+    "Dorna Sports & MotoGP",
+    "PMS · OTAs · Reservations · Billing",
+    "Distribution & Revenue",
+    "Web Development",
+    "5 Languages"
+  ]
 }

@@ -1,24 +1,15 @@
-// Importaciones necesarias: componente Projects, provider de traducciones y tipos
+// Isla de la sección de proyectos / casos de estudio.
 import Projects from './Projects';
-import { I18nProvider, type Translations } from '../../util/i18n';
+import type { ProjectsTranslations } from '../../util/i18n';
 
-// Interfaz que define las props del componente
-interface ProjectsWithTranslationsProps {
-  translations: Translations;
+interface ProjectsIslandProps {
+  content: ProjectsTranslations;
 }
 
-/**
- * Componente ProjectsWithTranslations - Wrapper del componente Projects
- * Propósito: Proveer el contexto de traducciones (I18nProvider) al componente Projects
- * Este patrón permite que Projects acceda a las traducciones mediante useTranslations()
- */
-const ProjectsWithTranslations = ({ translations }: ProjectsWithTranslationsProps) => {
+const ProjectsIsland = ({ content }: ProjectsIslandProps) => {
   return (
-    <I18nProvider translations={translations}>
-      <Projects />
-    </I18nProvider>
+    <Projects content={content} />
   );
 };
 
-// Exporta el componente para ser usado en las páginas de Astro
-export default ProjectsWithTranslations;
+export default ProjectsIsland;
