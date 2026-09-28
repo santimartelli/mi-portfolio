@@ -1,18 +1,10 @@
-// Hero en una columna centrada: el titular, la entradilla, las dos acciones, el
-// contacto y la ilustracion, todos en el mismo eje y con el texto centrado. La
-// idea es la de las paginas de una sola declaracion —tipo pavlosanchez.com—:
-// mucho aire, la frase grande en el centro y nada compitiendo con ella; el
-// contenido y los materiales son los de siempre.
-//
-// El bloque se centra en el alto que queda bajo el header (`flex-1` +
-// `justify-center`), y el marquee sigue siendo la franja del pie. La seccion
-// reserva abajo lo mismo que antes (1,5rem en movil y 4rem desde lg, en el
-// `pb` de la seccion y el `lg:pb-16` del contenedor), asi que la regla que la
-// separa de About sigue centrada sin tocar `.section-rule-hero`.
-//
+// Hero en dos columnas: a la izquierda el titular, el parrafo de presentacion y
+// el contacto directo; a la derecha la ilustracion del perfil.
+// En movil la columna se apila y el hero se reparte el alto de la ventana entre
+// sus cinco bloques (imagen, titular, texto, accion e iconos) con el mismo hueco,
+// de forma que todo entra en la pantalla sin scroll.
 // Sin estado, sin JavaScript y sin ninguna animacion: el hero se renderiza
-// entero en el servidor. El aire de arriba son 4rem exactos: la barra ya no
-// lleva filete inferior, asi que su alto es el del header y no el header mas 1px.
+// entero en el servidor.
 import { FaEnvelope, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import type { HeroTranslations } from '../../util/i18n';
 import { SITE } from '../../util/site';
@@ -31,39 +23,78 @@ const Hero = ({ content: t }: HeroProps) => {
   ];
 
   return (
-    <section id="home" className="flex min-h-[100dvh] flex-col pt-16 pb-6 lg:min-h-screen lg:pb-0">
-      <div className="shell flex flex-1 flex-col lg:pb-16">
-        {/* El contenido, en una columna y centrado. `flex-1` reparte el alto que
-            queda bajo el header y `justify-center` lo pone en el medio, que es lo
-            que deja los margenes de arriba y abajo iguales. */}
-        <div className="flex flex-1 flex-col items-center justify-center gap-7 py-8 text-center lg:gap-8 lg:py-10">
-          <h1 className="text-display max-w-[22ch] text-balance font-light text-black dark:text-white">
+    // En movil: columna que ocupa el alto de la ventana (100dvh, el alto visible
+    // real, no el de la ventana grande) y reparte sus cinco bloques. El padding
+    // de arriba son los 4rem exactos del header, que ya no lleva filete; el aire entre el
+    // header y la imagen lo pone el margen del propio <picture>, para que se lea
+    // donde esta. El padding de abajo es el margen bajo los iconos.
+    // Desde lg el contenedor se queda con todo el alto que queda bajo el header:
+    // la seccion deja de centrarlo y de tener padding abajo, asi que la caja del
+    // contenedor va del borde inferior del header al borde inferior de la
+    // pantalla. Dentro, la rejilla reparte ese alto en dos filas: la de las dos
+    // columnas se lleva el espacio libre (1fr) y el marquee queda como franja al
+    // pie (auto). El centrado vertical de la rejilla coloca entonces el bloque
+    // de texto y el de la imagen en el medio de la primera fila, y el aire de
+    // abajo lo pone el propio contenedor, no la seccion.
+    // Ese aire de abajo es de 4rem y no es un numero al azar: es el que deja el
+    // marquee centrado en la franja blanca que queda entre el borde inferior de
+    // la ilustracion y el borde inferior de la pantalla. Con el tope de alto de
+    // la ilustracion puesto (el caso normal en un portatil), el aire que sobra
+    // por debajo de la imagen dentro de su fila es (145 - pb) / 2, asi que
+    // igualarlo a este padding da 4rem. Para que la regla que separa del hero
+    // quede tambien centrada, se mete hacia dentro de About la mitad de la
+    // diferencia entre este aire y el que About reserva arriba: eso vive en
+    // .section-rule-hero, en el layout. Si se cambia este padding, hay que
+    // rehacer las dos cuentas.
+    <section
+      id="home"
+      className="flex min-h-[100dvh] flex-col pt-16 pb-6 lg:min-h-screen lg:flex-row lg:pb-0">
+      <div className="shell flex flex-1 flex-col justify-between gap-1 lg:grid lg:flex-none lg:grid-cols-12 lg:grid-rows-[1fr_auto] lg:items-center lg:gap-x-12 lg:gap-y-6 lg:pb-16">
+        {/*
+          En movil esta caja no genera caja propia (display: contents), asi que el
+          titular, el parrafo, la accion y los iconos pasan a ser hijos directos
+          del contenedor de arriba y entran en el reparto. Es la unica forma de
+          que los cinco bloques reciban el mismo hueco sin duplicar el marcado.
+          Los margenes verticales de cada bloque se anulan en movil por el mismo
+          motivo: si sumaran, los huecos dejarian de ser iguales. Desde lg vuelve
+          a ser una columna normal y recupera sus margenes.
+        */}
+        <div className="contents text-center lg:col-span-6 lg:block lg:text-left">
+          <h1 className="text-display font-light text-balance text-black dark:text-white">
             {t.headline}
           </h1>
 
           {/* En movil la entradilla va a 1,5 de interlineado, que es el minimo
-              comodo para texto corrido, en vez del 1,65 de la escala. */}
-          <p className="measure text-pretty text-base font-light leading-normal text-gray-600 lg:text-lead lg:leading-[1.6] dark:text-gray-400">
+              comodo para texto corrido, en vez del 1,65 de la escala: con las
+              nueve lineas que ocupa el parrafo son mas de 20px de alto. */}
+          <p className="measure mx-auto text-pretty text-base font-light leading-normal text-gray-600 lg:mt-8 lg:text-lead lg:leading-[1.6] lg:mx-0 dark:text-gray-400">
             {t.description}
           </p>
 
-          {/* Las acciones y el contacto, en un solo grupo: son la misma cosa —lo
-              que se puede pulsar— y van juntas, separadas del texto por el aire
-              grande de la columna. */}
-          <div className="flex flex-col items-center gap-5">
-            {/* Las dos acciones comparten bloque, una con relleno y otra solo con
-                el filete de 1px, que es la forma de declarar profundidad de este
-                mundo. Aqui caben las dos en todos los tamanos. */}
-            <div className="flex flex-wrap items-center justify-center gap-2 lg:gap-3">
+          {/* Misma idea: en movil la accion y los iconos son dos bloques sueltos,
+              y desde lg vuelven a ser una fila centrada. */}
+          <div className="contents lg:mt-10 lg:flex lg:flex-wrap lg:items-center lg:justify-center lg:gap-8">
+            {/* Los dos botones comparten bloque en movil: el reparto vertical del
+                hero esta ajustado al pixel y un septimo bloque no cabe. Desde lg
+                forman fila, y el de proyectos solo se muestra ahi, que es donde
+                hay ancho para los dos. */}
+            <div className="mx-auto flex w-fit items-center justify-center gap-2 lg:mx-0 lg:gap-3">
+              {/* El CTA conserva del boton portado solo el ancho minimo y el radio
+                  de 8px; el efecto es el de los iconos de contacto, un cambio de
+                  color con transicion. El tamaño grande del original dejaba el
+                  boton en 80px y se comia el reparto de los cinco bloques. */}
               <a
                 href="#experience"
                 className="cta-primary flex min-w-[10rem] items-center justify-center px-4 py-2 text-small font-semibold uppercase tracking-widest">
                 {t.cta}
               </a>
 
+              {/* Segunda accion, con el mismo cuerpo que la primera pero sin
+                  relleno: el filete de 1px es la forma de declarar profundidad de
+                  este mundo, y asi las dos no compiten. */}
               <a
                 href="#projects"
-                className="cta-secondary flex min-w-[10rem] items-center justify-center px-4 py-2 text-small font-semibold uppercase tracking-widest">
+                className="cta-secondary hidden min-w-[10rem] items-center justify-center px-4 py-2 text-small font-semibold uppercase tracking-widest lg:flex">
                 {t.ctaProjects}
               </a>
             </div>
@@ -84,29 +115,44 @@ const Hero = ({ content: t }: HeroProps) => {
               ))}
             </ul>
           </div>
+        </div>
 
-          {/* La ilustracion, centrada y sola, con el recorte apaisado en todos los
-              tamanos: en una composicion centrada una banda ancha lee mejor que un
-              retrato suelto. El tamano lo fija `.hero-media` en el layout, que es
-              donde el tope de alto y la proporcion por breakpoint conviven en el
-              orden correcto. */}
+        {/* Ilustracion del perfil. Hay dos recortes de la misma escena y el
+            navegador elige uno: el apaisado en pantallas estrechas y el vertical
+            desde lg, donde tiene columna propia. Va en un <picture> para que
+            solo se descargue el que se usa, no los dos.
+            El tamaño de cada recorte lo fija la clase .hero-media del layout, no
+            utilidades de Tailwind: ahi el tope de alto y la proporcion por
+            breakpoint conviven en el orden correcto, que con utilidades no
+            ocurria. En movil ocupa el ancho completo, y al ser apaisada eso la
+            deja ancha y baja a la vez, que es lo que permite ver el titular y el
+            texto en el mismo viewport.
+            En movil va primero, antes del titular: la columna se apila y el
+            order del <picture> la sube. En el marcado sigue despues del texto a
+            proposito, para que quien use lector de pantalla reciba el titular
+            antes que la ilustracion; desde lg el order se resetea. */}
+        <picture className="order-first mt-6 lg:order-none lg:col-span-6 lg:mt-0">
+          <source media="(max-width: 1023.98px)" srcSet="/images/hero-landscape.webp" />
           <img
-            src="/images/hero-landscape.webp"
+            src="/images/hero-portrait.webp"
             alt={t.imageAlt}
-            width="1400"
-            height="611"
+            width="1000"
+            height="1102"
             loading="eager"
             decoding="async"
             className="hero-media"
           />
-        </div>
+        </picture>
 
         {/* Marquee de caracteristicas, al pie del hero. Son dos copias identicas
             de la lista dentro de una pista que se desplaza la mitad de su ancho,
             asi que el bucle no tiene costura; la segunda copia va con aria-hidden
             para que quien use lector de pantalla no oiga la lista dos veces, y los
-            puntos que separan las piezas son decorativos por el mismo motivo. */}
-        <div className="marquee">
+            puntos que separan las piezas son decorativos por el mismo motivo.
+            En movil es el ultimo bloque del reparto; desde lg ocupa una fila
+            propia a lo ancho, pegada al pie del contenedor, debajo de las dos
+            columnas. */}
+        <div className="marquee lg:col-span-12">
           <div className="marquee-track">
             {[false, true].map((duplicada) => (
               <ul
