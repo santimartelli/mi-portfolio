@@ -49,7 +49,7 @@ const Hero = ({ content: t }: HeroProps) => {
 
   return (
     <section id="home" className="flex min-h-[100dvh] flex-col pt-16 pb-6 lg:min-h-screen lg:pb-0">
-      <div className="shell grid flex-1 grid-rows-[1fr_auto_1fr] lg:pb-16">
+      <div className="shell grid flex-1 grid-rows-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:pb-16">
         {/* El centro: el titular, la entradilla, las dos acciones y el marquee.
             La fila es `auto`, asi que su alto es el del contenido y las dos `1fr`
             de fuera lo dejan en el medio. */}
@@ -138,7 +138,7 @@ const Hero = ({ content: t }: HeroProps) => {
           {/* Hueco para la foto de perfil. Va con marco de puntos para que se lea
               como lo que es —un sitio reservado— y no como una imagen rota, y con
               la proporcion de un retrato. */}
-          <div className="flex aspect-[4/5] w-32 shrink-0 items-center justify-center rounded-xl border border-dashed border-gray-300 p-3 text-center dark:border-gray-700">
+          <div className="flex aspect-[4/5] w-28 shrink-0 items-center justify-center rounded-xl border border-dashed border-gray-300 p-3 text-center dark:border-gray-700">
             <span className="text-label font-medium uppercase text-gray-500 dark:text-gray-400">
               {t.photoPlaceholder}
             </span>

@@ -87,11 +87,14 @@ const Navbar = ({ content: t, locale }: NavbarProps) => {
       className={`nav-bar fixed inset-x-0 top-0 z-50 bg-white backdrop-blur-md transition-colors duration-200 ease-out dark:bg-gray-950 ${
         scrolled ? "supports-[backdrop-filter]:bg-white/85 dark:supports-[backdrop-filter]:bg-gray-950/85" : ""
       }`}>
-      {/* El header no usa .shell, porque necesita el ancho completo, pero desde
-          lg comparte sus escalones de margen lateral (4rem y sube con la
-          pantalla) para que la marca y el contenido de las secciones empiecen en
-          la misma vertical. Por debajo de lg cada uno lleva el suyo. */}
-      <div className="flex h-16 w-full items-center justify-between gap-3 px-6 sm:gap-6 sm:px-10 lg:px-16 xl:px-20 2xl:px-24">
+      {/* El fondo de la barra cruza la pantalla entera, pero su contenido usa el
+          mismo `.shell` que las secciones: misma anchura maxima (1600px) y los
+          mismos escalones de margen lateral. Antes la barra repartia su contenido
+          de borde a borde y solo coincidia con el contenido por debajo de 1600px:
+          en pantallas anchas el logo y los iconos quedaban a cientos de pixeles de
+          la vertical de las secciones, y con el hero anclado a los bordes (el
+          contacto, la foto y el marquee) el desfase se veia en todo el bloque. */}
+      <div className="shell flex h-16 items-center justify-between gap-3 sm:gap-6">
         <a href={homeHref} className="shrink-0">
           <Logo />
         </a>
